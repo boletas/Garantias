@@ -2,25 +2,67 @@
 
 class Login_Controller extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('login');
-	}
+		
+    public function __construct(){
+        
+        parent::__construct();
+        $this->load->model('login_model');
+        
+    }
+    
+    public function index()
+    {
+        switch ($this->session->userdata('perfil')) {
+            case '':
+                $this->load->view('login');
+                break;
+            case 'administrador':
+                $this->load->view('admin');
+                break;
+            case 'usuario':
+                $this->load->view('user');
+                break;
+            default:
+                $this->load->view('login');
+                break;
+        }
+            
+    }
+        
+        
+    public function inicio_sesion(){
+
+        $usuario = $this->input->post("usuario");
+        $pass = $this->input->post("password");
+
+        $usuariook = $this->login_model->login_user($usuario,$pass);
+
+            //consulta si se hizo la consulta
+            if($usuariook == TRUE){
+
+                $data = array (
+                    'logueado'      => TRUE,
+                    'perfil'        => $usuariook->perfil,
+                    'usuario'       => $usuariook->nombre,
+                    'ap_paterno'    => $usuariook->ap_paterno
+                );
+
+                //Se pasan los datos del array $data a la sesion
+                $this->session->set_userdata($data);
+                $this->index();
+            }else{
+                redirect('login_controller');
+            }
+    }
+    
+    public function cerrar_sesion(){
+        //para destruir los datos de sesion
+        $this->session->sess_destroy();
+        redirect('login_controller');
+    }
+    
+        
+        
 }
 
 /* End of file welcome.php */
