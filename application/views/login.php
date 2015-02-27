@@ -7,10 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>...:::Boletas Garantia:::...</title>
-        <link rel="stylesheet" href="<?php base_url();?>assets/css/bootstrap.css">
-        <link rel="stylesheet" href="<?php base_url();?>assets/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="<?php base_url();?>assets/css/login.css">
-        <link rel="stylesheet" href="<?php base_url();?>assets/css/animate-custom.css">
+        <link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap.css">
+        <link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="<?=base_url();?>assets/css/login.css">
+        <link rel="stylesheet" href="<?=base_url();?>assets/css/animate-custom.css">
         
     </head>
     <body>
@@ -19,7 +19,7 @@
                 <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
                     <div class="login-box clearfix animated flipInY">
                         <div class="page-icon animated bounceInDown">
-                            <img class="img-responsive" src="<?php base_url();?>assets/img/login-key-icon.png" alt="Key icon" />
+                            <img class="img-responsive" src="<?=base_url();?>assets/img/login-key-icon.png" alt="Key icon" />
                         </div>
                         <hr />
                         <div class="login-form">
@@ -37,7 +37,7 @@
                             <?php }?>
                             <!--** FIN MENSAJES DE ERROR **-->
                             
-                            <form action="<?php base_url();?>login/inicio_sesion" method="post">
+                            <form action="<?=base_url();?>index.php/login_controller/inicio_sesion" method="post">
                                 <input type="text" placeholder="Nombre de usuario" value="<?php echo set_value('usuario')?>" name="usuario" class="input-field" required/> 
                                 <input type="password"  placeholder="password" name="password" class="input-field" required/> 
                                 <button type="submit" class="btn btn-login">Inicio sesion</button> 
@@ -56,9 +56,9 @@
     </body>
     
     
-        <script src="<?php base_url();?>assets/js/custom.modernizr.js"></script>
-        <script src="<?php base_url();?>assets/js/custom.js"></script>
-        <script src="<?php base_url();?>assets/js/placeholder-shim.min.js"></script>
-        <script src="<?php base_url();?>assets/js/jquery-1.11.2.min.js"></script>
-        <script src="<?php base_url();?>assets/js/bootstrap.min.js"></script>
+        <script src="<?=base_url();?>assets/js/custom.modernizr.js"></script>
+        <script src="<?=base_url();?>assets/js/custom.js"></script>
+        <script src="<?=base_url();?>assets/js/placeholder-shim.min.js"></script>
+        <script src="<?=base_url();?>assets/js/jquery-1.11.2.min.js"></script>
+        <script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>
 </html>
