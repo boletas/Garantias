@@ -21,7 +21,7 @@ class Login_model extends CI_Model {
         }else{
          
             $this->session->set_flashdata('usuario_incorrecto','Usuario o contraseña incorrecto');
-            redirect('login_controller');
+            redirect('plantilla_controller');
         }
     }
 }

@@ -5,23 +5,6 @@ class Login_Controller extends CI_Controller {
         parent::__construct();
         $this->load->model('login_model');
     }
-    
-    /*public function index(){
-        switch ($this->session->userdata('perfil')) {
-            case '':
-                $this->load->view('login');
-                break;
-            case 'administrador':
-                $this->load->view('admin');
-                break;
-            case 'usuario':
-                $this->load->view('user');
-                break;
-            default:
-                $this->load->view('login');
-                break;
-        }
-    }*/
         
     public function Inicio_Sesion(){
         $usuario = $this->input->post("usuario");
@@ -42,18 +25,29 @@ class Login_Controller extends CI_Controller {
                 //Se pasan los datos del array $data a la sesion
                 $this->session->set_userdata($data);
                 redirect(base_url()."?sec=Inicio",'refresh');
-                //redirect('login_controller');
+                
             }else{
                 redirect(base_url()."?sec=Inicio",'refresh');
-                //redirect('login_controller');
+                
             }
     }
     
+     public function removeCache(){
+         
+        $this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+        $this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+        $this->output->set_header('Pragma: no-cache');
+    }
+    
     public function cerrar_sesion(){
+        
+        //borrar datos cache
+        $this->removeCache();
         //para destruir los datos de sesion
         $this->session->sess_destroy();
         redirect(base_url(),'refresh');
-        //redirect('login_controller');
+        
     }
     
         
