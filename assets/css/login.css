@@ -1,7 +1,6 @@
 /* ==========================================================================
    Login Box styles
    ========================================================================== */
-  
 /*Change Backgound image here */
 html{	
 	background: #000 url(../img/fondo.jpg) top center;
@@ -26,9 +25,7 @@ body{
 	 opacity: 0.8;
 	text-shadow: 2px 2px 2px #000;
 	font-weight: normal;
- 
 }
-
 .login-box{
 	position: relative;
 	max-width:480px;	
@@ -42,12 +39,10 @@ body{
 	box-shadow: 2px 2px 5px #333;
 	margin-top: 80px;
 }
-
 .login-logo{
 	 text-align: center;
 	 padding: 15px 0 10px;
 }
-
 .login-logo img{
 	border:0;
 	display: inline-block;
@@ -57,8 +52,6 @@ body{
 	margin: 5px auto 10px;
 	text-align: center;
 }
- 
-
 .login-box hr{
 	margin:10px auto 20px;
 	width:70%;
@@ -113,9 +106,7 @@ body{
 	border:1px solid #bfbfbf;
 	color:#6c6c6c;
 	padding: 8px;
-	
 }
-
 /* Login Button */
 .btn.btn-login {
 	width: 120px;
@@ -159,7 +150,6 @@ body{
 	text-decoration: none;
 	color:#e13c3c;
 }
-
 label.checkbox {
 	width: 70%;
 	display: block;
@@ -178,7 +168,6 @@ label.checkbox input{
 	opacity: 1;
 	text-shadow: 1px 1px 1px #000;
 }
-
 /* Social Login */
 .social-login{
 	margin:10px 0 5px;
@@ -193,7 +182,6 @@ label.checkbox input{
 	-moz-box-shadow:  0px 0px 10px #FFF;
 	box-shadow: 0px 0px 10px #FFF;
 }
- 
 .btn.btn-facebook {
 	border: 1px solid #2D4479;
 	-webkit-box-shadow: inset 0 1px 2px #5272BF, 0px 0px 15px #FFF;
@@ -221,7 +209,6 @@ label.checkbox input{
 	-o-transition: box-shadow .05s ease-in-out;
 	transition: box-shadow .05s ease-in-out;
 }
-
 .btn.btn-twitter {
 	border: 1px solid #2189FF;
 	-webkit-box-shadow: inset 0 1px 2px #8DC2FF, 0px 0px 15px #FFF;
@@ -236,7 +223,6 @@ label.checkbox input{
 	background-image: linear-gradient(top,#73B4FF,#4A9EFF);
 	font-size:12px;
 }
-
 .btn.btn-twitter:hover {
 	background: #459CFF;
 	background-size: 100%;
@@ -256,8 +242,6 @@ label.checkbox input{
 	-o-animation-delay: .9s;
 	animation-delay: .9s;
 }
-
- 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers)
 =================================================================== */
 @media only screen and (max-width: 479px) {
@@ -265,9 +249,7 @@ label.checkbox input{
 		padding-top: 10px;
 		padding-bottom: 25px;
 	}
-	
 }
-
 /* Tablet Portrait Size to Tablet Landscape Size (devices and browsers)
 =================================================================== */
 @media only screen and (min-width: 480px) and (max-width: 767px){
@@ -275,7 +257,4 @@ label.checkbox input{
 		margin: 0 auto;
 		width: 420px;
 	}
-	
 }
-
-

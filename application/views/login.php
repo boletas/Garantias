@@ -9,7 +9,6 @@
                 </div>
                 <hr />
                 <div class="login-form">
-
                     <!--** MENSAJE DE ERROR USUARIO INCORRECTO **-->
                     <?php 
                     if($this->session->flashdata('usuario_incorrecto')){?>
@@ -20,7 +19,6 @@
                     </div>
                     <?php }?>
                     <!--** FIN MENSAJES DE ERROR **-->
-                    
                     <?php 
                     echo form_open(base_url().'index.php/login_controller/Inicio_Sesion');
                     $user = array(
@@ -64,5 +62,3 @@
 <script src="<?=base_url();?>assets/js/custom.modernizr.js"></script>
 <script src="<?=base_url();?>assets/js/custom.js"></script>
 <script src="<?=base_url();?>assets/js/placeholder-shim.min.js"></script>
-<script src="<?=base_url();?>assets/js/jquery-1.11.2.min.js"></script>
-<script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>

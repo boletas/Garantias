@@ -12,18 +12,13 @@ class Plantilla_Controller extends CI_Controller {
         
         $this->load->view('plantilla');
         
-        if($this->session->userdata('logueado') != TRUE) 
-            
-            $this->load->view('login');
-        
+        if($this->session->userdata('logueado') != TRUE) $this->load->view('login');
         else if($this->session->userdata('logueado') == TRUE) {
             
-            if(empty($seccion))
-                
-                $seccion = 'Inicio';
+            $this->load->view('cabecera');
             
+            if(empty($seccion))$seccion = 'Inicio';
             switch ($seccion) {
-                
                 case "Inicio":
                     $this->load->view('user');
                     break;
