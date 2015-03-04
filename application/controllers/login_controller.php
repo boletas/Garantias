@@ -10,7 +10,7 @@ class Login_Controller extends CI_Controller {
         $usuario = $this->input->post("usuario");
         $pass = $this->input->post("password");
         $usuariook = $this->login_model->login_user($usuario,$pass);
-            //consulta si se hizo la consulta (para soncultar..?) XD
+            //consulta si se hizo la consulta (para soncultar..?) XD //si wn SONCULTAR JAJA
             if($usuariook == TRUE){
                 $data = array (
                     'logueado'      => TRUE,
