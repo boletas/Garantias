@@ -20,7 +20,13 @@ class Plantilla_Controller extends CI_Controller {
             if(empty($seccion))$seccion = 'Inicio';
             switch ($seccion) {
                 case "Inicio":
-                    $this->load->view('user');
+                    $this->load->view('inicio');
+                    break;
+                case "nueva_boleta":
+                    $this->load->view('nueva_boleta');
+                    break;
+                case "busqueda_boleta":
+                    $this->load->view('busqueda_boleta');
                     break;
             }
         }

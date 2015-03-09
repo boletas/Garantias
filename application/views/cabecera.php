@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Boletas Garantias</a>
+            <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio">Boletas Garantias</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-right">
@@ -81,12 +81,14 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li>
+                        <a href="#"><i class="fa fa-user fa-fw"></i> Peril de Usuario</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
+<!--                    <li>
+                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>-->
                     <li class="divider"></li>
-                    <li><a href="<?php echo base_url(); ?>index.php/logout_controller/Cerrar_sesion"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="<?php echo base_url(); ?>index.php/logout_controller/Cerrar_sesion"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -98,7 +100,13 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Garantias</a>
+                        <a href="<?php echo base_url();?>?sec=busqueda_boleta"><i class="fa fa-dashboard fa-fw"></i> Busqueda Boleta</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url();?>?sec=nueva_boleta"><i class="fa fa-dashboard fa-fw"></i> Nueva Boleta</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dashboard fa-fw"></i> Mantenedores</a>
                     </li>
                 </ul>
             </div>
