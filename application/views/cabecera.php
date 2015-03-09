@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio">Boletas Garantias</a>
+            <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio"><i class="fa fa-home"></i> Boletas Garantias</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-right">
@@ -100,13 +100,22 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="<?php echo base_url();?>?sec=busqueda_boleta"><i class="fa fa-dashboard fa-fw"></i> Busqueda Boleta</a>
+                        <a href="<?php echo base_url();?>?sec=busqueda_boleta"><i class="fa  fa-search fa-fw"></i> Busqueda Boleta</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url();?>?sec=nueva_boleta"><i class="fa fa-dashboard fa-fw"></i> Nueva Boleta</a>
+                        <a href="<?php echo base_url();?>?sec=nueva_boleta"><i class="fa fa-list-alt fa-fw"></i> Nueva Boleta</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-dashboard fa-fw"></i> Mantenedores</a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="flot.html">Flot Charts</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Morris.js Charts</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
                     </li>
                 </ul>
             </div>
