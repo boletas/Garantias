@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="<?=base_url();?>assets/css/login.css">
-<link rel="stylesheet" href="<?=base_url();?>assets/css/animate-custom.css">
+
+<link rel="stylesheet" href="<?=base_url();?>assets/login/login.css">
+<link rel="stylesheet" href="<?=base_url();?>assets/login/animate-custom.css">
 <div class="container" id="login-block">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
