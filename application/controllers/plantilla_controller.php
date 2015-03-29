@@ -28,6 +28,12 @@ class Plantilla_Controller extends CI_Controller {
                 case "busqueda_boleta":
                     $this->load->view('busqueda_boleta');
                     break;
+                case "perfil_usuario":
+                    $this->load->view('usuario/perfil_usuario');
+                    break;
+                case "configuracion_usuario":
+                    $this->load->view('usuario/configuracion');
+                    break;
             }
         }
         

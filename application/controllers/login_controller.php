@@ -10,13 +10,15 @@ class Login_Controller extends CI_Controller {
         $usuario = $this->input->post("usuario");
         $pass = $this->input->post("password");
         $usuariook = $this->login_model->login_user($usuario,$pass);
-            //consulta si se hizo la consulta (para soncultar..?) XD //si wn SONCULTAR JAJA
             if($usuariook == TRUE){
                 $data = array (
-                    'logueado'      => TRUE,
-                    'perfil'        => $usuariook->perfil,
-                    'usuario'       => $usuariook->nombre,
-                    'ap_paterno'    => $usuariook->ap_paterno
+                    'logueado'          => TRUE,
+                    'perfil'            => $usuariook->perfil,
+                    'usuario'           => $usuariook->nombre,
+                    'ap_paterno'        => $usuariook->ap_paterno,
+                    'ap_materno'        => $usuariook->ap_materno,
+                    'nombre_usuario'    => $usuariook->nombre_usuario,
+                    'pass_usuario'      => $usuariook->pass_usuario
                 );
                 //Se pasan los datos del array $data a la sesion
                 $this->session->set_userdata($data);
