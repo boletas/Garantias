@@ -18,7 +18,7 @@
                         <h4>Error!</h4>
                         <?php echo $this->session->flashdata('usuario_incorrecto')?>
                     </div>
-                    <?php }?>
+                    <?php } ?>
                     <!--** FIN MENSAJES DE ERROR **-->
                     <?php 
                     echo form_open(base_url().'index.php/login_controller/Inicio_Sesion');
