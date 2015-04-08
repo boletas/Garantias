@@ -34,6 +34,15 @@ class Plantilla_Controller extends CI_Controller {
                 case "configuracion_usuario":
                     $this->load->view('usuario/configuracion');
                     break;
+                case "banco":
+                    $this->load->view('mantenedores/banco');
+                    break;
+                case "tipo_empresa":
+                    $this->load->view('mantenedores/tipo_empresa');
+                    break;
+                case "reportes":
+                    $this->load->view('reportes');
+                    break;
             }
         }
         
