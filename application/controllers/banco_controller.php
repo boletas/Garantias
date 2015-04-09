@@ -7,18 +7,6 @@ class Banco_Controller extends CI_Controller {
         $this->load->library('session');
     }
     
-    public function ObtieneBancos(){
-        
-        $data = $this->banco_model->ObtieneBancos();
-        if(!empty($data)){
-            if ($data){
-                $arr = array('banco' => $this->banco_model->ObtieneBancos());
-                //echo $arr->idBanco;
-                //die();
-                $this->session->set_userdata($arr);
-                redirect(base_url()."?sec=banco",'refresh');
-            }
-        }
-    }
+    
     
 }

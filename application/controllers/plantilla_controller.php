@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH'))exit('No direct script access allowed');
 
-class Plantilla_Controller extends CI_Controller {
+class Plantilla_Controller extends MY_Mantenedor {
     function __construct() {
         parent::__construct();
         $this->load->helper('form');
@@ -35,7 +35,8 @@ class Plantilla_Controller extends CI_Controller {
                     $this->load->view('usuario/configuracion');
                     break;
                 case "banco":
-                    $this->load->view('mantenedores/banco');
+                    $data['bancos'] = $this->ObtieneBancos();
+                    $this->load->view('mantenedores/banco', $data);
                     break;
                 case "tipo_empresa":
                     $this->load->view('mantenedores/tipo_empresa');
