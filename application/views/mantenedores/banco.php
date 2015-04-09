@@ -5,4 +5,10 @@
 </div>
 
 <?php
+//echo $this->session->userdata('banco');
+foreach ($this->session->userdata('banco') as $row) {
+    echo $row->banco;
+}
+
+
 ?>
