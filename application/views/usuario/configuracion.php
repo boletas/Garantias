@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Configuración de Cuenta</h1>
     </div>
-    <div class="col-lg-8 col-lg-offset-1">
+    <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading"> Datos de Sesión</div>
             <div class="panel-body">
