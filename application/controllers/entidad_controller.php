@@ -36,6 +36,7 @@ class Entidad_controller extends MY_Mantenedor{
             
                 $this->session->set_userdata('idEntidad',$value->idEntidad);
                 
+                
             }
             $this->session->set_userdata('opcion', '1');
             redirect(base_url()."?sec=nueva_boleta",'refresh');

@@ -22,21 +22,18 @@ class Entidad_model extends CI_Model{
     public function EntidadExiste($rut){
         
         $query = $this->db->query("CALL select_entidad('".$rut."')");
-        
         if ($query){
-            
-            return $query->result();
+            $this->db->close();
+            return $query;
         }else{
-            return FALSE;
+            return false;
         }
-        
     }
     
     public function TraerEntidad($id){
-        
         $query = $this->db->query("CALL pa_entidad('','',2,'".$id."')");
-        
         if ($query){
+            $this->db->close();
             return $query->result();
         }else{
             return FALSE;

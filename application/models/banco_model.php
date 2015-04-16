@@ -10,6 +10,7 @@ class Banco_Model extends CI_Model {
         
         $query = $this->db->query("CALL pa_banco ('',2,0)");
         if ($query){
+            $this->db->close();
             return $query->result();
         }else{
             return null;
