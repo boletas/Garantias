@@ -7,7 +7,7 @@
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
-                <th><button type="button" class="btn btn-outline btn-primary btn-xs">Nuevo Banco</button></th>
+                <th><button type="button" class="btn btn-outline btn-primary btn-xs" onclick="Accion('nuevo')">Nuevo Banco</button></th>
             </tr>
             <?php
                 $cont = 0;
@@ -16,8 +16,8 @@
                 <td><?php echo ++$cont;?></td>
                 <td><?php echo $banco->nombre_banco?></td>
                 <td>
-                    <button type="button" value="<?php $banco->idBanco ?>" class="btn btn-outline btn-primary btn-xs">Editar</button>
-                    <button type="button" value="<?php $banco->idBanco ?>" class="btn btn-outline btn-danger btn-xs">Eliminar</button>
+                    <button type="button" value="<?php $banco->idBanco ?>" class="btn btn-outline btn-primary btn-xs" onclick="Accion('editar')">Editar</button>
+                    <button type="button" value="<?php $banco->idBanco ?>" class="btn btn-outline btn-danger btn-xs" onclick="Accion('eliminar')">Eliminar</button>
                 </td>
             </tr>
             <?php } ?>
@@ -26,7 +26,15 @@
 </div>
 
 <script>
-    function (){
-    
+    function Accion(que){
+        if(que == 'nuevo'){
+           alert("nuevo banco");
+        }
+        if(que == "editar"){
+           alert("Editar"); 
+        }
+        if(que == "eliminar"){
+            alert("Eliminar");
+        }
     }
 </script>

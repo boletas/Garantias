@@ -25,8 +25,7 @@ class Entidad_model extends CI_Model{
         
         if ($query){
             
-            $query->result();
-            return TRUE;
+            return $query->result();
         }else{
             return FALSE;
         }
