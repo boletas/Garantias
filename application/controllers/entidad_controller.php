@@ -31,14 +31,10 @@ class Entidad_controller extends MY_Mantenedor{
         
         $rut_entidad = $this->entidad_model->EntidadExiste($rut);
         
-        if(!empty($rut_entidad)){
-            foreach ($rut_entidad as $value) {
+        if($rut_entidad){
             
-                $this->session->set_userdata('idEntidad',$value->idEntidad);
-                
-                
-            }
-            $this->session->set_userdata('opcion', '1');
+            $this->session->set_userdata('idEntidad',$rut_entidad->idEntidad);
+            $this->session->set_userdata('opcion', 'form1');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
         }else{
             

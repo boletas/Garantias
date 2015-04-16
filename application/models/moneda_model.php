@@ -10,7 +10,10 @@ class Moneda_model extends CI_Model{
     public function ObtieneMoneda(){
         $query = $this->db->query("CALL pa_moneda('','' ,2,0)");
         if ($query){
-            return $query->result();
+            $data = $query->result();
+            $query->free_result();
+            $this->db->close();
+            return $data;
         }else{
             return null;
         }

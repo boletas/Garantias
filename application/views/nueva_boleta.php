@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Nueva Boleta</h1>
     </div>
-    <div class="col-lg-10 col-lg-offset-1">
+    <div class="col-lg-7 col-lg-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading"> Ingreso boleta en garantia</div>
             <div class="panel-body">
@@ -18,15 +18,15 @@
                 <?php 
                     
                     
-                    if($this->session->userdata('opcion') == 1){
+                    if($this->session->userdata('opcion') == 'form1'){
                     $idEntidad;
                     $RutEntidad;
                     $nombre;
                     
                         foreach ($entidad as $value):
-                            $idEntidad = $entidad->idEntidad;
-                            $RutEntidad = $entidad->rut;
-                            $nombre = $entidad->nombre;
+                            $idEntidad = $value->idEntidad;
+                            $RutEntidad = $value->rut;
+                            $nombre = $value->nombre;
                         endforeach;
                     
                 
@@ -119,7 +119,7 @@
                     
                 ?>
                 
-                <?php if($this->session->userdata('opcion') != 1){ ?>   
+                <?php if($this->session->userdata('opcion') != 'form1'){ ?>   
                     <!--Primer formulario que aparece -->
                     
                     <?php 
@@ -152,15 +152,16 @@
                     <?php echo form_close(); ?>
                     
                     
-                <?php }elseif($this->session->userdata('opcion') == 1){ ?>
+                <?php }elseif($this->session->userdata('opcion') == 'form1'){ ?>
                     
                     <!--Formulario en caso de que exista la entidad-->
-                
+                <?php echo form_open(base_url().'index.php/boleta_controller/insert_boleta'); ?>
+                    <input type="hidden" name="idEntidad" value="<?php echo $idEntidad?>"/>    
                 <div class="form-group">
                     <?php echo form_input($rut); ?>
                 </div>
                 <div class="form-group">
-                    <?php echo form_input($nombre); ?>
+                    <?php echo form_input($nombreEntidad); ?>
                 </div>    
                 <div class="form-group">
                     <?php echo form_input($num_boleta); ?>
@@ -168,6 +169,13 @@
                 <div class="form-group">
                     <?php echo form_input($monto_boleta); ?>
                 </div>
+                <div class="form-group">
+                    <select name="id_moneda" class="form-control">
+                    <?php foreach ($monedas as $moneda) { ?>
+                        <option value="<?php echo $moneda->idMoneda ?>"><?php echo $moneda->nombre_moneda ?></option>
+                    <?php }?>
+                    </select>
+                </div>     
                 <div class="form-group">
                     <?php echo form_input($fecha_recepcion); ?>
                 </div>
@@ -181,22 +189,33 @@
                     <?php echo form_input($denominacion); ?>
                 </div>
                 <div class="form-group">
-                    <?php echo form_dropdown('bancos', $bancos); ?>
-                </div>  
+                    <select name="id_banco" class="form-control">
+                    <?php foreach ($bancos as $banco) { ?>
+                        <option value="<?php echo $banco->idBanco ?>"><?php echo $banco->nombre_banco ?></option>
+                    <?php }?>
+                    </select>
+                </div>       
                 <div class="form-group">
-                    <?php echo form_dropdown('monedas', $monedas); ?>
-                </div>      
-                <div class="form-group">
-                    <?php echo form_dropdown('garantias', $garantias); ?>
+                    <select name="id_garantia" class="form-control">
+                    <?php foreach ($garantias as $garantia) { ?>
+                        <option value="<?php echo $garantia->idTipoGarantia ?>"><?php echo $garantia->descripcion ?></option>
+                    <?php }?>
+                    </select>
                 </div>     
                 <div class="form-group">
-                    <?php echo form_dropdown('tipos', $tipos); ?>
+                    <select name="id_tipo" class="form-control">
+                    <?php foreach ($tipos as $tipo) { ?>
+                        <option value="<?php echo $tipo->idTipoBoleta ?>"><?php echo $tipo->descripcion_tipo_boleta ?></option>
+                    <?php }?>
+                    </select>
                 </div>      
                 <div class="form-group" align="right">
                     <?php echo form_button($btn_insertar);?>
                 </div>
+                    
                    
                 <?php echo form_close(); ?>
+                   <?php  $this->session->unset_userdata('opcion');?>
                 <?php } ?>
                 <!--
                 
