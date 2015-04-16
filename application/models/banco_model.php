@@ -7,6 +7,7 @@ class Banco_Model extends CI_Model {
     }
     
     public function ObtieneBancos(){
+        
         $query = $this->db->query("CALL pa_banco ('',2,0)");
         if ($query){
             return $query->result();
