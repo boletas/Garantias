@@ -4,61 +4,46 @@ class Banco_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('banco_model');
+        $this->load->helper('form');
         $this->load->library('session');
     }
     
-    public function index(){
-        if($this->input->post("enviar") == "nuevo_banco"){
-            $nuevo_banco = array(
-                'nombre_banco' => $this->input->post("nombre_banco")
-            );
-            if($this->input->post("confirmado") == "si"){
-                $this->NuevoBanco($nuevo_banco);
-            }elseif($this->input->post("confirmado") == "no"){
-                $estado = array(
-                    'encontrado'    => '',
-                    'nombre_banco'  => '',
-                    'insertado'     => ''
-                );
-                $this->session->set_userdata($estado);
-                redirect(base_url()."?sec=banco",'refresh');
-            }else{
-                $this->ExisteBanco($nuevo_banco);
-            }
+    public function Index(){
+        $que = $this->input->post("crud");
+        if($que == "nuevo"){
+            
+        }
+        
+        if($que == "editar"){
+            $idBanco = $this->input->post("cual");
+            $this->EditaBanco($idBanco);
+        }
+        
+        if($que == "eliminar"){
+            $idBanco = $this->input->post("cual");
+            $this->EliminaBanco($idBanco);
         }
     }
     
-    function ExisteBanco($nuevo_banco){
-        $data = $this->banco_model->ExisteBanco($nuevo_banco);
+    public function ExisteBanco(){
+    
+    }
+    
+    public function NuevoBanco(){
+    
+    }
+    
+    public function EditaBanco($idBanco){
+        
+    }
+    
+    public function EliminaBanco($idBanco){
+        $data = $this->banco_model->EliminaBanco($idBanco);
         if($data){
-            if ($data->num_rows() > 0){
-                $estado = array(
-                    'select'        => '2',
-                    'encontrado'    => 'si',
-                    'nombre_banco'  => $nuevo_banco['nombre_banco']
-                );
-                $this->session->set_userdata($estado);
-                redirect(base_url()."?sec=banco",'refresh');
-            }
+            $this->session->set_userdata('banco_ok','El registro fue eliminado correctamente');
+            redirect(base_url()."?sec=banco",'refresh');
         }else{
-            $this->NuevoBanco($nuevo_banco);
-        }
-    }
-    
-    public function NuevoBanco($nuevo_banco){
-        $data = $this->banco_model->NuevoBanco($nuevo_banco);
-        if($data){
-            $estado = array(
-                    'select'        => '2',
-                    'insertado'     => 'si'
-                );
-            $this->session->set_userdata($estado);
-            $estado = array(
-                    'nombre_banco'  => '',
-                    'encontrado'    => '',
-                    'nombre_banco'  => ''
-            );
-            $this->session->unset_userdata($estado);
+            $this->session->set_userdata('banco_error','Ocurrio un problema al eliminar el registro');
             redirect(base_url()."?sec=banco",'refresh');
         }
     }

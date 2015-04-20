@@ -21,27 +21,16 @@ class Banco_Model extends CI_Model {
         }
     }
     
-    public function ExisteBanco($nuevo_banco){
-        $query = $this->db->query("call pa_banco ('%".$nuevo_banco['nombre_banco']."%','5','0')");
+    public function EliminaBanco($idBanco){
+        $query = $this->db->query("CALL pa_banco ('','4','".$idBanco."')");
         if($query){
-            if ($query->num_rows() > 0){
-                $this->db->close();
-                return $query;
-            }else{
-                $this->db->close();
-                $query->free_result();
-                return null;
-            }
-        }
-    }
-    
-    public function NuevoBanco($nuevo_banco){
-        $query = $this->db->query("call pa_banco('".$nuevo_banco['nombre_banco']."','1','0')");
-        if($query){
+            $query->free_result();
             $this->db->close();
-            return $query;
+            return TRUE;
         }else{
-            return null;
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
         }
     }
 }

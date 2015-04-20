@@ -44,11 +44,5 @@ class Boleta_controller extends CI_Controller{
             $this->session->set_flashdata('insert','Error al ingresar boleta.');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
         }
-        
-        
-        
     }
-    
-    
-    
 }
