@@ -32,7 +32,9 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre Banco</th>
-                    <th colspan="2" style="text-align: center;"><button type="button" class="btn btn-outline btn-primary btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button></th>
+                    <th colspan="2" style="text-align: center;">
+                        <button type="button" class="btn btn-outline btn-primary btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
+                    </th>
                 </tr>
             </thead>
             <?php
