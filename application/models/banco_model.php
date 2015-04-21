@@ -33,4 +33,30 @@ class Banco_Model extends CI_Model {
             return FALSE;
         }
     }
+    
+    public function ExisteBanco($banco){
+        $query = $this->db->query("CALL pa_banco('".$banco."','5','0')");
+        if($query->num_rows() > 0){
+            $query->free_result();
+            $this->db->close();
+            return TRUE;  
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
+    
+    public function NuevoBanco($banco){
+        $query = $this->db->query("CALL pa_banco('".$banco."','1','0')");
+        if($query){
+            $query->free_result();
+            $this->db->close();
+            return TRUE;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
 }

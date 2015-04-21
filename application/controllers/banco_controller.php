@@ -11,12 +11,10 @@ class Banco_Controller extends CI_Controller {
     public function Index(){
         $que = $this->input->post("crud");
         if($que == "nuevo"){
-            
+            redirect(base_url()."?sec=nuevo_banco",'refresh');
         }
         
         if($que == "editar"){
-            $idBanco = $this->input->post("cual");
-            $this->EditaBanco($idBanco);
         }
         
         if($que == "eliminar"){
@@ -25,12 +23,23 @@ class Banco_Controller extends CI_Controller {
         }
     }
     
-    public function ExisteBanco(){
-    
-    }
-    
     public function NuevoBanco(){
-    
+        $banco = $this->input->post("nombre_banco");
+        
+        $data = $this->banco_model->ExisteBanco($banco);
+        if($data){
+            $this->session->set_flashdata('error', 'Ya existe un banco con el nombre indicado');
+            redirect(base_url()."?sec=nuevo_banco",'refresh');
+        }else{
+            $data = $this->banco_model->NuevoBanco($banco);
+            if($data){
+                $this->session->set_flashdata('guardado', 'El banco fue guardado correctamente');
+                redirect(base_url()."?sec=nuevo_banco",'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de guardar el banco');
+                redirect(base_url()."?sec=nuevo_banco",'refresh');
+            }
+        }
     }
     
     public function EditaBanco($idBanco){

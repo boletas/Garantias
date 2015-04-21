@@ -5,7 +5,7 @@
     <div class="col-lg-10 col-lg-offset-1">
         <!--** MENSAJE **-->
         <?php 
-        if($this->session->userdata('banco_ok') || $this->session->keep_flashdata('banco_error')){
+        if($this->session->userdata('banco_ok') || $this->session->userdata('banco_error')){
             if($this->session->userdata('banco_ok')){ 
                 $clase = "alert alert-info alert-dismissable";
                 $alerta = $this->session->userdata('banco_ok');
@@ -33,7 +33,7 @@
                     <th>#</th>
                     <th>Nombre Banco</th>
                     <th colspan="2" style="text-align: center;">
-                        <button type="button" class="btn btn-outline btn-primary btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
+                        <button type="button" class="btn btn-outline btn-success btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
                     </th>
                 </tr>
             </thead>
