@@ -4,7 +4,6 @@ class Banco_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('banco_model');
-        $this->load->helper('form');
         $this->load->library('session');
     }
     
@@ -15,12 +14,28 @@ class Banco_Controller extends CI_Controller {
         }
         
         if($que == "editar"){
+            $idBanco = $this->input->post("cual");
+            $this->DevuelveBanco($idBanco);
         }
         
         if($que == "eliminar"){
             $idBanco = $this->input->post("cual");
             $this->EliminaBanco($idBanco);
         }
+    }
+    
+    public function DevuelveBanco($idBanco){
+        $data = $this->banco_model->DevuelveBanco($idBanco);
+        foreach($data as $row){
+            $idBanco = $row->idBanco;
+            $nombre_banco = $row->nombre_banco;
+        }
+        $banco = array(
+            'idBanco'   => $idBanco,
+            'banco'     => $nombre_banco
+        );
+        $this->session->set_userdata($banco);
+        redirect(base_url()."?sec=edita_banco",'refresh');
     }
     
     public function NuevoBanco(){
@@ -42,7 +57,7 @@ class Banco_Controller extends CI_Controller {
         }
     }
     
-    public function EditaBanco($idBanco){
+    public function EditaBanco(){
         
     }
     

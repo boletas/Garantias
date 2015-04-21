@@ -7,7 +7,6 @@ class Banco_Model extends CI_Model {
     }
     
     public function ObtieneBancos(){
-        
         $query = $this->db->query("CALL pa_banco ('',2,0)");
         if ($query){
             $data = $query->result();
@@ -40,6 +39,20 @@ class Banco_Model extends CI_Model {
             $query->free_result();
             $this->db->close();
             return TRUE;  
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
+    
+    public function DevuelveBanco($idBanco){
+        $query = $this->db->query("CALL pa_banco('','2','".$idBanco."')");
+        if($query){
+            $data = $query->result();
+            $query->free_result();
+            $this->db->close();
+            return $data;
         }else{
             $query->free_result();
             $this->db->close();

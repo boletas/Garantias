@@ -32,7 +32,13 @@
                     'placeholder'   => 'Ingrese nombre banco'
                 );
                 
-                $boton = array(
+                $atras = array(
+                    'name'          => 'Atras',
+                    'content'       => 'Atras',
+                    'class'         => 'btn btn-outline btn-default'
+                );
+                
+                $aceptar = array(
                     'name'          => 'Aceptar',
                     'content'       => 'Aceptar',
                     'type'          => 'Submit',
@@ -43,7 +49,8 @@
                     <?php echo form_input($banco); ?>
                 </div>
                 <div class="form-group" style="text-align: right">
-                    <?php echo form_button($boton); ?>
+                    <a href="<?php echo base_url()?>?sec=banco"><?php echo form_button($atras); ?></a>
+                    <?php echo form_button($aceptar); ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

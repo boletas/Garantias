@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Nueva Boleta</h1>
     </div>
-    <div class="col-lg-7 col-lg-offset-1">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"> Ingreso boleta en garantia</div>
             <div class="panel-body">
@@ -95,6 +95,12 @@
                                     'class'         => 'btn btn-outline btn-primary'
                                 );
                     
+                    $btn_atras = array (
+                                    'name'          => 'Atras',
+                                    'content'       => 'Atras',
+                                    'class'         => 'btn btn-outline btn-default'
+                                );
+                    
                     //FORMULARIO INGRESAR ENTIDAD
                     
                     $rut_entidad = array(
@@ -146,7 +152,7 @@
                     <div class="form-group">
                         <?php echo form_input($RutBuscar); ?>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="text-align: right">
                         <?php echo form_input($btn_buscar); ?>
                     </div>
                     <?php echo form_close(); ?>
@@ -210,6 +216,7 @@
                     </select>
                 </div>      
                 <div class="form-group" align="right">
+                    <a href="<?php echo base_url();?>?sec=nueva_boleta"><?php echo form_button($btn_atras);?></a>
                     <?php echo form_button($btn_insertar);?>
                 </div>
                     

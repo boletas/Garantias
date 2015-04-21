@@ -48,13 +48,16 @@ class Plantilla_Controller extends MY_Mantenedor {
                     break;
                 case "banco":
                     $data['bancos'] = $this->ObtieneBancos();
-                    $this->load->view('mantenedores/banco', $data);
+                    $this->load->view('banco/banco', $data);
                     break;
                 case "nuevo_banco":
-                    $this->load->view('mantenedores/nuevo_banco');
+                    $this->load->view('banco/nuevo_banco');
+                    break;
+                case "edita_banco":
+                    $this->load->view('banco/edita_banco');
                     break;
                 case "tipo_empresa":
-                    $this->load->view('mantenedores/tipo_empresa');
+                    $this->load->view('tipo_empresa/tipo_empresa');
                     break;
                 case "reportes":
                     $this->load->view('reportes');
