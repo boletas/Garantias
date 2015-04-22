@@ -57,8 +57,17 @@ class Banco_Controller extends CI_Controller {
         }
     }
     
-    public function EditaBanco(){
-        
+    public function ModificaBanco(){
+        $idBanco = $this->input->post("idBanco");
+        $banco = $this->input->post("nombre_banco");
+        $data = $this->banco_model->ModificaBanco($banco, $idBanco);
+        if($data){
+            $this->session->set_userdata('banco_ok', 'El banco fue actualizado correctamente');
+            redirect(base_url()."?sec=banco",'refresh');
+        }else{
+            $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de modificar el banco');
+            redirect(base_url()."?sec=nuevo_banco",'refresh');
+        }
     }
     
     public function EliminaBanco($idBanco){

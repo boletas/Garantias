@@ -72,4 +72,17 @@ class Banco_Model extends CI_Model {
             return FALSE;
         }
     }
+    
+    public function ModificaBanco($banco,$idBanco){
+        $query = $this->db->query("CALL pa_banco('".$banco."','3','".$idBanco."')");
+        if($query){
+            $query->free_result();
+            $this->db->close();
+            return TRUE;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
 }

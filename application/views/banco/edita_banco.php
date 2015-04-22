@@ -4,6 +4,15 @@
     </div>
     <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
+            <!--** MENSAJE **-->
+            <?php if($this->session->set_flashdata('banco_ok')){ ?>
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <?php echo $this->session->set_flashdata('error'); ?>
+                </div>
+            <?php } ?>
+            
+            <!--** FIN MENSAJES **-->
             <?php
             $idbanco = $this->session->userdata('idBanco');
             $nombre_banco = $this->session->userdata('banco');
@@ -11,6 +20,10 @@
             <div class="panel-heading">Modificación Banco</div>
             <div class="panel-body">
                 <?php
+                $idBanco = array(
+                    'idBanco'       => $idbanco
+                );
+                
                 $banco = array(
                     'name'          => 'nombre_banco',
                     'class'         => 'form-control',
@@ -29,8 +42,9 @@
                     'type'          => 'Submit',
                     'class'         => 'btn btn-outline btn-primary'
                 );
-                echo form_open(base_url()."index.php/banco_controller/EditaBanco");?>
+                echo form_open(base_url()."index.php/banco_controller/ModificaBanco");?>
                 <div class="form-group">
+                    <?php echo form_hidden($idBanco);?>
                     <?php echo form_input($banco);?>
                 </div>
                 <div class="form-group" style="text-align: right">
