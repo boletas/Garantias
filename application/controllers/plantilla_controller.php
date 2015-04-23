@@ -64,7 +64,6 @@ class Plantilla_Controller extends MY_Mantenedor {
                     break;
             }
         }
-        
         $this->load->view('footer');//carga de footer cierra body y html
     }
 }
