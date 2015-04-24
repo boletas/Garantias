@@ -91,7 +91,8 @@
                     
                     $btn_insertar = array (
                                     'name'          => 'Guardar',
-                                    'value'       => 'Guardar',
+                                    'value'         => 'Guardar',
+                                    'content'       => 'Guardar',
                                     'type'          => 'Submit',
                                     'class'         => 'btn btn-outline btn-primary'
                                 );

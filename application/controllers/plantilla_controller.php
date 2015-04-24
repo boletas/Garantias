@@ -38,7 +38,7 @@ class Plantilla_Controller extends MY_Mantenedor {
                     
                     break;
                 case "busqueda_boleta":
-                    $this->load->view('busqueda_boleta');
+                    $this->load->view('busqueda/busqueda_boleta');
                     break;
                 case "perfil_usuario":
                     $this->load->view('usuario/perfil_usuario');
