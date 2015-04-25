@@ -9,7 +9,8 @@
         </div><!-- fin div page_wrapper-->
 
     </div><!-- fin div wrapper -->
-    <script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>-->
+    <script src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url()?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <script src="<?php echo base_url()?>assets/bower_components/raphael/raphael-min.js"></script>
