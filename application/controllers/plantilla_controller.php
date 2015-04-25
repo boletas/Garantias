@@ -62,6 +62,9 @@ class Plantilla_Controller extends MY_Mantenedor {
                 case "reportes":
                     $this->load->view('reportes');
                     break;
+                case "retiro_boleta":
+                    $this->load->view('retiro_boleta');
+                    break;
             }
         }
         $this->load->view('footer');//carga de footer cierra body y html

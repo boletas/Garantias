@@ -78,6 +78,9 @@
                     <li>
                         <a href="<?php echo base_url();?>?sec=reportes"><i class="fa fa-file-text fa-fw"></i> Reportes</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-search fa-fw"></i> Retiro boleta</a>
+                    </li>
                 </ul>
             </div>
         </div>
