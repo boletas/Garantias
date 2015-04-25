@@ -26,14 +26,14 @@
             echo form_open(base_url()."index.php/banco_controller",$form); 
             
         ?>
+        <button type="button" class="btn btn-outline btn-success btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
+                    
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Nombre Banco</th>
-                    <th colspan="2" style="text-align: center;">
-                        <button type="button" class="btn btn-outline btn-success btn-xs" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
-                    </th>
+                    <th>accion</th>
                 </tr>
             </thead>
             <tfoot>
@@ -45,22 +45,7 @@
                     </th>
                 </tr>
             </tfoot>
-            <tbody>
-            <?php
-                $cont = 0;
-                foreach ($bancos as $banco){ ?>
-                <tr>
-                    <td><?php echo ++$cont;?></td>
-                    <th><?php echo $banco->nombre_banco?></td>
-                    <td style="text-align: center;">
-                        <button type="button" value="<?php echo $banco->idBanco ?>" name="editar_banco" id="editar_banco" class="btn btn-outline btn-primary btn-xs" onclick="Accion('editar',<?php echo $banco->idBanco ?>)">Editar</button>
-                    </td>
-                    <td style="text-align: center;">
-                        <button type="button" value="<?php echo $banco->idBanco ?>" name="eliminar_banco" id="eliminar_banco" class="btn btn-outline btn-danger btn-xs" onclick="Accion('eliminar',<?php echo $banco->idBanco ?>)">Eliminar</button>
-                    </td>
-                </tr>
-            <?php } ?>
-            </tbody>
+            <?php echo $bancos;?>
             <input type="hidden" id="crud" name="crud" value=""/>
             <input type="hidden" id="cual" name="cual" value=""/>
         </table>
@@ -87,14 +72,13 @@
         document.form1.submit();
     }
     
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+    
     function UnsetMensaje(){
         <?php $this->session->unset_userdata('banco_ok','banco_error')?>
     }
     setTimeout("UnsetMensaje()",5000)
 </script>
 
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
