@@ -12,7 +12,15 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function ObtieneBancos(){
-        
+        $data = $this->banco_model->ObtieneBancos();
+        if(!empty($data)){
+            if ($data){
+                return $data;
+            }
+        }
+    }
+    
+    public function ObtieneStringBancos(){
         $data = $this->banco_model->ObtieneBancos();
         if(!empty($data)){
             if ($data){
@@ -25,9 +33,6 @@ class MY_Mantenedor extends CI_Controller{
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td style='text-align: center;'><button type='button' value='$row->idBanco' name='editar_banco' class='btn btn-outline btn-primary btn-xs' Onclick=\"Accion('editar',$row->idBanco)\">Editar</button></td>";
                     $html .= "</tr>\n";
-//                    $html .= "";
-//                    $html .= "";
-//                    $html .= "";
                 }
                 $html .= "</tbody>";
                 return $html;
