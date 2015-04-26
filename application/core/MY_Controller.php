@@ -28,7 +28,6 @@ class MY_Mantenedor extends CI_Controller{
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($data as $row) {
-                    
                     $html .= "<tr><td>".++$c."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td style='text-align: center;'><button type='button' value='$row->idBanco' name='editar_banco' class='btn btn-outline btn-primary btn-xs' Onclick=\"Accion('editar',$row->idBanco)\">Editar</button></td>";
