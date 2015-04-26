@@ -50,6 +50,13 @@
 <script>
     function cambio(){
         var valor = document.getElementById('tipo_busqueda').value;
+        if(valor == 1){
+            document.getElementById('boleta').style.display = 'none';
+            document.getElementById('recepcion').style.display = 'none';
+            document.getElementById('emision').style.display = 'none';
+            document.getElementById('vencimiento').style.display = 'none';
+            document.getElementById('enti').style.display = 'none';
+        }
         if(valor == 2){
             document.getElementById('boleta').style.display = 'block';
             document.getElementById('recepcion').style.display = 'none';
