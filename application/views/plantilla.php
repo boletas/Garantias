@@ -28,7 +28,7 @@
     <!-- Custom Fonts -->
     <link href="<?php echo base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
-    <link href="https://cdn.datatables.net/1.10.6/css/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="<?php echo base_url()?>assets/css/date_time.min.css" rel="stylesheet" type="text/css">
     
     <script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
