@@ -4,10 +4,10 @@
     </div>
     <div class="col-lg-12">
         <div class="dataTable_wrapper">
-            <table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+            <table id="result_boleta" class="table table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Numero Boleta</th>
+                        <th>N° Boleta</th>
                         <th>Monto Boleta</th>
                         <th>Fecha Recepción</th>
                         <th>Fecha Emisión</th>
@@ -33,13 +33,13 @@
 <script>
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#example tfoot th').each( function () {
-        var title = $('#example thead th').eq( $(this).index() ).text();
+    $('#result_boleta tfoot th').each( function () {
+        var title = $('#result_boleta thead th').eq( $(this).index() ).text();
         $(this).html( '<input type="text" class="form-control" />' );
     } );
  
     // DataTable
-    var table = $('#example').DataTable();
+    var table = $('#result_boleta').DataTable();
  
     // Apply the search
     table.columns().every( function () {
