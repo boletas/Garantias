@@ -1,5 +1,3 @@
-<link href="<?php echo base_url()?>assets/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-<link href="<?php echo base_url()?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Retiro Boleta</h1>

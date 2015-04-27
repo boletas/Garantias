@@ -6,15 +6,9 @@
         <div class="panel panel-default">
             <div class="panel-heading"> Seleccione Tipo de Busqueda</div>
             <div class="panel-body">
-                <?php 
-                $btn_buscar = array (
-                                    'name'          => 'Buscar',
-                                    'content'       => 'Buscar',
-                                    'type'          => 'Submit',
-                                    'class'         => 'btn btn-outline btn-primary'
-                                );
-                
-                echo form_open();
+                <?php
+                $form = array('name'    => 'form1');
+                echo form_open(base_url()."index.php/busqueda_boleta_controller",$form);
                 ?>
                     <div class="form-group">
                         <select class="form-control" id="tipo_busqueda" onchange="cambio()">
@@ -43,7 +37,8 @@
                         <input class="form-control" placeholder="Ingrese Rut Entidad" type="text" value="" name="entidad" id="entidad"/>
                     </div>
                     <div class="form-group" style="text-align: right">
-                        <?php echo form_button($btn_buscar);?>
+                        <button name="Buscar" id="Buscar" class="btn btn-outline btn-primary" onclick="buscar()">Buscar</button>
+                        <input type="hidden" id="que" name="que"/>
                     </div>
                 <?php echo form_close(); ?>
             </div>
@@ -51,6 +46,12 @@
     </div>
 </div>
 <script>
+    function buscar(){
+        var valor = document.getElementById('tipo_busqueda').value;
+        document.getElementById('que').value = valor;
+        document.form1.submit();
+    }
+    
     function cambio(){
         var valor = document.getElementById('tipo_busqueda').value;
         if(valor == 1){

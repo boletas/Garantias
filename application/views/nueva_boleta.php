@@ -15,10 +15,8 @@
                     
                 <?php } ?>
                     <!--** FIN MENSAJES**-->
+                <?php
                 
-                <?php 
-                    
-                    
                     if($this->session->userdata('opcion') == 'form1'){
                     $idEntidad;
                     $RutEntidad;
