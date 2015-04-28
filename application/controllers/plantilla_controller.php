@@ -62,9 +62,34 @@ class Plantilla_Controller extends MY_Mantenedor {
                 case "reportes":
                     $this->load->view('reportes/reportes');
                     break;
+                
                 case "retiro_boleta":
-                    $this->load->view('retiro/retiro_boleta');
-                    break;
+                    
+                    if(!empty($this->session->userdata('boleta_xrut_xnum'))){
+                        
+                        $data['boleta_xrut_xnum'] = $this->session->userdata('boleta_xrut_xnum');
+                        $this->session->unset_userdata('boleta_xrut_xnum');
+                        $this->load->view('retiro/retiro_boleta', $data);
+                        break;
+                    
+                    }elseif ($this->session->userdata('boleta_xrut')) {
+                        
+                        $data['boleta_xrut'] = $this->session->userdata('boleta_xrut');
+                        $this->session->unset_userdata('boleta_xrut');
+                        $this->load->view('retiro/retiro_boleta', $data);
+                        break;
+                        
+                    }elseif ($this->session->userdata('boleta_xnum')) {
+                        
+                        $data['boleta_xnum'] = $this->session->userdata('boleta_xnum');
+                        $this->session->unset_userdata('boleta_xnum');
+                        $this->load->view('retiro/retiro_boleta', $data);
+                        break;
+                        
+                    }  else {
+                        $this->load->view('retiro/retiro_boleta');
+                        break;
+                    }
                 case "resultado_boleta":
                     $this->load->view('busqueda/resultado_boleta');
                     break;

@@ -57,7 +57,7 @@
         
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         
-        <?php if(!empty($this->session->userdata('boleta_xrut_xnum'))){ ?>
+        <?php if(!empty($boleta_xrut_xnum)){ ?>
         <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -88,14 +88,14 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $this->session->userdata('boleta_xrut_xnum');  ?>
-                <?php  $this->session->unset_userdata('boleta_xrut_xnum');?>
+                <?php echo $boleta_xrut_xnum;  ?>
+                
             </table>
         </div>
         
         <!--RESULTADO POR NUMERO DE RUT-->
         
-        <?php }elseif (!empty($this->session->userdata('boleta_xrut'))){ ?>
+        <?php }elseif (!empty($boleta_xrut)){ ?>
             <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -126,14 +126,13 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $this->session->userdata('boleta_xrut');  ?>
-                <?php  $this->session->unset_userdata('boleta_xrut');?>
+                <?php echo $boleta_xrut;  ?>
             </table>
         </div>
         
         <!--RESULTADO BUSQUEDA POR NUMERO DE BOLETA-->
         
-        <?php }elseif (!empty($this->session->userdata('boleta_xnum'))){ ?>
+        <?php }elseif (!empty($boleta_xnum)){ ?>
             <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -164,8 +163,7 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $this->session->userdata('boleta_xnum');  ?>
-                <?php  $this->session->unset_userdata('boleta_xnum');?>
+                <?php echo $boleta_xnum;  ?>
             </table>   
         </div>
         <?php } ?>
