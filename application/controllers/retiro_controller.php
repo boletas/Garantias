@@ -8,8 +8,6 @@ class Retiro_Controller extends CI_Controller {
     
     public function BuscarRetiro(){
         
-        
-        
         $rut = $this->input->post('rut_buscar');
         $num = $this->input->post('num_buscar');
         
@@ -24,8 +22,7 @@ class Retiro_Controller extends CI_Controller {
             
         }elseif (!empty($rut) && !empty($num)) {
             
-            $this->session->unset_userdata('boleta_xrut');
-            $this->session->unset_userdata('boleta_xnum');
+            
             
            $query = $this->retiro_model->BuscarRutNum($rut,$num);
            
@@ -56,8 +53,7 @@ class Retiro_Controller extends CI_Controller {
            }
             
         }elseif (empty($rut) && !empty($num)) {
-            $this->session->unset_userdata('boleta_xrut_xnum');
-            $this->session->unset_userdata('boleta_xrut');
+            
             
             $query = $this->retiro_model->BuscarXNum($num);
            
@@ -90,9 +86,6 @@ class Retiro_Controller extends CI_Controller {
             
             
         }elseif (!empty($rut) && empty($num)) {
-            
-            $this->session->unset_userdata('boleta_xrut_xnum');
-            $this->session->unset_userdata('boleta_xnum');
             
             $query = $this->retiro_model->BuscarXRut($rut);
            
