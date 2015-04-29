@@ -24,8 +24,6 @@ class Busqueda_Boleta_Controller extends CI_Controller{
             foreach($data as $row){
                 $html .= "<td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$row->rut."</td>";
-                //$html .= "<td>".$row->nombre."</td>";
-                //$html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
                 $html .= "<td>".date("d-m-Y", strtotime($row->fecha_emision))."</td>";
                 $html .= "<td>".$row->monto_boleta."</td>";
                 $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";

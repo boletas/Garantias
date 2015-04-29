@@ -25,7 +25,7 @@
                     <th>Monto</th>
                     <th>Vencimiento</th>
                     <th>Vence en</th>
-                    <td></td>
+                    <th></th>
                 </tr>
             </tfoot>
             <?php echo $this->session->userdata('html'); ?>
@@ -34,7 +34,6 @@
 </div>
 
 <script>
-$(function () { $("[data-toggle='tooltip']").tooltip(); });
 
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
