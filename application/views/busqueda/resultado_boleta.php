@@ -32,12 +32,15 @@
         </table>
     </div>
 </div>
+
 <script>
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
+
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" style="width: 100px;" class="form-control"/>' );
+        $(this).html( '<input type="text" style="width: 130px;" class="form-control"/>' );
     } );
  
     // DataTable

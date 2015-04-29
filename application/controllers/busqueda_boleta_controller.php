@@ -26,14 +26,14 @@ class Busqueda_Boleta_Controller extends CI_Controller{
                 $html .= "<td>".$row->rut."</td>";
                 //$html .= "<td>".$row->nombre."</td>";
                 //$html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
-                $html .= "<td>".$row->fecha_emision."</td>";
+                $html .= "<td>".date("d-m-Y", strtotime($row->fecha_emision))."</td>";
                 $html .= "<td>".$row->monto_boleta."</td>";
-                $html .= "<td>".$row->fecha_vencimiento."</td>";
+                $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
                 $html .= "<td>calculo</td>";
                 $html .= "<td align='center'>";
-                $html .= "<button type='button' class='btn btn-success btn-circle'><i class='fa fa-eye'></i></button>&nbsp;";
-                $html .= "<button type='button' class='btn btn-primary btn-circle'><i class='fa fa-eye'></i></button>&nbsp;";
-                $html .= "<button type='button' class='btn btn-default btn-circle'><i class='fa fa-eye'></i></button>";
+                $html .= "<button type='button' class='btn btn-default btn-circle'><i class='fa fa-eye'></i></button>&nbsp;";
+                $html .= "<button type='button' class='btn btn-default btn-circle'><i class='fa fa-pencil'></i></button>&nbsp;";
+                $html .= "<button type='button' class='btn btn-default btn-circle'><i class='fa fa-file-pdf-o'></i></button>";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
