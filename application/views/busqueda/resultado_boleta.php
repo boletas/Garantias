@@ -8,7 +8,6 @@
                 <tr>
                     <th>N° Boleta</th>
                     <th>Rut</th>
-                    <!--<th>Nombre</th>-->
                     <th>Emisión</th>
                     <th>Monto</th>
                     <th>Vencimiento</th>
@@ -20,12 +19,11 @@
                 <tr>
                     <th>N° Boleta</th>
                     <th>Rut</th>
-                    <!--<th>Nombre</th>-->
                     <th>Emisión</th>
                     <th>Monto</th>
                     <th>Vencimiento</th>
                     <th>Vence en</th>
-                    <th></th>
+                    <td></td>
                 </tr>
             </tfoot>
             <?php echo $this->session->userdata('html'); ?>
