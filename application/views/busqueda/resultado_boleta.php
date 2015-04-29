@@ -34,16 +34,11 @@
 <script>
 
 $(document).ready(function() {
-    // Setup - add a text input to each footer cell
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
         $(this).html( '<input type="text" style="width: 130px;" class="form-control"/>' );
     } );
- 
-    // DataTable
     var table = $('#result_boleta').DataTable();
- 
-    // Apply the search
     table.columns().every( function () {
         var that = this;
  
@@ -53,6 +48,5 @@ $(document).ready(function() {
                 .draw();
         } );
     } );
-    
 } );
 </script>
