@@ -89,6 +89,7 @@
                     </tr>
                 </tfoot>
                 <?php echo $this->session->userdata("boleta_xrut_xnum");  ?>
+                <?php $this->session->unset_userdata("rutnum");?>
                 
             </table>
         </div>
@@ -127,6 +128,7 @@
                     </tr>
                 </tfoot>
                 <?php echo $this->session->userdata("boleta_xrut");  ?>
+                   <?php $this->session->unset_userdata("xrut");?>
             </table>
         </div>
         
@@ -164,6 +166,7 @@
                     </tr>
                 </tfoot>
                 <?php echo $this->session->userdata("boleta_xnum");  ?>
+                   <?php $this->session->unset_userdata("xnum");?>
             </table>   
         </div>
         <?php } ?>
