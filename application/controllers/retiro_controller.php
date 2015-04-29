@@ -12,10 +12,6 @@ class Retiro_Controller extends CI_Controller {
         $num = $this->input->post('num_buscar');
         
         if (empty($rut) && empty($num)){
-        
-            $this->session->unset_userdata('boleta_xrut');
-            $this->session->unset_userdata('boleta_xnum');
-            $this->session->unset_userdata('boleta_xrut_xnum');
             
             $this->session->set_flashdata('error', 'No puede enviar datos vacios');
             redirect(base_url()."?sec=retiro_boleta",'refresh');
@@ -44,6 +40,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
+                $this->session->set_userdata("rutnum","xrutxnum");
                 $this->session->set_userdata('boleta_xrut_xnum', $html);
                 redirect(base_url()."?sec=retiro_boleta",'refresh');
                
@@ -75,6 +72,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
+                $this->session->set_userdata("xnum","xnum");
                 $this->session->set_userdata('boleta_xnum', $html);
                 redirect(base_url()."?sec=retiro_boleta",'refresh');
                
@@ -107,6 +105,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
+                $this->session->set_userdata("xrut","xrut");
                 $this->session->set_userdata('boleta_xrut', $html);
                 redirect(base_url()."?sec=retiro_boleta",'refresh');
                

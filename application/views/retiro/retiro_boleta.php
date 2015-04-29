@@ -57,7 +57,7 @@
         
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         
-        <?php if(!empty($boleta_xrut_xnum)){ ?>
+        <?php if($this->session->userdata("rutnum")=="xrutxnum"){ ?>
         <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -88,14 +88,14 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $boleta_xrut_xnum;  ?>
+                <?php echo $this->session->userdata("boleta_xrut_xnum");  ?>
                 
             </table>
         </div>
         
         <!--RESULTADO POR NUMERO DE RUT-->
         
-        <?php }elseif (!empty($boleta_xrut)){ ?>
+        <?php }elseif ($this->session->userdata("xrut")== "xrut"){ ?>
             <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -126,13 +126,13 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $boleta_xrut;  ?>
+                <?php echo $this->session->userdata("boleta_xrut");  ?>
             </table>
         </div>
         
         <!--RESULTADO BUSQUEDA POR NUMERO DE BOLETA-->
         
-        <?php }elseif (!empty($boleta_xnum)){ ?>
+        <?php }elseif ($this->session->userdata("xnum") == "xnum"){ ?>
             <div class="dataTable_wrapper">
             <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -163,7 +163,7 @@
                         <th>Descripcion</th>
                     </tr>
                 </tfoot>
-                <?php echo $boleta_xnum;  ?>
+                <?php echo $this->session->userdata("boleta_xnum");  ?>
             </table>   
         </div>
         <?php } ?>
