@@ -40,10 +40,9 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
-                $this->session->set_userdata("rutnum","xrutxnum");
-                $this->session->set_userdata('boleta_xrut_xnum', $html);
-                redirect(base_url()."?sec=retiro_boleta",'refresh');
-               
+                $data['retiro'] = $html;
+                $this->vista_retiro($data);
+                
            }else{
                $this->session->set_flashdata('error', 'No existen boletas con rut y numero especificado');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
@@ -72,10 +71,10 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
-                $this->session->set_userdata("xnum","xnum");
-                $this->session->set_userdata('boleta_xnum', $html);
-                redirect(base_url()."?sec=retiro_boleta",'refresh');
-               
+                
+                $data['retiro'] = $html;
+                $this->vista_retiro($data);
+                
            }else{
                $this->session->set_flashdata('error', 'No existen boletas con numero especificado');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
@@ -105,21 +104,23 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
-                $this->session->set_userdata("xrut","xrut");
-                $this->session->set_userdata('boleta_xrut', $html);
-                redirect(base_url()."?sec=retiro_boleta",'refresh');
-               
+                
+                $data['retiro'] = $html;
+                $this->vista_retiro($data);
+                
            }else{
                $this->session->set_flashdata('error', 'No existen boletas con rut especificado');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
            }
-            
-            
         }
-        
-        
     }
     
-    
-    
+    public function vista_retiro($data){
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('retiro/retiro_lista', $data);
+        $this->load->view('footer');
+        
+    }
 }
