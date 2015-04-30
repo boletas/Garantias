@@ -4,6 +4,7 @@ class Retiro_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('retiro_model');
+        $this->load->library('recursos');
     }
     
     public function BuscarRetiro(){
@@ -27,16 +28,15 @@ class Retiro_Controller extends CI_Controller {
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
-                    $html .= "<tr><td>".++$c."</td>";
-                    $html .= "<td>".$row->rut."</td>";
-                    $html .= "<td>".$row->nombre."</td>";
+                    $html .= "<tr>";
                     $html .= "<td>".$row->numero_boleta."</td>";
-                    $html .= "<td>".$row->monto_boleta."</td>";
+                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
+                    $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
                     $html .= "<td>".$row->fecha_recepcion."</td>";
-                    $html .= "<td>".$row->fecha_emision."</td>";
                     $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='#'><i class='fa fa-external-link'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -58,16 +58,15 @@ class Retiro_Controller extends CI_Controller {
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
-                    $html .= "<tr><td>".++$c."</td>";
-                    $html .= "<td>".$row->rut."</td>";
-                    $html .= "<td>".$row->nombre."</td>";
+                    $html .= "<tr>";
                     $html .= "<td>".$row->numero_boleta."</td>";
-                    $html .= "<td>".$row->monto_boleta."</td>";
+                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
+                    $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
                     $html .= "<td>".$row->fecha_recepcion."</td>";
-                    $html .= "<td>".$row->fecha_emision."</td>";
                     $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='#'><i class='fa fa-external-link'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -88,19 +87,18 @@ class Retiro_Controller extends CI_Controller {
            
            if($query){
                $html = "";
-                $c = 0;
+                
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
-                    $html .= "<tr><td>".++$c."</td>";
-                    $html .= "<td>".$row->rut."</td>";
-                    $html .= "<td>".$row->nombre."</td>";
+                    $html .= "<tr>";
                     $html .= "<td>".$row->numero_boleta."</td>";
-                    $html .= "<td>".$row->monto_boleta."</td>";
-                    $html .= "<td>".$row->fecha_recepcion."</td>";
-                    $html .= "<td>".$row->fecha_emision."</td>";
-                    $html .= "<td>".$row->fecha_vencimiento."</td>";
+                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
+                    $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
+                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
+                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='#'><i class='fa fa-external-link'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";

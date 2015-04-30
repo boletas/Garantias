@@ -53,41 +53,27 @@
         <?php echo form_close(); ?>
         
     </div>
+    <div class="col-lg-12">&nbsp;</div>
     <div class="col-lg-12">
         
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         
         <?php if(!empty($retiro)){ ?>
         <div class="dataTable_wrapper">
-            <table id="example" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+            <table id="example" class="table table-striped table-bordered table-hover text-center" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Rut</th>
-                        <th>Nombre</th>
                         <th>Numero boleta</th>
+                        <th>Rut</th>
                         <th>Monto boleta</th>
                         <th>Fecha recepcion</th>
-                        <th>Fecha emision</th>
                         <th>Fecha vencimiento</th>
                         <th>Banco</th>
                         <th>Descripcion</th>
+                        <th>Ver detalle</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Rut</th>
-                        <th>Nombre</th>
-                        <th>Numero boleta</th>
-                        <th>Monto boleta</th>
-                        <th>Fecha recepcion</th>
-                        <th>Fecha emision</th>
-                        <th>Fecha vencimiento</th>
-                        <th>Banco</th>
-                        <th>Descripcion</th>
-                    </tr>
-                </tfoot>
+                
                 <?php echo $retiro;  ?>
                 
             </table>
