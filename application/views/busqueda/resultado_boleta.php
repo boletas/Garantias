@@ -26,17 +26,16 @@
                     <td></td>
                 </tr>
             </tfoot>
-            <?php echo $this->session->userdata('html'); ?>
+            <?php echo $html;?>
         </table>
     </div>
 </div>
-
 <script>
 
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" style="width: 130px;" class="form-control"/>' );
+        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>' );
     } );
     var table = $('#result_boleta').DataTable();
     table.columns().every( function () {

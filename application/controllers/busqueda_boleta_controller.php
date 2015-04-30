@@ -20,6 +20,7 @@ class Busqueda_Boleta_Controller extends CI_Controller{
         $data = $this->busqueda_boleta_model->TodasBoletas();
         if($data){
             $hoy = date("Y-m-d");
+            $cont = 0;
             $html = "";
             $html .= "<tbody>";
             foreach($data as $row){
@@ -42,7 +43,6 @@ class Busqueda_Boleta_Controller extends CI_Controller{
                         $vence = "en ".$calculo." días";
                     }
                 }
-                
                 $html .= "<td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".date("d-m-Y", strtotime($row->fecha_emision))."</td>";
@@ -56,8 +56,15 @@ class Busqueda_Boleta_Controller extends CI_Controller{
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
-            $this->session->set_userdata('html',$html);
-            redirect(base_url()."?sec=resultado_boleta",'refresh');
+            $resultado = array(
+                'html' => $html
+            );
+            $this->load->view('plantilla');
+            $this->load->view('cabecera');
+            $this->load->view('busqueda/resultado_boleta', $resultado);
+            $this->load->view('footer');
+//            $this->session->set_userdata('html',$html);
+//            redirect(base_url()."?sec=resultado_boleta",'refresh');
         }else{
             return false;
         }
