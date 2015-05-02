@@ -59,7 +59,7 @@ class Boleta_controller extends CI_Controller{
         $id_boleta = $this->input->post("id_boleta");
         
         if($que == 1){//detalle boleta
-            
+            $this->BuscarBoleta($id_boleta);
         }
         if($que == 2){//editar boleta
             
@@ -116,6 +116,19 @@ class Boleta_controller extends CI_Controller{
             
             $resultado = array('html' => $html);
             
+            $this->load->view('plantilla');
+            $this->load->view('cabecera');
+            $this->load->view('busqueda/resultado_boleta', $resultado);
+            $this->load->view('footer');
+        }else{
+            return false;
+        }
+    }
+    
+    public function BuscarBoleta($id_boleta){
+        $data = $this->boleta_model->BuscarBoleta($id_boleta);
+        if($data){
+            $resultado = array('hmtl',$data);
             $this->load->view('plantilla');
             $this->load->view('cabecera');
             $this->load->view('busqueda/resultado_boleta', $resultado);
