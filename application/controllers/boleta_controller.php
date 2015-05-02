@@ -113,7 +113,7 @@ class Boleta_controller extends CI_Controller{
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
-            
+            a
             $resultado = array('html' => $html);
             
             $this->load->view('plantilla');
