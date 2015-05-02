@@ -60,11 +60,11 @@
         
         <?php if(!empty($retiro)){ ?>
         <div class="dataTable_wrapper">
-            <table id="example" class="table table-striped table-bordered table-hover text-center" cellspacing="0" width="100%">
+            <table id="example" class="table table-striped table-bordered table-hover" style="text-align: center" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Numero boleta</th>
-                        <th>Rut</th>
+                        <th>Rut Entidad</th>
                         <th>Monto boleta</th>
                         <th>Fecha recepcion</th>
                         <th>Fecha vencimiento</th>
