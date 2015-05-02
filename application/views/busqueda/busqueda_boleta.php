@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <?php
                 $form = array('name'    => 'form1');
-                echo form_open(base_url()."index.php/busqueda_boleta_controller",$form);
+                echo form_open(base_url()."index.php/boleta_controller",$form);
                 ?>
                     <div class="form-group">
                         <select class="form-control" id="tipo_busqueda" onchange="cambio()">

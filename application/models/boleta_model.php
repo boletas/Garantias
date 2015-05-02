@@ -19,34 +19,46 @@ class Boleta_model extends CI_Model{
                     $idTipo,
                     $idEstado){
         
-    $query = $this->db->query("CALL pa_boleta('".$num_boleta."',"
-            . "'".$monto_boleta."',"
-            . "'".$fecha_recepcion."',"
-            . "'".$fecha_emision."',"
-            . "'".$fecha_vencimiento."',"
-            . "'".$idEntidad."',"
-            . "'".$idBanco."',"
-            . "'".$idMoneda."',"
-            . "'".$idGarantia."',"
-            . "'".$idTipo."',"
-            . "'".$idEstado."',"
-            . "1,"
-            . "0,"
-            . "'".$denominacion."')");
+        $query = $this->db->query("CALL pa_boleta('".$num_boleta."',"
+                . "'".$monto_boleta."',"
+                . "'".$fecha_recepcion."',"
+                . "'".$fecha_emision."',"
+                . "'".$fecha_vencimiento."',"
+                . "'".$idEntidad."',"
+                . "'".$idBanco."',"
+                . "'".$idMoneda."',"
+                . "'".$idGarantia."',"
+                . "'".$idTipo."',"
+                . "'".$idEstado."',"
+                . "1,"
+                . "0,"
+                . "'".$denominacion."')");
                 
-    if($query){
-        
-        $query->free_result();
-        $this->db->close();
-        return TRUE;
-    }else{
-        
-        $query->free_result();
-        $this->db->close();
-        return FALSE;
-    }        
-        
+        if($query){
+
+            $query->free_result();
+            $this->db->close();
+            return TRUE;
+        }else{
+
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }         
     }
     
+    public function TodasBoletas(){
+        $query = $this->db->query("CALL pa_busqueda_boleta ('1')");
+        if ($query){
+            $data = $query->result();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return null;
+        }
+    }
     
 }

@@ -5,9 +5,9 @@
     <div class="col-lg-12">
         <?php 
             $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/busqueda_boleta_controller/ResultadoBoletas",$form);
+            echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
         ?>
-            <table id="result_boleta" class="table table-bordered table-hover" cellspacing="0">
+            <table id="result_boleta" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>N° Boleta</th>
@@ -35,6 +35,7 @@
         <input type="hidden" name="que" id="que" /> 
         <input type="hidden" name="id_boleta" id="id_boleta" /> 
         <?php echo form_close(); ?>
+        <br/><br/><br/>
     </div>
 </div>
 <script>
