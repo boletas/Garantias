@@ -32,11 +32,11 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".$row->numero_boleta."</td>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
+                    $html .= "<td>".$row->fecha_recepcion."</td>";
+                    $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/detalle_vista/".$row->id_Boleta."'><i class='fa fa-external-link'></i></a></td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='#'><i class='fa fa-external-link'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -62,8 +62,8 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".$row->numero_boleta."</td>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
+                    $html .= "<td>".$row->fecha_recepcion."</td>";
+                    $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
                     $html .= "<td><a class='btn btn-default btn-circle' href='#'><i class='fa fa-external-link'></i></a></td>";
@@ -121,9 +121,4 @@ class Retiro_Controller extends CI_Controller {
         $this->load->view('footer');
         
     }
-    
-    public function detalle_vista($id){
-        echo $id;
-    }
-    
 }
