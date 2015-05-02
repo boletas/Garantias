@@ -34,4 +34,8 @@ class Recursos{
 	$dias 	= abs($dias); $dias = floor($dias);		
 	return $dias;
     }
+    
+    function FormatoFecha($fecha){
+        return date("d-m-Y", strtotime($fecha));
+    }
 }
