@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Detalles Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <h1 class="page-header">Modificando Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
     </div>
     <div class="col-lg-12">
         <?php 
@@ -10,11 +10,11 @@
         <table class="table table-bordered">
             <tr>
                 <td class="active">Rut</td>
-                <td colspan="5"><?php echo $rut; ?></td>
+                <td colspan="5"><input type="text" class="form-control" name="rut" id="rut" value="<?php echo $rut; ?>"/></td>
             </tr>
             <tr>
                 <td class="active">Razón Social</td>
-                <td colspan="5"><?php echo $nombre; ?></td>
+                <td colspan="5"><input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/></td>
             </tr>
             <tr class="active">
                 <td>N° Boleta</td>
@@ -25,7 +25,7 @@
                 <td>Vence</td>
             </tr>
             <tr>
-                <td><?php echo $numero_boleta; ?></td>
+                <td><input type="text" class="form-control" style="width: 100px" name="numero_boleta" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/></td>
                 <td><?php echo $estado_boleta; ?></td>
                 <td><?php echo $fecha_recepcion; ?></td>
                 <td><?php echo $fecha_emision; ?></td>

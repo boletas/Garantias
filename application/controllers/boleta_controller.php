@@ -59,14 +59,32 @@ class Boleta_controller extends CI_Controller{
         $id_boleta = $this->input->post("id_boleta");
         
         if($que == 1){//detalle boleta
-            $this->BuscarBoleta($id_boleta);
+            $this->VistaBoleta($id_boleta);
         }
         if($que == 2){//editar boleta
-            
+            $this->VistaModificaBoleta($id_boleta);
         }
         if($que == 3){//pdf boleta
             
         }
+    }
+    
+    public function VistaBoleta($id_boleta){
+        $resultado = $this->BuscarBoleta($id_boleta);
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('busqueda/vista_boleta', $resultado);
+        $this->load->view('footer');
+    }
+    
+    public function VistaModificaBoleta($id_boleta){
+        $resultado = $this->BuscarBoletaModifica($id_boleta);
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('busqueda/modifica_boleta', $resultado);
+        $this->load->view('footer');
     }
     
     public function TodasBoletas(){
@@ -187,10 +205,75 @@ class Boleta_controller extends CI_Controller{
                 'clase'                     => $clase
                 );
             
-            $this->load->view('plantilla');
-            $this->load->view('cabecera');
-            $this->load->view('busqueda/vista_boleta', $resultado);
-            $this->load->view('footer');
+            return $resultado;  
+        }else{
+            return false;
+        }
+    }
+    
+    public function BuscarBoletaModifica($id_boleta){
+        $data = $this->boleta_model->BuscarBoleta($id_boleta);
+        if($data){
+            $hoy = date("Y-m-d");  
+            foreach($data as $row){
+                $clase = "";
+                $vence = "";
+                if($row->fecha_vencimiento < $hoy){
+                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                    if($calculo > 365){
+                        $calculo = $calculo/365;
+                        $vence = "Hace ".round($calculo)." años";
+                    }else{
+                        $vence = "Hace ".$calculo." días";
+                    }
+                }else{
+                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                    if($calculo > 365){
+                        $calculo = $calculo/365;
+                        $vence = "En ".round($calculo)." años";
+                    }else{
+                        if($calculo < 10){
+                            $clase = " class = 'danger' ";
+                        }else{
+                            $clase = "";
+                        }
+                        $vence = "en ".$calculo." días";
+                    }
+                }
+                $id_boleta = $row->id_Boleta;
+                $numero_boleta = $row->numero_boleta;
+                $monto_boleta = "(".$row->codigo.") ".$row->monto_boleta;
+                $fecha_recepcion = $this->recursos->FormatoFecha($row->fecha_recepcion);
+                $fecha_emision = $this->recursos->FormatoFecha($row->fecha_emision);
+                $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
+                $denominacion = $row->denominacion;
+                $rut = $this->recursos->DevuelveRut($row->rut);
+                $nombre = $row->nombre;
+                $nombre_banco = $row->nombre_banco;
+                $tipo_garantia = $row->tipo_garantia;
+                $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
+                $estado_boleta = $row->estado_boleta;
+            }
+            
+            $resultado = array(
+                'id_Boleta'                 => $id_boleta,
+                'numero_boleta'             => $numero_boleta,
+                'monto_boleta'              => $monto_boleta,
+                'fecha_recepcion'           => $fecha_recepcion,
+                'fecha_emision'             => $fecha_emision,
+                'fecha_vencimiento'         => $fecha_vencimiento,
+                'denominacion'              => $denominacion,
+                'rut'                       => $rut,
+                'nombre'                    => $nombre,
+                'nombre_banco'              => $nombre_banco,
+                'tipo_garantia'             => $tipo_garantia,
+                'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
+                'estado_boleta'             => $estado_boleta,
+                'vence'                     => $vence,
+                'clase'                     => $clase
+                );
+            
+            return $resultado;  
         }else{
             return false;
         }
