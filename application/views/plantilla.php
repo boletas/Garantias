@@ -32,9 +32,10 @@
     
     <link href="<?php echo base_url()?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
     
-    <link href="<?php echo base_url()?>assets/calendario/css/jquery.datetimepicker.css" rel="stylesheet">
-    
+    <link href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet">
+        
     <script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>assets/calendario/js/bootstrap-datepicker.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

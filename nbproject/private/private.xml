@@ -5,7 +5,7 @@
         <group>
             <file>file:/C:/AppServ/www/Garantias/application/views/footer.php</file>
             <file>file:/C:/AppServ/www/Garantias/application/views/busqueda/resultado_boleta.php</file>
-            <file>file:/C:/AppServ/www/Garantias/application/controllers/busqueda_boleta_controller.php</file>
+            <file>file:/C:/AppServ/www/Garantias/application/views/plantilla.php</file>
             <file>file:/C:/AppServ/www/Garantias/application/views/retiro/retiro_boleta.php</file>
             <file>file:/C:/AppServ/www/Garantias/application/libraries/recursos.php</file>
         </group>
