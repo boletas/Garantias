@@ -10,11 +10,11 @@
         <table class="table table-bordered">
             <tr>
                 <td class="active">Rut</td>
-                <td colspan="5"><input type="text" class="form-control" name="rut" id="rut" value="<?php echo $rut; ?>"/></td>
+                <td colspan="6"><input type="text" class="form-control" name="rut" id="rut" value="<?php echo $rut; ?>"/></td>
             </tr>
             <tr>
                 <td class="active">Razón Social</td>
-                <td colspan="5"><input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/></td>
+                <td colspan="6"><input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/></td>
             </tr>
             <tr class="active">
                 <td>N° Boleta</td>
@@ -22,7 +22,7 @@
                 <td>Fecha Recepción</td>
                 <td>Fecha Emisión</td>
                 <td>Fecha Vecimiento</td>
-                <td>Vence</td>
+                <td colspan="2">Vence</td>
             </tr>
             <tr>
                 <td><input type="text" class="form-control" style="width: 100px" name="numero_boleta" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/></td>
@@ -30,23 +30,41 @@
                 <td><?php echo $fecha_recepcion; ?></td>
                 <td><?php echo $fecha_emision; ?></td>
                 <td><?php echo $fecha_vencimiento; ?></td>
-                <td <?=($clase ? $clase : "")?>><?php echo $vence; ?></td>
+                <td colspan="2" <?=($clase ? $clase : "")?>><?php echo $vence; ?></td>
             </tr>
             <tr class="active">
                 <td>Tipo Garantía</td>
                 <td colspan="4">Denominación de Estudio</td>
-                <td>Banco</td>
+                <td colspan="2">Banco</td>
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
                 <td colspan="4"><?php echo $denominacion; ?></td>
-                <td><?php echo $nombre_banco; ?></td>
+                <td colspan="2"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr>
                 <td colspan="5" align="right" class="active"><b>Costo Total</b></td>
-                <td><b><?php echo $monto_boleta; ?></b></td>
+                <td><?php echo $codigo; ?></td>
+                <td><input type="text" class="form-control" name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/></td>
             </tr>
         </table>
         <?php echo form_close(); ?>
     </div>
+    <input type="text" id="datetimepicker8"/>
+<script>
+$('#datetimepicker8').datetimepicker({
+	onGenerate:function( ct ){
+		$(this).find('.xdsoft_date')
+			.toggleClass('xdsoft_disabled');
+	},
+	lang:'es',
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+	minDate:'-1970/01/2',
+	maxDate:'+1970/01/2',
+	timepicker:false
+});
+
+
+</script>
 </div>

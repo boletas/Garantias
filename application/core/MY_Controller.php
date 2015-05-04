@@ -9,6 +9,7 @@ class MY_Mantenedor extends CI_Controller{
         $this->load->model('tipoBoletas_model');
         $this->load->model('garantia_model');
         $this->load->model('moneda_model');
+        $this->load->model('estadoBoleta_model');
     }
     
     public function ObtieneBancos(){
@@ -79,7 +80,15 @@ class MY_Mantenedor extends CI_Controller{
         }
     }
     
-    
+    public function ObtieneEstadoBoletas(){
+        
+        $data = $this->estadoBoleta_model->ObtieneEstadoBoletas();
+        if(!empty($data)){
+            if ($data){
+                return $data;
+            }
+        }
+    }
     
     
 }

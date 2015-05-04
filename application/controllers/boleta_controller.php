@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 
-class Boleta_controller extends CI_Controller{
+class Boleta_controller extends MY_Mantenedor{
     
     function __construct() {
         parent::__construct();
@@ -242,23 +242,66 @@ class Boleta_controller extends CI_Controller{
                 }
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
-                $monto_boleta = "(".$row->codigo.") ".$row->monto_boleta;
+                $monto_boleta = $row->monto_boleta;
+                
+                $codigo = "<select name='codigo' id='codigo' class='form-control' style='width: 80px'>";
+                foreach($this->ObtieneMoneda() as $row1){
+                    if($row1->idMoneda == $row->idMoneda){
+                        $codigo .= "<option value='".$row1->idMoneda."'>".$row1->codigo."</option>";
+                    }else{
+                        $codigo .= "<option value='".$row1->idMoneda."'>".$row1->codigo."</option>";
+                    }
+                }
+                $codigo .= "</select>";
+                $monto_boleta = $row->monto_boleta;
+                
+                
                 $fecha_recepcion = $this->recursos->FormatoFecha($row->fecha_recepcion);
                 $fecha_emision = $this->recursos->FormatoFecha($row->fecha_emision);
                 $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
                 $denominacion = $row->denominacion;
                 $rut = $this->recursos->DevuelveRut($row->rut);
                 $nombre = $row->nombre;
-                $nombre_banco = $row->nombre_banco;
-                $tipo_garantia = $row->tipo_garantia;
+                
+                
+                $nombre_banco = "<select name='banco' id='banco' class='form-control'>";
+                foreach($this->ObtieneBancos() as $row1){
+                    if($row1->idBanco == $row->idBanco){
+                        $nombre_banco .= "<option value='".$row1->idBanco."'>".$row1->nombre_banco."</option>";
+                    }else{
+                        $nombre_banco .= "<option value='".$row1->idBanco."'>".$row1->nombre_banco."</option>";
+                    }
+                }
+                $nombre_banco .= "</select>";
+                
+                $tipo_garantia = "<select name='tipo_garantia' id='tipo_garantia' class='form-control'>";
+                foreach($this->ObtieneTipoGarantia() as $row1){
+                    if($row1->idTipoGarantia == $row->idTipoGarantia){
+                        $tipo_garantia .= "<option value='".$row1->idTipoGarantia."'>".$row1->descripcion."</option>";
+                    }else{
+                        $tipo_garantia .= "<option value='".$row1->idTipoGarantia."'>".$row1->descripcion."</option>";
+                    }
+                }
+                $tipo_garantia .= "</select>";
+                
                 $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
-                $estado_boleta = $row->estado_boleta;
+                
+                $estado_boleta = "<select name='estado_boleta' id='estado_boleta' class='form-control'>";
+                foreach($this->ObtieneEstadoBoletas() as $row1){
+                    if($row1->idEstadoBoleta == $row->idEstadoBoleta){
+                        $estado_boleta .= "<option value='".$row1->idEstadoBoleta."'>".$row1->descripcion."</option>";
+                    }else{
+                        $estado_boleta .= "<option value='".$row1->idEstadoBoleta."'>".$row1->descripcion."</option>";
+                    }
+                }
+                $estado_boleta .= "</select>";
             }
             
             $resultado = array(
                 'id_Boleta'                 => $id_boleta,
                 'numero_boleta'             => $numero_boleta,
                 'monto_boleta'              => $monto_boleta,
+                'codigo'                    => $codigo,
                 'fecha_recepcion'           => $fecha_recepcion,
                 'fecha_emision'             => $fecha_emision,
                 'fecha_vencimiento'         => $fecha_vencimiento,
