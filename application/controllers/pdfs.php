@@ -5,18 +5,18 @@ class Pdfs extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('pdfs_model');
+        $this->load->library('Pdf');
     }
     
-    public function index()
-    {
+    public function index(){
         //$data['provincias'] llena el select con las provincias españolas
         $data['provincias'] = $this->pdfs_model->getProvincias();
         //cargamos la vista y pasamos el array $data['provincias'] para su uso
         $this->load->view('pdfs_view', $data);
     }
  
-    public function generar() {
-        $this->load->library('Pdf');
+    public function generar(){
+        //$this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Israel Parra');
@@ -67,8 +67,7 @@ class Pdfs extends CI_Controller {
 // Establecemos el contenido para imprimir
         $provincia = $this->input->post('provincia');
         $provincias = $this->pdfs_model->getProvinciasSeleccionadas($provincia);
-        foreach($provincias as $fila)
-        {
+        foreach($provincias as $fila){
             $prov = $fila['p.provincia'];
         }
         //preparamos y maquetamos el contenido a crear
@@ -82,8 +81,7 @@ class Pdfs extends CI_Controller {
         $html .= "<tr><th>Id localidad</th><th>Localidades</th></tr>";
         
         //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-        foreach ($provincias as $fila) 
-        {
+        foreach ($provincias as $fila) {
             $id = $fila['l.id'];
             $localidad = $fila['l.localidad'];
  

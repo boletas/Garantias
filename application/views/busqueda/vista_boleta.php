@@ -47,6 +47,11 @@
                 <td><b><?php echo $monto_boleta; ?></b></td>
             </tr>
         </table>
+        <div align="right">
+            <button class="btn btn-outline btn-default" name="volver" id="volver">Volver</button>
+            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar">Modificar <i class="fa fa-pencil"></i></button>
+            <button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>
+        </div>
         <?php echo form_close(); ?>
     </div>
 </div>

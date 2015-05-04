@@ -115,7 +115,12 @@ class Boleta_controller extends MY_Mantenedor{
                         }else{
                             $clase = "";
                         }
-                        $vence = "en ".$calculo." días";
+                        
+                        if($calculo == 0){
+                            $vence = "Hoy";
+                        }else{
+                            $vence = "en ".$calculo." días";
+                        }
                     }
                 }
                 $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
@@ -169,7 +174,13 @@ class Boleta_controller extends MY_Mantenedor{
                         }else{
                             $clase = "";
                         }
-                        $vence = "en ".$calculo." días";
+                        
+                        
+                        if($calculo == 0){
+                            $vence = "Hoy";
+                        }else{
+                            $vence = "en ".$calculo." días";
+                        }
                     }
                 }
                 $id_boleta = $row->id_Boleta;
@@ -237,7 +248,12 @@ class Boleta_controller extends MY_Mantenedor{
                         }else{
                             $clase = "";
                         }
-                        $vence = "en ".$calculo." días";
+                        
+                        if($calculo == 0){
+                            $vence = "Hoy";
+                        }else{
+                            $vence = "en ".$calculo." días";
+                        }
                     }
                 }
                 $id_boleta = $row->id_Boleta;
