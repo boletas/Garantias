@@ -64,11 +64,11 @@
                 <thead>
                     <tr>
                         <th>Numero boleta</th>
-                        <th>Rut</th>
+                        <th>Rut entidad</th>
                         <th>Monto boleta</th>
                         <th>Fecha recepcion</th>
                         <th>Fecha vencimiento</th>
-                        <th>Banco</th>
+                        <th>Banco boleta</th>
                         <th>Descripcion</th>
                         <th>Ver detalle</th>
                     </tr>
@@ -80,7 +80,6 @@
         <?php } ?>
         </div>   
         </div>
-    </div>
 <script>
 $(document).ready(function() {
     $('#example').DataTable();

@@ -24,6 +24,20 @@ class Retiro_model extends CI_Model{
          
      }
      
+     public function  BuscarBoleta($id_boleta){
+        $query = $this->db->query("CALL pa_boleta ('','','','','','','','','','','','2','".$id_boleta."','')");
+        if ($query){
+            $data = $query->row();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return null;
+        }
+    }
+     
      public function BuscarXNum($num){
          $query = $this->db->query("CALL retiro_xnum('".$num."')");
          
