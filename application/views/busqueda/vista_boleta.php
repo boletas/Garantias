@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <?php 
             $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/boleta_controller/",$form);
+            echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
         ?>
         <table class="table table-bordered">
             <tr>
@@ -48,10 +48,23 @@
             </tr>
         </table>
         <div align="right">
-            <button class="btn btn-outline btn-default" name="volver" id="volver">Volver</button>
-            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar">Modificar <i class="fa fa-pencil"></i></button>
+            <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
+            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Modificar <i class="fa fa-pencil"></i></button>
             <button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>
         </div>
+        <input type="hidden" name="volver" id="volver" /> 
+        <input type="hidden" name="que" id="que" /> 
+        <input type="hidden" name="id_boleta" id="id_boleta" />
         <?php echo form_close(); ?>
     </div>
 </div>
+<script>
+function Accion(accion,id){
+    document.getElementById('que').value = accion;
+    document.getElementById('id_boleta').value = id;
+    document.form1.submit();
+}
+function Volver(){
+    document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
+}
+</script>

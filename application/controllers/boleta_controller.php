@@ -6,18 +6,47 @@ class Boleta_controller extends MY_Mantenedor{
         parent::__construct();
         $this->load->model('boleta_model');
         $this->load->library('recursos');
-        
+        $this->load->library('session');
     }
     
     public function index(){
         $que = $this->input->post("que");
         if($que == 1){
+            $volver = array('volver' =>  $que);
+            $this->session->set_userdata($volver);
+            $this->TodasBoletas();
+        }
+    }
+    
+    public function ResultadoBoletas(){
+        if($this->input->post("que") != ""){
+            $que = $this->input->post("que");
+            $id_boleta = $this->input->post("id_boleta");
+
+            if($que == 1){//detalle boleta
+                $this->VistaBoleta($id_boleta);
+                $cual = array('cual'  =>  $que);
+                $this->session->set_userdata($cual);
+            }
+            if($que == 2){//editar boleta
+                $this->VistaModificaBoleta($id_boleta);
+                $cual = array('cual'  =>  '');
+                $this->session->set_userdata($cual);
+            }
+            if($que == 3){//pdf boleta
+
+            }   
+        }
+    }
+    
+    public function Volver(){
+        $volver = $this->session->userdata('volver');
+        if($volver == 1){
             $this->TodasBoletas();
         }
     }
     
     public function insert_boleta(){
-        
         $idEntidad = $this->input->post('idEntidad');
         $num_boleta = $this->input->post('num_boleta');
         $monto_boleta = $this->input->post('monto_boleta');
@@ -51,21 +80,6 @@ class Boleta_controller extends MY_Mantenedor{
         }else{
             $this->session->set_flashdata('insert','Error al ingresar boleta.');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
-        }
-    }
-    
-    public function ResultadoBoletas(){
-        $que = $this->input->post("que");
-        $id_boleta = $this->input->post("id_boleta");
-        
-        if($que == 1){//detalle boleta
-            $this->VistaBoleta($id_boleta);
-        }
-        if($que == 2){//editar boleta
-            $this->VistaModificaBoleta($id_boleta);
-        }
-        if($que == 3){//pdf boleta
-            
         }
     }
     
