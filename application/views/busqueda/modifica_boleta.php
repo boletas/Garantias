@@ -25,7 +25,9 @@
                 <td colspan="2">Vence</td>
             </tr>
             <tr>
-                <td><input type="text" class="form-control" style="width: 100px" name="numero_boleta" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/></td>
+                <td>
+                    <input type="text" class="form-control" name="numero_boleta" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/>
+                </td>
                 <td><?php echo $estado_boleta; ?></td>
                 <td>
                     <div id="sandbox-container" style="width: 150px">
@@ -63,13 +65,26 @@
             <tr>
                 <td colspan="5" align="right" class="active"><b>Costo Total</b></td>
                 <td><?php echo $codigo; ?></td>
-                <td><input type="text" class="form-control" name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/></td>
+                <td>
+                    <input type="text" class="form-control" name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/>
+                </td>
             </tr>
         </table>
+        <div align="right">
+            <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
+            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Aceptar </button>
+            <button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>
+        </div>
+        <input type="hidden" name="volver" id="volver" /> 
+        <input type="hidden" name="que" id="que" /> 
+        <input type="hidden" name="id_boleta" id="id_boleta" />
         <?php echo form_close(); ?>
     </div>
+    
 <script>
-
+function Volver(){
+    document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
+}
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,
     language: "es",
@@ -77,6 +92,5 @@ $('#sandbox-container .input-group.date').datepicker({
     todayBtn: "linked",
     format: "mm-dd-yyyy"
 });
-
 </script>
 </div>
