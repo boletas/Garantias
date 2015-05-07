@@ -99,27 +99,32 @@ define ('PDF_PAGE_ORIENTATION', 'P');
 /**
  * Document creator.
  */
-define ('PDF_CREATOR', 'TCPDF');
+//define ('PDF_CREATOR', 'TCPDF');
+define ('PDF_CREATOR', '');
 
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'TCPDF');
+//define ('PDF_AUTHOR', 'TCPDF');
+define ('PDF_AUTHOR', '');
 
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'TCPDF Example');
+//define ('PDF_HEADER_TITLE', 'TCPDF Example');
+define ('PDF_HEADER_TITLE', '');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+//define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+define ('PDF_HEADER_STRING', "");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
-define ('PDF_UNIT', 'mm');
+//define ('PDF_UNIT', 'mm');
+define ('PDF_UNIT', '');
 
 /**
  * Header margin.
@@ -134,7 +139,7 @@ define ('PDF_MARGIN_FOOTER', 10);
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', 27);
+define ('PDF_MARGIN_TOP', 40);
 
 /**
  * Bottom margin.

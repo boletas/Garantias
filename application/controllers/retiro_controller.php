@@ -192,7 +192,6 @@ class Retiro_Controller extends CI_Controller {
            );
            
             $this->load->view('plantilla');
-            ;
             $this->load->view('retiro/retiro_detalle', $data);
             $this->load->view('footer');
            
