@@ -123,8 +123,7 @@ define ('PDF_HEADER_STRING', "");
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
-//define ('PDF_UNIT', 'mm');
-define ('PDF_UNIT', '');
+define ('PDF_UNIT', 'mm');
 
 /**
  * Header margin.
@@ -149,12 +148,12 @@ define ('PDF_MARGIN_BOTTOM', 25);
 /**
  * Left margin.
  */
-define ('PDF_MARGIN_LEFT', 15);
+define ('PDF_MARGIN_LEFT', 25);
 
 /**
  * Right margin.
  */
-define ('PDF_MARGIN_RIGHT', 15);
+define ('PDF_MARGIN_RIGHT', 25);
 
 /**
  * Default main font name.

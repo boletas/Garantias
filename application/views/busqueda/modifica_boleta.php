@@ -80,7 +80,6 @@
         <input type="hidden" name="id_boleta" id="id_boleta" />
         <?php echo form_close(); ?>
     </div>
-    
 <script>
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
