@@ -44,9 +44,7 @@
             </tr>
         </table>
         <div align="right">
-            <button class="btn btn-outline btn-default" name="volver" id="volver">Volver</button>
-            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar">Modificar <i class="fa fa-pencil"></i></button>
-            <button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>
+            <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>/index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>"  id="PDF">PDF <i class="fa fa-file-pdf-o"></i></a>
         </div>
     </div>
 </div>
