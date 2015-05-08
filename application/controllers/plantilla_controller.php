@@ -5,6 +5,7 @@ class Plantilla_Controller extends MY_Mantenedor {
     function __construct() {
         parent::__construct();
         $this->load->helper('form');
+        $this->load->library('recursos');
     }
     
     public function index() {
@@ -20,7 +21,8 @@ class Plantilla_Controller extends MY_Mantenedor {
             if(empty($seccion))$seccion = 'Inicio';
             switch ($seccion) {
                 case "Inicio":
-                    $this->load->view('inicio');
+                    $indicadores = array('indicadores' => $this->recursos->Indicadores());
+                    $this->load->view('inicio', $indicadores);
                     break;
                 case "nueva_boleta":
                     

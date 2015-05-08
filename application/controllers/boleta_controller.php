@@ -146,7 +146,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
-                $html .= "<a href='".base_url()."index.php/pdf_controller/BoletaPdf/".$row->id_Boleta."' target='_blank' class='btn btn-default btn-circle'><i class='fa fa-file-pdf-o'></i></a>";
+                //$html .= "<a href='".base_url()."index.php/pdf_controller/BoletaPdf/".$row->id_Boleta."' target='_blank' class='btn btn-default btn-circle'><i class='fa fa-file-pdf-o'></i></a>";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";

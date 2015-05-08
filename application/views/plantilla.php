@@ -36,6 +36,7 @@
         
     <script src="<?php echo base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="<?php echo base_url()?>assets/calendario/js/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url()?>assets/ValidaRut/Rut.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

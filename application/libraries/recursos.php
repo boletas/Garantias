@@ -39,14 +39,6 @@ class Recursos{
         return date("d-m-Y", strtotime($fecha));
     }
     
-//    function FormatoFecha2(){ //Salida: Viernes 24 de Febrero del 2012
-//        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-//        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-//        
-//        $hoy = $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-//        return ($hoy);
-//    }
-    
     function FormatoFecha2($fecha){
         // Está funcion toma una fecha con formato 2004/12/01 y la devuelve en formato 01/Dic/2004 
         $ano = substr($fecha, 0, 4);
@@ -70,4 +62,17 @@ class Recursos{
         return $fecha;
     }
     
+    function Indicadores(){
+        $xmlSource = "http://indicadoresdeldia.cl/webservice/indicadores.xml";
+        $xml = simplexml_load_file($xmlSource);
+//        $xml->santoral->ayer;
+        return ($xml);
+        
+    }
+    
+    function SoloNumeros($cadena){
+        $cadena = ereg_replace("[^0-9]", "", $cadena);
+        $cadena = substr($cadena, 0, -1);
+        return $cadena;
+    }
 }

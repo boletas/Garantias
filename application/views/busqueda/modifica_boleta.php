@@ -73,7 +73,7 @@
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
             <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Aceptar </button>
-            <button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>
+            <!--<button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>-->
         </div>
         <input type="hidden" name="volver" id="volver" /> 
         <input type="hidden" name="que" id="que" /> 
