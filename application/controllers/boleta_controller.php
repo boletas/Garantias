@@ -10,7 +10,7 @@ class Boleta_controller extends MY_Mantenedor{
     }
     
     public function index(){
-        $que = $this->input->post("que");
+        $que = $this->input->post("que");//valor obtenido desde busqueda boleta
         if($que == 1){
             $volver = array('volver' =>  $que);
             $this->session->set_userdata($volver);
@@ -83,7 +83,7 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function VistaBoleta($id_boleta){
+    public function VistaBoleta($id_boleta){//obtiene el detalle de la boleta y lo presenta en una vista
         $resultado = $this->BuscarBoleta($id_boleta);
         
         $this->load->view('plantilla');
@@ -92,7 +92,7 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->view('footer');
     }
     
-    public function VistaModificaBoleta($id_boleta){
+    public function VistaModificaBoleta($id_boleta){//obtiene los valores de la boleta y los muestra para la editar
         $resultado = $this->BuscarBoletaModifica($id_boleta);
         
         $this->load->view('plantilla');
@@ -101,7 +101,7 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->view('footer');
     }
     
-    public function TodasBoletas(){
+    public function TodasBoletas(){//muestra la lista completa de las boletas en una tabla dinamica
         $data = $this->boleta_model->TodasBoletas();
         if($data){
             $hoy = date("Y-m-d");            
@@ -162,7 +162,7 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function BuscarBoleta($id_boleta){
+    public function BuscarBoleta($id_boleta){//busca la boleta segun el id entregado
         $data = $this->boleta_model->BuscarBoleta($id_boleta);
         if($data){
             $hoy = date("Y-m-d");  
@@ -236,7 +236,7 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function BuscarBoletaModifica($id_boleta){
+    public function BuscarBoletaModifica($id_boleta){//busca la boleta y prepara el metodo para editar
         $data = $this->boleta_model->BuscarBoleta($id_boleta);
         if($data){
             $hoy = date("Y-m-d");  
@@ -347,6 +347,44 @@ class Boleta_controller extends MY_Mantenedor{
                 );
             
             return $resultado;  
+        }else{
+            return false;
+        }
+    }
+    
+    public function ModificaBoleta(){//metodo para la edicion de la boleta
+        $id_boleta = $this->input->post('id_boleta');
+        $rut = $this->recursos->FormatoRut($this->input->post('rut'));
+        $nombre = trim($this->input->post('nombre'));
+        $numero_boleta = trim($this->input->post('numero_boleta'));
+        $estado_boleta = $this->input->post('estado_boleta');
+        $recepcion = $this->recursos->FormatoFecha1($this->input->post('recepcion'));
+        $emision = $this->recursos->FormatoFecha1($this->input->post('emision'));
+        $vencimiento = $this->recursos->FormatoFecha1($this->input->post('vencimiento'));
+        $tipo_garantia = $this->input->post('tipo_garantia');
+        $denominacion = trim($this->input->post('denominacion'));
+        $banco = $this->input->post('banco');
+        $codigo = $this->input->post('codigo');
+        echo $monto = trim($this->input->post('monto'));
+        
+        $datos_boleta = array(
+                'id_boleta'         => $id_boleta,
+                'rut'               => $rut,
+                'nombre'            => $nombre,
+                'numero_boleta'     => $numero_boleta,
+                'estado_boleta'     => $estado_boleta,
+                'recepcion'         => $recepcion,
+                'emision'           => $emision,
+                'vencimiento'       => $vencimiento,
+                'tipo_garantia'     => $tipo_garantia,
+                'denominacion'      => $denominacion,
+                'banco'             => $banco,
+                'codigo'            => $codigo,
+                'monto'             => $monto
+                );
+        $data = $this->boleta_model->ModificaBoleta($datos_boleta);
+        if($data){
+            
         }else{
             return false;
         }

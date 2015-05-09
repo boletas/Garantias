@@ -39,6 +39,10 @@ class Recursos{
         return date("d-m-Y", strtotime($fecha));
     }
     
+    function FormatoFecha1($fecha){
+        return date("Y-m-d", strtotime($fecha));
+    }
+    
     function FormatoFecha2($fecha){
         // Está funcion toma una fecha con formato 2004/12/01 y la devuelve en formato 01/Dic/2004 
         $ano = substr($fecha, 0, 4);
@@ -70,9 +74,9 @@ class Recursos{
         
     }
     
-    function SoloNumeros($cadena){
-        $cadena = ereg_replace("[^0-9]", "", $cadena);
-        $cadena = substr($cadena, 0, -1);
-        return $cadena;
+    function FormatoRut($rut){
+        $rut = ereg_replace("[^0-9]", "", $rut);
+        $rut = substr($rut, 0, -1);
+        return ($rut);
     }
 }

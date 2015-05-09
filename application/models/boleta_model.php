@@ -88,4 +88,8 @@ class Boleta_model extends CI_Model{
             return null;
         }
     }
+    
+    public function ModificaBoleta($datos_boleta){
+        $query = $this->db->query("CALL pa_boleta ('','','','','','','','','','','','3','".$id_boleta."','')");
+    }
 }

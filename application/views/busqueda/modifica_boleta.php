@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <?php 
             $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/boleta_controller/",$form);
+            echo form_open(base_url()."index.php/boleta_controller/ModificaBoleta",$form);
         ?>
         <table class="table table-bordered">
             <tr>
@@ -59,14 +59,14 @@
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
-                <td colspan="4"><?php echo $denominacion; ?></td>
+                <td colspan="4"><input type="text" class="form-control" name="denominacion" id="denominacion" value="<?php echo $denominacion; ?>"/></td>
                 <td colspan="2"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr>
                 <td colspan="5" align="right" class="active"><b>Costo Total</b></td>
                 <td><?php echo $codigo; ?></td>
                 <td>
-                    <input type="text" class="form-control" name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/>
+                    <input type="text" class="form-control" name="monto" id="monto" onkeypress="return ValidNum(this);" value="<?php echo $monto_boleta; ?>"/>
                 </td>
             </tr>
         </table>
@@ -75,9 +75,8 @@
             <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Aceptar </button>
             <!--<button class="btn btn-outline btn-danger" name="PDF" id="PDF">PDF <i class="fa fa-file-pdf-o"></i></button>-->
         </div>
-        <input type="hidden" name="volver" id="volver" /> 
-        <input type="hidden" name="que" id="que" /> 
-        <input type="hidden" name="id_boleta" id="id_boleta" />
+        <input type="hidden" name="volver" id="volver" />
+        <input type="hidden" name="id_boleta" id="id_boleta" value="<?php echo $id_Boleta; ?>"/>
         <?php echo form_close(); ?>
     </div>
 <script>
