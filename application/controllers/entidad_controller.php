@@ -44,12 +44,10 @@ class Entidad_controller extends MY_Mantenedor{
         if($rut_entidad){
             
             $this->session->set_userdata('idEntidad',$rut_entidad->idEntidad);
-            $this->session->set_userdata('opcion', 'form1');
-            redirect(base_url()."?sec=nueva_boleta",'refresh');
+            redirect(base_url()."?sec=ingreso_form",'refresh');
         }else{
             
             $this->session->set_flashdata('insert','No existe entidad con el rut ingresado.');
-            $this->session->set_flashdata('op','si');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
             
         }
