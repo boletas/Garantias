@@ -365,7 +365,7 @@ class Boleta_controller extends MY_Mantenedor{
         $denominacion = trim($this->input->post('denominacion'));
         $banco = $this->input->post('banco');
         $codigo = $this->input->post('codigo');
-        echo $monto = trim($this->input->post('monto'));
+        $monto = trim($this->input->post('monto'));
         
         $datos_boleta = array(
                 'id_boleta'         => $id_boleta,
