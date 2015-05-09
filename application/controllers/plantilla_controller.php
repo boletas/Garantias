@@ -25,19 +25,17 @@ class Plantilla_Controller extends MY_Mantenedor {
                     $this->load->view('inicio', $indicadores);
                     break;
                 case "nueva_boleta":
+                        $this->load->view('ingreso/nueva_boleta');
+                    break;
+                case "ingreso_form":
                     
-                    if($this->session->userdata('opcion')== 'form1'){
                         $data['entidad'] = $this->TraerEntidad($this->session->userdata('idEntidad'));
                         $data['bancos'] = $this->ObtieneBancos();
                         $data['monedas'] = $this->ObtieneMoneda();
                         $data['garantias'] = $this->ObtieneTipoGarantia();
                         $data['tipos'] = $this->ObtieneTipoBoletas();
                         
-                        $this->load->view('nueva_boleta', $data);
-                    }else{
-                        $this->load->view('nueva_boleta');
-                    }
-                    
+                        $this->load->view('ingreso/ingreso_form', $data);
                     break;
                 case "busqueda_boleta":
                     $this->load->view('busqueda/busqueda_boleta');
