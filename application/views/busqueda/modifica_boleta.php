@@ -84,6 +84,13 @@
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
 }
+
+$('#rut').Rut({
+    on_error: function(){ alert('Favor ingrese un rut valido'); 
+    document.getElementById('rut').focus();
+    }
+});
+
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,
     language: "es",

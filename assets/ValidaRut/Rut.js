@@ -84,7 +84,7 @@ jQuery.Rut = {
           }
           while( sRut.length > 3 )
           {
-            sRutFormateado = "." + sRut.substr(sRut.length - 3) + sRutFormateado;
+            sRutFormateado = sRut.substr(sRut.length - 3) + sRutFormateado;
             sRut = sRut.substring(0, sRut.length - 3);
           }
           sRutFormateado = sRut + sRutFormateado;
