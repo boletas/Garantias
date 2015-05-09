@@ -2,18 +2,22 @@
     <div class="col-lg-12">
         <h1 class="page-header">Nueva Boleta</h1>
     </div>
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"> Ingreso boleta en garantia</div>
-            <div class="panel-body">
-                <?php 
+    <div class="col-lg-10">
+        <?php 
                     if($this->session->flashdata('insert')){?>
                     <div class="alert alert-warning alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $this->session->flashdata('insert')?> <?php if($this->session->flashdata('op')){?>¿Desea crear esta entidad?  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button><?php }?>
                     </div>
                     
-                <?php } ?>
+        <?php } ?>
+    </div>
+    
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Ingreso boleta en garantia</div>
+            <div class="panel-body">
+                
                     <!--** FIN MENSAJES**-->
                
                 
@@ -33,6 +37,13 @@
                     $btn_buscar = array (
                                     'name'          => 'Buscar',
                                     'value'         => 'Buscar',
+                                    'type'          => 'Submit',
+                                    'class'         => 'btn btn-outline btn-primary'
+                                );
+                    $btn_insertar = array (
+                                    'name'          => 'Guardar',
+                                    'value'         => 'Guardar',
+                                    'content'       => 'Guardar',
                                     'type'          => 'Submit',
                                     'class'         => 'btn btn-outline btn-primary'
                                 );

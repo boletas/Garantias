@@ -48,6 +48,7 @@ class Entidad_controller extends MY_Mantenedor{
         }else{
             
             $this->session->set_flashdata('insert','No existe entidad con el rut ingresado.');
+            $this->session->set_flashdata('op','si');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
             
         }
