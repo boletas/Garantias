@@ -51,9 +51,9 @@ class Boleta_controller extends MY_Mantenedor{
         $num_boleta = $this->input->post('num_boleta');
         $monto_boleta = $this->input->post('monto_boleta');
         $idMoneda = $this->input->post('id_moneda');
-        $fecha_recepcion = $this->input->post('fecha_recepcion');
-        $fecha_emision = $this->input->post('fecha_emision');
-        $fecha_vencimiento = $this->input->post('fecha_vencimiento');
+        $fecha_recepcion = $this->recursos->FormatoFecha1($this->input->post('fecha_recepcion'));
+        $fecha_emision = $this->recursos->FormatoFecha1($this->input->post('fecha_emision'));
+        $fecha_vencimiento = $this->recursos->FormatoFecha1($this->input->post('fecha_vencimiento'));
         $denominacion = $this->input->post('denominacion');
         $idBanco = $this->input->post('id_banco');
         $idGarantia = $this->input->post('id_garantia');
