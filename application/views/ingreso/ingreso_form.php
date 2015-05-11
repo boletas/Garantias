@@ -186,7 +186,7 @@
                     <a href="<?php echo base_url();?>?sec=nueva_boleta"><?php echo form_button($btn_atras);?></a>
                     <?php echo form_button($btn_insertar);?>
                 </td>
-            <input type="hidden" name="IdEntidad" value="<?php echo $idEntidad?>">
+            <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />
             </tr>
         </table>
         <?php echo form_close(); ?>
@@ -197,7 +197,7 @@ $('#sandbox-container .input-group.date').datepicker({
     language: "es",
     orientation: "top left",
     todayBtn: "linked",
-    format: "mm-dd-yyyy"
+    format: "dd-mm-yyyy"
 });
 
 

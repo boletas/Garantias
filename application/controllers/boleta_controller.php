@@ -80,7 +80,7 @@ class Boleta_controller extends MY_Mantenedor{
         }else{
             $this->session->set_flashdata('insert','Error al ingresar boleta.');
             redirect(base_url()."?sec=nueva_boleta",'refresh');
-        }
+       }
     }
     
     public function VistaBoleta($id_boleta){//obtiene el detalle de la boleta y lo presenta en una vista
