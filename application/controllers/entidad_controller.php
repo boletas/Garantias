@@ -70,18 +70,15 @@ class Entidad_controller extends MY_Mantenedor{
             $html .= "</tr>";
         }
         $data['modificar'] = $html;
-        $this->vista_modificar($data);
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('entidad/modificar', $data);
+        $this->load->view('footer');
         
     }
     
-    //Muestra el formulario para editar entidad
-    public function vista_modificar($data){
-        $this->load->view('plantilla');
-        $this->load->view('cabecera');
-        $this->load->view('entidad/entidad_modificar', $data);
-        $this->load->view('footer');
-    }
-    
+   
     //Muestra la lista de todas las entidades
     public function vista_entidad($data){
         $this->load->view('plantilla');
