@@ -5,6 +5,7 @@ class Entidad_controller extends MY_Mantenedor{
     public function __construct(){
         parent::__construct();
         $this->load->model('entidad_model');
+        $this->load->library('recursos');
         
     }
     
@@ -36,10 +37,63 @@ class Entidad_controller extends MY_Mantenedor{
         
     }
     
-    public function buscar_entidad(){
-        $rut = $this->input->post('rut_buscar');
+    public function entidades(){
+        $query= $this->entidad_model->Entidades();
+        if($query){
+               $html = "";
+                $html .= "<tbody>\n";
+                foreach ($query as $row) {
+                    $html .= "<tr>";
+                    $html .= "<td>".$row->rut."</td>";
+                    $html .= "<td>".$row->nombre."</td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-external-link'></i></a></td>";
+                    $html .= "</tr>\n";
+                }
+                $html .= "</tbody>";
+                $data['entidad'] = $html;
+                $this->vista_entidad($data);
+                
+           }
         
-        $rut_entidad = $this->entidad_model->EntidadExiste($rut);
+    }
+    
+    public function modificar_entidad($id){
+        
+        $query = $this->entidad_model->TraerEntidad($id);
+        $html = "";
+        foreach ($query as $entidad) {
+            $html = "<tr>";
+            $html .= "<td><input type='text' name='rut' id='rut' value='".$entidad->rut."'></td>";
+            $html .= "<td><input type='text' name='nombre_entidad' value='".$entidad->nombre."'></td>";
+            $html .= "<td><a class='btn btn-default' href='#'>Volver</a></td>";
+            $html .= "<td><button type='submit'>Actualizar</td>";
+            $html .= "</tr>";
+        }
+        $data['modificar'] = $html;
+        $this->vista_modificar($data);
+        
+    }
+    
+    //Muestra el formulario para editar entidad
+    public function vista_modificar($data){
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('entidad/entidad_modificar', $data);
+        $this->load->view('footer');
+    }
+    
+    //Muestra la lista de todas las entidades
+    public function vista_entidad($data){
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('entidad/entidad_vista', $data);
+        $this->load->view('footer');
+    }
+
+    public function buscar_entidad(){
+        $rut = explode('-', $this->input->post('rut_buscar'));
+        
+        $rut_entidad = $this->entidad_model->EntidadExiste($rut[0]);
         
         if($rut_entidad){
             

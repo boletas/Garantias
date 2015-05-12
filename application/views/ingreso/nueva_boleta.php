@@ -31,6 +31,7 @@
                                     'class'         => 'form-control',
                                     'placeholder'   => 'Ingrese rut de entidad a buscar',
                                     'type'          => 'text',
+                                    'id'            => 'rut',
                                     'required'      => 'required'
                                   );
                     
@@ -71,6 +72,7 @@
                                     'class'         => 'form-control',
                                     'placeholder'   => 'Ingrese rut de entidad',
                                     'type'          => 'text',
+                                    'id'            => 'rut',
                                     'required'      => 'required'
                                   );
                     
@@ -135,6 +137,13 @@
 
 <script>
     $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
+        $('#myInput').focus();
+    });
+</script>
+<script>
+    $('#rut').Rut({
+    on_error: function(){ alert('Favor ingrese un rut valido'); 
+    document.getElementById('rut');
+    }
+    });
 </script>

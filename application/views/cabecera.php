@@ -64,17 +64,21 @@
                     <li>
                         <a href="<?php echo base_url();?>?sec=busqueda_boleta"><i class="fa fa-search fa-fw"></i> Busqueda Boleta</a>
                     </li>
-<!--                    <li>
+                    <li>
                         <a href="#"><i class="fa fa-database fa-fw"></i> Mantenedores<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
+<!--                            <li>
                                 <a href="<?php echo base_url();?>?sec=banco"><i class="fa fa-bank fa-fw"></i> Banco</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url();?>?sec=tipo_empresa"><i class="fa fa-briefcase fa-fw"></i> Tipo Empresa</a>
+                            </li>-->
+                            <li>
+                                <a href="<?php echo base_url();?>index.php/entidad_controller/entidades"><i class="fa fa-file-text fa-fw"></i> Entidades</a>
                             </li>
                         </ul>
-                    </li>-->
+                    </li>
+                    
                     <li>
                         <a href="<?php echo base_url();?>?sec=reportes"><i class="fa fa-file-text fa-fw"></i> Reportes</a>
                     </li>
