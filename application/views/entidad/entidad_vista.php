@@ -45,7 +45,7 @@
 $(document).ready(function() {
     $('#result_entidad tfoot th').each( function () {
         var title = $('#result_entidad thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>' );
+        $(this).html( '<input type="text" style="width: 250px;" class="form-control"/>' );
     } );
     var table = $('#result_entidad').DataTable();
     table.columns().every( function () {

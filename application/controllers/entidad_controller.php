@@ -44,7 +44,7 @@ class Entidad_controller extends MY_Mantenedor{
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
                     $html .= "<tr>";
-                    $html .= "<td>".$row->rut."</td>";
+                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>".$row->nombre."</td>";
                     $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-external-link'></i></a></td>";
                     $html .= "</tr>\n";
@@ -52,13 +52,10 @@ class Entidad_controller extends MY_Mantenedor{
                 $html .= "</tbody>";
                 $data['entidad'] = $html;
                 $this->vista_entidad($data);
-                
            }
-        
     }
     
     public function modificar_entidad($id){
-        
         $query = $this->entidad_model->TraerEntidad($id);
         $html = "";
         foreach ($query as $entidad) {
@@ -69,11 +66,11 @@ class Entidad_controller extends MY_Mantenedor{
             $html .= "<td><button type='submit'>Actualizar</td>";
             $html .= "</tr>";
         }
-        $data['modificar'] = $html;
+        //$data['modificar'] = $html;
         
         $this->load->view('plantilla');
         $this->load->view('cabecera');
-        $this->load->view('entidad/modificar', $data);
+        $this->load->view('entidad/modificar');
         $this->load->view('footer');
         
     }
@@ -103,11 +100,5 @@ class Entidad_controller extends MY_Mantenedor{
             redirect(base_url()."?sec=nueva_boleta",'refresh');
             
         }
-        
-        
-        
-        
-        
     }
-    
 }

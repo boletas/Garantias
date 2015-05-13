@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Entidad_model extends CI_Model{
+class Entidad_Model extends CI_Model{
     
     public function __construct() {
         parent::__construct();
@@ -57,24 +57,16 @@ class Entidad_model extends CI_Model{
     }
     
     public function TraerEntidad($id){
-        
         $query = $this->db->query("CALL pa_entidad('','',2,'".$id."')");
-        
         if ($query){
             $data = $query->result();
-            
             $query->free_result();
             $this->db->close();
             return $data;
-        }else{
-            
+        }else{   
             $query->free_result();
             $this->db->close();
             return FALSE;
-        }
-        
+        }   
     }
-    
-    
-    
 }

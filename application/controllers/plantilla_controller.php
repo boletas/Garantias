@@ -62,12 +62,9 @@ class Plantilla_Controller extends MY_Mantenedor {
                 case "reportes":
                     $this->load->view('reportes/reportes');
                     break;
-                
                 case "retiro_boleta":
-                    
                     $this->load->view('retiro/retiro_boleta');
                     break;
-                    
                 case "resultado_boleta":
                     $this->load->view('busqueda/resultado_boleta');
                     break;
