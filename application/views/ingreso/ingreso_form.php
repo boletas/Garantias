@@ -21,12 +21,16 @@
                     $rut = array(
                                     'class'         => 'form-control',
                                     'type'          => 'text',
+                                    'id'            => 'disabledInput',
+                                    'disabled'      => 'true',
                                     'value'         => $RutEntidad
                                     
                                   );
                     $nombreEntidad = array(
                                     'class'         => 'form-control',
                                     'type'          => 'text',
+                                    'id'            => 'disabledInput',
+                                    'disabled'      => 'true',
                                     'value'         => $nombre
                                     
                                   );
@@ -99,7 +103,7 @@
                 <div class="col-lg-12">        
                         <?php echo form_open(base_url().'index.php/boleta_controller/insert_boleta'); ?>      
 
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-responsive">
             <tr>
                 <td class="active">Rut</td>
                 <td colspan="6"><?php echo form_input($rut); ?></td>

@@ -3,17 +3,27 @@
         <h1 class="page-header">Entidades</h1>
     </div> 
     <div class="col-lg-12">&nbsp;</div>
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         
         <?php if(!empty($modificar)){ ?>
-        <div class="dataTable_wrapper">
-            <table class="table table-striped table-bordered table-hover text-center" cellspacing="0" width="100%">
+        <form method="post" action="<?php echo base_url();?>index.php/entidad_controller/actualizar">
+            <table class="table table-responsive">
                 
                 <?php echo $modificar;  ?>
                 
             </table>
         <?php } ?>
-        </div>   
+        </form>   
     </div>
+    
+    <script>
+    $('#rut').Rut({
+    on_error: function(){ alert('Favor ingrese un rut valido'); 
+    document.getElementById('rut');
+    }
+    });
+</script>
+    
+    

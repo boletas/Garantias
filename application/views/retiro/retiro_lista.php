@@ -60,7 +60,7 @@
         
         <?php if(!empty($retiro)){ ?>
         <div class="dataTable_wrapper">
-            <table id="example" class="table table-striped table-bordered table-hover text-center" cellspacing="0" width="100%">
+            <table id="example" class="table table-striped table-bordered table-responsive table-hover text-center" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Numero boleta</th>

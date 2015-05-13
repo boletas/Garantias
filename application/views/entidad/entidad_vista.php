@@ -13,7 +13,7 @@
         <?php } ?>
     </div>   
     <div class="col-lg-12">&nbsp;</div>
-    <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-1">
         
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         

@@ -46,7 +46,7 @@ class Entidad_controller extends MY_Mantenedor{
                     $html .= "<tr>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>".$row->nombre."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-external-link'></i></a></td>";
+                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-pencil'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -60,22 +60,49 @@ class Entidad_controller extends MY_Mantenedor{
         $html = "";
         foreach ($query as $entidad) {
             $html = "<tr>";
-            $html .= "<td><input type='text' name='rut' id='rut' value='".$entidad->rut."'></td>";
-            $html .= "<td><input type='text' name='nombre_entidad' value='".$entidad->nombre."'></td>";
-            $html .= "<td><a class='btn btn-default' href='#'>Volver</a></td>";
-            $html .= "<td><button type='submit'>Actualizar</td>";
+            $html .= "<td><b>Rut</b></td>";
+            $html .= "<td><input class='form-control' type='text' name='rut' id='rut' value='".$entidad->rut."'></td>";
             $html .= "</tr>";
+            $html .= "<tr>";
+            $html .= "<td><b>Razon social</b></td>";
+            $html .= "<td><input class='form-control' type='text' name='nombre_entidad' value='".$entidad->nombre."'></td>";
+            $html .= "</tr>";
+            $html .= "<tr>";
+            $html .= "<td>&nbsp;</td>";
+            $html .= "<input type='hidden' name='idEntidad' value='".$entidad->idEntidad."'>";
+            $html .= "<td><a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a><button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button></td>";
+            $html .= "</tr>";
+            
         }
-        //$data['modificar'] = $html;
+        $data['modificar'] = $html;
         
         $this->load->view('plantilla');
         $this->load->view('cabecera');
-        $this->load->view('entidad/modificar');
+        $this->load->view('entidad/modificar', $data);
         $this->load->view('footer');
         
     }
     
-   
+    public function actualizar(){
+        
+        $rut = explode('-', $this->input->post("rut"));
+        $entidad = $this->input->post("nombre_entidad");
+        $id = $this->input->post("idEntidad");
+        
+        $query = $this->entidad_model->actualizar_entidad($rut[0], $entidad, $id);
+        
+        if ($query) {
+                $this->session->set_flashdata('error','¡Entidad actualizada!');
+                redirect(base_url()."index.php/entidad_controller/entidades",'refresh');
+            }else{
+                $this->session->set_flashdata('error','Error al actualizar');
+                redirect(base_url()."index.php/entidad_controller/entidades",'refresh');
+            }
+        
+    }
+
+    
+
     //Muestra la lista de todas las entidades
     public function vista_entidad($data){
         $this->load->view('plantilla');
