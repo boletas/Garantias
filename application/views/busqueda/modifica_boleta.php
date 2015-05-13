@@ -14,7 +14,11 @@
             </tr>
             <tr>
                 <td class="active">Razón Social</td>
-                <td colspan="6"><input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/></td>
+                <td colspan="6">
+                    <span id="razo">
+                        <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/>
+                    </span>
+                </td>
             </tr>
             <tr class="active">
                 <td>N° Boleta</td>
@@ -79,6 +83,7 @@
         <input type="hidden" name="id_boleta" id="id_boleta" value="<?php echo $id_Boleta; ?>"/>
         <?php echo form_close(); ?>
     </div>
+    
 <script>
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";

@@ -389,4 +389,25 @@ class Boleta_controller extends MY_Mantenedor{
             return false;
         }
     }
+    
+    public function TodasEntidades(){
+        $data = $this->boleta_model->ModificaBoleta();
+        if($data){
+            return $data;
+        }else{
+            return false;
+        }
+    }
+    
+    public function EntidadxRut(){
+        $rut = $this->input->post('rut');
+        $nombre = $this->input->post('nombre');
+        $data = $this->boleta_model->ModificaBoleta($rut);
+        if($data){
+            $html = '<input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/>';
+            echo $html;
+        }else{
+            return false;
+        }
+    }
 }
