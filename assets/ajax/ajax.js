@@ -14,14 +14,14 @@ var xmlHttp = null;
     return xmlHttp;
 }
 
-function ListaRut(base_url,rut,nombre) {
+function ListaRut(base_url,idEntidad,name) {
     if (trim(valor) != "" || trim(valor) != 0) {
         document.getElementById("nombre").innerHTML = " Buscando...";
 	regAjax = GetXmlHttpObject();
-	regAjax.open("POST",base_url+"index.php/boleta_controller/EntidadxRut", true);
+	regAjax.open("POST",base_url+"index.php/boleta_controller/EntidadxId", true);
 	
-	var url = "rut=" + rut;
-        url += "nombre=" + nombre;
+	var url = "idEntidad=" + idEntidad;
+        url += "&name=" + name;
 	url += "&sid=" + Math.random();
 	
 	regAjax.onreadystatechange = function() {

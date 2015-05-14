@@ -10,14 +10,11 @@
         <table class="table table-bordered">
             <tr>
                 <td class="active">Rut</td>
-                <td colspan="6"><input type="text" class="form-control" name="rut" id="rut" value="<?php echo $rut; ?>"/></td>
+                <td colspan="6"><?php echo $rut; ?></td>
             </tr>
             <tr>
                 <td class="active">Razón Social</td>
-                <td colspan="6">
-                    <span id="razo">
-                        <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/>
-                    </span>
+                <td colspan="6"><?php echo $nombre; ?>
                 </td>
             </tr>
             <tr class="active">
@@ -88,12 +85,6 @@
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
 }
-
-$('#rut').Rut({
-    on_error: function(){ alert('Favor ingrese un rut valido'); 
-    document.getElementById('rut').focus();
-    }
-});
 
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,

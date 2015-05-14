@@ -290,10 +290,18 @@ class Boleta_controller extends MY_Mantenedor{
                 $fecha_emision = $this->recursos->FormatoFecha($row->fecha_emision);
                 $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
                 $denominacion = $row->denominacion;
-                $rut = $this->recursos->DevuelveRut($row->rut);
+                
+                $rut = "<select name='rut' id='rut' class='form-control'>";
+                foreach($this->TodasEntidades() as $row1){
+                    if($row1->idEntidad == $row->idEntidad){
+                        $rut .= "<option value=".$row1->idEntidad." selected>".$this->recursos->DevuelveRut($row1->rut)."</option>";
+                    }else{
+                        $rut .= "<option value=".$row1->idEntidad.">".$this->recursos->DevuelveRut($row1->rut)."</option>";
+                    }
+                }
+                $rut .= "</select>";
+                
                 $nombre = $row->nombre;
-                
-                
                 $nombre_banco = "<select name='banco' id='banco' class='form-control'>";
                 foreach($this->ObtieneBancos() as $row1){
                     if($row1->idBanco == $row->idBanco){
@@ -391,7 +399,7 @@ class Boleta_controller extends MY_Mantenedor{
     }
     
     public function TodasEntidades(){
-        $data = $this->boleta_model->ModificaBoleta();
+        $data = $this->boleta_model->TodasEntidades();
         if($data){
             return $data;
         }else{
@@ -399,13 +407,15 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function EntidadxRut(){
-        $rut = $this->input->post('rut');
-        $nombre = $this->input->post('nombre');
-        $data = $this->boleta_model->ModificaBoleta($rut);
+    public function EntidadxId(){
+        $idEntidad = $this->input->post('rut');
+        $data = $this->boleta_model->ModificaBoleta($idEntidad);
         if($data){
-            $html = '<input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre; ?>"/>';
-            echo $html;
+            foreach($data as $row){
+                ?>
+                    <span><?php echo $row; ?></span>
+                <?php
+            }
         }else{
             return false;
         }

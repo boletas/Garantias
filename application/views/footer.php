@@ -11,7 +11,7 @@
     </div><!-- fin div wrapper -->
     <!--<script src="<?php echo base_url()?>assets/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>-->
     <script src="<?php echo base_url()?>assets/recursos/recursos.js"></script>
-    <script src="<?php echo base_url()?>assets/ajax/ajax.js"></script>
+    <!--<script src="<?php echo base_url()?>assets/ajax/ajax.js"></script>-->
     <script src="<?php echo base_url()?>assets/DataTables/jquery.dataTables.js"></script>
     <script src="<?php echo base_url()?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

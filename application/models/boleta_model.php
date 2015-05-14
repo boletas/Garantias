@@ -89,7 +89,7 @@ class Boleta_model extends CI_Model{
         }
     }
     
-    public function ModificaBoleta($datos_boleta){
+    //public function ModificaBoleta($datos_boleta){
         /*$query = $this->db->query("CALL pa_boleta (
                                     '".$datos_boleta['numero_boleta']."',
                                     '".$datos_boleta['monto_boleta']."',
@@ -105,10 +105,24 @@ class Boleta_model extends CI_Model{
                                     '3',
                                     '".$datos_boleta['']."',
                                     '".$datos_boleta['']."')");*/
-    }
+    //}
     
     public function TodasEntidades(){
-        $query = $this->db->query("CALL pa_entidad ('','','2','0')");
+        $query = $this->db->query("CALL pa_entidad('','','5','0')");
+        if ($query){
+            $data = $query->result();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return null;
+        }
+    }
+    
+    public function EntidadxId($idEntidad){
+        $query = $this->db->query("CALL pa_entidad('','',2,".$idEntidad.")");
         if ($query){
             $data = $query->result();
             $query->free_result();

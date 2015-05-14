@@ -3,12 +3,9 @@
 class Recursos{
     
     function DevuelveRut($_rol){
-        
         if($_rol == ""){
             return 0;
-        }
-            
-        
+        }        
         while($_rol[0] == "0") {
             $_rol = substr($_rol, 1);
         }
