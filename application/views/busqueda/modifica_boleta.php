@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <td class="active">Razón Social</td>
-                <td colspan="6"><?php echo $nombre; ?>
+                <td colspan="6"><div id="razon_social"><?php echo $nombre; ?></div>
                 </td>
             </tr>
             <tr class="active">
@@ -78,6 +78,7 @@
         </div>
         <input type="hidden" name="volver" id="volver" />
         <input type="hidden" name="id_boleta" id="id_boleta" value="<?php echo $id_Boleta; ?>"/>
+        <input type="hidden" name="base" id="base" value="<?php echo base_url()?>"/>
         <?php echo form_close(); ?>
     </div>
     

@@ -291,15 +291,15 @@ class Boleta_controller extends MY_Mantenedor{
                 $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
                 $denominacion = $row->denominacion;
                 
-                $rut = "<select name='rut' id='rut' class='form-control'>";
+                $rut = '<select name="rut" id="rut" class="form-control" onchange="CambiaRazon()">';
                 foreach($this->TodasEntidades() as $row1){
                     if($row1->idEntidad == $row->idEntidad){
-                        $rut .= "<option value=".$row1->idEntidad." selected>".$this->recursos->DevuelveRut($row1->rut)."</option>";
+                        $rut .= '<option value='.$row1->idEntidad.' selected>'.$this->recursos->DevuelveRut($row1->rut).'</option>';
                     }else{
-                        $rut .= "<option value=".$row1->idEntidad.">".$this->recursos->DevuelveRut($row1->rut)."</option>";
+                        $rut .= '<option value='.$row1->idEntidad.'>'.$this->recursos->DevuelveRut($row1->rut).'</option>';
                     }
                 }
-                $rut .= "</select>";
+                $rut .= '</select>';
                 
                 $nombre = $row->nombre;
                 $nombre_banco = "<select name='banco' id='banco' class='form-control'>";
@@ -408,16 +408,14 @@ class Boleta_controller extends MY_Mantenedor{
     }
     
     public function EntidadxId(){
-        $idEntidad = $this->input->post('rut');
-        $data = $this->boleta_model->ModificaBoleta($idEntidad);
+        $idEntidad = $this->input->post('idEntidad');
+        $data = $this->boleta_model->EntidadxId($idEntidad);
         if($data){
             foreach($data as $row){
-                ?>
-                    <span><?php echo $row; ?></span>
-                <?php
+                $html = $row->nombre;
             }
-        }else{
-            return false;
         }
+        $respuesta = array('html' => $html);
+        echo json_encode($respuesta);
     }
 }
