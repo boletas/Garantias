@@ -11,10 +11,37 @@ class Boleta_controller extends MY_Mantenedor{
     
     public function index(){
         $que = $this->input->post("que");//valor obtenido desde busqueda boleta
-        if($que == 1){
-            $volver = array('volver' =>  $que);
-            $this->session->set_userdata($volver);
-            $this->TodasBoletas();
+        switch ($que){
+            case 1:
+                $volver = array('volver' =>  $que);
+                $this->session->set_userdata($volver);
+                $this->TodasBoletas();
+                break;
+            case 2:
+                $boleta = $this->input->post('n_boleta');
+                $volver = array('volver' =>  $que, 'cual' => $boleta);
+                $this->session->set_userdata($volver);
+                break;
+            case 3:
+                $fecha_re = $this->input->post('fecha_re');
+                $volver = array('volver' =>  $que, 'cual' => $fecha_re);
+                $this->session->set_userdata($volver);
+                break;
+            case 4:
+                $fecha_emi = $this->input->post('fecha_emi');
+                $volver = array('volver' =>  $que, 'cual' => $fecha_emi);
+                $this->session->set_userdata($volver);
+                break;
+            case 5:
+                $fecha_venci = $this->input->post('fecha_venci');
+                $volver = array('volver' =>  $que, 'cual' => $fecha_venci);
+                $this->session->set_userdata($volver);
+                break;
+            case 6:
+                $entidad = $this->input->post('entidad');
+                $volver = array('volver' =>  $que, 'cual' => $entidad);
+                $this->session->set_userdata($volver);
+                break;
         }
     }
     
@@ -274,7 +301,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = $row->monto_boleta;
                 
-                $codigo = "<select name='codigo' id='codigo' class='form-control' style='width: 80px'>";
+                $codigo = "<select name='codigo' id='codigo' class='form-control' style='width: 100px'>";
                 foreach($this->ObtieneMoneda() as $row1){
                     if($row1->idMoneda == $row->idMoneda){
                         $codigo .= "<option value='".$row1->idMoneda."' selected>".$row1->codigo."</option>";
@@ -291,7 +318,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
                 $denominacion = $row->denominacion;
                 
-                $rut = '<select name="rut" id="rut" class="form-control" onchange="CambiaRazon()">';
+                $rut = '<select name="rut" id="rut" class="form-control" onchange="CambiaRazon(this.value);">';
                 foreach($this->TodasEntidades() as $row1){
                     if($row1->idEntidad == $row->idEntidad){
                         $rut .= '<option value='.$row1->idEntidad.' selected>'.$this->recursos->DevuelveRut($row1->rut).'</option>';
@@ -333,27 +360,37 @@ class Boleta_controller extends MY_Mantenedor{
                     }
                 }
                 $estado_boleta .= "</select>";
+                
+                $tipo_boleta = "<select name='tipo_boleta' id='tipo_boleta' class='form-control'>";
+                foreach($this->ObtieneTipoBoletas() as $row1){
+                    if($row1->idTipoBoleta == $row->idTipoBoleta){
+                        $tipo_boleta .= "<option value='".$row1->idTipoBoleta."' selected>".$row1->descripcion_tipo_boleta."</option>";
+                    }else{
+                        $tipo_boleta .= "<option value='".$row1->idTipoBoleta."'>".$row1->descripcion_tipo_boleta."</option>";
+                    }
+                }
+                $tipo_boleta .= "</select>";
             }
             
             $resultado = array(
-                'id_Boleta'                 => $id_boleta,
-                'numero_boleta'             => $numero_boleta,
-                'monto_boleta'              => $monto_boleta,
-                'codigo'                    => $codigo,
-                'fecha_recepcion'           => $fecha_recepcion,
-                'fecha_emision'             => $fecha_emision,
-                'fecha_vencimiento'         => $fecha_vencimiento,
-                'denominacion'              => $denominacion,
-                'rut'                       => $rut,
-                'nombre'                    => $nombre,
-                'nombre_banco'              => $nombre_banco,
-                'tipo_garantia'             => $tipo_garantia,
-                'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
-                'estado_boleta'             => $estado_boleta,
-                'vence'                     => $vence,
-                'clase'                     => $clase
+                    'id_Boleta'                 => $id_boleta,
+                    'numero_boleta'             => $numero_boleta,
+                    'monto_boleta'              => $monto_boleta,
+                    'codigo'                    => $codigo,
+                    'fecha_recepcion'           => $fecha_recepcion,
+                    'fecha_emision'             => $fecha_emision,
+                    'fecha_vencimiento'         => $fecha_vencimiento,
+                    'denominacion'              => $denominacion,
+                    'rut'                       => $rut,
+                    'nombre'                    => $nombre,
+                    'nombre_banco'              => $nombre_banco,
+                    'tipo_garantia'             => $tipo_garantia,
+                    'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
+                    'estado_boleta'             => $estado_boleta,
+                    'tipo_boleta'               => $tipo_boleta,
+                    'vence'                     => $vence,
+                    'clase'                     => $clase
                 );
-            
             return $resultado;  
         }else{
             return false;
@@ -362,8 +399,7 @@ class Boleta_controller extends MY_Mantenedor{
     
     public function ModificaBoleta(){//metodo para la edicion de la boleta
         $id_boleta = $this->input->post('id_boleta');
-        $rut = $this->recursos->FormatoRut($this->input->post('rut'));
-        $nombre = trim($this->input->post('nombre'));
+        $idEntidad = $this->input->post('rut');
         $numero_boleta = trim($this->input->post('numero_boleta'));
         $estado_boleta = $this->input->post('estado_boleta');
         $recepcion = $this->recursos->FormatoFecha1($this->input->post('recepcion'));
@@ -374,11 +410,11 @@ class Boleta_controller extends MY_Mantenedor{
         $banco = $this->input->post('banco');
         $codigo = $this->input->post('codigo');
         $monto = trim($this->input->post('monto'));
+        $tipo_boleta = $this->input->post('tipo_boleta');
         
         $datos_boleta = array(
                 'id_boleta'         => $id_boleta,
-                'rut'               => $rut,
-                'nombre'            => $nombre,
+                'idEntidad'         => $idEntidad,
                 'numero_boleta'     => $numero_boleta,
                 'estado_boleta'     => $estado_boleta,
                 'recepcion'         => $recepcion,
@@ -388,13 +424,18 @@ class Boleta_controller extends MY_Mantenedor{
                 'denominacion'      => $denominacion,
                 'banco'             => $banco,
                 'codigo'            => $codigo,
-                'monto'             => $monto
+                'monto'             => $monto,
+                'tipo_boleta'       => $tipo_boleta
                 );
         $data = $this->boleta_model->ModificaBoleta($datos_boleta);
         if($data){
-            
+            $mensaje = array('boleta_ok'   => 'La boleta fue modificada exitosamente.');
+            $this->session->set_userdata($mensaje);
+            $this->VistaModificaBoleta($id_boleta);
         }else{
-            return false;
+            $mensaje = array('boleta_error'   => 'Ocurrió un error al tratar de modificar la boleta.');
+            $this->session->set_userdata($mensaje);
+            $this->VistaModificaBoleta($id_boleta);
         }
     }
     

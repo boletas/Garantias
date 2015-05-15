@@ -89,23 +89,33 @@ class Boleta_model extends CI_Model{
         }
     }
     
-    //public function ModificaBoleta($datos_boleta){
-        /*$query = $this->db->query("CALL pa_boleta (
+    public function ModificaBoleta($datos_boleta){
+        $query = $this->db->query("CALL pa_boleta (
                                     '".$datos_boleta['numero_boleta']."',
-                                    '".$datos_boleta['monto_boleta']."',
+                                    '".$datos_boleta['monto']."',
                                     '".$datos_boleta['recepcion']."',
                                     '".$datos_boleta['emision']."',
                                     '".$datos_boleta['vencimiento']."',
-                                    '".$datos_boleta['denominacion']."',
-                                    '".$datos_boleta['']."',
-                                    '".$datos_boleta['']."',
-                                    '".$datos_boleta['']."',
-                                    '".$datos_boleta['']."',
-                                    '".$datos_boleta['']."',
+                                    '".$datos_boleta['idEntidad']."',
+                                    '".$datos_boleta['banco']."',
+                                    '".$datos_boleta['codigo']."',
+                                    '".$datos_boleta['tipo_garantia']."',
+                                    '".$datos_boleta['tipo_boleta']."',
+                                    '".$datos_boleta['estado_boleta']."', 
                                     '3',
-                                    '".$datos_boleta['']."',
-                                    '".$datos_boleta['']."')");*/
-    //}
+                                    '".$datos_boleta['id_boleta']."', 
+                                    '".$datos_boleta['denominacion']."')");
+        if($query){
+            $query->free_result();
+            $this->db->close();
+            return TRUE;
+        }else{
+
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
     
     public function TodasEntidades(){
         $query = $this->db->query("CALL pa_entidad('','','5','0')");
