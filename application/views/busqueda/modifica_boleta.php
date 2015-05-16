@@ -16,7 +16,7 @@
             
             if($mensaje != ""){
         ?>
-            <div class="alert <?php echo $clase?> alert-dismissable">
+            <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $mensaje ?>
             </div>
@@ -133,4 +133,10 @@ function UnsetMensaje(){
 }
 setTimeout("UnsetMensaje()",500);
 </script>
+<script>
+            $(document).ready(function(){
+                if ($("div#mensaje")) {
+                setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+            }});
+        </script>
 </div>
