@@ -21,31 +21,36 @@ class Boleta_controller extends MY_Mantenedor{
                 $boleta = $this->input->post('n_boleta');
                 $volver = array('volver' =>  $que, 'cual' => $boleta);
                 $this->session->set_userdata($volver);
+                $this->Boletas($boleta,$que);
                 break;
             case 3:
                 $fecha_re = $this->input->post('fecha_re');
                 $volver = array('volver' =>  $que, 'cual' => $fecha_re);
                 $this->session->set_userdata($volver);
+                $this->Boletas($fecha_re,$que);
                 break;
             case 4:
                 $fecha_emi = $this->input->post('fecha_emi');
                 $volver = array('volver' =>  $que, 'cual' => $fecha_emi);
                 $this->session->set_userdata($volver);
+                $this->Boletas($fecha_emi,$que);
                 break;
             case 5:
                 $fecha_venci = $this->input->post('fecha_venci');
                 $volver = array('volver' =>  $que, 'cual' => $fecha_venci);
                 $this->session->set_userdata($volver);
+                $this->Boletas($fecha_venci,$que);
                 break;
             case 6:
                 $entidad = $this->input->post('entidad');
                 $volver = array('volver' =>  $que, 'cual' => $entidad);
                 $this->session->set_userdata($volver);
+                $this->Boletas($entidad,$que);
                 break;
         }
     }
     
-    public function ResultadoBoletas(){
+    public function ResultadoBoletas(){//obtiene los valores del resultado de boletas
         if($this->input->post("que") != ""){
             $que = $this->input->post("que");
             $id_boleta = $this->input->post("id_boleta");
@@ -57,16 +62,11 @@ class Boleta_controller extends MY_Mantenedor{
             }
             if($que == 2){//editar boleta
                 $this->VistaModificaBoleta($id_boleta);
-                $cual = array('cual'  =>  '');
-                $this->session->set_userdata($cual);
             }
-            if($que == 3){//pdf boleta
-
-            }   
         }
     }
     
-    public function Volver(){
+    public function Volver(){//da la funcion al boton volver
         $volver = $this->session->userdata('volver');
         if($volver == 1){
             $this->TodasBoletas();
@@ -173,7 +173,6 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
-                //$html .= "<a href='".base_url()."index.php/pdf_controller/BoletaPdf/".$row->id_Boleta."' target='_blank' class='btn btn-default btn-circle'><i class='fa fa-file-pdf-o'></i></a>";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
@@ -186,6 +185,14 @@ class Boleta_controller extends MY_Mantenedor{
             $this->load->view('footer');
         }else{
             return false;
+        }
+    }
+    
+    public function Boletas($buscar,$que){//busca segun el criterio que se seleccion en la busqueda principal
+        $data = $this->boleta_model->Boletas($buscar,$que);
+        if($data){
+            
+            $this->BuscarBoleta($id_boleta);
         }
     }
     
