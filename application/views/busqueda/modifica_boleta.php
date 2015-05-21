@@ -122,7 +122,7 @@ $('#sandbox-container .input-group.date').datepicker({
     language: "es",
     orientation: "top left",
     todayBtn: "linked",
-    format: "mm-dd-yyyy"
+    format: "dd-mm-yyyy"
 });
 
 $('select#rut').on('change',function(){});
