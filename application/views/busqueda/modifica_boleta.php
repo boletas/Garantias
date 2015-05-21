@@ -127,16 +127,13 @@ $('#sandbox-container .input-group.date').datepicker({
 
 $('select#rut').on('change',function(){});
 
+$(document).ready(function(){
+    if ($("div#mensaje")) {
+    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+}});
 
 function UnsetMensaje(){
     <?php $this->session->unset_userdata('boleta_ok','boleta_error')?>
 }
 setTimeout("UnsetMensaje()",500);
 </script>
-<script>
-            $(document).ready(function(){
-                if ($("div#mensaje")) {
-                setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
-            }});
-        </script>
-</div>
