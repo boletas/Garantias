@@ -8,48 +8,7 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->library('recursos');
         $this->load->library('session');
     }
-    
-    public function index(){
-        $que = $this->input->post("que");//valor obtenido desde busqueda boleta
-        switch ($que){
-            case 1:
-                $volver = array('volver' =>  $que);
-                $this->session->set_userdata($volver);
-                $this->TodasBoletas();
-                break;
-            case 2:
-                $boleta = $this->input->post('n_boleta');
-                $volver = array('volver' =>  $que, 'cual' => $boleta);
-                $this->session->set_userdata($volver);
-                $this->Boletas($boleta,$que);
-                break;
-            case 3:
-                $fecha_re = $this->input->post('fecha_re');
-                $volver = array('volver' =>  $que, 'cual' => $fecha_re);
-                $this->session->set_userdata($volver);
-                $this->Boletas($fecha_re,$que);
-                break;
-            case 4:
-                $fecha_emi = $this->input->post('fecha_emi');
-                $volver = array('volver' =>  $que, 'cual' => $fecha_emi);
-                $this->session->set_userdata($volver);
-                $this->Boletas($fecha_emi,$que);
-                break;
-            case 5:
-                $fecha_venci = $this->input->post('fecha_venci');
-                $volver = array('volver' =>  $que, 'cual' => $fecha_venci);
-                $this->session->set_userdata($volver);
-                $this->Boletas($fecha_venci,$que);
-                break;
-            case 6:
-                $entidad = $this->input->post('entidad');
-                $volver = array('volver' =>  $que, 'cual' => $entidad);
-                $this->session->set_userdata($volver);
-                $this->Boletas($entidad,$que);
-                break;
-        }
-    }
-    
+
     public function ResultadoBoletas(){//obtiene los valores del resultado de boletas
         if($this->input->post("que") != ""){
             $que = $this->input->post("que");
@@ -67,10 +26,7 @@ class Boleta_controller extends MY_Mantenedor{
     }
     
     public function Volver(){//da la funcion al boton volver
-        $volver = $this->session->userdata('volver');
-        if($volver == 1){
-            $this->TodasBoletas();
-        }
+        $this->TodasBoletas();
     }
     
     public function insert_boleta(){
@@ -188,14 +144,6 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function Boletas($buscar,$que){//busca segun el criterio que se seleccion en la busqueda principal
-        $data = $this->boleta_model->Boletas($buscar,$que);
-        if($data){
-            
-            $this->BuscarBoleta($id_boleta);
-        }
-    }
-    
     public function BuscarBoleta($id_boleta){//busca la boleta segun el id entregado
         $data = $this->boleta_model->BuscarBoleta($id_boleta);
         if($data){
@@ -244,6 +192,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $tipo_garantia = $row->tipo_garantia;
                 $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
                 $estado_boleta = $row->estado_boleta;
+                $tipo_boleta = $row->descripcion_tipo_boleta;
             }
             
             $resultado = array(
@@ -261,6 +210,7 @@ class Boleta_controller extends MY_Mantenedor{
                 'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
                 'estado_boleta'             => $estado_boleta,
                 'vence'                     => $vence,
+                'tipo_boleta'               => $tipo_boleta,
                 'clase'                     => $clase
                 );
             
