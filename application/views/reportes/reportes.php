@@ -30,7 +30,7 @@
                         <input class="form-control" type="text" name="rut" placeholder="Ingrese rut entidad" id="rut" style="display: none;"/>
                     </div>
                     <div class="form-group">
-                        <span id="tipo" style="display: none">tipo boleta</span>
+                        <?php echo $tipo_boleta; ?>
                     </div>
                     <div class="form-group">
                         <select class="form-control" id="periodo" onchange="cambio()" style="display: none">
@@ -78,8 +78,10 @@
             document.getElementById('periodo').style.display = 'block';
             if(tipo == 2){
                 document.getElementById('rut').style.display = 'block';
+                document.getElementById('tipo').style.display = 'none';
             }else if(tipo == 3){
                 document.getElementById('tipo').style.display = 'block';
+                document.getElementById('rut').style.display = 'none';
             }else{
                 document.getElementById('rut').style.display = 'none';
             }

@@ -80,7 +80,7 @@
                     </li>
                     
                     <li>
-                        <a href="<?php echo base_url();?>?sec=reportes"><i class="fa fa-file-text fa-fw"></i> Reportes</a>
+                        <a href="<?php echo base_url();?>index.php/reportes_controller/index"><i class="fa fa-file-text fa-fw"></i> Reportes</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-search fa-fw"></i> Retiro boleta</a>
