@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <?php
                 $form = array('name'    => 'form1');
-                echo form_open(base_url()."index.php/boleta_controller",$form);
+                echo form_open(base_url()."index.php/reportes_controller/GeneraReportes",$form);
                 ?>
                     <div class="form-group" align="center">
                         <label class="radio-inline">
@@ -19,7 +19,7 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" id="tipo_busqueda" onchange="cambio()" style="display: none;">
+                        <select class="form-control" name="tipo_busqueda" id="tipo_busqueda" onchange="cambio()" style="display: none;">
                             <option>--- Seleccione ---</option>
                             <option value="1">Todas</option>
                             <option value="2">Rut</option>
@@ -27,20 +27,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="rut" placeholder="Ingrese rut entidad" id="rut" style="display: none;"/>
+                        <input class="form-control" type="text" name="rut" id="rut" placeholder="Ingrese rut entidad" style="display: none;"/>
                     </div>
                     <div class="form-group">
                         <?php echo $tipo_boleta; ?>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" id="periodo" onchange="cambio()" style="display: none">
+                        <select class="form-control" name="periodo" id="periodo" onchange="cambio()" style="display: none">
                             <option>-- Seleccione --</option>
                             <option value="1">Todas</option>
-                            <option value="2">10 Días</option>
-                            <option value="3">20 Días</option>
-                            <option value="4">30 Días</option>
-                            <option value="5">60 Días</option>
-                            <option value="6">90 Días</option>
+                            <option value="10">10 Días</option>
+                            <option value="20">20 Días</option>
+                            <option value="30">30 Días</option>
+                            <option value="60">60 Días</option>
+                            <option value="90">90 Días</option>
                         </select>
                     </div>
                     <div class="form-group" style="text-align: right; display: none;" id="buscar">
@@ -84,6 +84,7 @@
                 document.getElementById('rut').style.display = 'none';
             }else{
                 document.getElementById('rut').style.display = 'none';
+                document.getElementById('tipo').style.display = 'none';
             }
             if(periodo > 0){
                 document.getElementById('buscar').style.display = 'block';
@@ -94,6 +95,7 @@
             document.getElementById('buscar').style.display = 'none';
             document.getElementById('periodo').style.display = 'none';
             document.getElementById('rut').style.display = 'none'; 
+            document.getElementById('tipo').style.display = 'none'; 
         }
     }
     
