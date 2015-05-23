@@ -6,6 +6,7 @@ class Reportes_Controller extends MY_Mantenedor{
         parent::__construct();
         $this->load->model('boleta_model');
         $this->load->library('recursos');
+        $this->load->model('reportes_model');
     }
   
     public function index(){
@@ -30,22 +31,48 @@ class Reportes_Controller extends MY_Mantenedor{
     
     public function GeneraReportes(){
         $fecha = "";
-        $vence = $this->input->post("vence");//vencidas ; por_vencer
+        $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
+        if($vence == "vencidas"){$vence=1;}else{$vence=2;}
         $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
         ($vence == "vencidas" ? $fecha = strtotime('-'.$periodo.' day',strtotime(date('Y-m-d'))) : $fecha = strtotime('+'.$periodo.' day',strtotime(date('Y-m-d'))));
         
-        echo date('Y-m-d',$fecha);
-        die();
+        $fecha = date('Y-m-d',$fecha);
+        
         
         switch ($this->input->post("tipo_busqueda")){
             case 1://todas las boletas
                 
+                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
+                
+                if($query){
+                    echo 'si';
+                }else{
+                    echo 'no';
+                }
+                
+                
                 break;
             case 2://rut entidad
                 $rut = $this->recursos->FormatoRut($this->input->post("rut"));
+                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut);
+                
+                
+                if($query){
+                    echo 'si';
+                }else{
+                    echo 'no';
+                }
+                
                 break;
             case 3://tipo boleta
-                $this->input->post("tipo");
+                $tipo = $this->input->post("tipo");
+                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
+                
+                if($query){
+                    echo 'si';
+                }else{
+                    echo 'no';
+                }
                 break;
         }       
     }
