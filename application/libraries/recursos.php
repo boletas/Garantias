@@ -72,7 +72,6 @@ class Recursos{
     function Indicadores(){
         $xmlSource = "http://indicadoresdeldia.cl/webservice/indicadores.xml";
         $xml = simplexml_load_file($xmlSource);
-//        $xml->santoral->ayer;
         return ($xml);
         
     }
@@ -82,4 +81,18 @@ class Recursos{
         $rut = substr($rut, 0, -1);
         return ($rut);
     }
+    
+    function UltimoDiaMes($anio,$mes) {
+        return date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
+      }
+
+      //Ejemplo de uso
+      //$ultimoDia = getUltimoDiaMes(2013,10);
+      //echo $ultimoDia."<br/>";
+      //echo getUltimoDiaMes(2012,09)."<br/>";
+      /*
+      Resultado:
+      31
+      30
+      */
 }

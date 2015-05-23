@@ -38,43 +38,24 @@ class Reportes_Controller extends MY_Mantenedor{
         
         $fecha = date('Y-m-d',$fecha);
         
-        
         switch ($this->input->post("tipo_busqueda")){
             case 1://todas las boletas
-                
-                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
-                
-                if($query){
-                    echo 'si';
-                }else{
-                    echo 'no';
-                }
-                
-                
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
                 break;
             case 2://rut entidad
                 $rut = $this->recursos->FormatoRut($this->input->post("rut"));
-                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut);
-                
-                
-                if($query){
-                    echo 'si';
-                }else{
-                    echo 'no';
-                }
-                
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut);
                 break;
             case 3://tipo boleta
                 $tipo = $this->input->post("tipo");
-                $query = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
-                
-                if($query){
-                    echo 'si';
-                }else{
-                    echo 'no';
-                }
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
                 break;
-        }       
+        }
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('reportes/vista_reporte');
+        $this->load->view('footer');
     }
 }
 
