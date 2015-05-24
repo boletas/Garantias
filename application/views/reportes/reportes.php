@@ -106,4 +106,11 @@ $('#sandbox-container .input-group.date').datepicker({
     todayBtn: "linked",
     format: "dd-mm-yyyy"
 });
+
+$('#rut').Rut({
+    on_error: function(){ 
+        alert('Favor ingrese un rut valido'); 
+        document.getElementById('rut');
+    }
+});
 </script>

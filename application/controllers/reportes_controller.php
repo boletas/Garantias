@@ -52,6 +52,8 @@ class Reportes_Controller extends MY_Mantenedor{
                 break;
         }
         
+        
+        
         $this->load->view('plantilla');
         $this->load->view('cabecera');
         $this->load->view('reportes/vista_reporte');
