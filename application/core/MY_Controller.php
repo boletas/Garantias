@@ -88,7 +88,5 @@ class MY_Mantenedor extends CI_Controller{
                 return $data;
             }
         }
-    }
-    
-    
+    }   
 }

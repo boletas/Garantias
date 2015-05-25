@@ -52,6 +52,9 @@ class Reportes_Controller extends MY_Mantenedor{
                 break;
         }
         
+        foreach ($data as $row){
+            
+        }
         
         
         $this->load->view('plantilla');
