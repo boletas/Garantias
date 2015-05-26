@@ -52,14 +52,25 @@ class Reportes_Controller extends MY_Mantenedor{
                 break;
         }
         
+        $html = "";
+        $total = 0;
         foreach ($data as $row){
-            
+            $monto = $this->ObtieneMonto($row->idMoneda, $row->monto_boleta);
+            $total = $total + $monto;
+            $html .= "<tr>";
+            $html .= "<td width='150px'>".$row->numero_boleta."</td>";
+            $html .= "<td width='120px'>".$this->recursos->DevuelveRut($row->rut)."</td>";
+            $html .= "<td width='450px'>".$row->nombre."</td>";
+            $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>";
+            $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>";
+            $html .= "<tr>";
         }
-        
+        $total = $this->recursos->Formato1($total);
+        $resultado = array('html' => $html, 'total' => $total);
         
         $this->load->view('plantilla');
         $this->load->view('cabecera');
-        $this->load->view('reportes/vista_reporte');
+        $this->load->view('reportes/vista_reporte', $resultado);
         $this->load->view('footer');
     }
 }

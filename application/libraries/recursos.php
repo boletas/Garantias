@@ -33,8 +33,8 @@ class Recursos{
     }
     
     function dias_transcurridos($fecha_i,$fecha_f){
-        $dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;
-	$dias 	= abs($dias); $dias = floor($dias);		
+        $dias = (strtotime($fecha_i)-strtotime($fecha_f))/86400;
+	$dias = abs($dias); $dias = floor($dias);		
 	return $dias;
     }
     
@@ -82,9 +82,13 @@ class Recursos{
         return ($rut);
     }
     
-    function UltimoDiaMes($anio,$mes) {
+    function UltimoDiaMes($anio,$mes){
         return date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
-      }
+    }
+    
+    function Formato1($val){
+        return number_format($val,0,",",".");
+    }
 
       //Ejemplo de uso
       //$ultimoDia = getUltimoDiaMes(2013,10);

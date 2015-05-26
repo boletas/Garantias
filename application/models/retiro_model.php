@@ -8,9 +8,9 @@ class Retiro_model extends CI_Model{
     
      public function BuscarRutNum($rut,$num){
          
-         $query = $this->db->query("CALL retiro_xrut_xnum('".$rut."','".$num."')");
+        $query = $this->db->query("CALL retiro_xrut_xnum('".$rut."','".$num."')");
          
-         if ($query){
+        if ($query){
             $data = $query->result();
             $query->free_result();
             $this->db->close();

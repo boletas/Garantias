@@ -10,6 +10,9 @@ class MY_Mantenedor extends CI_Controller{
         $this->load->model('garantia_model');
         $this->load->model('moneda_model');
         $this->load->model('estadoBoleta_model');
+        $this->load->model('ultimo_monto_model');
+        
+        $this->load->library('recursos');
     }
     
     public function ObtieneBancos(){
@@ -41,7 +44,6 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function TraerEntidad($id){
-        
         $data = $this->entidad_model->TraerEntidad($id);
         if(!empty($data)){
             if ($data){
@@ -51,7 +53,6 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function ObtieneMoneda(){
-        
         $data = $this->moneda_model->ObtieneMoneda();
         if(!empty($data)){
             if ($data){
@@ -61,7 +62,6 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function ObtieneTipoGarantia(){
-        
         $data = $this->garantia_model->ObtieneGarantias();
         if(!empty($data)){
             if ($data){
@@ -71,7 +71,6 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function ObtieneTipoBoletas(){
-        
         $data = $this->tipoBoletas_model->ObtieneTipoBoletas();
         if(!empty($data)){
             if ($data){
@@ -81,12 +80,48 @@ class MY_Mantenedor extends CI_Controller{
     }
     
     public function ObtieneEstadoBoletas(){
-        
         $data = $this->estadoBoleta_model->ObtieneEstadoBoletas();
         if(!empty($data)){
             if ($data){
                 return $data;
             }
         }
-    }   
+    }
+    
+    public function ObtieneUltimoIngreso(){
+        $data = $this->ultimo_monto_model->ObtieneUltimoIngreso();
+        if(!empty($data)){
+            if ($data){
+                return $data;
+            }
+        }
+    }
+    
+    public function ObtieneMonto($cual,$cuanto){
+        foreach($this->ObtieneUltimoIngreso() as $row => $monto){
+            if($row == 0){
+                $fecha_costo = $monto->fecha_costo;
+                $e_uf = $monto->e_uf;
+                $e_utm = $monto->e_utm;
+                $e_dolar = $monto->e_dolar;
+                $e_euro = $monto->e_euro;
+            }
+        }
+        
+        switch ($cual){
+            case 1://CLP
+                $total = $cuanto; 
+                break;
+            case 2://USD
+                $total = $cuanto * $e_dolar; 
+                break;
+            case 3://U.F.
+                $total = $cuanto * $e_uf;
+                break;
+            case 4://EUR
+                $total = $cuanto * $e_euro; 
+                break;
+        }
+        return $total;
+    }
 }
