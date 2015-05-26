@@ -102,7 +102,6 @@ class MY_Mantenedor extends CI_Controller{
             if($row == 0){
                 $fecha_costo = $monto->fecha_costo;
                 $e_uf = $monto->e_uf;
-                $e_utm = $monto->e_utm;
                 $e_dolar = $monto->e_dolar;
                 $e_euro = $monto->e_euro;
             }
