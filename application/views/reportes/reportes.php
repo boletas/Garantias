@@ -7,7 +7,7 @@
             <div class="panel-heading"> Seleccione Tipo de Busqueda</div>
             <div class="panel-body">
                 <?php
-                $form = array('name'    => 'form1');
+                $form = array('name' => 'form1');
                 echo form_open(base_url()."index.php/reportes_controller/GeneraReportes",$form);
                 ?>
                     <div class="form-group" align="center">
@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="rut" id="rut" placeholder="Ingrese rut entidad" style="display: none;"/>
+                        <input class="form-control" type="text" name="rut" id="rut" placeholder="Ingrese rut entidad" required style="display: none;"/>
                     </div>
                     <div class="form-group">
                         <?php echo $tipo_boleta; ?>
@@ -50,6 +50,7 @@
                 <?php echo form_close(); ?>
             </div>
         </div>
+        <span id="msj"></span>
     </div>
 </div>
 <script>
@@ -77,6 +78,21 @@
         if(tipo > 0){
             document.getElementById('periodo').style.display = 'block';
             if(tipo == 2){
+                $('#rut').Rut({
+                    on_error: function(){
+                        document.getElementById('rut');
+                        var mensaje = $("#msj");
+                        mensaje.html('<div id="mensaje" class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Rut Incorrecto</div>');
+                        document.getElementById('buscar').style.display = 'none';
+                    },
+                    on_success: function(){
+                        document.getElementById('rut');
+                        $("div#mensaje").hide("slow");
+                        if(periodo > 0){
+                            document.getElementById('buscar').style.display = 'block';
+                        }
+                    }
+                });
                 document.getElementById('rut').style.display = 'block';
                 document.getElementById('tipo').style.display = 'none';
             }else if(tipo == 3){
@@ -87,6 +103,13 @@
                 document.getElementById('tipo').style.display = 'none';
             }
             if(periodo > 0){
+                if(tipo == 2){
+                    if($("#rut").val().length < 1) {
+                        document.getElementById('buscar').style.display = 'none';
+                    }else{
+                        document.getElementById('buscar').style.display = 'block';
+                    }
+                }
                 document.getElementById('buscar').style.display = 'block';
             }else{
                 document.getElementById('buscar').style.display = 'none';
@@ -99,18 +122,13 @@
         }
     }
     
-$('#sandbox-container .input-group.date').datepicker({
-    clearBtn: true,
-    language: "es",
-    orientation: "top left",
-    todayBtn: "linked",
-    format: "dd-mm-yyyy"
-});
+// envio de formulario (ENTER) desactivado
+function stopRKey(evt) {
+    var evt = (evt) ? evt : ((event) ? event : null);
+    var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+    if ((evt.keyCode == 13) && (node.type=="text")) {return false;}
+}
+document.onkeypress = stopRKey; 
 
-$('#rut').Rut({
-    on_error: function(){ 
-        alert('Favor ingrese un rut valido'); 
-        document.getElementById('rut');
-    }
-});
+//fin enter
 </script>

@@ -13,7 +13,7 @@
         <?php } ?>
     </div>
     
-    <div class="col-lg-6">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"> Ingreso boleta en garantia</div>
             <div class="panel-body">
