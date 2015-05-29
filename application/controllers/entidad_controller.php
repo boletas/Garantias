@@ -40,14 +40,14 @@ class Entidad_controller extends MY_Mantenedor{
     public function entidades(){
         $query= $this->entidad_model->Entidades();
         if($query){
-               $html = "";
-                $html .= "<tbody>\n";
+                $html = "";
+                $html .= "<tbody>";
                 foreach ($query as $row) {
                     $html .= "<tr>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>".$row->nombre."</td>";
                     $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-pencil'></i></a></td>";
-                    $html .= "</tr>\n";
+                    $html .= "</tr>";
                 }
                 $html .= "</tbody>";
                 $data['entidad'] = $html;

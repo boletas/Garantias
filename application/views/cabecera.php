@@ -13,9 +13,9 @@
         <!-- comienzo menu horizontal -->
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+<!--                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
+                </a>-->
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
                         <a href="#">
@@ -83,7 +83,7 @@
                         <a href="<?php echo base_url();?>index.php/reportes_controller/index"><i class="fa fa-file-text fa-fw"></i> Reportes</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-search fa-fw"></i> Retiro boleta</a>
+                        <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro boleta</a>
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
     </div>
     <div class="col-lg-12">
         <?php 
-            $form = array('name'    => 'form1');
+            $form = array('name' => 'form1');
             echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
         ?>
         <table class="table table-bordered">

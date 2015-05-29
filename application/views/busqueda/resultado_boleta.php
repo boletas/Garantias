@@ -30,12 +30,11 @@
                         <td></td>
                     </tr>
                 </tfoot>
-                <?php echo $html;?>
+                <?php echo $html; ?>
             </table>
-        <input type="hidden" name="que" id="que" /> 
-        <input type="hidden" name="id_boleta" id="id_boleta" /> 
-        <?php echo form_close(); ?>
-        <br/><br/><br/>
+            <input type="hidden" name="que" id="que" /> 
+            <input type="hidden" name="id_boleta" id="id_boleta" /> 
+            <?php echo form_close(); ?>
     </div>
 </div>
 <script>

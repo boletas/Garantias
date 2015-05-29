@@ -11,15 +11,11 @@
             </div>
                     
         <?php } ?>
-    </div>   
-    <div class="col-lg-12">&nbsp;</div>
+    </div>
     <div class="col-lg-12">
-        
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
-        
         <?php if(!empty($entidad)){ ?>
-        <div class="dataTable_wrapper">
-            <table id="result_entidad" class="table table-striped table-bordered table-hover text-center" cellspacing="0" width="100%">
+            <table id="result_entidad" class="table table-bordered table-hover text-center">
                 <thead>
                     <tr>
                         <th>Rut Entidad</th>
@@ -35,13 +31,10 @@
                     </tr>
                 </tfoot>
                 <?php echo $entidad;  ?>
-                
             </table>
-        <?php } ?>
-        </div>   
+        <?php } ?>  
         </div>
-    
-    <script>
+<script>
 $(document).ready(function() {
     $('#result_entidad tfoot th').each( function () {
         var title = $('#result_entidad thead th').eq( $(this).index() ).text();
