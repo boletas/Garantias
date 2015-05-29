@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <?php
                 $form = array('name' => 'form1');
-                echo form_open(base_url()."index.php/reportes_controller/GeneraReportes",$form);
+                echo form_open(base_url()."index.php/reportes_controller/VistaReporte",$form);
                 ?>
                     <div class="form-group" align="center">
                         <label class="radio-inline">
