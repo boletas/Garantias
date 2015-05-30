@@ -4,7 +4,7 @@ header("Content-Disposition: attachment; filename=Reporte".date('Y-m-d-His').".x
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 <table border="1">
     <tr>
         <td><b>N°</b></td>

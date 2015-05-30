@@ -107,10 +107,25 @@
                     if($("#rut").val().length < 1) {
                         document.getElementById('buscar').style.display = 'none';
                     }else{
-                        document.getElementById('buscar').style.display = 'block';
+                        $('#rut').Rut({
+                            on_error: function(){
+                                document.getElementById('rut');
+                                mensaje.html('<div id="mensaje" class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Rut Incorrecto</div>');
+                                document.getElementById('buscar').style.display = 'none';
+                            },
+                            on_success: function(){
+                                document.getElementById('rut');
+                                $("div#mensaje").hide("slow");
+                                if(periodo > 0){
+                                    document.getElementById('buscar').style.display = 'block';
+                                }
+                            }
+                        });
+                        //document.getElementById('buscar').style.display = 'block';
                     }
+                }else{
+                    document.getElementById('buscar').style.display = 'block';
                 }
-                document.getElementById('buscar').style.display = 'block';
             }else{
                 document.getElementById('buscar').style.display = 'none';
             }
