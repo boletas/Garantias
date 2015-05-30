@@ -20,6 +20,7 @@
                             'name'          => 'rut_buscar',
                             'class'         => 'form-control',
                             'placeholder'   => 'Rut de entidad',
+                            'id'            => 'rut',
                             'type'          => 'text'
                           );
 
@@ -62,4 +63,12 @@
 $(document).ready(function() {
     $('#example').DataTable();
 } );
+</script>
+
+<script>
+    $('#rut').Rut({
+    on_error: function(){ alert('Favor ingrese un rut valido'); 
+    document.getElementById('rut');
+    }
+    });
 </script>

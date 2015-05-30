@@ -76,9 +76,9 @@ class Recursos{
         
     }
     
-    function FormatoRut($rut){
-        $rut = ereg_replace("[^0-9]", "", $rut);
-        $rut = substr($rut, 0, -1);
+    function FormatoRut($rut1){
+        $rut1 = explode("-", $rut1);
+        $rut = $rut1[0];
         return ($rut);
     }
     
