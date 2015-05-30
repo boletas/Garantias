@@ -29,7 +29,7 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->view('footer');
     }
     
-    public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda,$rut,$tipo){
+    public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda){
 //        $fecha = "";
 //        $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
 //        ($vence == "vencidas" ? $vence=1 : $vence=2);
@@ -64,8 +64,19 @@ class Reportes_Controller extends MY_Mantenedor{
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
             $html .= "<tr>\n";
         }
+        
+        $datos = array( 'fecha'     => $fecha, 
+                        'vence'     => $vence, 
+                        'periodo'   => $periodo,
+                        'tipo'      => $tipo,
+                        'busqueda'  => $busqueda,
+                        'rut'       => $rut,
+                      );
+        
         $total = $this->recursos->Formato1($total);
-        $resultado = array('html' => $html, 'total' => $total);
+        $resultado['html'] = $html;
+        $resultado['total'] = $total;
+        $resultado['datos'] = $datos;
         
         return($resultado);
         
@@ -88,21 +99,19 @@ class Reportes_Controller extends MY_Mantenedor{
         
         $fecha = date('Y-m-d',$fecha);
         
-        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda, $rut, $tipo);
+        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
+
         
         $this->load->view('plantilla');
         $this->load->view('cabecera');
         $this->load->view('reportes/vista_reporte', $resultado);
         $this->load->view('footer');
+        
     }
     
-    public function ExcelReporte(){
-        
-        
-        
-        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda, $rut, $tipo);
-        $this->load->view('reportes/vista_reporte', $resultado);
-        
+    public function ExcelReporte($fecha,$vence,$periodo,$tipo = 0,$busqueda,$rut = 0){
+        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
+        $this->load->view('reportes/excel_reporte', $resultado);
     }
 }
 

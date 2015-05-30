@@ -1,6 +1,6 @@
 <?php
 header('Content-type: application/vnd.ms-excel');
-header("Content-Disposition: attachment; filename=Informe_Seguimiento_".date('YmdHis').".xls");
+header("Content-Disposition: attachment; filename=Reporte".date('Y-m-d-His').".xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
