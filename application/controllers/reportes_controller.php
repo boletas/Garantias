@@ -10,7 +10,7 @@ class Reportes_Controller extends MY_Mantenedor{
     }
   
     public function index(){
-        $this->Buscador();
+        
     }
     
     public function Buscador(){
@@ -30,15 +30,6 @@ class Reportes_Controller extends MY_Mantenedor{
     }
     
     public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda){
-//        $fecha = "";
-//        $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
-//        ($vence == "vencidas" ? $vence=1 : $vence=2);
-//        $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
-//        ($vence == "vencidas" ? $fecha = strtotime('-'.$periodo.' day',strtotime(date('Y-m-d'))) : $fecha = strtotime('+'.$periodo.' day',strtotime(date('Y-m-d'))));
-//        
-//        $fecha = date('Y-m-d',$fecha);
-        
-//        switch ($this->input->post("tipo_busqueda")){
         switch ($busqueda){
             case 1://todas las boletas
                 $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
@@ -79,11 +70,6 @@ class Reportes_Controller extends MY_Mantenedor{
         $resultado['datos'] = $datos;
         
         return($resultado);
-        
-//        $this->load->view('plantilla');
-//        $this->load->view('cabecera');
-//        $this->load->view('reportes/vista_reporte', $resultado);
-//        $this->load->view('footer');
     }
     
     public function VistaReporte(){

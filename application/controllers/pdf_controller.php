@@ -1,17 +1,17 @@
 <?php if (!defined('BASEPATH'))exit('No direct script access allowed');
  
-class Pdf_Controller extends CI_Controller {
+class Pdf_Controller extends MY_Mantenedor {
     
     function __construct() {
         parent::__construct();
         $this->load->model('pdf_model');
         $this->load->model('boleta_model');
+        $this->load->model('reportes_model');
         $this->load->library('Pdf');
         $this->load->library('recursos');
     }
 
-    public function BoletaPdf($id_boleta){
-        
+    public function GeneraPdf($html,$nombre){
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('');
@@ -40,7 +40,14 @@ class Pdf_Controller extends CI_Controller {
         $pdf->SetFont('helvetica', '', 10, '', true);
         
         $pdf->AddPage();
+        
+        $pdf->writeHTML($html, true, false, true, false, '');
+        
+        $nombre_archivo = utf8_decode($nombre.date('Y-m-d-His').".pdf");
+        $pdf->Output($nombre_archivo, 'I');
+    }
     
+    public function BoletaPdf($id_boleta){
         
         $result = $this->boleta_model->BuscarBoleta($id_boleta);
         $hoy = $this->recursos->FormatoFecha2(date('Y-m-d'));
@@ -110,14 +117,61 @@ class Pdf_Controller extends CI_Controller {
         $html .= '<tr><td colspan="2" style="color: gray"><h5><a href="http://www.minenergia.cl">www.minenergia.cl</a></h5></td></tr>';
         $html .= '</table>';
         
+        $nombre = "Carta_";
         
+        $this->GeneraPdf($html, $nombre);
+    }
+    
+    public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda){
+        switch ($busqueda){
+            case 1://todas las boletas
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
+                break;
+            case 2://rut entidad
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut);
+                break;
+            case 3://tipo boleta
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
+                break;
+        }
         
+        $html = '<table border="1">';
+        $html .= '<tr>';
+        $html .= '<td class="active"><b>N°</b></td>';
+        $html .= '<td class="active"><b>Rut</b></td>';
+        $html .= '<td class="active"><b>Nombre</b></td>';
+        $html .= '<td class="active"><b>Tipo</b></td>';
+        $html .= '<td class="active"><b>Monto</b></td>';
+        $html .= '</tr>';
         
-        //$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 1, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-        $pdf->writeHTML($html, true, false, true, false, '');
+        $total = 0;
+        foreach ($data as $row){
+            $monto = $this->ObtieneMonto($row->idMoneda, $row->monto_boleta);
+            $total = $total + $monto;
+            $html .= '<tr>';
+            $html .= '<td width="150px">'.$row->numero_boleta.'</td>\n';
+            $html .= '<td width="120px">'.$this->recursos->DevuelveRut($row->rut).'</td>\n';
+            $html .= '<td width="450px">'.$row->nombre.'</td>\n';
+            $html .= '<td width="120px">'.$row->descripcion_tipo_boleta.'</td>\n';
+            $html .= '<td align="right">'.$this->recursos->Formato1($monto).'</td>\n';
+            $html .= '<tr>\n';
+        }
+        $html .= '<tr>';
+        $html .= '<td colspan="4" align="right"><b>Monto Total &nbsp;</b></td>';
+        $html .= '<td align="right"><b>$ '.$this->recursos->Formato1($total).'-</b></td>';
+        $html .= '</tr>';
         
-        $nombre_archivo = utf8_decode("Localidades.pdf");
-        $pdf->Output($nombre_archivo, 'I');
+        return($resultado);
+    }
+    
+    public function ReportePdf($fecha,$vence,$periodo,$tipo = 0,$busqueda,$rut = 0){
+        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
+        
+        print_r($resultado);
+        die();
+        
+        $nombre = "Reporte_";
+        $this->GeneraPdf($html, $nombre);
     }
 }
 

@@ -42,8 +42,8 @@
 
 
                  <?php 
-                            $form = array('name'    => 'form1', 'class' => 'form-inline');
-                            echo form_open(base_url().'index.php/retiro_controller/BuscarRetiro', $form);
+                    $form = array('name'    => 'form1', 'class' => 'form-inline');
+                    echo form_open(base_url().'index.php/retiro_controller/BuscarRetiro', $form);
                  ?> 
                     <div class="form-group">
                         <?php echo form_input($rut_buscar); ?>
