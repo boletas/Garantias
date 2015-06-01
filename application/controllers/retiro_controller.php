@@ -8,7 +8,6 @@ class Retiro_Controller extends CI_Controller {
     }
     
     public function BuscarRetiro(){
-//        $rut1 = explode("-", $this->input->post('rut_buscar'));
         $rut = $this->recursos->FormatoRut($this->input->post('rut_buscar'));
         $num = $this->input->post('num_buscar');
         

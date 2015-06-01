@@ -61,22 +61,20 @@
         
         <?php if(!empty($retiro)){ ?>
         <div class="dataTable_wrapper">
-            <table id="example" class="table table-striped table-bordered table-responsive table-hover text-center" cellspacing="0" width="100%">
+            <table id="example" class="table table-bordered table-responsive table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Numero boleta</th>
-                        <th>Rut entidad</th>
-                        <th>Monto boleta</th>
-                        <th>Fecha recepcion</th>
-                        <th>Fecha vencimiento</th>
+                        <th>Rut</th>
+                        <th>Monto</th>
+                        <th>Recepción</th>
+                        <th>Vencimiento</th>
                         <th>Banco boleta</th>
                         <th>Descripcion</th>
                         <th>Ver detalle</th>
                     </tr>
                 </thead>
-                
                 <?php echo $retiro;  ?>
-                
             </table>
         <?php } ?>
         </div>   
@@ -85,11 +83,10 @@
 $(document).ready(function() {
     $('#example').DataTable();
 } );
-</script>
-<script>
-    $('#rut').Rut({
+
+$('#rut').Rut({
     on_error: function(){ alert('Favor ingrese un rut valido'); 
-    document.getElementById('rut');
+        document.getElementById('rut');
     }
-    });
+});
 </script>
