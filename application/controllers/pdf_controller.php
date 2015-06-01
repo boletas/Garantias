@@ -122,7 +122,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $this->GeneraPdf($html, $nombre);
     }
     
-    public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda){
+    public function GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda){
         switch ($busqueda){
             case 1://todas las boletas
                 $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
@@ -134,44 +134,39 @@ class Pdf_Controller extends MY_Mantenedor {
                 $data = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
                 break;
         }
-        
-        $html = '<table border="1">';
+               
+        $html = '<table width="100%">';
         $html .= '<tr>';
-        $html .= '<td class="active"><b>N°</b></td>';
-        $html .= '<td class="active"><b>Rut</b></td>';
-        $html .= '<td class="active"><b>Nombre</b></td>';
-        $html .= '<td class="active"><b>Tipo</b></td>';
-        $html .= '<td class="active"><b>Monto</b></td>';
+        $html .= '<td><b>N°</b></td>';
+        $html .= '<td><b>Rut</b></td>';
+        $html .= '<td><b>Nombre</b></td>';
+        $html .= '<td><b>Tipo</b></td>';
+        $html .= '<td><b>Monto</b></td>';
         $html .= '</tr>';
         
         $total = 0;
         foreach ($data as $row){
             $monto = $this->ObtieneMonto($row->idMoneda, $row->monto_boleta);
             $total = $total + $monto;
-            $html .= '<tr>';
-            $html .= '<td width="150px">'.$row->numero_boleta.'</td>\n';
-            $html .= '<td width="120px">'.$this->recursos->DevuelveRut($row->rut).'</td>\n';
-            $html .= '<td width="450px">'.$row->nombre.'</td>\n';
-            $html .= '<td width="120px">'.$row->descripcion_tipo_boleta.'</td>\n';
-            $html .= '<td align="right">'.$this->recursos->Formato1($monto).'</td>\n';
-            $html .= '<tr>\n';
+            $html .= "<tr><td width='120px'>".$row->numero_boleta."</td>";
+            $html .= '<td width="120px">'.$this->recursos->DevuelveRut($row->rut).'</td>';
+            $html .= '<td width="120px">'.$row->nombre.'</td>';
+            $html .= '<td width="120px">'.$row->descripcion_tipo_boleta.'</td>';
+            $html .= '<td align="right">'.$this->recursos->Formato1($monto).'</td></tr>';
         }
         $html .= '<tr>';
         $html .= '<td colspan="4" align="right"><b>Monto Total &nbsp;</b></td>';
         $html .= '<td align="right"><b>$ '.$this->recursos->Formato1($total).'-</b></td>';
         $html .= '</tr>';
         
-        return($resultado);
+        return ($html);
     }
     
     public function ReportePdf($fecha,$vence,$periodo,$tipo = 0,$busqueda,$rut = 0){
         $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
         
-        print_r($resultado);
-        die();
-        
         $nombre = "Reporte_";
-        $this->GeneraPdf($html, $nombre);
+        $this->GeneraPdf($resultado, $nombre);
     }
 }
 
