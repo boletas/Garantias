@@ -41,7 +41,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
+                    $html .= "<td align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -71,7 +71,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".$row->fecha_vencimiento."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
+                    $html .= "<td  align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
@@ -104,7 +104,7 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
+                    $html .= "<td  align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
