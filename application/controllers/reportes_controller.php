@@ -80,12 +80,22 @@ class Reportes_Controller extends MY_Mantenedor{
         $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
         
         $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
-        ($vence == "vencidas" ? $vence = 1 : $vence = 2);
-        ($vence == "vencidas" ? $fecha = strtotime('-'.$periodo.' day',strtotime(date('Y-m-d'))) : $fecha = strtotime('+'.$periodo.' day',strtotime(date('Y-m-d'))));
         
-        $fecha = date('Y-m-d',$fecha);
+        $fecha = date_create(date("Y-m-d"));
+//      
+        if($periodo > 1 && $vence == "vencidas"){
+            $fecha = date_sub($fecha, date_interval_create_from_date_string(''.$periodo.' days'));
+        }elseif($periodo > 1 && $vence == "por_vencer"){
+            $fecha = date_add($fecha, date_interval_create_from_date_string(''.$periodo.' days'));
+        }
         
-        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
+        ($vence == "vencidas" ? $vence1 = 1 : $vence1 = 2);
+        //($vence == "vencidas" ? $fecha = date_sub($fecha, date_interval_create_from_date_string(''.$periodo.' days')) : $fecha = date_add($fecha, date_interval_create_from_date_string(''.$periodo.' days')));
+        
+        $fecha = date_format($fecha, 'Y-m-d');
+        
+        
+        $resultado = $this->GeneraReportes($fecha, $vence1, $periodo, $rut, $tipo, $busqueda);
 
         
         $this->load->view('plantilla');
