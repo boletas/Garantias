@@ -25,9 +25,9 @@
         <form action="<?php echo base_url();?>index.php/pdf_controller/ReportePdf" method="post">
             <input type="hidden" name="html" value="<?php echo $html; ?>"/>
             <div align="right">
-                <a href="<?php echo base_url();?>index.php/reportes_controller/index" class="btn btn-outline btn-default" name="volver" id="volver">Volver</a>
+                <a href="<?php echo base_url();?>index.php/reportes_controller/Buscador" class="btn btn-outline btn-default" name="volver" id="volver">Volver</a>
                 <a href="<?php echo base_url();?>index.php/reportes_controller/ExcelReporte/<?=$datos['fecha']?>/<?=$datos['vence']?>/<?=$datos['periodo']?>/<?=$datos['tipo']?>/<?=$datos['busqueda']?>/<?=$datos['rut']?>" class="btn btn-outline btn-success" name="volver" id="volver">Excel <i class="fa fa-file-excel-o"></i></a>
-                <a href="<?php echo base_url();?>index.php/pdf_controller/ReportePdf/<?=$datos['fecha']?>/<?=$datos['vence']?>/<?=$datos['periodo']?>/<?=$datos['tipo']?>/<?=$datos['busqueda']?>/<?=$datos['rut']?>" class="btn btn-outline btn-danger" name="Modificar" id="Modificar" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                <!--<a href="<?php echo base_url();?>index.php/pdf_controller/ReportePdf/<?=$datos['fecha']?>/<?=$datos['vence']?>/<?=$datos['periodo']?>/<?=$datos['tipo']?>/<?=$datos['busqueda']?>/<?=$datos['rut']?>" class="btn btn-outline btn-danger" name="Modificar" id="Modificar" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>-->
             </div>
         </form>
     </div>

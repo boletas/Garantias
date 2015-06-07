@@ -51,6 +51,7 @@
             </div>
         </div>
         <span id="msj"></span>
+        <input type="hidden" name="val_bus" id="val_bus" value="0"/>
     </div>
 </div>
 <script>
@@ -80,12 +81,14 @@
             if(tipo == 2){
                 $('#rut').Rut({
                     on_error: function(){
+                        document.getElementById('val_bus').value = 0;
                         document.getElementById('rut');
                         var mensaje = $("#msj");
                         mensaje.html('<div id="mensaje" class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Rut Incorrecto</div>');
                         document.getElementById('buscar').style.display = 'none';
                     },
                     on_success: function(){
+                        document.getElementById('val_bus').value = 1;
                         document.getElementById('rut');
                         $("div#mensaje").hide("slow");
                         if(periodo > 0){
@@ -104,24 +107,10 @@
             }
             if(periodo > 0){
                 if(tipo == 2){
-                    if($("#rut").val().length < 1) {
-                        document.getElementById('buscar').style.display = 'none';
+                    if(document.getElementById('val_bus').value == 1){
+                        document.getElementById('buscar').style.display = 'block';
                     }else{
-                        $('#rut').Rut({
-                            on_error: function(){
-                                document.getElementById('rut');
-                                mensaje.html('<div id="mensaje" class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Rut Incorrecto</div>');
-                                document.getElementById('buscar').style.display = 'none';
-                            },
-                            on_success: function(){
-                                document.getElementById('rut');
-                                $("div#mensaje").hide("slow");
-                                if(periodo > 0){
-                                    document.getElementById('buscar').style.display = 'block';
-                                }
-                            }
-                        });
-                        //document.getElementById('buscar').style.display = 'block';
+                        document.getElementById('buscar').style.display = 'none';
                     }
                 }else{
                     document.getElementById('buscar').style.display = 'block';

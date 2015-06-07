@@ -53,7 +53,7 @@ class Reportes_Controller extends MY_Mantenedor{
             $html .= "<td width='450px'>".$row->nombre."</td>\n";
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
-            $html .= "<tr>\n";
+            $html .= "</tr>\n";
         }
         
         $datos = array( 'fecha'     => $fecha, 
