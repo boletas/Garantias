@@ -6,7 +6,7 @@ class Reportes_Model extends CI_Model {
         parent::__construct();
     }
     
-    public function GeneraReportes($fecha, $opcion, $tipo, $valor){
+    public function GeneraReportes($fecha, $opcion, $tipo, $valor, $periodo){
         
         
         //Fecha = Fecha calculada para buscar vencidas o por vencer
@@ -14,7 +14,7 @@ class Reportes_Model extends CI_Model {
         //Tipo = Tipo de busqueda. Por rut o por tipo de boleta
         //Valor = que puede ser el rut o el tipo de boleta
         
-        $query = $this->db->query("CALL pa_reportes('".$fecha."','".$opcion."','".$tipo."','".$valor."')");
+        $query = $this->db->query("CALL pa_reportes('".$fecha."','".$opcion."','".$tipo."','".$valor."','".$periodo."')");
         
         if($query){
             $data = $query->result();

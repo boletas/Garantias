@@ -32,13 +32,13 @@ class Reportes_Controller extends MY_Mantenedor{
     public function GeneraReportes($fecha,$vence,$periodo,$rut,$tipo,$busqueda){
         switch ($busqueda){
             case 1://todas las boletas
-                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1);
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 3, 1, $periodo);
                 break;
             case 2://rut entidad
-                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut);
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 1, $rut, $periodo);
                 break;
             case 3://tipo boleta
-                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo);
+                $data = $this->reportes_model->GeneraReportes($fecha, $vence, 2, $tipo, $periodo);
                 break;
         }
         
