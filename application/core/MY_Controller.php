@@ -101,7 +101,7 @@ class MY_Mantenedor extends CI_Controller{
         foreach($this->ObtieneUltimoIngreso() as $row => $monto){
             if($row == 0){
                 $fecha_costo = $monto->fecha_costo;
-                $e_uf = str_replace(".","",$monto->e_uf);
+                echo $e_uf = $monto->e_uf."<br>";
                 $e_dolar = str_replace(".","",$monto->e_dolar);
                 $e_euro = str_replace(".","",$monto->e_euro);
             }
