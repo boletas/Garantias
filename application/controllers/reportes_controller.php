@@ -81,28 +81,19 @@ class Reportes_Controller extends MY_Mantenedor{
         
         $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
         
-        $fecha = date_create(date("Y-m-d"));
-//      
         if($periodo > 1 && $vence == "vencidas"){
-            $fecha = date_sub($fecha, date_interval_create_from_date_string(''.$periodo.' days'));
+            $fecha = $this->recursos->sumaFechas("-".$periodo." day");
         }elseif($periodo > 1 && $vence == "por_vencer"){
-            $fecha = date_add($fecha, date_interval_create_from_date_string(''.$periodo.' days'));
+            $fecha = $this->recursos->sumaFechas($periodo." day");   
         }
         
         ($vence == "vencidas" ? $vence1 = 1 : $vence1 = 2);
-        //($vence == "vencidas" ? $fecha = date_sub($fecha, date_interval_create_from_date_string(''.$periodo.' days')) : $fecha = date_add($fecha, date_interval_create_from_date_string(''.$periodo.' days')));
-        
-        $fecha = date_format($fecha, 'Y-m-d');
-        
-        
         $resultado = $this->GeneraReportes($fecha, $vence1, $periodo, $rut, $tipo, $busqueda);
 
-        
         $this->load->view('plantilla');
         $this->load->view('cabecera');
         $this->load->view('reportes/vista_reporte', $resultado);
-        $this->load->view('footer');
-        
+        $this->load->view('footer');        
     }
     
     public function ExcelReporte($fecha,$vence,$periodo,$tipo = 0,$busqueda,$rut = 0){

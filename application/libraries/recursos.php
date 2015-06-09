@@ -89,14 +89,12 @@ class Recursos{
     function Formato1($val){
         return number_format($val,0,",",".");
     }
-
-      //Ejemplo de uso
-      //$ultimoDia = getUltimoDiaMes(2013,10);
-      //echo $ultimoDia."<br/>";
-      //echo getUltimoDiaMes(2012,09)."<br/>";
-      /*
-      Resultado:
-      31
-      30
-      */
+    
+    function sumaFechas($suma,$fechaInicial = false){
+      $fecha = !empty($fechaInicial) ? $fechaInicial : date('Y-m-d');
+      $nuevaFecha = strtotime ($suma,strtotime($fecha));
+      $nuevaFecha = date('Y-m-d',$nuevaFecha);
+      
+      return ($nuevaFecha);
+    }
 }
