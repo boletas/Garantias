@@ -48,10 +48,14 @@ class Reportes_Controller extends MY_Mantenedor{
             $monto = $this->ObtieneMonto($row->idMoneda, $row->monto_boleta);
             $total = $total + $monto;
             $html .= "<tr>";
-            $html .= "<td width='150px'>".$row->numero_boleta."</td>\n";
+            $html .= "<td width='120px'>".$row->numero_boleta."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->DevuelveRut($row->rut)."</td>\n";
-            $html .= "<td width='450px'>".$row->nombre."</td>\n";
+            //$html .= "<td width='450px'>".$row->nombre."</td>\n";
+            $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>\n";
+            $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>\n";
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";
+            $html .= "<td>".$row->codigo."</td>\n";
+            $html .= "<td>".$row->monto_boleta."</td>\n";
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
             $html .= "</tr>\n";
         }
@@ -80,7 +84,7 @@ class Reportes_Controller extends MY_Mantenedor{
         $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
         
         $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
-        
+        $fecha = date('Y-m-d');
         if($periodo > 1 && $vence == "vencidas"){
             $fecha = $this->recursos->sumaFechas("-".$periodo." day");
         }elseif($periodo > 1 && $vence == "por_vencer"){

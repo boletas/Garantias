@@ -86,7 +86,7 @@ class Recursos{
         return date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
     }
     
-    function Formato1($val){
+    function Formato1($val){//formatea el el monto de las monedas
         return number_format($val,0,",",".");
     }
     
