@@ -11,7 +11,7 @@ class Entidad_controller extends MY_Mantenedor{
     
     public function insert_entidad(){
         
-        $rut_entidad = $this->input->post('rut_entidad');
+        $rut_entidad = $this->recursos->FormatoRut($this->input->post('rut_entidad'));
         $rut = $rut_entidad;
         $nombre_entidad = $this->input->post('nombre_entidad');
         
