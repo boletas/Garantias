@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Mantenedor Banco</h1>
     </div>
-    <div class="col-lg-10 col-lg-offset-1">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <!--** MENSAJE **-->
             <?php if($this->session->set_flashdata('banco_ok')){ ?>

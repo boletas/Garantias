@@ -24,6 +24,7 @@
                     echo form_open(base_url().'index.php/login_controller/Inicio_Sesion');
                     $user = array(
                         'name'          => 'usuario',
+                        'id'            => 'usuario',
                         'placeholder'   => 'Nombre de usuario',
                         'type'          => 'text',
                         'class'         => 'input-field',
@@ -49,17 +50,20 @@
                     echo form_close(); 
                     ?>
 
-                    <div class="login-links"> 
+<!--                    <div class="login-links"> 
                         <a href="forgot-password.html">
                             Olvidé mi contraseña
                         </a>
                         <br />
-                    </div>      		
+                    </div>      		-->
                 </div> 			        	
             </div>
         </div>
     </div>  
 </div> <!-- ** FIN CONTAINER ** -->
+<script>
+    document.getElementById('usuario').focus();
+</script>
 <script src="<?=base_url();?>assets/js/custom.modernizr.js"></script>
 <script src="<?=base_url();?>assets/js/custom.js"></script>
 <script src="<?=base_url();?>assets/js/placeholder-shim.min.js"></script>

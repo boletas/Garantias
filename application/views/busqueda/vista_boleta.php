@@ -25,21 +25,20 @@
             </tr>
             <tr>
                 <td><?php echo $numero_boleta; ?></td>
-                <td><?php echo $estado_boleta; ?></td>
                 <td><?php echo $fecha_recepcion; ?></td>
                 <td><?php echo $fecha_emision; ?></td>
                 <td><?php echo $fecha_vencimiento; ?></td>
-                <td colspan="2" <?=($clase ? $clase : "")?>><?php echo $vence; ?></td>
+                <td colspan="3" <?=($clase ? $clase : "")?>><?php echo $vence; ?></td>
             </tr>
             <tr class="active">
                 <td>Tipo Garantía</td>
-                <td colspan="4">Denominación de Estudio</td>
-                <td colspan="2">Banco</td>
+                <td colspan="3">Denominación de Estudio</td>
+                <td colspan="3">Banco</td>
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
-                <td colspan="5"><?php echo $denominacion; ?></td>
-                <td><?php echo $nombre_banco; ?></td>
+                <td colspan="3"><?php echo $denominacion; ?></td>
+                <td colspan="3"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
                 <td colspan="2">Tipo Boleta</td>

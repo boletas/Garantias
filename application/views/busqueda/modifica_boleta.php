@@ -3,26 +3,6 @@
         <h1 class="page-header">Modificando Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
     </div>
     <div class="col-lg-12">
-        <!--** MENSAJE **-->
-        <?php 
-            $mensaje = "";
-            if($this->session->userdata('boleta_ok')){ 
-                $clase = "alert-info";
-                $mensaje = $this->session->userdata('boleta_ok');
-            }elseif($this->session->userdata('boleta_error')){ 
-                $clase = "alert-danger";
-                $mensaje = $this->session->userdata('boleta_error');
-            }
-            
-            if($mensaje != ""){
-        ?>
-            <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $mensaje ?>
-            </div>
-            <?php } ?>
-        <!--** FIN MENSAJES **-->
-        
         <?php 
             $form = array('name'    => 'form1');
             echo form_open(base_url()."index.php/boleta_controller/ModificaBoleta",$form);
@@ -111,12 +91,34 @@ function Volver(){
 }
 
 function Aceptar(){
-    if (confirm('¿Esta seguro de realizar estos cambios?')){ 
-        document.form1.submit();
+    var fecha1 = document.getElementById('recepcion').value;
+    var fecha2 = document.getElementById('emision').value;
+    var fecha3 = document.getElementById('vencimiento').value;
+    var error = 0;
+    if(fecha1 > fecha2){
+        alert("Fecha de emisión debe ser mayor a fecha de recepción");
+        error = 1;
+    }
+    if(fecha1 > fecha3){
+        alert("Fecha de vencimiento debe ser mayor a fecha de recepción");
+        error = 1;
+    }
+    if(fecha2 > fecha3){
+        alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
+        error = 1;
+    }
+    
+    if(error == 0){
+        if (confirm('¿Esta seguro de realizar estos cambios?')){ 
+            document.form1.submit();
+        }else{
+            return false;
+        }
     }else{
         return false;
     }
 }
+
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,
     language: "es",

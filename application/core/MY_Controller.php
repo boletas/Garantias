@@ -32,9 +32,12 @@ class MY_Mantenedor extends CI_Controller{
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($data as $row) {
-                    $html .= "<tr><td>".++$c."</td>";
+                    $html .= "<tr><td width='150px'>".++$c."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
-                    $html .= "<td style='text-align: center;'><button type='button' value='$row->idBanco' name='editar_banco' class='btn btn-outline btn-primary btn-xs' Onclick=\"Accion('editar',$row->idBanco)\">Editar</button></td>";
+                    $html .= "<td style='text-align: center;' width='150px'>";
+                    $html .= "<button type='button' value='$row->idBanco' name='editar_banco' class='btn btn-default btn-circle' Onclick=\"Accion('editar',$row->idBanco)\"><i class='fa fa-pencil'></i></button>&nbsp;";
+                    $html .= "<button type='button' value='$row->idBanco' name='nuevo_banco' id='nuevo_banco' class='btn btn-default btn-circle' Onclick=\"Accion('nuevo')\"><i class='fa fa-plus'></i></button>&nbsp;";
+                    $html .= "</td>";
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";

@@ -170,8 +170,6 @@ class Boleta_controller extends MY_Mantenedor{
                         }else{
                             $clase = "";
                         }
-                        
-                        
                         if($calculo == 0){
                             $vence = "Hoy";
                         }else{
@@ -388,11 +386,13 @@ class Boleta_controller extends MY_Mantenedor{
         if($data){
             $mensaje = array('boleta_ok'   => 'La boleta fue modificada exitosamente.');
             $this->session->set_userdata($mensaje);
-            $this->VistaModificaBoleta($id_boleta);
+            $this->TodasBoletas();
+            //$this->VistaModificaBoleta($id_boleta);
         }else{
             $mensaje = array('boleta_error'   => 'Ocurrió un error al tratar de modificar la boleta.');
             $this->session->set_userdata($mensaje);
-            $this->VistaModificaBoleta($id_boleta);
+            $this->TodasBoletas();
+            //$this->VistaModificaBoleta($id_boleta);
         }
     }
     
