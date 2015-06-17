@@ -50,7 +50,6 @@ class Reportes_Controller extends MY_Mantenedor{
             $html .= "<tr>";
             $html .= "<td width='120px'>".$row->numero_boleta."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->DevuelveRut($row->rut)."</td>\n";
-            //$html .= "<td width='450px'>".$row->nombre."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>\n";
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";

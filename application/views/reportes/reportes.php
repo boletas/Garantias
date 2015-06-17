@@ -12,6 +12,9 @@
                 ?>
                     <div class="form-group" align="center">
                         <label class="radio-inline">
+                            <input type="radio" name="vence" id="vence" value="todas" onchange="check(this.value)">Todas
+                        </label>
+                        <label class="radio-inline">
                             <input type="radio" name="vence" id="vence" value="vencidas" onchange="check(this.value)">Vencidas
                         </label>
                         <label class="radio-inline">
@@ -66,6 +69,8 @@
         if(check == "vencidas"){
             document.getElementById('tipo_busqueda').style.display = 'block';
         }else if(check == "por_vencer"){
+            document.getElementById('tipo_busqueda').style.display = 'block';
+        }else if(check == "todas"){
             document.getElementById('tipo_busqueda').style.display = 'block';
         }else{
             document.getElementById('tipo_busqueda').style.display = 'none';
