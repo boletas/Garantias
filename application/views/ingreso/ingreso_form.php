@@ -46,6 +46,7 @@
                                     'class'         => 'form-control',
                                     'placeholder'   => 'Monto boleta',
                                     'type'          => 'text',
+                                    'onkeypress'    => 'return ValidNum(this);',
                                     'required'      => 'true'
                                   );
                     $fecha_recepcion = array(

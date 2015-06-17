@@ -15,7 +15,7 @@
     
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading"> Ingreso boleta en garantia</div>
+            <div class="panel-heading"> Ingreso rut de entidad</div>
             <div class="panel-body">
                 
                     <!--** FIN MENSAJES**-->
