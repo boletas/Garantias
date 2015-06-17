@@ -27,8 +27,11 @@ class Entidad_controller extends MY_Mantenedor{
             $insertok = $this->entidad_model->insert_entidad($rut,$nombre_entidad);
             
             if ($insertok) {
-                $this->session->set_flashdata('insert','¡Entidad ingresada exitosamente!');
-                redirect(base_url()."?sec=nueva_boleta",'refresh');
+                
+                $data = $this->entidad_model->GetEntidad($rut);
+                $this->session->set_userdata('idEntidad',$data->idEntidad);
+                
+                redirect(base_url()."?sec=ingreso_form",'refresh');
             }else{
                 $this->session->set_flashdata('insert','Error al guardar entidad');
                 redirect(base_url()."?sec=nueva_boleta",'refresh');

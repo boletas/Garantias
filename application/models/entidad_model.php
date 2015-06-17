@@ -61,7 +61,24 @@ class Entidad_Model extends CI_Model{
         
         if ($query){
             $data = $query->row();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+        
+    }
+    
+    public function GetEntidad($rut){
+        
+        $query = $this->db->query("CALL select_entidad('".$rut."')");
+        
+        if ($query){
             
+            $data = $query->row();
             $query->free_result();
             $this->db->close();
             return $data;
