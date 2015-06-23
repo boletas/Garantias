@@ -67,8 +67,8 @@ class Retiro_Controller extends CI_Controller {
                     $html .= "<td>".$row->numero_boleta."</td>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                    $html .= "<td>".$row->fecha_recepcion."</td>";
-                    $html .= "<td>".$row->fecha_vencimiento."</td>";
+                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_recepcion)."</td>";
+                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
                     $html .= "<td>".$row->nombre_banco."</td>";
                     $html .= "<td>".$row->descripcion."</td>";
                     $html .= "<td  align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
@@ -178,9 +178,10 @@ class Retiro_Controller extends CI_Controller {
             $tipo_garantia = $row->tipo_garantia;
             $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
             $estado_boleta = $row->estado_boleta;
+            $tipo_boleta = $row->descripcion_tipo_boleta;
            
            $data = array(
-               'id_Boleta'                 => $id_boleta,
+               'id_Boleta'                  => $id_boleta,
                 'numero_boleta'             => $numero_boleta,
                 'monto_boleta'              => $monto_boleta,
                 'fecha_recepcion'           => $fecha_recepcion,
@@ -194,6 +195,7 @@ class Retiro_Controller extends CI_Controller {
                 'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
                 'estado_boleta'             => $estado_boleta,
                 'vence'                     => $vence,
+                'tipo_boleta'               => $tipo_boleta,
                 'clase'                     => $clase
            );
            
