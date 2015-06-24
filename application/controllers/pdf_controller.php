@@ -7,6 +7,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $this->load->model('pdf_model');
         $this->load->model('boleta_model');
         $this->load->model('reportes_model');
+        $this->load->model('retiro_model');
         $this->load->library('Pdf');
         $this->load->library('recursos');
     }
@@ -167,6 +168,13 @@ class Pdf_Controller extends MY_Mantenedor {
         
         $nombre = "Reporte_";
         $this->GeneraPdf($resultado, $nombre);
+    }
+    
+    public function EstadoBoleta($id_boleta,$id_estado_boleta){
+        $row = $this->retiro_model->EstadoBoleta($id_boleta,$id_estado_boleta);
+        if($row){
+            $this->BoletaPdf($id_boleta);
+        }
     }
 }
 

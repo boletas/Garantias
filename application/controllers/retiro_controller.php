@@ -181,7 +181,7 @@ class Retiro_Controller extends CI_Controller {
             $tipo_boleta = $row->descripcion_tipo_boleta;
            
            $data = array(
-               'id_Boleta'                  => $id_boleta,
+                'id_Boleta'                 => $id_boleta,
                 'numero_boleta'             => $numero_boleta,
                 'monto_boleta'              => $monto_boleta,
                 'fecha_recepcion'           => $fecha_recepcion,
@@ -204,8 +204,6 @@ class Retiro_Controller extends CI_Controller {
             $this->load->view('retiro/retiro_detalle', $data);
             $this->load->view('footer');
            
-       }
-       
-        
+       } 
     }
 }

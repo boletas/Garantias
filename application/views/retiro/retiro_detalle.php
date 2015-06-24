@@ -48,26 +48,36 @@
             </tr>
         </table>
         <div align="right">
-            <?php if($this->session->userdata("xrut") && !$this->session->userdata("xnum")){ ?>
             <form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">
-                <button type="submit" class="btn btn-outline btn-default">Atras</button>
-                <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
-                <input type="hidden" value="<?php echo $rut; ?>" name="rut_buscar">
-            </form>
-            <?php }elseif($this->session->userdata("xnum") && !$this->session->userdata("xrut")){ ?>
-                <form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">
+            <?php 
+            if($this->session->userdata("xrut") && !$this->session->userdata("xnum")){ ?>
+                <!--<form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">-->
                     <button type="submit" class="btn btn-outline btn-default">Atras</button>
-                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                    <!--<a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>-->
+                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?> onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                    <input type="hidden" value="<?php echo $rut; ?>" name="rut_buscar">
+                <!--</form>-->
+            <?php 
+            }elseif($this->session->userdata("xnum") && !$this->session->userdata("xrut")){ ?>
+                <!--<form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">-->
+                    <button type="submit" class="btn btn-outline btn-default">Atras</button>
+                    <!--<a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>-->
+                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
                     <input type="hidden" value="<?php echo $numero_boleta; ?>" name="num_buscar">
-                </form>
-            <?php }elseif($this->session->userdata("xrut") && $this->session->userdata("xnum")){ ?>
-                <form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">
+                <!--</form>-->
+            <?php 
+            }elseif($this->session->userdata("xrut") && $this->session->userdata("xnum")){ ?>
+                <!--<form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">-->
                     <button type="submit" class="btn btn-outline btn-default">Atras</button>
-                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                    <!--<a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>-->
+                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
                     <input type="hidden" value="<?php echo $rut; ?>" name="rut_buscar">
                     <input type="hidden" value="<?php echo $numero_boleta; ?>" name="num_buscar">
-                </form>
+                <!--</form>-->
             <?php } ?>
+<!--                <input type="hidden" name="id_boleta" value="<?php echo $id_Boleta; ?>"/>
+                <input type="hidden" name="id_estado_boleta" value="3"/>-->
+            </form>
         </div>
     </div>
 </div>

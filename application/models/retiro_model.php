@@ -70,6 +70,12 @@ class Retiro_model extends CI_Model{
         }
      }
      
-    
-    
+     public function EstadoBoleta($id_boleta,$id_estado_boleta){
+         $query = $this->db->query("CALL pa_boleta ('','','','','','','','','','','".$id_estado_boleta."','5','".$id_boleta."','')");
+         if($query){
+            return true;  
+         }else{
+            return false; 
+         }
+     }
 }
