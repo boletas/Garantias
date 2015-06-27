@@ -84,6 +84,7 @@ class Reportes_Controller extends MY_Mantenedor{
         
         $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer ; 3=todas
         $fecha = date('Y-m-d');
+        $fecha1 = "";
         if($periodo > 1 && $vence == "vencidas"){
             $fecha = $this->recursos->sumaFechas("-".$periodo." day");
         }elseif($periodo > 1 && $vence == "por_vencer"){
