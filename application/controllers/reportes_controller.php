@@ -82,16 +82,26 @@ class Reportes_Controller extends MY_Mantenedor{
         $tipo = $this->input->post("tipo");
         $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
         
-        $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer
+        $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer ; 3=todas
         $fecha = date('Y-m-d');
         if($periodo > 1 && $vence == "vencidas"){
             $fecha = $this->recursos->sumaFechas("-".$periodo." day");
         }elseif($periodo > 1 && $vence == "por_vencer"){
             $fecha = $this->recursos->sumaFechas($periodo." day");   
+        }elseif($periodo > 1 && $vence == "todas"){
+            $fecha = $this->recursos->sumaFechas($periodo." day");
+            $fecha1 = $this->recursos->sumaFechas("-".$periodo." day");
         }
         
-        ($vence == "vencidas" ? $vence1 = 1 : $vence1 = 2);
-        $resultado = $this->GeneraReportes($fecha, $vence1, $periodo, $rut, $tipo, $busqueda);
+        if($vence == "todas"){
+            $vence1 = 3;
+        }else if($vence == "vencidas"){
+            $vence1 = 1;
+        }else if($vence == "por_vercer"){
+            $vence1 = 2;
+        }
+        
+        $resultado = $this->GeneraReportes($fecha, $fecha1, $vence1, $periodo, $rut, $tipo, $busqueda);
 
         $this->load->view('plantilla');
         $this->load->view('cabecera');
