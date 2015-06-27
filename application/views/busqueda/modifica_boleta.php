@@ -95,15 +95,13 @@ function Aceptar(){
     var fecha2 = document.getElementById('emision').value;
     var fecha3 = document.getElementById('vencimiento').value;
     var error = 0;
-    if(fecha1 > fecha2){
+    if(fecha2 > fecha1){
         alert("Fecha de emisión debe ser mayor a fecha de recepción");
         error = 1;
-    }
-    if(fecha1 > fecha3){
+    }else if(fecha1 > fecha3){
         alert("Fecha de vencimiento debe ser mayor a fecha de recepción");
         error = 1;
-    }
-    if(fecha2 > fecha3){
+    }else if(fecha2 > fecha3){
         alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
         error = 1;
     }
