@@ -95,18 +95,23 @@ function Aceptar(){
     var fecha2 = document.getElementById('emision').value;
     var fecha3 = document.getElementById('vencimiento').value;
     
-    fecha1 = parseInt(fecha1.replace(/-/g,""));
-    fecha2 = parseInt(fecha2.replace(/-/g,""));
-    fecha3 = parseInt(fecha3.replace(/-/g,""));
-    var error = 0;
+//    fecha1 = fecha1.split("-");
+//    fecha1 = fecha1[2]+fecha1[1]+fecha1[0];
+//    
+//    fecha2 = fecha2.split("-");
+//    fecha2 = fecha2[2]+fecha2[1]+fecha2[0];
+//    
+//    fecha3 = fecha3.split("-");
+//    fecha3 = fecha3[2]+fecha3[1]+fecha3[0];
     
-    if(fecha2 > fecha1){
+    var error = 0;
+    if(ComparaFecha(fecha1,fecha2) == 2){
         alert("Fecha de emisión debe ser menor a fecha de recepción");
         error = 1;
-    }else if(fecha1 > fecha3){
+    }else if(ComparaFecha(fecha1,fecha3) == 2){
         alert("Fecha de vencimiento debe ser mayor a fecha de recepción");
         error = 1;
-    }else if(fecha2 > fecha3){
+    }else if(ComparaFecha(fecha2,fecha3) == 2){
         alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
         error = 1;
     }
@@ -137,8 +142,8 @@ $(document).ready(function(){
     setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
 }});
 
-function UnsetMensaje(){
-    <?php $this->session->unset_userdata('boleta_ok','boleta_error')?>
-}
-setTimeout("UnsetMensaje()",500);
+//function UnsetMensaje(){
+//    <?php // $this->session->unset_userdata('boleta_ok','boleta_error')?>
+//}
+//setTimeout("UnsetMensaje()",500);
 </script>
