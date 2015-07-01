@@ -4,11 +4,11 @@ function ValidNum() {
     }
 }
 
-function ComparaFecha(fecha1, fecha2){//formato dd-mm-YYYY
-    fecha1 = fecha1.split("-");
+function ComparaFecha(f1, f2){//formato dd-mm-YYYY
+    var fecha1 = f1.split("-");
     fecha1 = fecha1[2]+fecha1[1]+fecha1[0];
     
-    fecha2 = fecha2.split("-");
+    var fecha2 = f2.split("-");
     fecha2 = fecha2[2]+fecha2[1]+fecha2[0];
     
     if(fecha1 > fecha2){
