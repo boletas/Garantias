@@ -16,6 +16,7 @@ class Reportes_Controller extends MY_Mantenedor{
     public function Buscador(){
         
         $tipo_boleta = "<select name='tipo' id='tipo' class='form-control' style='display: none;'>";
+        $tipo_boleta .= "<option> --- Tipo --- </option>";
         foreach($this->ObtieneTipoBoletas() as $row){
             $tipo_boleta .= "<option value='".$row->idTipoBoleta."'>".$row->descripcion_tipo_boleta."</option>";
         }

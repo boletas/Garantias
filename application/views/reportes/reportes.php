@@ -27,7 +27,6 @@
                             <option value="1">Todas</option>
                             <option value="2">Rut</option>
                             <option value="3">Tipo Boleta</option>
-                            <option value="4">Estado Boleta</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -38,15 +37,16 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="estado" id="estado" onchange="cambio()" style="display: none">
-                            <option value="0">Todas</option>
-                            <option value="1">Custodia</option>
-                            <option value="2">Pendiente</option>
-                            <option value="3">Entregada</option>
+                            <option value="0">-- Estado --</option>
+                            <option value="1">Todas</option>
+                            <option value="2">Custodia</option>
+                            <option value="3">Pendiente</option>
+                            <option value="4">Entregada</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="periodo" id="periodo" onchange="cambio()" style="display: none">
-                            <option>-- Seleccione --</option>
+                            <option>-- Periodo --</option>
                             <option value="1">Todas</option>
                             <option value="10">10 Días</option>
                             <option value="20">20 Días</option>
@@ -90,7 +90,9 @@
     function cambio(){
         var tipo = document.getElementById('tipo_busqueda').value;
         var periodo = document.getElementById('periodo').value;
+        var estado = document.getElementById('estado').value;
         if(tipo > 0){
+            document.getElementById('estado').style.display = 'block';
             document.getElementById('periodo').style.display = 'block';
             if(tipo == 2){
                 $('#rut').Rut({
@@ -112,21 +114,14 @@
                 });
                 document.getElementById('rut').style.display = 'block';
                 document.getElementById('tipo').style.display = 'none';
-                document.getElementById('estado').style.display = 'none';
             }else if(tipo == 3){
                 document.getElementById('tipo').style.display = 'block';
                 document.getElementById('rut').style.display = 'none';
-                document.getElementById('estado').style.display = 'none';
-            }else if(tipo == 4){
-                document.getElementById('estado').style.display = 'block';
-                document.getElementById('rut').style.display = 'none';
-                document.getElementById('tipo').style.display = 'none';
             }else{
                 document.getElementById('rut').style.display = 'none';
                 document.getElementById('tipo').style.display = 'none';
-                document.getElementById('estado').style.display = 'none';
             }
-            if(periodo > 0){
+            if(periodo > 0 && estado > 0){
                 if(tipo == 2){
                     if(document.getElementById('val_bus').value == 1){
                         document.getElementById('buscar').style.display = 'block';
@@ -155,6 +150,5 @@ function stopRKey(evt) {
     if ((evt.keyCode == 13) && (node.type=="text")) {return false;}
 }
 document.onkeypress = stopRKey; 
-
 //fin enter
 </script>
