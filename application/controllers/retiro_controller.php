@@ -49,7 +49,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($data);
                 
            }else{
-               $this->session->set_flashdata('error', 'No existen boletas con rut y numero especificado');
+               $this->session->set_flashdata('error', 'No existen boletas con rut, numero especificado o no se encuentra en custodia');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
            }
             
@@ -80,7 +80,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($data);
                 
            }else{
-               $this->session->set_flashdata('error', 'No existen boletas con numero especificado');
+               $this->session->set_flashdata('error', 'No existen boletas con numero especificado o no se encuentra en custodia');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
            }
             
@@ -113,7 +113,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($data);
                 
            }else{
-               $this->session->set_flashdata('error', 'No existen boletas con rut especificado');
+               $this->session->set_flashdata('error', 'No existen boletas con rut especificado o no se encuentra en custodia');
                redirect(base_url()."?sec=retiro_boleta",'refresh');
            }
         }
