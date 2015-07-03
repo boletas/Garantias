@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="estado" id="estado" onchange="cambio()" style="display: none">
-                            <option>-- Estado --</option>
+                            <option value="9999">-- Estado --</option>
                             <option value="0">Todas</option>
                             <option value="1">Custodia</option>
                             <option value="3">Pendiente</option>
@@ -121,7 +121,7 @@
                 document.getElementById('rut').style.display = 'none';
                 document.getElementById('tipo').style.display = 'none';
             }
-            if(periodo > 0 && estado > 0){
+            if(periodo > 0 && estado < 9999){
                 if(tipo == 2){
                     if(document.getElementById('val_bus').value == 1){
                         document.getElementById('buscar').style.display = 'block';
