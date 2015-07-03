@@ -71,9 +71,11 @@ class Recursos{
     
     function Indicadores(){
         $xmlSource = "http://indicadoresdeldia.cl/webservice/indicadores.xml";
-        $xml = simplexml_load_file($xmlSource);
-        return ($xml);
-        
+        if($xmlSource){
+            return (simplexml_load_file($xmlSource));
+        }else{
+            return false;
+        }
     }
     
     function FormatoRut($rut1){
