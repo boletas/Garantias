@@ -9,7 +9,7 @@
         
         <?php if(!empty($modificar)){ ?>
         <form method="post" action="<?php echo base_url();?>index.php/entidad_controller/actualizar">
-            <table class="table table-responsive">
+            <table class="table table-borderd">
                 
                 <?php echo $modificar;  ?>
                 

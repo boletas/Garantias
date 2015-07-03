@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="estado" id="estado" onchange="cambio()" style="display: none">
-                            <option value="0">-- Estado --</option>
-                            <option value="1">Todas</option>
-                            <option value="2">Custodia</option>
+                            <option>-- Estado --</option>
+                            <option value="0">Todas</option>
+                            <option value="1">Custodia</option>
                             <option value="3">Pendiente</option>
-                            <option value="4">Entregada</option>
+                            <option value="2">Entregada</option>
                         </select>
                     </div>
                     <div class="form-group">

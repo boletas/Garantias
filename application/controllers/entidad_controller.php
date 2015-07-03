@@ -63,11 +63,11 @@ class Entidad_controller extends MY_Mantenedor{
         $html = "";
         foreach ($query as $entidad) {
             $html = "<tr>";
-            $html .= "<td><b>Rut</b></td>";
+            $html .= "<td class='active'><b>Rut</b></td>";
             $html .= "<td><input class='form-control' type='text' name='rut' id='rut' value='".$entidad->rut."'></td>";
             $html .= "</tr>";
             $html .= "<tr>";
-            $html .= "<td><b>Razon social</b></td>";
+            $html .= "<td class='active'><b>Razon social</b></td>";
             $html .= "<td><input class='form-control' type='text' name='nombre_entidad' value='".$entidad->nombre."'></td>";
             $html .= "</tr>";
             $html .= "<tr>";

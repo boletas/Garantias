@@ -30,16 +30,16 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->view('footer');
     }
     
-    public function GeneraReportes($fecha,$fecha1,$vence,$periodo,$rut,$tipo,$busqueda){
+    public function GeneraReportes($fecha,$fecha1,$vence,$periodo,$rut,$tipo,$busqueda, $estado){
         switch ($busqueda){
             case 1://todas las boletas
-                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 3, 1, $periodo);
+                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 3, 1, $periodo, $estado);
                 break;
             case 2://rut entidad
-                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 1, $rut, $periodo);
+                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 1, $rut, $periodo, $estado);
                 break;
             case 3://tipo boleta
-                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 2, $tipo, $periodo);
+                $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 2, $tipo, $periodo, $estado);
                 break;
         }
         
@@ -82,7 +82,8 @@ class Reportes_Controller extends MY_Mantenedor{
         $rut = $this->recursos->FormatoRut($this->input->post("rut"));
         $tipo = $this->input->post("tipo");
         $periodo = $this->input->post("periodo");//1=todas ; 10;20;30;60;90 dias
-        
+        $estado = $this->input->post("estado"); //0= todas, 1= custodia, 2= pendiente, 3= entregadas
+
         $vence = $this->input->post("vence");//1=vencidas ; 2=por_vencer ; 3=todas
         $fecha = date('Y-m-d');
         $fecha1 = "";
@@ -103,7 +104,7 @@ class Reportes_Controller extends MY_Mantenedor{
             $vence1 = 2;
         }
         
-        $resultado = $this->GeneraReportes($fecha, $fecha1, $vence1, $periodo, $rut, $tipo, $busqueda);
+        $resultado = $this->GeneraReportes($fecha, $fecha1, $vence1, $periodo, $rut, $tipo, $busqueda, $estado);
 
         $this->load->view('plantilla');
         $this->load->view('cabecera');
