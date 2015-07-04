@@ -13,12 +13,24 @@ class Plantilla_Controller extends MY_Mantenedor {
         
         $this->load->view('plantilla');
         
-        if($this->session->userdata('logueado') != TRUE) $this->load->view('login');
-        else if($this->session->userdata('logueado') == TRUE) {
-            
+        if($this->session->userdata('logueado') != TRUE){
+            $this->load->view('login');
+        }else if($this->session->userdata('logueado') == TRUE) {
+            //date('d-m-Y')
+            $fin_mes = ('31-07-2015' == $this->recursos->UltimoDiaMes() ? 1 : 0);
+            $data['fin_mes'] = $fin_mes;
+            if($fin_mes == 1){
+                $this->session->set_userdata($data);
+            }else{
+                $this->session->unset_userdata($data);
+            }
             $this->load->view('cabecera');
             
-            if(empty($seccion))$seccion = 'Inicio';
+            
+            if(empty($seccion)){
+                $seccion = 'Inicio';
+            }
+            
             switch ($seccion) {
                 case "Inicio":
                     $indicadores = array('indicadores' => $this->recursos->Indicadores());

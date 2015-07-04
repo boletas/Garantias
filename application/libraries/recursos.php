@@ -69,9 +69,19 @@ class Recursos{
         return $fecha;
     }
     
+    function EstadoRed($url){
+        $f = @fopen($url,'r');
+        if($f !== false){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     function Indicadores(){
         $xmlSource = "http://indicadoresdeldia.cl/webservice/indicadores.xml";
-        if($xmlSource){
+        $estado = $this->EstadoRed($xmlSource);
+        if($estado){
             return (simplexml_load_file($xmlSource));
         }else{
             return false;
@@ -84,8 +94,13 @@ class Recursos{
         return ($rut);
     }
     
-    function UltimoDiaMes($anio,$mes){
-        return date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
+    function UltimoDiaMes(){
+        $anio = date('Y');
+        $mes = date('m');
+        $fecha = date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
+        $fecha = $fecha."-".$mes."-".$anio;
+        
+        return ($fecha);
     }
     
     function Formato1($val){//formatea el el monto de las monedas

@@ -13,7 +13,6 @@
                 $clase = "alert-danger";
                 $mensaje = $this->session->userdata('boleta_error');
             }
-            
             if($mensaje != ""){
         ?>
             <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">

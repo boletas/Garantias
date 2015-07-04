@@ -1,9 +1,6 @@
 <div class="row">
     <br/><br/><br/>
-    <?php 
-    
-    if($indicadores){?>
-    
+    <?php if($indicadores){ ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -76,7 +73,6 @@
                 </a>
             </div>
         </div>
-    
     <?php }else{ ?>
         <div class="col-lg-8 col-lg-offset-2">
             <div class="alert alert-warning" role="alert">
@@ -84,4 +80,4 @@
             </div>
         </div>
     <?php } ?>
-</div>    
+</div>

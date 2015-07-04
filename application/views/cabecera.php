@@ -1,5 +1,4 @@
 <div id="wrapper">
-    <!--  -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -85,6 +84,11 @@
                     <li>
                         <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro boleta</a>
                     </li>
+                    <?php if($this->session->userdata('fin_mes') == 1){ ?>
+                    <li>
+                        <a href="<?php echo base_url();?>index.php/indicadores_controller/"><i class="fa fa-calendar fa-fw"></i> Ingreso Indicadores</a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
