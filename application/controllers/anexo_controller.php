@@ -17,27 +17,16 @@ class Anexo_controller extends CI_Controller
 
 
 
-	public function AgregarAnexo($idBoleta, $Nombre, $MontoBoleta, $FechaBoleta){
+	public function AgregarAnexo($idBoleta){
 
-		$id_boleta = $idBoleta;
-		$monto_boleta = $MontoBoleta;
-		$fecha_boleta = $FechaBoleta; //Fecha vencimiento
-		$nombre = $Nombre;
+		$query = $this->anexo_model->TraerBoleta($idBoleta);
 
 		$data = array(
-			'id' => $id_boleta,
-			'razon' => $nombre,
-			'fecha_vencimiento' => $fecha_boleta,
-			'monto' => $monto_boleta 
+			'id' => $query->id_Boleta,
+			'razon' => $query->nombre,
+			'fecha_vencimiento' => $query->fecha_vencimiento,
+			'monto' => $query->monto_boleta 
 			);
-		
-
-		
-
-
-
-
-
 
 		$this->load->view('plantilla');
         $this->load->view('cabecera');

@@ -12,7 +12,7 @@ class Anexo_model extends CI_Model{
 
     	$query = $this->db->query("CALL pa_boleta ('','','','','','','','','','','','2','".$idBoleta."','')");
         if ($query){
-            $data = $query->result();
+            $data = $query->row();
             $query->free_result();
             $this->db->close();
             return $data;
