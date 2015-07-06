@@ -11,12 +11,10 @@ class Garantia_model extends CI_Model{
         $query = $this->db->query("CALL pa_tipo_garantia('',2,0)");
         if ($query){
             $data = $query->result();
-            
             $query->free_result();
             $this->db->close();
             return $data;
         }else{
-            
             $query->free_result();
             $this->db->close();
             return null;

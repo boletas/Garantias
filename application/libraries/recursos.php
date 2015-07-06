@@ -95,8 +95,6 @@ class Recursos{
     }
     
     function UltimoDiaMes(){
-        $hoy = date('d-m-Y');
-        
         $anio = date('Y');
         $mes = date('m');
         $fecha = date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
@@ -111,8 +109,7 @@ class Recursos{
     
     function sumaFechas($suma,$fechaInicial = false){
       $fecha = !empty($fechaInicial) ? $fechaInicial : date('Y-m-d');
-      $nuevaFecha = strtotime ($suma,strtotime($fecha));
-      $nuevaFecha = date('Y-m-d',$nuevaFecha);
+      $nuevaFecha = date('Y-m-d',strtotime ($suma,strtotime($fecha)));
       
       return ($nuevaFecha);
     }

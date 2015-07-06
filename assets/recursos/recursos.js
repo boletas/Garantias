@@ -1,11 +1,7 @@
 function ValidNum() {
     //alert(event.keyCode);
     if (event.keyCode < 46 || event.keyCode > 57) {
-        if(event.keyCode == 44){
-            event.returnValue = true;
-        }else{
-            event.returnValue = false;
-        }
+        event.returnValue = false;
     }
 }
 
