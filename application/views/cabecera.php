@@ -86,7 +86,7 @@
                     </li>
                     <?php if($this->session->userdata('fin_mes') == 1){ ?>
                     <li>
-                        <a href="<?php echo base_url();?>index.php/indicadores_controller/"><i class="fa fa-calendar fa-fw"></i> Ingreso Indicadores</a>
+                        <a href="<?php echo base_url();?>index.php/indicadores_controller/IngresoIndicadores"><i class="fa fa-calendar fa-fw"></i> Ingreso Indicadores</a>
                     </li>
                     <?php } ?>
                 </ul>

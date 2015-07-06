@@ -31,7 +31,7 @@
                 <a href="http://www.bcentral.cl/index.asp" target="_blank">
                     <div class="panel-footer">
                         <span class="pull-left">UTM</span>
-                        <span class="pull-right"><i class="fa  fa-info-circle"></i></span>
+                        <span class="pull-right"><i class="fa fa-info-circle"></i></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -49,7 +49,7 @@
                 <a href="http://www.bcentral.cl/index.asp" target="_blank">
                     <div class="panel-footer">
                         <span class="pull-left">Dólar Observado</span>
-                        <span class="pull-right"><i class="fa  fa-info-circle"></i></span>
+                        <span class="pull-right"><i class="fa fa-info-circle"></i></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>

@@ -3,26 +3,28 @@
 class Indicadores_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
+        $this->load->library('recursos');
     }
     
     public function index(){
+        
+    }
+    
+    public function IngresoIndicadores(){
+        $indicadores = array('indicadores' => $this->recursos->Indicadores());
+        
         $this->load->view('plantilla');
         $this->load->view('cabecera');
-        $this->load->view('indicadores/indicadores');
+        $this->load->view('indicadores/indicadores',$indicadores);
         $this->load->view('footer');
     }
     
-    public function DevuelveBanco($idBanco){
-        $data = $this->banco_model->DevuelveBanco($idBanco);
-        foreach($data as $row){
-            $idBanco = $row->idBanco;
-            $nombre_banco = $row->nombre_banco;
-        }
-        $banco = array(
-            'idBanco'   => $idBanco,
-            'banco'     => $nombre_banco
-        );
-        $this->session->set_userdata($banco);
-        redirect(base_url()."?sec=edita_banco",'refresh');
+    public function GuardarIndicadores(){
+        $uf = $this->input->post('uf');
+        $dolar = $this->input->post('dolar');
+        $euro = $this->input->post('euro');
+        
+        
+        
     }
 }
