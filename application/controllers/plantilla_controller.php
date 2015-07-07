@@ -17,15 +17,10 @@ class Plantilla_Controller extends MY_Mantenedor {
             $this->load->view('login');
         }else if($this->session->userdata('logueado') == TRUE) {
             //date('d-m-Y')
-            $fin_mes = ('31-07-2015' == $this->recursos->UltimoDiaMes() ? 1 : 0);
+            $fin_mes = $this->recursos->IngresoIndicadores();
             $data['fin_mes'] = $fin_mes;
-            if($fin_mes == 1){
-                $this->session->set_userdata($data);
-            }else{
-                $this->session->unset_userdata($data);
-            }
+            if($fin_mes == 1 ? $this->session->set_userdata($data) : $this->session->unset_userdata($data));
             $this->load->view('cabecera');
-            
             
             if(empty($seccion)){
                 $seccion = 'Inicio';

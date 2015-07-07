@@ -99,8 +99,19 @@ class Recursos{
         $mes = date('m');
         $fecha = date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
         $fecha = $fecha."-".$mes."-".$anio;
-        
         return ($fecha);
+    }
+    
+    function IngresoIndicadores(){
+        $fecha_ant = $this->sumaFechas('-5 day');
+        $fecha_pos = $this->sumaFechas('5 day');
+        //$fecha = $this->FormatoFecha1($this->UltimoDiaMes());
+        $fecha = "2015-07-11"; // -> prueba de ingreso
+        if($fecha >= $fecha_ant && $fecha <= $fecha_pos){
+            return 1;
+        }else{
+            return 0;
+        }
     }
     
     function Formato1($val){//formatea el monto de las monedas
@@ -110,7 +121,6 @@ class Recursos{
     function sumaFechas($suma,$fechaInicial = false){
       $fecha = !empty($fechaInicial) ? $fechaInicial : date('Y-m-d');
       $nuevaFecha = date('Y-m-d',strtotime ($suma,strtotime($fecha)));
-      
       return ($nuevaFecha);
     }
 }
