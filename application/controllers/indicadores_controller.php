@@ -13,9 +13,13 @@ class Indicadores_Controller extends CI_Controller {
     
     public function IngresoIndicadores(){
         if($this->ValidaIngreso()){
-            $indicadores = array('indicadores' => $this->recursos->Indicadores());
+            $indicadores = array(
+                            'ingreso'       => 1,
+                            'indicadores'   => $this->recursos->Indicadores());
         }else{
-            $indicadores = array('indicadores' => 0);//validar este registro
+            $indicadores = array(
+                            'ingreso'       => 0,
+                            'indicadores'   => $this->recursos->Indicadores());
         }
         $this->load->view('plantilla');
         $this->load->view('cabecera');
@@ -31,7 +35,7 @@ class Indicadores_Controller extends CI_Controller {
         $data = $this->indicadores_model->GuardarIndicadores($uf,$dolar,$euro);
         if($data){
             $mensaje = array('ok' => 'Los indicadores fueron ingresados correctamente.');
-            $this->session->set_userdata($mensaje);;
+            $this->session->set_userdata($mensaje);
         }else{
             $mensaje = array('error' => 'Ocurrio un problema al tratar de ingresar los indicadores.');
             $this->session->set_userdata($mensaje);
@@ -40,11 +44,14 @@ class Indicadores_Controller extends CI_Controller {
     }
     
     public function ValidaIngreso(){//-5 dias o +5 dias desde fin de mes (rango ingreso indicadores)
-        $ultimo_ingreso = $this->recursos->FormatoFecha1($this->recursos->UltimoDiaMes());
+        //$ultimo_ingreso = $this->recursos->FormatoFecha1($this->recursos->UltimoDiaMes());
+        foreach($this->indicadores_model->UltimoMonto() as $row){
+            $ultimo_ingreso = $row->fecha_costo;
+        }
         $fecha_ant = $this->recursos->sumaFechas("-5 day");
         $fecha_pos = $this->recursos->sumaFechas("5 day");
         
-        if($ultimo_ingreso >= $fecha_ant && $ultimo_ingreso <= $fecha_pos){
+        if(($ultimo_ingreso >= $fecha_ant) || ($ultimo_ingreso <= $fecha_pos)){
             return true;
         }else{
             return false;

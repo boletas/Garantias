@@ -22,6 +22,7 @@
             <?php } ?>
         <!--** FIN MENSAJES **-->
     </div>
+    <?php if($indicadores->ingreso == 1){ ?>
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"> Ingreso Indicadores</div>
@@ -57,6 +58,18 @@
             </div>
         </div>
     </div>
+    <?php }else{ ?>
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Ingreso Indicadores</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    Los indicadores correspondientes al mes N° <?php echo date('m'); ?> ya fueron ingresados
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
     <div class="col-lg-12">
         <div class="alert alert-warning alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
