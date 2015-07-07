@@ -22,7 +22,21 @@
             <?php } ?>
         <!--** FIN MENSAJES **-->
     </div>
-    <?php if($indicadores->ingreso == 1){ ?>
+    <?php
+    if($ingreso == 0){
+        foreach($valores as $row){
+            $euro = $row->e_euro;
+            $dolar = $row->e_dolar;
+            $uf = $row->e_uf;
+        }
+        $estado = "disabled";
+    }else{
+        $estado = "";
+        $euro = "";
+        $dolar = "";
+        $uf = "";
+    }
+    ?>
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"> Ingreso Indicadores</div>
@@ -32,44 +46,39 @@
                 echo form_open(base_url()."index.php/indicadores_controller/GuardarIndicadores",$form);
                 ?>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="uf" name="uf" required onkeypress="ValidNum(this)" placeholder="Valor U.F. ej: 1234.09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 1234.09">
                     <span class="text-muted small">
                         <em>Valor UF <?php echo $indicadores->indicador->uf;?> al día <?php echo date('d-m-Y'); ?></em>
                     </span>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="dolar" name="dolar" required placeholder="Valor Dolar ej: 1234.09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 1234.09">
                     <span class="text-muted small">
                         <em>Valor Dolar <?php echo $indicadores->moneda->dolar;?> al día <?php echo date('d-m-Y'); ?></em>
                     </span>
                 </div>
                 <div class="form-group"> 
-                    <input type="text" class="form-control" id="euro" name="euro" required placeholder="Valor Euro ej: 1234.09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 1234.09">
                     <span class="text-muted small">
                         <em>Valor euro <?php echo $indicadores->moneda->euro;?> al día <?php echo date('d-m-Y'); ?></em>
                     </span>
                 </div>
+                <?php if($ingreso != 0){ ?>
                 <div class="form-group" align="right">
-                    <input type="submit" onclick="return pregunta()" class="btn btn-outline btn-primary" name="enviar" id="enviar" value="Guardar"/>
+                    <input type="submit"  onclick="return pregunta()" class="btn btn-outline btn-primary" name="enviar" id="enviar" value="Guardar"/>
                 </div>
                 <?php
+                }else{ ?>
+                <div class="alert alert-info alert-dismissable" role="alert">
+                    Los indicadores correspondientes al mes N° <?php echo date('m'); ?>, ya fueron ingresados.
+                </div>
+                <?php 
+                }
                 echo form_close(); 
                 ?>
             </div>
         </div>
     </div>
-    <?php }else{ ?>
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading"> Ingreso Indicadores</div>
-            <div class="panel-body">
-                <div class="form-group">
-                    Los indicadores correspondientes al mes N° <?php echo date('m'); ?> ya fueron ingresados
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php } ?>
     <div class="col-lg-12">
         <div class="alert alert-warning alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

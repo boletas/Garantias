@@ -11,16 +11,11 @@ class Indicadores_Controller extends CI_Controller {
         
     }
     
-    public function IngresoIndicadores(){
-        if($this->ValidaIngreso()){
-            $indicadores = array(
-                            'ingreso'       => 1,
-                            'indicadores'   => $this->recursos->Indicadores());
-        }else{
-            $indicadores = array(
-                            'ingreso'       => 0,
-                            'indicadores'   => $this->recursos->Indicadores());
-        }
+    public function IngresoIndicadores(){ 
+        $indicadores = array(
+                        'ingreso'       => $this->ValidaIngreso(),
+                        'valores'       => $this->indicadores_model->UltimoMonto(),
+                        'indicadores'   => $this->recursos->Indicadores());
         $this->load->view('plantilla');
         $this->load->view('cabecera');
         $this->load->view('indicadores/indicadores',$indicadores);
@@ -43,18 +38,17 @@ class Indicadores_Controller extends CI_Controller {
         $this->IngresoIndicadores();
     }
     
-    public function ValidaIngreso(){//-5 dias o +5 dias desde fin de mes (rango ingreso indicadores)
-        //$ultimo_ingreso = $this->recursos->FormatoFecha1($this->recursos->UltimoDiaMes());
+    public function ValidaIngreso(){
+        $ultimo_ingreso = 0;
+        $anio = date('Y');
+        $mes = date('m');
         foreach($this->indicadores_model->UltimoMonto() as $row){
-            $ultimo_ingreso = $row->fecha_costo;
-        }
-        $fecha_ant = $this->recursos->sumaFechas("-5 day");
-        $fecha_pos = $this->recursos->sumaFechas("5 day");
-        
-        if(($ultimo_ingreso >= $fecha_ant) || ($ultimo_ingreso <= $fecha_pos)){
-            return true;
+            $ultimo_ingreso = explode("-", $row->fecha_costo);//separo fecha para comparar mes y año
+        }        
+        if($ultimo_ingreso[0] == $anio && $ultimo_ingreso[1] == $mes){
+            return 0;
         }else{
-            return false;
+            return 1;
         }
     }
 }
