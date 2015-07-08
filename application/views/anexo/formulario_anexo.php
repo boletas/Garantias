@@ -12,6 +12,15 @@
             'disabled'      => 'true',
             'value'         => $razon
           );
+    
+    $numero = array(
+            
+            'class'         => 'form-control',
+            'type'          => 'text',
+            'disabled'      => 'true',
+            'value'         => $numero_boleta
+          );
+    
     $monto_boleta = array(
             'name'          => 'monto',
             'class'         => 'form-control',
@@ -46,24 +55,33 @@
             <div class="panel-heading">Ingrese anexo</div>
             <div class="panel-body">
                 <?php echo form_open(base_url().'index.php/anexo_controller/insertar_anexo'); ?>
-                <label for="exampleInputEmail1">Razon social</label>
+                <label>Razon social</label>
                 <div class="form-group">
                     <?php echo form_input($razon_social);?>
                 </div>
-                <label for="exampleInputEmail1">Monto boleta</label>
+                <label>Numero boleta</label>
+                <div class="form-group">
+                    <?php echo form_input($numero);?>
+                </div>
+                <label>Monto boleta</label>
                 <div class="form-group">
                     <?php echo form_input($monto_boleta);?>
                 </div>
-                <label for="exampleInputEmail1">Fecha vencimiento</label>
+                <label>Fecha vencimiento</label>
                 <div class="form-group">
-                    <?php echo form_input($fecha);?>
+                <div id="sandbox-container" style="width: 200px">
+                    <div class="input-group date">
+                        <?php echo form_input($fecha)?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
                 </div>
                 <div class="form-group" hidden>
                     <?php echo form_input($idUsuario); ?>
                 </div>
                 <div class="form-group" style="text-align: right">
-                        <?php echo form_input($btn_insertar); ?>
+                    <a class="btn btn-default" href="<?php echo base_url()?>index.php/boleta_controller/VistaBoleta/<?php echo $id;?>">Volver</a>  <?php echo form_input($btn_insertar); ?>
                 </div>
+                
                 <?php echo form_close(); ?>
             </div>
         </div>
@@ -114,4 +132,13 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    $('#sandbox-container .input-group.date').datepicker({
+    clearBtn: true,
+    language: "es",
+    orientation: "top left",
+    todayBtn: "linked",
+    format: "dd-mm-yyyy"
+});
+</script>
 

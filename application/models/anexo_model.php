@@ -6,9 +6,11 @@ class Anexo_model extends CI_Model{
         parent::__construct();
     }
 
+    public function InsertAnexo($idBoleta,$fecha_vencimiento,$monto, $opcion){
+        
+    }
 
-
-    public function TraerBoleta($idBoleta){
+        public function TraerBoleta($idBoleta){
 
     	$query = $this->db->query("CALL pa_boleta ('','','','','','','','','','','','2','".$idBoleta."','')");
         if ($query){
