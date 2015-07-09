@@ -58,14 +58,18 @@ class Anexo_controller extends CI_Controller
                 
                 
                 $html .="<div class='panel panel-default'>";
+
                 $html .="<div class='panel-heading'>";
                 $html .="<h4 class='panel-title'>";
                 $html .="<a data-toggle='collapse' data-parent='#accordion' href='#".$cont."'>Anexo ".$cont."</a>";
                 $html .="</h4>";
                 $html .="</div>"; //panel-heading
+
                 $html .="<div id='".$cont."' class='panel-collapse collapse'>";
                 $html .="<div class='panel-body'>";
+
                 $html .="<table class='table table-bordered table-hover'>";
+
                 $html .="<tr>";
                 $html .="<td class='active'>Fecha ingreso</td>";
                 $html .="<td>".$this->recursos->FormatoFecha($row->fecha_registro)."</td>";
@@ -78,7 +82,9 @@ class Anexo_controller extends CI_Controller
                 $html .="<td class='active'>Fecha final</td>";
                 $html .="<td>".$this->recursos->FormatoFecha($row->fecha_final)."</td>";
                 $html .="</tr>";
+
                 $html .="</table>";
+                
                 $html .="</div>";//panel-body
                 $html .="</div>";//colapse
                 $html .="</div>";//panel panel-default
@@ -100,21 +106,27 @@ class Anexo_controller extends CI_Controller
             $html .="<div class='form-group'>";    
             $html .="<input type='text' class='form-control' disabled='true' value='".$query->nombre."'>";        
             $html .="</div>";
+
             $html .="<label>Numero boleta</label>";
             $html .="<div class='form-group'>";    
             $html .="<input type='text' class='form-control' disabled='true' value='".$query->numero_boleta."'>";        
             $html .="</div>";
+
             $html .="<label>Monto boleta</label>";
-            $html .="<div class='form-group'>";    
-            $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' name='monto' value='".$query->monto_boleta."'>";        
+            $html .="<div class='form-group input-group'>";
+            $html .="<div class='input-group-addon'>".$query->codigo."</div>";    
+            $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_boleta."'>";        
             $html .="</div>";
+
             $html .="<label>Fecha vencimiento</label>";
             $html .="<div id='sandbox-container' style='width: 200px;'>";
             $html .="<div class='input-group date'>";    
             $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query->fecha_vencimiento)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";        
             $html .="</div>";
             $html .="</div>";
+
             $html .= "<input type='hidden' name='idBoleta' value='".$query->id_Boleta."'>";
+
             $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<a href='".base_url()."index.php/boleta_controller/VistaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
             $html .= "<input type='submit' value='Guardar' class='btn btn-outline btn-primary'>";
