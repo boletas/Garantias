@@ -12,7 +12,7 @@ class Anexo_controller extends CI_Controller
 
 		$this->load->model('anexo_model');
 		$this->load->library('recursos');
-                require_once('Numbers/Words.php');
+                
 
 	}
         
@@ -50,22 +50,20 @@ class Anexo_controller extends CI_Controller
             $query = $this->anexo_model->TraerAnexo($idBoleta);
             $html = "";
             $cont = 0;
-            $letra ="";
-            $num = new Numbers_Words();
             
             
             foreach ($query as $row) {
                 
                 $cont = $cont+1;
-                $letra = ucfirst($num->toWords($cont));
+                
                 
                 $html .="<div class='panel panel-default'>";
                 $html .="<div class='panel-heading'>";
                 $html .="<h4 class='panel-title'>";
-                $html .="<a data-toggle='collapse' data-parent='#accordion' href='#collapse".$letra."'>Anexo ".$cont."</a>";
+                $html .="<a data-toggle='collapse' data-parent='#accordion' href='#".$cont."'>Anexo ".$cont."</a>";
                 $html .="</h4>";
                 $html .="</div>"; //panel-heading
-                $html .="<div id='collapse".$letra."' class='panel-collapse collapse'>";
+                $html .="<div id='".$cont."' class='panel-collapse collapse'>";
                 $html .="<div class='panel-body'>";
                 $html .="<table class='table table-bordered table-hover'>";
                 $html .="<tr>";
