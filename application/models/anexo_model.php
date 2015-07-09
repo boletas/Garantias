@@ -7,6 +7,38 @@ class Anexo_model extends CI_Model{
     }
 
     public function InsertAnexo($idBoleta,$fecha_vencimiento,$monto, $opcion){
+
+        $query = $this->db->query("CALL pa_anexo ('".$idBoleta."','".$monto."','".$fecha_vencimiento."','1','')");
+
+         if ($query){
+            $query->free_result();
+            $this->db->close();
+            return true;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return false;
+        }
+
+        
+    }
+    
+    
+    public function TraerAnexo($idBoleta){
+
+        $query = $this->db->query("CALL pa_anexo ('".$idBoleta."','','','2','')");
+
+         if ($query){
+            $data = $query->result(); 
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        }else{
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+
         
     }
 
