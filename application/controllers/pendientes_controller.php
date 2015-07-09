@@ -19,6 +19,14 @@ class Pendientes_Controller extends CI_Controller {
         $this->load->view('footer');
     }
     
+    public function Retiro($html = ""){
+        $resultado['html'] = $html;
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('pendientes/retiro_boleta',$resultado);
+        $this->load->view('footer');
+    }
+    
     public function ListaPendientes(){
         $data = $this->pendientes_model->ListaPendientes();
         if($data){
@@ -62,15 +70,20 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
-                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion()'><i class='fa fa-check-square-o'></i></button>&nbsp;";
-                //$html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
+                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
-            
             $this->Pendientes($html);
         }else{
             return false;
         }
+    }
+    
+    public function GuardarRetiro(){
+        $idBoleta = $this->input->post("idBoleta");
+        $rut = $this->recursos->FormatoRut($this->input->post("rut"));
+        $nombre = $this->input->post("nombre");
+        $apellido = $this->input->post("apellido");
     }
 }

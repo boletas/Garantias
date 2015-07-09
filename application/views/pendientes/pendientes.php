@@ -3,10 +3,6 @@
         <h1 class="page-header">Boletas Pendientes</h1>
     </div>
     <div class="col-lg-12">
-        <?php 
-            $form = array('name' => 'form1');
-            echo form_open(base_url()."index.php/pendientes_controller/",$form);
-        ?>
             <table id="result_boleta" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -36,9 +32,11 @@
     </div>
 </div>
 <script>
-function Accion(){
-    
+function Retiro(idBoleta){
+    var base = "<?php echo base_url();?>";
+    window.location.assign(base+"index.php/pendientes_controller/Retiro/"+idBoleta);
 }
+
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();

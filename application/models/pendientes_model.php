@@ -19,4 +19,8 @@ class Pendientes_Model extends CI_Model {
             return null;
         }
     }
+    
+    public function GuardarRetiro($idBoleta,$rut,$nombre,$apellido){
+        $query = $this->db->query("CALL pa_retiro ()");
+    }
 }
