@@ -4,8 +4,8 @@
     </div>
     <div class="col-lg-12">
         <?php 
-            $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
+            $form = array('name' => 'form1');
+            echo form_open(base_url()."index.php/pendientes_controller/",$form);
         ?>
             <table id="result_boleta" class="table table-bordered table-hover">
                 <thead>
@@ -32,16 +32,17 @@
                 </tfoot>
                 <?php echo $html; ?>
             </table>
-            <input type="hidden" name="que" id="que" /> 
-            <input type="hidden" name="id_boleta" id="id_boleta" /> 
             <?php echo form_close(); ?>
     </div>
 </div>
 <script>
+function Accion(){
+    
+}
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>' );
+        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>');
     } );
     var table = $('#result_boleta').DataTable();
     table.columns().every( function () {

@@ -62,13 +62,12 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
-                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
-                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
+                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion()'><i class='fa fa-check-square-o'></i></button>&nbsp;";
+                //$html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
             
-            $resultado = array('html' => $html);
             $this->Pendientes($html);
         }else{
             return false;
