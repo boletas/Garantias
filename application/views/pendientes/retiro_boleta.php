@@ -42,10 +42,8 @@ function Volver(){
     window.history.back();
 }
 
-function Guardar(idBoleta){
+function Guardar(){
     if(confirm("Esta seguro de guardar.? La boleta cambiará su estado a entregada")){
-        //var base = "<?php echo base_url();?>";
-        //window.location.assign(base+"index.php/pendientes_controller/GuardarRetiro/"+idBoleta);
         return true;
     }else{
         return false;

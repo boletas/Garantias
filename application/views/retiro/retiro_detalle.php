@@ -54,7 +54,7 @@
                 <!--<form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">-->
                     <button type="submit" class="btn btn-outline btn-default">Atras</button>
                     <!--<a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/BoletaPdf/<?php echo $id_Boleta?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>-->
-                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?> onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                    <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
                     <input type="hidden" value="<?php echo $rut; ?>" name="rut_buscar">
                 <!--</form>-->
             <?php 

@@ -21,6 +21,16 @@ class Pendientes_Model extends CI_Model {
     }
     
     public function GuardarRetiro($idBoleta,$rut,$nombre,$apellido){
-        $query = $this->db->query("CALL pa_retiro ()");
+        $query = $this->db->query("CALL pa_retiro(".$idBoleta.",".$rut.",'".$nombre."','".$apellido."');");
+        if($query){
+            $query->free_result();
+            $this->db->close();
+            return TRUE;
+        }else{
+
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }    
     }
 }

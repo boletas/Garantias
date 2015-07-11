@@ -26,10 +26,10 @@ class Retiro_Controller extends CI_Controller {
             
             $this->session->set_userdata("xrut",$rut);
             $this->session->set_userdata("xnum",$num);
-           $query = $this->retiro_model->BuscarRutNum($rut,$num);
+            $query = $this->retiro_model->BuscarRutNum($rut,$num);
            
-           if($query){
-               $html = "";
+            if($query){
+                $html = "";
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
@@ -58,8 +58,8 @@ class Retiro_Controller extends CI_Controller {
             $this->session->set_userdata("xnum",$num);
             $query = $this->retiro_model->BuscarXNum($num);
            
-           if($query){
-               $html = "";
+            if($query){
+                $html = "";
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {

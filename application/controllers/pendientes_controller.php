@@ -71,6 +71,7 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
+                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='PDF(".$row->id_Boleta.")'><i class='fa fa-file-pdf-o'></i></button>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
@@ -85,5 +86,14 @@ class Pendientes_Controller extends CI_Controller {
         $rut = $this->recursos->FormatoRut($this->input->post("rut"));
         $nombre = $this->input->post("nombre");
         $apellido = $this->input->post("apellido");
+        $data = $this->pendientes_model->GuardarRetiro($idBoleta,$rut,$nombre,$apellido);
+        if($data){
+            $mensaje = array('ok'   => 'El estado de la boleta fue cambiado correctamente.');
+            $this->session->set_userdata($mensaje);
+        }else{
+            $mensaje = array('error'   => 'Ocurrio un problema al tratar de cambiar el estado de la boleta.');
+            $this->session->set_userdata($mensaje);
+        }
+        $this->ListaPendientes();
     }
 }

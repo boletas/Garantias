@@ -3,6 +3,26 @@
         <h1 class="page-header">Boletas Pendientes</h1>
     </div>
     <div class="col-lg-12">
+        <!--** MENSAJE **-->
+        <?php 
+            $mensaje = "";
+            if($this->session->userdata('ok')){ 
+                $clase = "alert-info";
+                $mensaje = $this->session->userdata('ok');
+            }elseif($this->session->userdata('error')){ 
+                $clase = "alert-danger";
+                $mensaje = $this->session->userdata('error');
+            }
+            if($mensaje != ""){
+        ?>
+            <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $mensaje ?>
+            </div>
+            <?php } ?>
+        <!--** FIN MENSAJES **-->
+    </div>
+    <div class="col-lg-12">
             <table id="result_boleta" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -37,6 +57,11 @@ function Retiro(idBoleta){
     window.location.assign(base+"index.php/pendientes_controller/Retiro/"+idBoleta);
 }
 
+function PDF(idBoleta){
+    var base = "<?php echo base_url();?>";
+    window.open(base+"index.php/pdf_controller/BoletaPdf/"+idBoleta,'_blank');
+}
+
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
@@ -54,5 +79,13 @@ $(document).ready(function() {
     } );
 } );
 
+function UnsetMensaje(){
+    <?php $this->session->unset_userdata('ok','error')?>
+}
+setTimeout("UnsetMensaje()",500);
 
+$(document).ready(function(){
+    if ($("div#mensaje")) {
+    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+}});
 </script>
