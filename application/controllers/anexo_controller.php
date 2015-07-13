@@ -115,10 +115,14 @@ class Anexo_controller extends CI_Controller
 
             $html .="<label>Monto boleta</label>";
             $html .="<div class='form-group input-group'>";
-            $html .="<div class='input-group-addon'>".$query->codigo."</div>";    
-            $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";        
+            $html .="<div class='input-group-addon'>".$query->codigo."</div>"; 
+                  
+                   if ($query2) {
+                           $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";        
+                   }else{
+                    $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_final."'>";
+                   }    
             $html .="</div>";
-
             $html .="<label>Fecha vencimiento</label>";
             $html .="<div id='sandbox-container' style='width: 200px;'>";
             $html .="<div class='input-group date'>";    
