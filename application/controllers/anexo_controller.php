@@ -129,7 +129,7 @@ class Anexo_controller extends CI_Controller
 
             $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<a href='".base_url()."index.php/boleta_controller/VistaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
-            $html .= "<input type='submit' value='Guardar' class='btn btn-outline btn-primary'>";
+            $html .= "<input type='submit' onclick='return confirmar()' value='Guardar' class='btn btn-outline btn-primary'>";
             $html .= "</div>";
             
             $html .= "";

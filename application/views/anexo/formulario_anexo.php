@@ -43,3 +43,13 @@
 });
 </script>
 
+<script>
+function confirmar()
+{
+    if(confirm('¿Estas seguro que desea ingresar este anexo?'))
+        return true;
+    else
+        return false;
+}
+</script>
+
