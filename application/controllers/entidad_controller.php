@@ -91,8 +91,15 @@ class Entidad_controller extends MY_Mantenedor{
         $rut = explode('-', $this->input->post("rut"));
         $entidad = $this->input->post("nombre_entidad");
         $id = $this->input->post("idEntidad");
-        
-        $query = $this->entidad_model->actualizar_entidad($rut[0], $entidad, $id);
+
+        $query1 = $this->entidad_model->EntidadExiste($rut[0]);
+
+        if ($query1) {
+            $this->session->set_userdata('error_entidad','¡Entidad ya existe con ese rut!');
+            $this->modificar_entidad($id);
+        }else{
+
+            $query = $this->entidad_model->actualizar_entidad($rut[0], $entidad, $id);
         
         if ($query) {
                 $this->session->set_flashdata('error','¡Entidad actualizada!');
@@ -101,7 +108,7 @@ class Entidad_controller extends MY_Mantenedor{
                 $this->session->set_flashdata('error','Error al actualizar');
                 redirect(base_url()."index.php/entidad_controller/entidades",'refresh');
             }
-        
+        }
     }
 
     

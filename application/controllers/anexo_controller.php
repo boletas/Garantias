@@ -25,10 +25,10 @@ class Anexo_controller extends CI_Controller
             $query = $this->anexo_model->InsertAnexo($idBoleta,$fecha_vencimiento,$monto, 1);
             
             if($query){
-                $this->session->flashdata('mensaje','Anexo insertado correctamente..');
+                $this->session->set_userdata('mensaje_anexo','Anexo insertado correctamente..');
                 $this->SelectBoleta($idBoleta);
             }else{
-                $this->session->flashdata('mensaje','Error al insertar..');
+                $this->session->set_userdata('mensaje_anexo','Error al insertar..');
                 $this->SelectBoleta($idBoleta);
             }
             
@@ -99,6 +99,7 @@ class Anexo_controller extends CI_Controller
     public function TraerBoleta($idBoleta){
 
              $query = $this->anexo_model->TraerBoleta($idBoleta);
+             $query2 = $this->anexo_model->TraerMontoAnexo($idBoleta);
 
             
             $html = "";
@@ -115,7 +116,7 @@ class Anexo_controller extends CI_Controller
             $html .="<label>Monto boleta</label>";
             $html .="<div class='form-group input-group'>";
             $html .="<div class='input-group-addon'>".$query->codigo."</div>";    
-            $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_boleta."'>";        
+            $html .="<input type='text' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";        
             $html .="</div>";
 
             $html .="<label>Fecha vencimiento</label>";

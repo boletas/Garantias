@@ -2,14 +2,17 @@
     <div class="col-lg-12">
         <h1 class="page-header">Formulario ingreso anexo</h1>
     </div>
-        <?php 
-            if($this->session->keep_flashdata('mensaje')){?>
+    <div class="col-lg-12">
+        
+        <?php if($this->session->userdata('mensaje_anexo')){?>
             <div class="alert alert-warning alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $this->session->keep_flashdata('mensaje')?>
+                <?php echo $this->session->userdata('mensaje_anexo')?>
+
             </div>
-                    
+                <?php $this->session->unset_userdata('mensaje_anexo')?>    
         <?php } ?>
+    </div>
     
     
     <div class="col-lg-6">
