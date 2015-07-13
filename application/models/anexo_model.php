@@ -46,6 +46,7 @@ class Anexo_model extends CI_Model{
     public function TraerMontoAnexo($idBoleta){
 
         $query = $this->db->query("CALL pa_ultimo_anexo('".$idBoleta."')");
+        
 
         if ($query){
             $data = $query->row();
