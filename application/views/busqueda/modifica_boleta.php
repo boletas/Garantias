@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Modificando Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
-        <?php echo "lalalala ".$this->session->userdata("disable")?>
     </div>
     <div class="col-lg-12">
         <?php 

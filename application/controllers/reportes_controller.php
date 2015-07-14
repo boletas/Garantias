@@ -95,6 +95,8 @@ class Reportes_Controller extends MY_Mantenedor{
             $fecha = $this->recursos->sumaFechas($periodo." day");
             $fecha1 = $this->recursos->sumaFechas("-".$periodo." day");
         }
+
+        $vence1 = 0;
         
         if($vence == "todas"){
             $vence1 = 3;
