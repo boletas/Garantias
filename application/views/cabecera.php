@@ -73,7 +73,7 @@
                                 <a href="<?php echo base_url();?>index.php/pendientes_controller/ListaPendientes"><i class="fa fa-paperclip fa-fw"></i> Boletas Pendientes</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-check fa-fw"></i> Boletas Retiradas</a>
+                                <a href="<?php echo base_url();?>index.php/entregadas_controller/ListaEntregadas"><i class="fa fa-check fa-fw"></i> Boletas Retiradas</a>
                             </li>
                         </ul>
                     </li>

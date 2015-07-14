@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Boletas Pendientes</h1>
+        <h1 class="page-header">Boletas Entregadas</h1>
     </div>
     <div class="col-lg-12">
         <!--** MENSAJE **-->
@@ -51,12 +51,8 @@
     </div>
 </div>
 <script>
-function Retiro(idBoleta){
-    window.location.assign("<?php echo base_url();?>index.php/pendientes_controller/Retiro/"+idBoleta);
-}
-
-function PDF(idBoleta){
-    window.open("<?php echo base_url();?>index.php/pdf_controller/BoletaPdf/"+idBoleta,'_blank');
+function Entregada(idBoleta){
+    window.location.assign("<?php echo base_url();?>index.php/entregadas_controller/DetalleEntregada/"+idBoleta);
 }
 
 $(document).ready(function() {
@@ -75,14 +71,4 @@ $(document).ready(function() {
         } );
     } );
 } );
-
-function UnsetMensaje(){
-    <?php $this->session->unset_userdata('ok','error')?>
-}
-setTimeout("UnsetMensaje()",500);
-
-$(document).ready(function(){
-    if ($("div#mensaje")) {
-    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
-}});
 </script>
