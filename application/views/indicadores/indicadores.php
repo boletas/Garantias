@@ -48,19 +48,25 @@
                 <div class="form-group">
                     <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 1234.09">
                     <span class="text-muted small">
-                        <em>Valor UF <?php echo $indicadores->indicador->uf;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php if(!empty($indicadores->indicador->uf)){?>
+                            <em>Valor UF <?php echo $indicadores->indicador->uf;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php } ?>
                     </span>
                 </div>
                 <div class="form-group">
                     <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 1234.09">
                     <span class="text-muted small">
-                        <em>Valor Dolar <?php echo $indicadores->moneda->dolar;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php if(!empty($indicadores->moneda->dolar)){?>
+                            <em>Valor Dolar <?php echo $indicadores->moneda->dolar;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php } ?>
                     </span>
                 </div>
                 <div class="form-group"> 
                     <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 1234.09">
                     <span class="text-muted small">
-                        <em>Valor euro <?php echo $indicadores->moneda->euro;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php if(!empty($indicadores->moneda->euro)){?>
+                            <em>Valor euro <?php echo $indicadores->moneda->euro;?> al día <?php echo date('d-m-Y'); ?></em>
+                        <?php } ?>    
                     </span>
                 </div>
                 <?php if($ingreso != 0){ ?>
