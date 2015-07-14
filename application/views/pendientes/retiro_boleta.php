@@ -40,6 +40,7 @@
 <script>
 function Volver(){
     window.history.back();
+    return false;
 }
 
 function Guardar(){
