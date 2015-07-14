@@ -128,7 +128,9 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
+                if($row->idEstadoBoleta != 2){
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
+                }
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
@@ -177,6 +179,13 @@ class Boleta_controller extends MY_Mantenedor{
                         }
                     }
                 }
+
+
+                if ($row->idEstadoBoleta == 2) {
+                    $this->session->set_userdata('disable','disable');
+                }
+
+
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = "(".$row->codigo.") ".$row->monto_boleta;
@@ -252,6 +261,10 @@ class Boleta_controller extends MY_Mantenedor{
                         }
                     }
                 }
+
+
+                
+
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = $row->monto_boleta;
@@ -284,7 +297,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $rut .= '</select>';
                 
                 $nombre = $row->nombre;
-                $nombre_banco = "<select name='banco' id='banco' class='form-control'>";
+                $nombre_banco = "<select name='banco' id='banco'  class='form-control'>";
                 foreach($this->ObtieneBancos() as $row1){
                     if($row1->idBanco == $row->idBanco){
                         $nombre_banco .= "<option value='".$row1->idBanco."' selected>".$row1->nombre_banco."</option>";
@@ -294,7 +307,7 @@ class Boleta_controller extends MY_Mantenedor{
                 }
                 $nombre_banco .= "</select>";
                 
-                $tipo_garantia = "<select name='tipo_garantia' id='tipo_garantia' class='form-control'>";
+                $tipo_garantia = "<select name='tipo_garantia'  id='tipo_garantia' class='form-control'>";
                 foreach($this->ObtieneTipoGarantia() as $row1){
                     if($row1->idTipoGarantia == $row->idTipoGarantia){
                         $tipo_garantia .= "<option value='".$row1->idTipoGarantia."' selected>".$row1->descripcion."</option>";
@@ -306,17 +319,20 @@ class Boleta_controller extends MY_Mantenedor{
                 
                 $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
                 
-                $estado_boleta = "<select name='estado_boleta' id='estado_boleta' class='form-control'>";
+                $estado_boleta = "<select name='estado_boleta' '  id='estado_boleta' class='form-control'>";
                 foreach($this->ObtieneEstadoBoletas() as $row1){
+
                     if($row1->idEstadoBoleta == $row->idEstadoBoleta){
                         $estado_boleta .= "<option value='".$row1->idEstadoBoleta."' selected>".$row1->descripcion."</option>";
                     }else{
                         $estado_boleta .= "<option value='".$row1->idEstadoBoleta."'>".$row1->descripcion."</option>";
                     }
+
+                    
                 }
                 $estado_boleta .= "</select>";
                 
-                $tipo_boleta = "<select name='tipo_boleta' id='tipo_boleta' class='form-control'>";
+                $tipo_boleta = "<select name='tipo_boleta'  id='tipo_boleta' class='form-control'>";
                 foreach($this->ObtieneTipoBoletas() as $row1){
                     if($row1->idTipoBoleta == $row->idTipoBoleta){
                         $tipo_boleta .= "<option value='".$row1->idTipoBoleta."' selected>".$row1->descripcion_tipo_boleta."</option>";

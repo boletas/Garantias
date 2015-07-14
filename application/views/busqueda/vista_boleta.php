@@ -55,7 +55,11 @@
         </table>
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
+            <?php if(empty($this->session->userdata('disable'))){?>
             <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Modificar <i class="fa fa-pencil"></i></button>
+            <?php } ?>
+                <?php $this->session->unset_userdata('disable');?>
+            
         </div>
         <input type="hidden" name="volver" id="volver" /> 
         <input type="hidden" name="que" id="que" /> 

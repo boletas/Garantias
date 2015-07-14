@@ -101,6 +101,7 @@ class Anexo_controller extends CI_Controller
              $query = $this->anexo_model->TraerBoleta($idBoleta);
              $query2 = $this->anexo_model->TraerMontoAnexo($idBoleta);
             
+           
             
             $html = "";
             $html .="<label>Razon social</label>";
@@ -113,7 +114,7 @@ class Anexo_controller extends CI_Controller
             $html .="<input type='text' class='form-control' disabled='true' value='".$query->numero_boleta."'>";        
             $html .="</div>";
 
-            $html .="<label>Monto boleta</label>";
+            $html .="<label>Monto final boleta</label>";
             $html .="<div class='form-group input-group'>";
             $html .="<div class='input-group-addon'>".$query->codigo."</div>";
             if ($query2) {
@@ -134,11 +135,12 @@ class Anexo_controller extends CI_Controller
 
             $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<a href='".base_url()."index.php/boleta_controller/VistaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
-            $html .= "<input type='submit' onclick='return confirmar()' value='Guardar' class='btn btn-outline btn-primary'>";
+             
+             if(!$query->idEstadoBoleta == 2){
+                 $html .= "<input type='submit' onclick='return confirmar()' value='Guardar' class='btn btn-outline btn-primary'>";
+             }
+
             $html .= "</div>";
-            
-            $html .= "";
-            $html .= "";
 
 
 

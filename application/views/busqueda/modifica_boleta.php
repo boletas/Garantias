@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Modificando Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <?php echo "lalalala ".$this->session->userdata("disable")?>
     </div>
     <div class="col-lg-12">
         <?php 
@@ -31,21 +32,21 @@
                 <td>
                     <div id="sandbox-container" style="width: 150px">
                         <div class="input-group date">
-                            <input type="text" class="form-control" name="recepcion" id="recepcion" onfocus="this.blur();" value="<?php echo $fecha_recepcion;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <input type="text" class="form-control"  name="recepcion" id="recepcion" onfocus="this.blur();" value="<?php echo $fecha_recepcion;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div id="sandbox-container" style="width: 135px">
                         <div class="input-group date">
-                            <input type="text" class="form-control" style="width: 100px" name="emision" id="emision" onfocus="this.blur();" value="<?php echo $fecha_emision;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <input type="text" class="form-control"  style="width: 100px" name="emision" id="emision" onfocus="this.blur();" value="<?php echo $fecha_emision;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div id="sandbox-container" style="width: 135px">
                         <div class="input-group date">
-                            <input type="text" class="form-control" style="width: 100px" name="vencimiento" id="vencimiento" onfocus="this.blur();" value="<?php echo $fecha_vencimiento;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <input type="text" class="form-control"  style="width: 100px" name="vencimiento" id="vencimiento" onfocus="this.blur();" value="<?php echo $fecha_vencimiento;?>"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
                 </td>
@@ -58,7 +59,7 @@
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
-                <td colspan="4"><input type="text" class="form-control" name="denominacion" id="denominacion" value="<?php echo $denominacion; ?>"/></td>
+                <td colspan="4"><input type="text" class="form-control"  name="denominacion" id="denominacion" value="<?php echo $denominacion; ?>"/></td>
                 <td colspan="2"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
@@ -71,7 +72,7 @@
                 <td colspan="2"><?php echo $estado_boleta ?></td>
                 <td align="center"><?php echo $codigo ?></td>
                 <td colspan="2">
-                    <input type="text" class="form-control" name="monto" id="monto" onkeypress="return ValidNum(this);" value="<?php echo $monto_boleta; ?>"/>
+                    <input type="text" class="form-control"  name="monto" id="monto" onkeypress="return ValidNum(this);" value="<?php echo $monto_boleta; ?>"/>
                 </td>
             </tr>
         </table>
