@@ -16,7 +16,6 @@ class Plantilla_Controller extends MY_Mantenedor {
         if($this->session->userdata('logueado') != TRUE){
             $this->load->view('login');
         }else if($this->session->userdata('logueado') == TRUE) {
-            //date('d-m-Y')
             $fin_mes = $this->recursos->IngresoIndicadores();
             $data['fin_mes'] = $fin_mes;
             if($fin_mes == 1 ? $this->session->set_userdata($data) : $this->session->unset_userdata($data));
@@ -28,7 +27,7 @@ class Plantilla_Controller extends MY_Mantenedor {
             
             switch ($seccion) {
                 case "Inicio":
-                    $indicadores = array('indicadores' => $this->recursos->Indicadores());
+                    $indicadores["indicadores"] = $this->recursos->Indicadores();
                     $this->load->view('inicio', $indicadores);
                     break;
                 case "nueva_boleta":

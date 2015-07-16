@@ -80,4 +80,16 @@
             </div>
         </div>
     <?php } ?>
+    <?php if($this->session->userdata('fin_mes') == 1){ ?>
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="alert alert-info" role="alert">
+                El ingreso de los indicadores mensuales se encuentran disponible. <button type="button" onclick="Indicadores()" class="btn btn-outline btn-primary btn-sm">Aquí</button>
+            </div>
+        </div>
+    <?php } ?>
 </div>
+<script>
+    function Indicadores(){
+        window.location.assign("<?php echo base_url();?>index.php/indicadores_controller/IngresoIndicadores");
+    }
+</script>

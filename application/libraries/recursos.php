@@ -105,7 +105,6 @@ class Recursos{
     function IngresoIndicadores(){
         $fecha_ant = $this->sumaFechas('-5 day');
         $fecha_pos = $this->sumaFechas('5 day');
-        //$fecha = $this->FormatoFecha1($this->UltimoDiaMes());
         $fecha = "2015-07-11"; // -> prueba de ingreso
         if($fecha >= $fecha_ant && $fecha <= $fecha_pos){
             return 1;
