@@ -31,6 +31,8 @@ class Reportes_Controller extends MY_Mantenedor{
     }
     
     public function GeneraReportes($fecha,$fecha1,$vence,$periodo,$rut,$tipo,$busqueda, $estado){
+
+
         switch ($busqueda){
             case 1://todas las boletas
                 $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 3, 1, $periodo, $estado);
@@ -102,7 +104,7 @@ class Reportes_Controller extends MY_Mantenedor{
             $vence1 = 3;
         }else if($vence == "vencidas"){
             $vence1 = 1;
-        }else if($vence == "por_vercer"){
+        }else if($vence == "por_vencer"){
             $vence1 = 2;
         }
         
