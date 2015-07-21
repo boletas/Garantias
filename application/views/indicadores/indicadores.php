@@ -24,12 +24,19 @@
     </div>
     <?php
     if($ingreso == 0){
-        foreach($valores as $row){
-            $euro = $row->e_euro;
-            $dolar = $row->e_dolar;
-            $uf = $row->e_uf;
+        if(!empty($valores)){
+            foreach($valores as $row){
+                $euro = $row->e_euro;
+                $dolar = $row->e_dolar;
+                $uf = $row->e_uf;
+            }
+            $estado = "disabled";
+        }else{
+            $estado = "";
+            $euro = "";
+            $dolar = "";
+            $uf = "";
         }
-        $estado = "disabled";
     }else{
         $estado = "";
         $euro = "";

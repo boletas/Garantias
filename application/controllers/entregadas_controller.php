@@ -68,7 +68,8 @@ class Entregadas_Controller extends CI_Controller {
             $html .= "</tbody>";
             $this->Entregadas($html);
         }else{
-            return false;
+            $html["mensaje"] = "Actualmente no existen boletas con el estado \"Entregada\".";
+            $this->Entregadas($html);
         }
     }
     
