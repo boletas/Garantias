@@ -14,7 +14,7 @@ class Indicadores_Controller extends CI_Controller {
     public function IngresoIndicadores(){ 
         $valores = $this->indicadores_model->UltimoMonto();
         $indicadores = array(
-                        'ingreso'       => $this->ValidaIngreso(),
+                        'ingreso'       => (!empty($valores) ? $this->ValidaIngreso() : 1),
                         'valores'       => $valores,
                         'indicadores'   => $this->recursos->Indicadores());
         $this->load->view('plantilla');
