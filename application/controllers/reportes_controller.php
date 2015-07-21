@@ -7,6 +7,7 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->model('boleta_model');
         $this->load->library('recursos');
         $this->load->model('reportes_model');
+        $this->load->model('indicadores_model');
     }
   
     public function index(){
@@ -79,6 +80,10 @@ class Reportes_Controller extends MY_Mantenedor{
     }
     
     public function VistaReporte(){
+        $valores = $this->indicadores_model->UltimoMonto();
+        if(empty($valores)){
+            redirect(base_url()."index.php/indicadores_controller/IngresoIndicadores", 'refresh');
+        }
         
         $busqueda = $this->input->post("tipo_busqueda");
         $rut = $this->recursos->FormatoRut($this->input->post("rut"));
