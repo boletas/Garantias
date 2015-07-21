@@ -7,7 +7,7 @@
             <div id="mensaje" class="alert alert-info">
                 <?php echo $html["mensaje"]; ?>
             </div>
-        
+        </div>
         <?php }else{?>
         <div class="col-lg-12">
             <table id="result_boleta" class="table table-bordered table-hover">
@@ -37,7 +37,7 @@
             </table>
                 <?php } ?>
         </div>
-</div>
+
 <script>
 function Entregada(idBoleta){
     window.location.assign("<?php echo base_url();?>index.php/entregadas_controller/DetalleEntregada/"+idBoleta);
