@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Indicadores_Controller extends CI_Controller {
+class Indicadores_Controller extends MY_Mantenedor {
     public function __construct(){
         parent::__construct();
         $this->load->library('recursos');

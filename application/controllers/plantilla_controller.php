@@ -28,7 +28,10 @@ class Plantilla_Controller extends MY_Mantenedor {
             switch ($seccion) {
                 case "Inicio":
                     $indicadores["indicadores"] = $this->recursos->Indicadores();
+                    $indicadores["ingreso"] = $this->ValidaIngreso();
+                    
                     $this->load->view('inicio', $indicadores);
+                    
                     break;
                 case "nueva_boleta":
                         $this->load->view('ingreso/nueva_boleta');
