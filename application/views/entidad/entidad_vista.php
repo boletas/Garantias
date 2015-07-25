@@ -4,13 +4,13 @@
     </div>
     <div class="col-lg-6">
         <?php 
-            if($this->session->flashdata('error')){?>
+            if($this->session->userdata('error')){?>
             <div class="alert alert-warning alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $this->session->flashdata('error')?>
+                <?php echo $this->session->userdata('error')?>
             </div>
                     
-        <?php } ?>
+        <?php } $this->session->unset_userdata('error');   ?>
     </div>
     <div class="col-lg-12">
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->

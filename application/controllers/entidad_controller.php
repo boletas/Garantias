@@ -61,21 +61,19 @@ class Entidad_controller extends MY_Mantenedor{
     public function modificar_entidad($id){
         $query = $this->entidad_model->TraerEntidad($id);
         $html = "";
+        
         foreach ($query as $entidad) {
-            $html = "<tr>";
-            $html .= "<td class='active'><b>Rut</b></td>";
-            $html .= "<td><input class='form-control' type='text' name='rut' id='rut' value='".$entidad->rut."'></td>";
-            $html .= "</tr>";
-            $html .= "<tr>";
-            $html .= "<td class='active'><b>Razon social</b></td>";
-            $html .= "<td><input class='form-control' type='text' name='nombre_entidad' value='".$entidad->nombre."'></td>";
-            $html .= "</tr>";
-            $html .= "<tr>";
-            $html .= "<td>&nbsp;</td>";
+            $this->session->set_userdata("entidad", $entidad->rut);
+            $html .= "<div class='form-group'>";
+            $html .= "<input class='form-control' required='true' type='text' name='rut' id='rut' value='".$this->recursos->DevuelveRut($entidad->rut)."'>";
+            $html .= "</div>";
+            $html .= "<div class='form-group'>";
+            $html .= "<input class='form-control' type='text' name='nombre_entidad' value='".$entidad->nombre."'>";
+            $html .= "</div>";
+            $html .= "<div class='form-group' style  ='text-align: right'>";
             $html .= "<input type='hidden' name='idEntidad' value='".$entidad->idEntidad."'>";
-            $html .= "<td><a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a><button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button></td>";
-            $html .= "</tr>";
-            
+            $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a><button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button>";       
+            $html .= "</div>";
         }
         $data['modificar'] = $html;
         
@@ -88,26 +86,40 @@ class Entidad_controller extends MY_Mantenedor{
     
     public function actualizar(){
         
-        $rut = explode('-', $this->input->post("rut"));
+        $rut = $this->recursos->FormatoRut($this->input->post("rut"));
         $entidad = $this->input->post("nombre_entidad");
         $id = $this->input->post("idEntidad");
 
-        $query1 = $this->entidad_model->EntidadExiste($rut[0]);
+        if ($rut != $this->session->userdata('entidad')) {
+            
+            $query = $this->entidad_model->EntidadExiste($rut);
 
-        if ($query1) {
-            $this->session->set_userdata('error_entidad','¡Entidad ya existe con ese rut!');
-            $this->modificar_entidad($id);
-        }else{
-
-            $query = $this->entidad_model->actualizar_entidad($rut[0], $entidad, $id);
-        
-        if ($query) {
-                $this->session->set_flashdata('error','¡Entidad actualizada!');
-                redirect(base_url()."index.php/entidad_controller/entidades",'refresh');
+            if($query){
+               $this->session->set_userdata('error_entidad',"¡¡Rut ya existe!!");
+               $this->modificar_entidad($id);
+                
             }else{
-                $this->session->set_flashdata('error','Error al actualizar');
-                redirect(base_url()."index.php/entidad_controller/entidades",'refresh');
+               $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
+               if ($query) {
+                    $this->session->set_userdata('error',"Entidad actualizada exitosamente");
+                    $this->entidades();       
+                }else{
+                    $this->session->set_userdata('error',"Error al actualizar entidad");
+                    $this->entidades();
+
+                }
             }
+
+        }else{
+            $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
+               if ($query) {
+                    $this->session->set_userdata('error',"Entidad actualizada exitosamente");
+                    $this->entidades();       
+                }else{
+                    $this->session->set_userdata('error',"Error al actualizar entidad");
+                    $this->entidades();
+
+                }
         }
     }
 
