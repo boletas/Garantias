@@ -126,8 +126,13 @@ class Anexo_controller extends CI_Controller
             $html .="</div>";
             $html .="<label>Fecha vencimiento</label>";
             $html .="<div id='sandbox-container' style='width: 200px;'>";
-            $html .="<div class='input-group date'>";    
-            $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query->fecha_vencimiento)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";        
+            $html .="<div class='input-group date'>";  
+            if ($query2) {
+                  $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query2->fecha_final)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";
+              }else{
+                  $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query->fecha_vencimiento)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";             
+              }  
+            
             $html .="</div>";
             $html .="</div>";
 
