@@ -22,14 +22,10 @@
         <?php } ?>
         <!--** FIN MENSAJES **-->
      </div>
-<!--     <div class="col-lg-12" align="right">
-        <button type="button" class="btn btn-outline btn-success btn-xs" align="right" name="nuevo_banco" id="nuevo_banco"  onclick="Accion('nuevo')">Nuevo Banco</button>
-     </div>-->
      <div class="col-lg-12">  
         <?php 
             $form = array('name'    => 'form1');
             echo form_open(base_url()."index.php/banco_controller",$form); 
-            
         ?>
         <table id="bancos" class="table table-bordered table-hover" cellspacing="0" width="100%">
             <thead>

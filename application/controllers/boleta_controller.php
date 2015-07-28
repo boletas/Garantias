@@ -131,9 +131,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
-                if($row->idEstadoBoleta != 2){
-                $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
-                }
+                $html .= "<button type='button' ".($row->idEstadoBoleta == 2 ? " disabled " : "")." class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
@@ -183,12 +181,6 @@ class Boleta_controller extends MY_Mantenedor{
                     }
                 }
 
-
-                if ($row->idEstadoBoleta == 2) {
-                    $this->session->set_userdata('disable','disable');
-                }
-
-
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = "(".$row->codigo.") ".$row->monto_boleta;
@@ -221,7 +213,8 @@ class Boleta_controller extends MY_Mantenedor{
                 'estado_boleta'             => $estado_boleta,
                 'vence'                     => $vence,
                 'tipo_boleta'               => $tipo_boleta,
-                'clase'                     => $clase
+                'clase'                     => $clase,
+                'idEstadoBoleta'            => $id_boleta
                 );
             
             return $resultado;  
@@ -264,9 +257,6 @@ class Boleta_controller extends MY_Mantenedor{
                         }
                     }
                 }
-
-
-                
 
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
@@ -406,12 +396,10 @@ class Boleta_controller extends MY_Mantenedor{
             $mensaje = array('boleta_ok'   => 'La boleta fue modificada exitosamente.');
             $this->session->set_userdata($mensaje);
             $this->TodasBoletas();
-            //$this->VistaModificaBoleta($id_boleta);
         }else{
             $mensaje = array('boleta_error'   => 'Ocurrió un error al tratar de modificar la boleta.');
             $this->session->set_userdata($mensaje);
             $this->TodasBoletas();
-            //$this->VistaModificaBoleta($id_boleta);
         }
     }
     

@@ -13,15 +13,14 @@
                 <?php $this->session->unset_userdata('mensaje_anexo')?>    
         <?php } ?>
     </div>
-    
-    
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">Ingrese anexo</div>
             <div class="panel-body">
-                <?php echo form_open(base_url().'index.php/anexo_controller/InsertarAnexo'); ?>
-                        <?php echo $boleta?>
-                <?php echo form_close(); ?>
+                <?php   echo form_open(base_url().'index.php/anexo_controller/InsertarAnexo');
+                            echo $boleta;
+                        echo form_close(); 
+                ?>
             </div>
         </div>
     </div>
@@ -35,7 +34,6 @@
     </div>
     <?php }?>
 </div>
-
 <script type="text/javascript">
     $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,
@@ -44,15 +42,13 @@
     todayBtn: "linked",
     format: "dd-mm-yyyy"
 });
-</script>
 
-<script>
-function confirmar()
-{
-    if(confirm('¿Estas seguro que desea ingresar este anexo?'))
+function confirmar(){
+    if(confirm('¿Estas seguro que desea ingresar este anexo?')){
         return true;
-    else
+    }else{
         return false;
+    }
 }
 </script>
 

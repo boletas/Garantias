@@ -24,9 +24,9 @@
     </div>
     </div>
     
-    <script>
+<script>
     $('#rut').Rut({
-    on_error: function(){ alert('Favor ingrese un rut valido');
+    on_error: function(){ alert('Favor ingrese un rut válido');
     $('#rut').val(''); 
     document.getElementById('rut');
     }

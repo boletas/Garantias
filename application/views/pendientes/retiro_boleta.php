@@ -44,7 +44,7 @@ function Volver(){
 }
 
 function Guardar(){
-    if(confirm("Esta seguro de guardar.? La boleta cambiará su estado a entregada")){
+    if(confirm("Está seguro de guardar los cambios.? La boleta cambiará su estado a entregada")){
         return true;
     }else{
         return false;
@@ -52,7 +52,7 @@ function Guardar(){
 }
 
 $('#rut').Rut({
-    on_error: function(){ alert('Favor ingrese un rut valido');
+    on_error: function(){ alert('Favor ingrese un rut válido');
         document.getElementById('rut');
         document.getElementById('guardar').disabled = true;
     },

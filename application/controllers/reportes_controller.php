@@ -132,7 +132,6 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->view('footer');        
     }
     
-    //public function ExcelReporte($fecha, $fecha1 = null, $vence = null, $periodo = null, $rut = null, $tipo = null, $busqueda = null, $estado = null){
     public function ExcelReporte($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado){
         $resultado = $this->GeneraReportes($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado);
         $this->load->view('reportes/excel_reporte', $resultado);

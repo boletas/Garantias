@@ -123,8 +123,6 @@ class Entidad_controller extends MY_Mantenedor{
         }
     }
 
-    
-
     //Muestra la lista de todas las entidades
     public function vista_entidad($data){
         $this->load->view('plantilla');

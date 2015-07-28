@@ -68,10 +68,10 @@
                                 <a href="<?php echo base_url();?>?sec=nueva_boleta"><i class="fa fa-list-alt fa-fw"></i> Nueva Boleta</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro boleta</a>
+                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Busqueda Boleta</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Busqueda Boleta</a>
+                                <a href="<?php echo base_url();?>?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro boleta</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url();?>index.php/pendientes_controller/ListaPendientes"><i class="fa fa-paperclip fa-fw"></i> Boletas Pendientes</a>

@@ -1,7 +1,11 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Detalles Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
-        <div class="text-right"><a class="btn btn-outline btn-primary " href="<?php echo base_url()?>index.php/anexo_controller/SelectBoleta/<?php echo $id_Boleta?>">Ver y/o Agregar anexo</a></div>
+        <?php if($idEstadoBoleta == 2){?>
+            <div class="text-right">
+                <a class="btn btn-outline btn-primary " href="<?php echo base_url()?>index.php/anexo_controller/SelectBoleta/<?php echo $id_Boleta?>">Ver y/o Agregar anexo</a>
+            </div>
+        <?php } ?>
         <br/>
     </div>
     <div class="col-lg-12">
@@ -55,11 +59,9 @@
         </table>
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
-            <?php if($this->session->userdata('disable')==''){?>
+            <?php if($idEstadoBoleta == 2){?>
             <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Modificar <i class="fa fa-pencil"></i></button>
             <?php } ?>
-                <?php $this->session->unset_userdata('disable');?>
-            
         </div>
         <input type="hidden" name="volver" id="volver" /> 
         <input type="hidden" name="que" id="que" /> 
@@ -73,6 +75,7 @@ function Accion(accion,id){
     document.getElementById('id_boleta').value = id;
     document.form1.submit();
 }
+
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
 }

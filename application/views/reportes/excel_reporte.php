@@ -12,7 +12,6 @@ header("Expires: 0");
     <tr>
         <td class="active" style="width: 120px" style="color: #ffffff; background: #333333"><b>N°</b></td>
         <td class="active" style="width: 120px" style="color: #ffffff; background: #333333"><b>Rut</b></td>
-        <!--<td class="active"><b>Nombre</b></td>-->
         <td class="active" style="width: 120px" style="color: #ffffff; background: #333333"><b>Emisón</b></td>
         <td class="active" style="width: 120px" style="color: #ffffff; background: #333333"><b>Vencimiento</b></td>
         <td class="active" style="width: 120px" style="color: #ffffff; background: #333333"><b>Tipo</b></td>

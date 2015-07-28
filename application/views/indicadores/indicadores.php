@@ -95,7 +95,7 @@
 <script>
     
 function pregunta(){
-    if(confirm("Esta seguro de guardar estos indicadores.?")){
+    if(confirm("Está seguro de guardar estos indicadores.?")){
         return true;
     }else{
         return false;

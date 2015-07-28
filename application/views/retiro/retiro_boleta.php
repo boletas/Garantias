@@ -60,15 +60,13 @@
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
 
-<script>
     $('#rut').Rut({
-    on_error: function(){ alert('Favor ingrese un rut valido'); 
-    document.getElementById('rut');
-    }
+        on_error: function(){ alert('Favor ingrese un rut válido'); 
+            document.getElementById('rut');
+        }
     });
 </script>

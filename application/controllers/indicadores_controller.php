@@ -38,18 +38,4 @@ class Indicadores_Controller extends MY_Mantenedor {
         }
         $this->IngresoIndicadores();
     }
-    
-//    public function ValidaIngreso(){
-//        $ultimo_ingreso = 0;
-//        $anio = date('Y');
-//        $mes = date('m');
-//        foreach($this->indicadores_model->UltimoMonto() as $row){
-//            $ultimo_ingreso = explode("-", $row->fecha_costo);//separo fecha para comparar mes y año
-//        }        
-//        if($ultimo_ingreso[0] == $anio && $ultimo_ingreso[1] == $mes){
-//            return 0;
-//        }else{
-//            return 1;
-//        }
-//    }
 }
