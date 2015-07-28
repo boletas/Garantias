@@ -30,6 +30,9 @@ class Boleta_controller extends MY_Mantenedor{
     }
     
     public function insert_boleta(){
+
+        $this->session->unset_userdata('rut_entidad_form');
+
         $idEntidad = $this->input->post('idEntidad');
         $num_boleta = $this->input->post('num_boleta');
         $monto_boleta = $this->input->post('monto_boleta');

@@ -4,15 +4,8 @@
     </div>
     <div class="col-lg-12">
                 <?php 
-                $idEntidad;
-                    $RutEntidad;
-                    $nombre;
                     
-                        foreach ($entidad as $value):
-                            $idEntidad = $value->idEntidad;
-                            $RutEntidad = $value->rut;
-                            $nombre = $value->nombre;
-                        endforeach;
+                    $idEntidad = $entidad->idEntidad;
                     
                 
                     $rut = array(
@@ -20,7 +13,7 @@
                                     'type'          => 'text',
                                     'id'            => 'disabledInput',
                                     'disabled'      => 'true',
-                                    'value'         => $RutEntidad
+                                    'value'         => $this->session->userdata('rut_entidad_form')
                                     
                                   );
                     $nombreEntidad = array(
@@ -28,7 +21,7 @@
                                     'type'          => 'text',
                                     'id'            => 'disabledInput',
                                     'disabled'      => 'true',
-                                    'value'         => $nombre
+                                    'value'         => $entidad->nombre
                                     
                                   );
                     

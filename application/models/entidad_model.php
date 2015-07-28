@@ -93,7 +93,7 @@ class Entidad_Model extends CI_Model{
     public function TraerEntidad($id){
         $query = $this->db->query("CALL pa_entidad('','',2,'".$id."')");
         if ($query){
-            $data = $query->result();
+            $data = $query->row();
             $query->free_result();
             $this->db->close();
             return $data;
