@@ -17,7 +17,7 @@ class Reportes_Controller extends MY_Mantenedor{
     public function Buscador(){
         
         $tipo_boleta = "<select name='tipo' id='tipo' class='form-control' style='display: none;'>";
-        $tipo_boleta .= "<option> --- Tipo --- </option>";
+        $tipo_boleta .= "<option value='0'>--- Tipo ---</option>";
         foreach($this->ObtieneTipoBoletas() as $row){
             $tipo_boleta .= "<option value='".$row->idTipoBoleta."'>".$row->descripcion_tipo_boleta."</option>";
         }
@@ -32,8 +32,8 @@ class Reportes_Controller extends MY_Mantenedor{
     }
     
     public function GeneraReportes($fecha,$fecha1,$vence,$periodo,$rut,$tipo,$busqueda, $estado){
-
-
+        
+        $data = "";        
         switch ($busqueda){
             case 1://todas las boletas
                 $data = $this->reportes_model->GeneraReportes($fecha, $fecha1, $vence, 3, 1, $periodo, $estado);
@@ -64,18 +64,20 @@ class Reportes_Controller extends MY_Mantenedor{
         }
         
         $datos = array( 'fecha'     => $fecha, 
+                        'fecha1'    => $fecha1, 
                         'vence'     => $vence, 
                         'periodo'   => $periodo,
                         'tipo'      => $tipo,
                         'busqueda'  => $busqueda,
                         'rut'       => $rut,
+                        'estado'    => $estado
                       );
         
         $total = $this->recursos->Formato1($total);
         $resultado['html'] = $html;
         $resultado['total'] = $total;
         $resultado['datos'] = $datos;
-        
+
         return($resultado);
     }
     
@@ -113,6 +115,15 @@ class Reportes_Controller extends MY_Mantenedor{
             $vence1 = 2;
         }
         
+        $fecha = (!empty($fecha) ? $fecha : 0);
+        $fecha1 = (!empty($fecha1) ? $fecha1 : 0);
+        $vence1 = (!empty($vence1) ? $vence1 : 0);
+        $periodo = (!empty($periodo) ? $periodo : 0);
+        $rut = (!empty($rut) ? $rut : 0);
+        $tipo = (!empty($tipo) ? $tipo : 0);
+        $busqueda = (!empty($busqueda) ? $busqueda : 0);
+        $estado = (!empty($estado) ? $estado : 0);
+        
         $resultado = $this->GeneraReportes($fecha, $fecha1, $vence1, $periodo, $rut, $tipo, $busqueda, $estado);
 
         $this->load->view('plantilla');
@@ -121,8 +132,9 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->view('footer');        
     }
     
-    public function ExcelReporte($fecha,$vence,$periodo,$tipo = 0,$busqueda,$rut = 0){
-        $resultado = $this->GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda);
+    //public function ExcelReporte($fecha, $fecha1 = null, $vence = null, $periodo = null, $rut = null, $tipo = null, $busqueda = null, $estado = null){
+    public function ExcelReporte($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado){
+        $resultado = $this->GeneraReportes($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado);
         $this->load->view('reportes/excel_reporte', $resultado);
     }
 }
