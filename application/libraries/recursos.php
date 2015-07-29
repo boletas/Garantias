@@ -105,7 +105,8 @@ class Recursos{
     function IngresoIndicadores(){
         $fecha_ant = $this->sumaFechas('-5 day');
         $fecha_pos = $this->sumaFechas('5 day');
-        $fecha = "2015-07-20"; // -> prueba de ingreso
+        //$fecha = "2015-07-20"; // -> prueba de ingreso
+        $fecha = date("Y-m-d");
         if($fecha >= $fecha_ant && $fecha <= $fecha_pos){
             return 1;
         }else{

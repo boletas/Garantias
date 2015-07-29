@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Boletas Entregadas</h1>
     </div>
-        <?php if(empty($html["html"])){ ?>
+        <?php if(isset($html["mensaje"])){ ?>
         <div class="col-lg-8 col-lg-offset-2">
             <div id="mensaje" class="alert alert-info">
                 <?php echo $html["mensaje"]; ?>
