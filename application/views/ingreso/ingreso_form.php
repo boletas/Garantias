@@ -32,32 +32,39 @@
                                     'placeholder'   => 'Numero de boleta',
                                     'type'          => 'text',
                                     'value'         => set_value('num_boleta'),
+                                    'onkeypress'    => 'return ValidNum(this)',
                                     'required'      => ''
                                   );
                     $monto_boleta = array(
                                     'name'          => 'monto_boleta',
                                     'class'         => 'form-control',
                                     'placeholder'   => 'Monto boleta',
+                                    'id'            => 'monto_boleta',
                                     'type'          => 'text',
-                                    'onkeypress'    => 'return ValidNum(this);',
                                     'required'      => 'true'
                                   );
                     $fecha_recepcion = array(
                                     'name'          => 'fecha_recepcion',
+                                    'id'            => 'fecha_recepcion',
                                     'class'         => 'form-control',
+                                    'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
                                     'required'      => 'true'
                                   );
                     $fecha_emision = array(
                                     'name'          => 'fecha_emision',
+                                    'id'            => 'fecha_emision',
                                     'class'         => 'form-control',
+                                    'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
                                     'style'         => 'width:100px',
                                     'required'      => 'true'
                                   );
                     $fecha_vencimiento = array(
                                     'name'          => 'fecha_vencimiento',
+                                    'id'            => 'fecha_vencimiento',
                                     'class'         => 'form-control',
+                                    'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
                                     'style'         => 'width:100px',
                                     'required'      => 'true'
@@ -74,8 +81,8 @@
                                     'name'          => 'Guardar',
                                     'value'         => 'Guardar',
                                     'content'       => 'Guardar',
-                                    'type'          => 'Submit',
-                                    'class'         => 'btn btn-outline btn-primary'
+                                    'class'         => 'btn btn-outline btn-primary',
+                                    'onClick'       => 'ValidaFechasBoleta(document.getElementById(\'fecha_recepcion\').value,document.getElementById(\'fecha_emision\').value,document.getElementById(\'fecha_vencimiento\').value)'
                                 );
                     
                     $btn_atras = array (
@@ -84,11 +91,13 @@
                                     'class'         => 'btn btn-outline btn-default'
                                 );
                     
+                    $form = array('name'    => 'form1');
+                    
                     ?>
                     
                    
                 <div class="col-lg-12">        
-                        <?php echo form_open(base_url().'index.php/boleta_controller/insert_boleta'); ?>      
+                        <?php echo form_open(base_url().'index.php/boleta_controller/insert_boleta',$form); ?>      
 
                     <table class="table table-bordered table-responsive">
                         <tr>
@@ -113,7 +122,7 @@
                             <td>
                                 <div id="sandbox-container" style="width: 150px">
                                     <div class="input-group date">
-                                                    <?php echo form_input($fecha_recepcion); ?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        <?php echo form_input($fecha_recepcion); ?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
                                 </div>
                             </td>
@@ -162,7 +171,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="active"><b>Monto boleta</b></td>
+                            <td class="active">Monto boleta</td>
                             <td><?php echo form_input($monto_boleta); ?></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
@@ -182,6 +191,12 @@
                 
                 </div>
 <script>
+//valida número
+$(document).ready(function(){
+    $('#monto_boleta').numeric();
+    //$('#decimal').numeric(","); 
+});
+//fin valida num
 
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,

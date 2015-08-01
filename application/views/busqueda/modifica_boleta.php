@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" class="form-control" name="numero_boleta" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/>
+                    <input type="text" class="form-control" name="numero_boleta" onkeypress="return ValidNum(this)" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/>
                 </td>
                 <td>
                     <div id="sandbox-container" style="width: 150px">
@@ -71,13 +71,13 @@
                 <td colspan="2"><?php echo $estado_boleta ?></td>
                 <td align="center"><?php echo $codigo ?></td>
                 <td colspan="2">
-                    <input type="text" class="form-control"  name="monto" id="monto" onkeypress="return ValidNum(this);" value="<?php echo $monto_boleta; ?>"/>
+                    <input type="text" class="form-control"  name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/>
                 </td>
             </tr>
         </table>
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
-            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="return Aceptar()">Aceptar</button>
+            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick=" return ValidaFechasBoleta(document.getElementById('recepcion').value,document.getElementById('emision').value,document.getElementById('vencimiento').value)">Aceptar</button>
         </div>
         <input type="hidden" name="volver" id="volver" />
         <input type="hidden" name="id_boleta" id="id_boleta" value="<?php echo $id_Boleta; ?>"/>
@@ -90,33 +90,12 @@ function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
 }
 
-function Aceptar(){
-    var fecha1 = document.getElementById('recepcion').value;
-    var fecha2 = document.getElementById('emision').value;
-    var fecha3 = document.getElementById('vencimiento').value;
-        
-    var error = 0;
-    if(ComparaFecha(fecha1,fecha2) == 2){
-        alert("Fecha de emisión debe ser menor a fecha de recepción");
-        error = 1;
-    }else if(ComparaFecha(fecha1,fecha3) == 1){
-        alert("Fecha de vencimiento debe ser mayor a fecha de recepción");
-        error = 1;
-    }else if(ComparaFecha(fecha2,fecha3) == 1){
-        alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
-        error = 1;
-    }
-    
-    if(error == 0){
-        if (confirm('¿Esta seguro de realizar estos cambios?')){ 
-            document.form1.submit();
-        }else{
-            return false;
-        }
-    }else{
-        return false;
-    }
-}
+//valida número
+$(document).ready(function(){
+    $('#monto').numeric();
+    //$('#decimal').numeric(","); 
+});
+//fin valida num
 
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,
