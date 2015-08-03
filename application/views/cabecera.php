@@ -85,7 +85,7 @@
                         <a href="#"><i class="fa fa-database fa-fw"></i> Mantenedores<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo base_url();?>?sec=banco"><i class="fa fa-bank fa-fw"></i> Banco</a>
+                                <a href="<?php echo base_url();?>index.php/banco_controller"><i class="fa fa-bank fa-fw"></i> Banco</a>
                             </li>
 <!--                            <li>
                                 <a href="<?php //echo base_url();?>?sec=tipo_empresa"><i class="fa fa-briefcase fa-fw"></i> Tipo Empresa</a>

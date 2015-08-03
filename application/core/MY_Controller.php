@@ -25,7 +25,7 @@ class MY_Mantenedor extends CI_Controller{
         }
     }
     
-    public function ObtieneStringBancos(){
+    /*public function ObtieneStringBancos(){
         $data = $this->banco_model->ObtieneBancos();
         if(!empty($data)){
             if ($data){
@@ -45,7 +45,7 @@ class MY_Mantenedor extends CI_Controller{
                 return $html;
             }
         }
-    }
+    }*/
     
     public function TraerEntidad($id){
         $data = $this->entidad_model->TraerEntidad($id);

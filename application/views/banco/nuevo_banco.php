@@ -49,7 +49,7 @@
                     <?php echo form_input($banco); ?>
                 </div>
                 <div class="form-group" style="text-align: right">
-                    <a href="<?php echo base_url()?>?sec=banco"><?php echo form_button($atras); ?></a>
+                    <a href="<?php echo base_url();?>index.php/banco_controller"><?php echo form_button($atras); ?></a>
                     <?php echo form_button($aceptar); ?>
                 </div>
                 <?php echo form_close(); ?>

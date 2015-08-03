@@ -56,7 +56,7 @@ class Plantilla_Controller extends MY_Mantenedor {
                     $this->load->view('usuario/configuracion');
                     break;
                 case "banco":
-                    $data['bancos'] = $this->ObtieneStringBancos();
+                    //$data['bancos'] = $this->ObtieneStringBancos();
                     $this->load->view('banco/banco', $data);
                     break;
                 case "nuevo_banco":

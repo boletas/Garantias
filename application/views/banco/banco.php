@@ -15,7 +15,7 @@
                 $alerta = $this->session->userdata('banco_error');
             }
         ?>
-            <div class="<?php echo $clase; ?>">
+            <div id="mensaje" class="<?php echo $clase; ?>">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $alerta; ?>
             </div>
@@ -86,6 +86,11 @@
         }
         document.form1.submit();
     }
+    
+    $(document).ready(function(){
+        if ($("div#mensaje")) {
+        setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+    }});
     
     function UnsetMensaje(){
         <?php $this->session->unset_userdata('banco_ok','banco_error')?>

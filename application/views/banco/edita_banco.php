@@ -13,15 +13,11 @@
             <?php } ?>
             
             <!--** FIN MENSAJES **-->
-            <?php
-            $idbanco = $this->session->userdata('idBanco');
-            $nombre_banco = $this->session->userdata('banco');
-            ?>
             <div class="panel-heading">Modificación Banco</div>
             <div class="panel-body">
                 <?php
                 $idBanco = array(
-                    'idBanco'       => $idbanco
+                    'idBanco'       => $idBanco
                 );
                 
                 $banco = array(
@@ -29,7 +25,7 @@
                     'class'         => 'form-control',
                     'required'      => 'true',
                     'placeholder'   => 'Ingrese nombre banco',
-                    'value'         => $nombre_banco
+                    'value'         => $banco
                 );
                 $atras = array(
                     'name'          => 'Atras',
@@ -48,7 +44,7 @@
                     <?php echo form_input($banco);?>
                 </div>
                 <div class="form-group" style="text-align: right">
-                    <a href="<?php echo base_url()?>?sec=banco"><?php echo form_button($atras); ?></a>
+                    <a href="<?php echo base_url();?>index.php/banco_controller"><?php echo form_button($atras); ?></a>
                     <?php echo form_button($aceptar);?>
                 </div>
                 <?php echo form_close();?>

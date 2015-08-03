@@ -9,18 +9,27 @@ class Banco_Controller extends CI_Controller {
     
     public function Index(){
         $que = $this->input->post("crud");
-        if($que == "nuevo"){
-            redirect(base_url()."?sec=nuevo_banco",'refresh');
-        }
-        
-        if($que == "editar"){
-            $idBanco = $this->input->post("cual");
-            $this->DevuelveBanco($idBanco);
-        }
-        
-        if($que == "eliminar"){
-            $idBanco = $this->input->post("cual");
-            $this->EliminaBanco($idBanco);
+        if(!$que){
+            $data['bancos'] = $this->ObtieneBancos();
+            $this->load->view('plantilla');
+            $this->load->view('cabecera');
+            $this->load->view('banco/banco',$data);
+            $this->load->view('footer');
+        }else{
+            $que = $this->input->post("crud");
+            if($que == "nuevo"){
+                redirect(base_url()."?sec=nuevo_banco",'refresh');
+            }
+
+            if($que == "editar"){
+                $idBanco = $this->input->post("cual");
+                $this->DevuelveBanco($idBanco);
+            }
+
+            if($que == "eliminar"){
+                $idBanco = $this->input->post("cual");
+                $this->EliminaBanco($idBanco);
+            }
         }
     }
     
@@ -34,8 +43,10 @@ class Banco_Controller extends CI_Controller {
             'idBanco'   => $idBanco,
             'banco'     => $nombre_banco
         );
-        $this->session->set_userdata($banco);
-        redirect(base_url()."?sec=edita_banco",'refresh');
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('banco/edita_banco',$banco);
+        $this->load->view('footer');
     }
     
     public function NuevoBanco(){
@@ -78,6 +89,28 @@ class Banco_Controller extends CI_Controller {
         }else{
             $this->session->set_userdata('banco_error','Ocurrio un problema al eliminar el registro');
             redirect(base_url()."?sec=banco",'refresh');
+        }
+    }
+    
+    public function ObtieneBancos(){
+        $data = $this->banco_model->ObtieneBancos();
+        if(!empty($data)){
+            if ($data){
+                $html = "";
+                $c = 0;
+                $html .= "<tbody>\n";
+                foreach ($data as $row) {
+                    $html .= "<tr><td width='150px'>".++$c."</td>";
+                    $html .= "<td>".$row->nombre_banco."</td>";
+                    $html .= "<td style='text-align: center;' width='150px'>";
+                    $html .= "<button type='button' value='$row->idBanco' name='editar_banco' class='btn btn-default btn-circle' Onclick=\"Accion('editar',$row->idBanco)\"><i class='fa fa-pencil'></i></button>&nbsp;";
+                    $html .= "<button type='button' value='$row->idBanco' name='nuevo_banco' id='nuevo_banco' class='btn btn-default btn-circle' Onclick=\"Accion('nuevo')\"><i class='fa fa-plus'></i></button>&nbsp;";
+                    $html .= "</td>";
+                    $html .= "</tr>\n";
+                }
+                $html .= "</tbody>";
+                return $html;
+            }
         }
     }
 }
