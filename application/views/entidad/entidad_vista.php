@@ -78,6 +78,7 @@ $(document).ready(function(){
 
 function UnsetMensaje(){
     <?php $this->session->unset_userdata('ok','error')?>
+    <?php $this->session->unset_userdata('error')?>
 }
 setTimeout("UnsetMensaje()",100);
 </script>

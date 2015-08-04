@@ -5,7 +5,12 @@
     <div class="col-lg-12">
                 <?php 
                     
-                    $idEntidad = $entidad->idEntidad;
+                    foreach ($entidad as $value) {
+                        $idEntidad = $value->idEntidad;
+                        $nombre = $value->nombre;
+
+                    }
+                    
                     
                 
                     $rut = array(
@@ -21,7 +26,7 @@
                                     'type'          => 'text',
                                     'id'            => 'disabledInput',
                                     'disabled'      => 'true',
-                                    'value'         => $entidad->nombre
+                                    'value'         => $nombre
                                     
                                   );
                     

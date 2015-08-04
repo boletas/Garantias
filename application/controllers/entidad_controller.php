@@ -19,8 +19,7 @@ class Entidad_controller extends MY_Mantenedor{
         
         
         if($rut_entidad){
-            $this->session->set_flashdata('insert','¡¡Esta entidad ya existe!!');
-             
+            $this->session->set_flashdata('insert','¡¡Esta entidad ya existe!!'); 
             redirect(base_url()."?sec=nueva_boleta",'refresh');
         }else{
             
@@ -29,8 +28,9 @@ class Entidad_controller extends MY_Mantenedor{
             if ($insertok) {
                 
                 $data = $this->entidad_model->GetEntidad($rut);
-                $this->session->set_userdata('idEntidad',$data->idEntidad);
-                
+                foreach ($data as $value) {
+                     $this->session->set_userdata('idEntidad',$value->idEntidad);
+                }
                 redirect(base_url()."?sec=ingreso_form",'refresh');
             }else{
                 $this->session->set_flashdata('insert','Error al guardar entidad');
@@ -98,7 +98,7 @@ class Entidad_controller extends MY_Mantenedor{
 
             if($query){
                $this->session->set_userdata('error',"¡¡Rut ya existe!!");
-               $this->modificar_entidad($id);
+               $this->entidades();
                 
             }else{
                 $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
@@ -134,8 +134,9 @@ class Entidad_controller extends MY_Mantenedor{
         $rut_entidad = $this->entidad_model->EntidadExiste($rut[0]);
         
         if($rut_entidad){
-            
-            $this->session->set_userdata('idEntidad',$rut_entidad->idEntidad);
+            foreach ($rut_entidad as $value) {
+                $this->session->set_userdata('idEntidad',$value->idEntidad);    
+            }
             redirect(base_url()."?sec=ingreso_form",'refresh');
         }else{
             

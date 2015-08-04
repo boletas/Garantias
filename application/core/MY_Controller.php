@@ -49,7 +49,10 @@ class MY_Mantenedor extends CI_Controller{
     
     public function TraerEntidad($id){
         $data = $this->entidad_model->TraerEntidad($id);
-        $this->session->set_userdata('rut_entidad_form', $this->recursos->DevuelveRut($data->rut));
+        foreach ($data as $value) {
+            $this->session->set_userdata('rut_entidad_form', $this->recursos->DevuelveRut($value->rut));
+        }
+        
 
         if(!empty($data)){
             if ($data){
