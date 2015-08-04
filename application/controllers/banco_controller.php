@@ -74,11 +74,10 @@ class Banco_Controller extends CI_Controller {
         $data = $this->banco_model->ModificaBanco($banco, $idBanco);
         if($data){
             $this->session->set_userdata('banco_ok', 'El banco fue actualizado correctamente');
-            redirect(base_url()."?sec=banco",'refresh');
         }else{
             $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de modificar el banco');
-            redirect(base_url()."?sec=nuevo_banco",'refresh');
         }
+        $this->Index();
     }
     
     public function EliminaBanco($idBanco){
@@ -94,9 +93,9 @@ class Banco_Controller extends CI_Controller {
     
     public function ObtieneBancos(){
         $data = $this->banco_model->ObtieneBancos();
+        $html = "";
         if(!empty($data)){
             if ($data){
-                $html = "";
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($data as $row) {
@@ -109,8 +108,10 @@ class Banco_Controller extends CI_Controller {
                     $html .= "</tr>\n";
                 }
                 $html .= "</tbody>";
-                return $html;
             }
+        }else{
+            $html['mensaje'] = "Actualmente no existen bancos en la base de datos";
         }
+        return $html;
     }
 }

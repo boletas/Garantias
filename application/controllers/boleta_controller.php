@@ -25,7 +25,7 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
     
-    public function Volver(){//da la funcion al boton volver
+    public function Volver(){//funcion al boton volver
         $this->TodasBoletas();
     }
     
@@ -135,16 +135,14 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
-            
-            $resultado = array('html' => $html);
-            
-            $this->load->view('plantilla');
-            $this->load->view('cabecera');
-            $this->load->view('busqueda/resultado_boleta', $resultado);
-            $this->load->view('footer');
+            $resultado['html'] = $html;
         }else{
-            return false;
+            $resultado['mensaje'] = "Actualmente no existen boletas en la base de datos";
         }
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('busqueda/resultado_boleta', $resultado);
+        $this->load->view('footer');
     }
     
     public function BuscarBoleta($id_boleta){//busca la boleta segun el id entregado

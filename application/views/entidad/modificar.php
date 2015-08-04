@@ -21,16 +21,21 @@
                     </form>  
                 <?php } ?>
             </div>
-    </div>
+        </div>
     </div>
     
 <script>
-    $('#rut').Rut({
+$('#rut').Rut({
     on_error: function(){ alert('Favor ingrese un rut válido');
-    $('#rut').val(''); 
-    document.getElementById('rut');
+        $('#rut').val(''); 
+        document.getElementById('rut');
     }
-    });
+});
+    
+function UnsetMensaje(){
+    <?php $this->session->unset_userdata('error_entidad')?>
+}
+setTimeout("UnsetMensaje()",500);
 </script>
     
     

@@ -4,7 +4,7 @@
     </div>
         <?php if(isset($html["mensaje"])){ ?>
         <div class="col-lg-8 col-lg-offset-2">
-            <div id="mensaje" class="alert alert-info">
+            <div class="alert alert-info">
                 <?php echo $html["mensaje"]; ?>
             </div>
         </div>
@@ -35,9 +35,8 @@
                 </tfoot>
                 <?php echo $html; ?>
             </table>
-                <?php } ?>
         </div>
-
+        <?php } ?>
 <script>
 function Entregada(idBoleta){
     window.location.assign("<?php echo base_url();?>index.php/entregadas_controller/DetalleEntregada/"+idBoleta);

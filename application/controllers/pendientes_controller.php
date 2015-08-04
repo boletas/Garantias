@@ -75,10 +75,10 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
-            $this->Pendientes($html);
         }else{
-            return false;
+            $html['mensaje'] = "Actualmente no existen boletas con el estado \"pendientes\"";
         }
+        $this->Pendientes($html);
     }
     
     public function GuardarRetiro(){

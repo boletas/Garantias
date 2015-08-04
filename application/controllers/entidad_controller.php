@@ -41,9 +41,9 @@ class Entidad_controller extends MY_Mantenedor{
     }
     
     public function entidades(){
-        $query= $this->entidad_model->Entidades();
+        $query = $this->entidad_model->Entidades();
+        $html = "";
         if($query){
-                $html = "";
                 $html .= "<tbody>";
                 foreach ($query as $row) {
                     $html .= "<tr>";
@@ -54,8 +54,10 @@ class Entidad_controller extends MY_Mantenedor{
                 }
                 $html .= "</tbody>";
                 $data['entidad'] = $html;
-                $this->vista_entidad($data);
-           }
+        }else{
+            $data['mensaje'] = "Actualmente no existen entidades en la base de datos";
+        }
+        $this->vista_entidad($data);
     }
     
     public function modificar_entidad($id){
@@ -72,7 +74,7 @@ class Entidad_controller extends MY_Mantenedor{
             $html .= "</div>";
             $html .= "<div class='form-group' style  ='text-align: right'>";
             $html .= "<input type='hidden' name='idEntidad' value='".$entidad->idEntidad."'>";
-            $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a><button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button>";       
+            $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a>&nbsp;<button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button>";       
             $html .= "</div>";
         }
         $data['modificar'] = $html;
@@ -95,39 +97,34 @@ class Entidad_controller extends MY_Mantenedor{
             $query = $this->entidad_model->EntidadExiste($rut);
 
             if($query){
-               $this->session->set_userdata('error_entidad',"¡¡Rut ya existe!!");
+               $this->session->set_userdata('error',"¡¡Rut ya existe!!");
                $this->modificar_entidad($id);
                 
             }else{
-               $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
-               if ($query) {
-                    $this->session->set_userdata('error',"Entidad actualizada exitosamente");
-                    $this->entidades();       
+                $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
+                if ($query) {
+                    $this->session->set_userdata('ok',"Entidad actualizada exitosamente");
                 }else{
                     $this->session->set_userdata('error',"Error al actualizar entidad");
-                    $this->entidades();
-
                 }
             }
 
         }else{
             $query = $this->entidad_model->actualizar_entidad($rut,$entidad, $id);
                if ($query) {
-                    $this->session->set_userdata('error',"Entidad actualizada exitosamente");
-                    $this->entidades();       
+                    $this->session->set_userdata('ok',"Entidad actualizada exitosamente");      
                 }else{
                     $this->session->set_userdata('error',"Error al actualizar entidad");
-                    $this->entidades();
-
                 }
         }
+        $this->entidades();
     }
 
     //Muestra la lista de todas las entidades
     public function vista_entidad($data){
         $this->load->view('plantilla');
         $this->load->view('cabecera');
-        $this->load->view('entidad/entidad_vista', $data);
+        $this->load->view('entidad/entidad_vista',$data);
         $this->load->view('footer');
     }
 

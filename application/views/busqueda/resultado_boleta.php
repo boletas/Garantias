@@ -2,61 +2,69 @@
     <div class="col-lg-12">
         <h1 class="page-header">Busqueda Boleta</h1>
     </div>
-    <div class="col-lg-12">
-        <!--** MENSAJE **-->
-        <?php 
-            $mensaje = "";
-            if($this->session->userdata('boleta_ok')){ 
-                $clase = "alert-info";
-                $mensaje = $this->session->userdata('boleta_ok');
-            }elseif($this->session->userdata('boleta_error')){ 
-                $clase = "alert-danger";
-                $mensaje = $this->session->userdata('boleta_error');
-            }
-            if($mensaje != ""){
-        ?>
+    <!--** MENSAJE **-->
+    <?php 
+        $mensaje = "";
+        if($this->session->userdata('boleta_ok')){ 
+            $clase = "alert-info";
+            $mensaje = $this->session->userdata('boleta_ok');
+        }elseif($this->session->userdata('boleta_error')){ 
+            $clase = "alert-danger";
+            $mensaje = $this->session->userdata('boleta_error');
+        }
+        if($mensaje != ""){
+    ?>
+        <div class="col-lg-12">
             <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $mensaje ?>
             </div>
-            <?php } ?>
-        <!--** FIN MENSAJES **-->
-    </div>
-    <div class="col-lg-12">
-        <?php 
-            $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
-        ?>
-            <table id="result_boleta" class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>N° Boleta</th>
-                        <th>Rut</th>
-                        <th>Emisión</th>
-                        <th>Monto</th>
-                        <th>Vencimiento</th>
-                        <th>Vence en</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>N° Boleta</th>
-                        <th>Rut</th>
-                        <th>Emisión</th>
-                        <th>Monto</th>
-                        <th>Vencimiento</th>
-                        <th>Vence en</th>
-                        <td></td>
-                    </tr>
-                </tfoot>
-                <?php echo $html; ?>
-            </table>
-            <input type="hidden" name="que" id="que" /> 
-            <input type="hidden" name="id_boleta" id="id_boleta" /> 
-            <?php echo form_close(); ?>
-    </div>
-</div>
+        </div>
+    <?php } ?>
+    <?php echo $mensaje; ?>
+    <!--** FIN MENSAJES **-->
+        <?php if(isset($mensaje)){?>
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="alert alert-info">
+                    <?php echo "Actualmente no existen boletas en la base de datos"; ?>
+                </div>
+            </div>
+        <?php }else{?>
+            <div class="col-lg-12">
+                <?php 
+                    $form = array('name'    => 'form1');
+                    echo form_open(base_url()."index.php/boleta_controller/ResultadoBoletas",$form);
+                ?>
+                    <table id="result_boleta" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>N° Boleta</th>
+                                <th>Rut</th>
+                                <th>Emisión</th>
+                                <th>Monto</th>
+                                <th>Vencimiento</th>
+                                <th>Vence en</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>N° Boleta</th>
+                                <th>Rut</th>
+                                <th>Emisión</th>
+                                <th>Monto</th>
+                                <th>Vencimiento</th>
+                                <th>Vence en</th>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                        <?php echo $html; ?>
+                    </table>
+                    <input type="hidden" name="que" id="que" /> 
+                    <input type="hidden" name="id_boleta" id="id_boleta" /> 
+                    <?php echo form_close(); ?>
+            </div>
+        <?php } ?>
 <script>
 function Accion(accion,id){
     document.getElementById('que').value = accion;

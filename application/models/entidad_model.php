@@ -60,7 +60,7 @@ class Entidad_Model extends CI_Model{
         $query = $this->db->query("CALL select_entidad('".$rut."')");
         
         if ($query){
-            $data = $query->row();
+            $data = $query->result();
             $query->free_result();
             $this->db->close();
             return $data;
@@ -78,7 +78,7 @@ class Entidad_Model extends CI_Model{
         
         if ($query){
             
-            $data = $query->row();
+            $data = $query->result();
             $query->free_result();
             $this->db->close();
             return $data;
@@ -93,7 +93,7 @@ class Entidad_Model extends CI_Model{
     public function TraerEntidad($id){
         $query = $this->db->query("CALL pa_entidad('','',2,'".$id."')");
         if ($query){
-            $data = $query->row();
+            $data = $query->result();
             $query->free_result();
             $this->db->close();
             return $data;

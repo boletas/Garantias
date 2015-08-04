@@ -2,52 +2,60 @@
     <div class="col-lg-12">
         <h1 class="page-header">Mantenedor Banco</h1>
     </div>
-     <div class="col-lg-12">
-        <!--** MENSAJE **-->
-        <?php 
-        if($this->session->userdata('banco_ok') || $this->session->userdata('banco_error')){
-            if($this->session->userdata('banco_ok')){ 
-                $clase = "alert alert-info alert-dismissable";
-                $alerta = $this->session->userdata('banco_ok');
-            }
-            if($this->session->userdata('banco_error')){
-                $clase = "alert alert-danger alert-dismissable";
-                $alerta = $this->session->userdata('banco_error');
-            }
-        ?>
+    <!--** MENSAJE **-->
+    <?php 
+    if($this->session->userdata('banco_ok') || $this->session->userdata('banco_error')){
+        if($this->session->userdata('banco_ok')){ 
+            $clase = "alert alert-info alert-dismissable";
+            $alerta = $this->session->userdata('banco_ok');
+        }
+        if($this->session->userdata('banco_error')){
+            $clase = "alert alert-danger alert-dismissable";
+            $alerta = $this->session->userdata('banco_error');
+        }
+    ?>
+        <div class="col-lg-12">
             <div id="mensaje" class="<?php echo $clase; ?>">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $alerta; ?>
             </div>
-        <?php } ?>
-        <!--** FIN MENSAJES **-->
-     </div>
-     <div class="col-lg-12">  
-        <?php 
-            $form = array('name'    => 'form1');
-            echo form_open(base_url()."index.php/banco_controller",$form); 
-        ?>
-        <table id="bancos" class="table table-bordered table-hover" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre Banco</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre Banco</th>
-                    <th style="text-align: center;"></th>
-                </tr>
-            </tfoot>
-            <?php echo $bancos;?>
-            <input type="hidden" id="crud" name="crud" value=""/>
-            <input type="hidden" id="cual" name="cual" value=""/>
-        </table>
-        <?php echo form_close(); ?>
-     </div>
+        </div>
+    <?php } ?>
+    <!--** FIN MENSAJES **-->
+        <?php if(isset($bancos["mensaje"])){ ?>
+           <div class="col-lg-8 col-lg-offset-2">
+               <div class="alert alert-info">
+                   <?php echo $bancos["mensaje"]; ?>
+               </div>
+           </div>
+        <?php }else{?>
+            <div class="col-lg-12">  
+                <?php 
+                    $form = array('name'    => 'form1');
+                    echo form_open(base_url()."index.php/banco_controller",$form); 
+                ?>
+                <table id="bancos" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Banco</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Banco</th>
+                            <th style="text-align: center;"></th>
+                        </tr>
+                    </tfoot>
+                    <?php echo $bancos;?>
+                    <input type="hidden" id="crud" name="crud" value=""/>
+                    <input type="hidden" id="cual" name="cual" value=""/>
+                </table>
+                <?php echo form_close(); ?>
+             </div>
+    <?php } ?>
 </div>
 <script type="text/javascript">
     
