@@ -23,7 +23,7 @@
     <?php } ?>
     <?php echo $mensaje; ?>
     <!--** FIN MENSAJES **-->
-        <?php if(isset($mensaje)){?>
+        <?php if(!empty($mensaje)){?>
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="alert alert-info">
                     <?php echo "Actualmente no existen boletas en la base de datos"; ?>
