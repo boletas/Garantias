@@ -46,7 +46,7 @@
                 echo form_open(base_url()."index.php/indicadores_controller/GuardarIndicadores",$form);
                 ?>
                 <div class="form-group">
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 1234.09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum2(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 1234.09">
                     <span class="text-muted small">
                         <?php if(!empty($indicadores->indicador->uf)){?>
                             <em>Valor UF <?php echo $indicadores->indicador->uf;?> al día <?php echo date('d-m-Y'); ?></em>
@@ -108,7 +108,8 @@ $(document).ready(function(){
 }});
 
 function UnsetMensaje(){
-<?php $this->session->unset_userdata('ok','error')?>
+<?php $this->session->unset_userdata('ok')?>
+<?php $this->session->unset_userdata('error')?>
 }
 setTimeout("UnsetMensaje()",500);
 

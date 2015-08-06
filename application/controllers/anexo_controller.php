@@ -127,7 +127,7 @@ class Anexo_controller extends CI_Controller
             $html .="<label>Fecha vencimiento</label>";
             $html .="<div id='sandbox-container' style='width: 200px;'>";
             $html .="<div class='input-group date'>";  
-            if ($query2) {
+            if ($query2) {  
                   $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query2->fecha_final)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";
               }else{
                   $html .="<input type='text' onfocus='this.blur();''  class='form-control' name='fecha'  value='".$this->recursos->FormatoFecha($query->fecha_vencimiento)."'><span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>";             
@@ -141,7 +141,7 @@ class Anexo_controller extends CI_Controller
             $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<a href='".base_url()."index.php/boleta_controller/VistaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
              
-             if($query->idEstadoBoleta != 2){
+             if($query->idEstadoBoleta == 1){
                  $html .= "<input type='submit' onclick='return confirmar()' value='Guardar' class='btn btn-outline btn-primary'>";
              }
 

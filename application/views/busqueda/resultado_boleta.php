@@ -18,12 +18,12 @@
             <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $mensaje ?>
+                <?php $mensaje ="";?>
             </div>
         </div>
     <?php } ?>
-    <?php echo $mensaje; ?>
     <!--** FIN MENSAJES **-->
-        <?php if(!empty($mensaje)){?>
+        <?php if(empty($html)){?>
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="alert alert-info">
                     <?php echo "Actualmente no existen boletas en la base de datos"; ?>
@@ -95,7 +95,8 @@ $(document).ready(function(){
 }});
 
 function UnsetMensaje(){
-    <?php $this->session->unset_userdata('boleta_ok','boleta_error')?>
+    <?php $this->session->unset_userdata('boleta_ok')?>
+    <?php $this->session->unset_userdata('boleta_error')?>
 }
 setTimeout("UnsetMensaje()",500);
 </script>

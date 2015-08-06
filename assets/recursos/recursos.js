@@ -5,6 +5,15 @@ function ValidNum() {
     }
 }
 
+
+function ValidNum2() {
+    //alert(event.keyCode);
+    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 46 || event.keyCode > 46)){
+        event.returnValue = false;
+    }
+}
+
+
 function ComparaFecha(f1, f2){//formato dd-mm-YYYY
     var fecha1 = f1.split("-");
     fecha1 = fecha1[2]+fecha1[1]+fecha1[0];
@@ -35,6 +44,10 @@ function ValidaFechasBoleta(recepcion,emision,vencimiento){
         error = 1;
     }else if(ComparaFecha(fecha2,fecha3) == 1){
         alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
+        error = 1;
+    }else if(document.getElementById('monto_boleta').length < 1){
+        alert("Debe ingresar un valor");
+        document.getElementById('monto_boleta').focus();
         error = 1;
     }
     

@@ -25,7 +25,7 @@
                                     'class'         => 'form-control',
                                     'type'          => 'text',
                                     'id'            => 'disabledInput',
-                                    'disabled'      => 'true',
+                                    'disabled'      => '',
                                     'value'         => $nombre
                                     
                                   );
@@ -46,7 +46,7 @@
                                     'placeholder'   => 'Monto boleta',
                                     'id'            => 'monto_boleta',
                                     'type'          => 'text',
-                                    'required'      => 'true'
+                                    'required'      => ''
                                   );
                     $fecha_recepcion = array(
                                     'name'          => 'fecha_recepcion',
@@ -54,7 +54,8 @@
                                     'class'         => 'form-control',
                                     'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
-                                    'required'      => 'true'
+                                    'required'      => '',
+                                    'value'         => date("d-m-Y")
                                   );
                     $fecha_emision = array(
                                     'name'          => 'fecha_emision',
@@ -63,7 +64,8 @@
                                     'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
                                     'style'         => 'width:100px',
-                                    'required'      => 'true'
+                                    'required'      => '',
+                                    'value'         => date("d-m-Y")
                                   );
                     $fecha_vencimiento = array(
                                     'name'          => 'fecha_vencimiento',
@@ -72,7 +74,8 @@
                                     'onfocus'       => 'this.blur()',
                                     'type'          => 'text',
                                     'style'         => 'width:100px',
-                                    'required'      => 'true'
+                                    'required'      => '',
+                                    'value'         => date("d-m-Y")
                                   );
                     $denominacion = array(
                                     'name'          => 'denominacion',
