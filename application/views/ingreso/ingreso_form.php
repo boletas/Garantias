@@ -12,109 +12,24 @@
                     }
                     
                     
-                
-                    $rut = array(
-                                    'class'         => 'form-control',
-                                    'type'          => 'text',
-                                    'id'            => 'disabledInput',
-                                    'disabled'      => 'true',
-                                    'value'         => $this->session->userdata('rut_entidad_form')
-                                    
-                                  );
-                    $nombreEntidad = array(
-                                    'class'         => 'form-control',
-                                    'type'          => 'text',
-                                    'id'            => 'disabledInput',
-                                    'disabled'      => '',
-                                    'value'         => $nombre
-                                    
-                                  );
                     
-                
-                    $num_boleta = array(
-                                    'name'          => 'num_boleta',
-                                    'class'         => 'form-control',
-                                    'placeholder'   => 'Numero de boleta',
-                                    'type'          => 'text',
-                                    'value'         => set_value('num_boleta'),
-                                    'onkeypress'    => 'return ValidNum(this)',
-                                    'required'      => ''
-                                  );
-                    $monto_boleta = array(
-                                    'name'          => 'monto_boleta',
-                                    'class'         => 'form-control',
-                                    'placeholder'   => 'Monto boleta',
-                                    'id'            => 'monto_boleta',
-                                    'type'          => 'text',
-                                    'required'      => ''
-                                  );
-                    $fecha_recepcion = array(
-                                    'name'          => 'fecha_recepcion',
-                                    'id'            => 'fecha_recepcion',
-                                    'class'         => 'form-control',
-                                    'onfocus'       => 'this.blur()',
-                                    'type'          => 'text',
-                                    'required'      => '',
-                                    'value'         => date("d-m-Y")
-                                  );
-                    $fecha_emision = array(
-                                    'name'          => 'fecha_emision',
-                                    'id'            => 'fecha_emision',
-                                    'class'         => 'form-control',
-                                    'onfocus'       => 'this.blur()',
-                                    'type'          => 'text',
-                                    'style'         => 'width:100px',
-                                    'required'      => '',
-                                    'value'         => date("d-m-Y")
-                                  );
-                    $fecha_vencimiento = array(
-                                    'name'          => 'fecha_vencimiento',
-                                    'id'            => 'fecha_vencimiento',
-                                    'class'         => 'form-control',
-                                    'onfocus'       => 'this.blur()',
-                                    'type'          => 'text',
-                                    'style'         => 'width:100px',
-                                    'required'      => '',
-                                    'value'         => date("d-m-Y")
-                                  );
-                    $denominacion = array(
-                                    'name'          => 'denominacion',
-                                    'class'         => 'form-control',
-                                    'placeholder'   => 'Denominacion de estudio',
-                                    'type'          => 'text',
-                                    'required'      => ''
-                                  );
                     
-                    $btn_insertar = array (
-                                    'name'          => 'Guardar',
-                                    'value'         => 'Guardar',
-                                    'content'       => 'Guardar',
-                                    'class'         => 'btn btn-outline btn-primary',
-                                    'onClick'       => 'ValidaFechasBoleta(document.getElementById(\'fecha_recepcion\').value,document.getElementById(\'fecha_emision\').value,document.getElementById(\'fecha_vencimiento\').value)'
-                                );
-                    
-                    $btn_atras = array (
-                                    'name'          => 'Atras',
-                                    'content'       => 'Atras',
-                                    'class'         => 'btn btn-outline btn-default'
-                                );
-                    
-                    $form = array('name'    => 'form1');
                     
                     ?>
                     
                    
                 <div class="col-lg-12">        
-                        <?php echo form_open(base_url().'index.php/boleta_controller/insert_boleta',$form); ?>      
+                        
+                        <form name="form1" method="post" action="<?php echo base_url()?>index.php/boleta_controller/insert_boleta">      
 
                     <table class="table table-bordered table-responsive">
                         <tr>
                             <td class="active">Rut</td>
-                            <td colspan="7"><?php echo form_input($rut); ?></td>
+                            <td colspan="7"><input type="text" class="form-control" disabled="true" value="<?php echo $this->session->userdata('rut_entidad_form')?>" /></td>
                         </tr>
                         <tr>
                             <td class="active">Razón Social</td>
-                            <td colspan="7"><div id="razon_social"><?php echo form_input($nombreEntidad); ?></div></td>
+                            <td colspan="7"><div id="razon_social"><input type="text" class="form-control" disabled="true" value="<?php echo $nombre?>" /></div></td>
                         </tr>
                         <tr class="active">
                             <td>N° Boleta</td>
@@ -125,26 +40,26 @@
                         </tr>
                         <tr>
                             <td>
-                                <?php echo form_input($num_boleta); ?>
+                                <input type="text" name="num_boleta" class="form-control" placeholder="Numero de boleta" onkeypress="return  validNum(this);" required>
                             </td>
                             <td>
                                 <div id="sandbox-container" style="width: 150px">
                                     <div class="input-group date">
-                                        <?php echo form_input($fecha_recepcion); ?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        <input type="text" name="fecha_recepcion" id="fecha_recepcion" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div id="sandbox-container" style="width: 140px">
                                     <div class="input-group date">
-                                        <?php echo form_input($fecha_emision); ?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        <input type="text" name="fecha_emision" id="fecha_emision" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
                                 </div>
                             </td>
                             <td colspan="2">
                                 <div id="sandbox-container" style="width: 140px">
                                     <div class="input-group date">
-                                        <?php echo form_input($fecha_vencimiento); ?><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        <input type="text" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
                                 </div>
                             </td>
@@ -169,7 +84,7 @@
                                     <?php }?>
                                 </select>
                             </td>
-                            <td colspan="4"><?php echo form_input($denominacion); ?></td>
+                            <td colspan="4"><input type="text" name="denominacion" required  class="form-control"/></td>
                             <td colspan="3">
                                 <select name="id_banco" class="form-control">
                                     <?php foreach ($bancos as $banco) { ?>
@@ -180,7 +95,7 @@
                         </tr>
                         <tr>
                             <td class="active">Monto boleta</td>
-                            <td><?php echo form_input($monto_boleta); ?></td>
+                            <td><input type="text" class="form-control" placeholder="Monto boleta" required id="monto_boleta" /></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
                                     <?php foreach ($monedas as $moneda) { ?>
@@ -189,13 +104,14 @@
                                 </select>
                             </td>
                             <td colspan="3">
-                                <a href="<?php echo base_url();?>?sec=nueva_boleta"><?php echo form_button($btn_atras);?></a>
-                                <?php echo form_button($btn_insertar);?>
+                                <a href="<?php echo base_url();?>?sec=nueva_boleta"></a>
+                                <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick=" return ValidaFechasBoleta(document.getElementById('recepcion').value,document.getElementById('emision').value,document.getElementById('vencimiento').value)">Aceptar</button>
+                                <input type="submit" class="btn btn-outline btn-primary" value="Guardar" name="guardar" onclick=" return ValidaFechasBoleta(document.getElementById('fecha_recepcion').value,document.getElementById('fecha_emision').value,document.getElementById('fecha_vencimiento').value)"/>
                             </td>
                         <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />
                         </tr>
                     </table>
-        <?php echo form_close(); ?>
+                    </form>
                 
                 </div>
 <script>
