@@ -193,6 +193,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
                 $estado_boleta = $row->estado_boleta;
                 $tipo_boleta = $row->descripcion_tipo_boleta;
+                $id_estado_boleta = $row->idEstadoBoleta;
             }
             
             $resultado = array(
@@ -212,7 +213,7 @@ class Boleta_controller extends MY_Mantenedor{
                 'vence'                     => $vence,
                 'tipo_boleta'               => $tipo_boleta,
                 'clase'                     => $clase,
-                'idEstadoBoleta'            => $id_boleta
+                'idEstadoBoleta'            =>  $id_estado_boleta
                 );
             
             return $resultado;  
