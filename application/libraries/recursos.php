@@ -101,7 +101,11 @@ class Recursos{
                 curl_close($curl);
             }
             $indicadores = json_decode($json);
-            return $indicadores;
+            $indica['euro'] = $this->FormatoMoneda($indicadores->euro->valor);
+            $indica['uf'] = $this->FormatoMoneda($indicadores->uf->valor);
+            $indica['dolar'] = $this->FormatoMoneda($indicadores->dolar->valor);
+            $indica['utm'] = $this->FormatoMoneda($indicadores->utm->valor);
+            return $indica;
         }else{
             return false;
         }
@@ -141,5 +145,9 @@ class Recursos{
       $fecha = !empty($fechaInicial) ? $fechaInicial : date('Y-m-d');
       $nuevaFecha = date('Y-m-d',strtotime ($suma,strtotime($fecha)));
       return ($nuevaFecha);
+    }
+    
+    function FormatoMoneda($valor){
+        return number_format($valor, 2, ",", ".");
     }
 }
