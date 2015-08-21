@@ -78,11 +78,30 @@ class Recursos{
         }
     }
     
-    function Indicadores(){
+    /*function Indicadores(){
         $xmlSource = "http://indicadoresdeldia.cl/webservice/indicadores.xml";
         $estado = $this->EstadoRed($xmlSource);
         if($estado){
             return (simplexml_load_file($xmlSource));
+        }else{
+            return false;
+        }
+    }*/
+    
+    function Indicadores(){
+        $url = "http://mindicador.cl/api";
+        $estado = $this->EstadoRed($url);
+        if($estado){
+            if(ini_get('allow_url_fopen')){
+                $json = file_get_contents($url);
+            }else{
+                $curl = curl_init($url);
+                curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+                $json = curl_exec($curl);
+                curl_close($curl);
+            }
+            $indicadores = json_decode($json);
+            return $indicadores;
         }else{
             return false;
         }

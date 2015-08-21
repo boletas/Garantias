@@ -6,7 +6,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $indicadores->indicador->uf;?></div>
+                            <div class="huge">$<?php echo $indicadores->uf->valor;?></div>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $indicadores->indicador->utm;?></div>
+                            <div class="huge">$<?php echo $indicadores->utm->valor;?></div>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $indicadores->moneda->dolar;?></div>
+                            <div class="huge">$<?php echo $indicadores->dolar->valor;?></div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $indicadores->moneda->euro;?></div>
+                            <div class="huge">$<?php echo $indicadores->euro->valor;?></div>
                         </div>
                     </div>
                 </div>
