@@ -45,10 +45,6 @@ function ValidaFechasBoleta(recepcion,emision,vencimiento){
     }else if(ComparaFecha(fecha2,fecha3) == 1){
         alert("Fecha de vencimiento debe ser mayor a fecha de emisión");
         error = 1;
-    }else if(document.getElementById('monto_boleta').length < 1){
-        alert("Debe ingresar un valor");
-        document.getElementById('monto_boleta').focus();
-        error = 1;
     }
     
     if(error == 0){

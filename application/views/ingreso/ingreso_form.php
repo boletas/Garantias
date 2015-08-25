@@ -11,12 +11,16 @@
 
                     }
                     
-                    
-                    
-                    
-                    
                     ?>
-                    
+                <div class="col-lg-10">
+                        <?php 
+                            if(validation_errors()){?>
+                                <div class="alert alert-warning alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <?php echo validation_errors();?>
+                                </div>
+                        <?php } ?>
+                </div>    
                    
                 <div class="col-lg-12">        
                         
@@ -40,7 +44,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="num_boleta" class="form-control" placeholder="Numero de boleta" onkeypress="return  validNum(this);" required>
+                                <input type="text" name="num_boleta" value="<?php echo set_value('num_boleta');?>" class="form-control" placeholder="Numero de boleta">
                             </td>
                             <td>
                                 <div id="sandbox-container" style="width: 150px">
@@ -84,7 +88,7 @@
                                     <?php }?>
                                 </select>
                             </td>
-                            <td colspan="4"><input type="text" name="denominacion" required  class="form-control"/></td>
+                            <td colspan="4"><input type="text" name="denominacion" value="<?php echo set_value('denominacion');?>" class="form-control"/></td>
                             <td colspan="3">
                                 <select name="id_banco" class="form-control">
                                     <?php foreach ($bancos as $banco) { ?>
@@ -95,7 +99,7 @@
                         </tr>
                         <tr>
                             <td class="active">Monto boleta</td>
-                            <td><input type="text" class="form-control" placeholder="Monto boleta" required id="monto_boleta" /></td>
+                            <td><input type="text" class="form-control" name="monto_boleta" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
                                     <?php foreach ($monedas as $moneda) { ?>
@@ -104,9 +108,8 @@
                                 </select>
                             </td>
                             <td colspan="3">
-                                <a href="<?php echo base_url();?>?sec=nueva_boleta"></a>
-                                <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick=" return ValidaFechasBoleta(document.getElementById('recepcion').value,document.getElementById('emision').value,document.getElementById('vencimiento').value)">Aceptar</button>
-                                <input type="submit" class="btn btn-outline btn-primary" value="Guardar" name="guardar" onclick=" return ValidaFechasBoleta(document.getElementById('fecha_recepcion').value,document.getElementById('fecha_emision').value,document.getElementById('fecha_vencimiento').value)"/>
+                                <a class="btn btn-default" href="<?php echo base_url();?>?sec=nueva_boleta">Volver</a>
+                                <input onclick=" return ValidaFechasBoleta(document.getElementById('fecha_recepcion').value,document.getElementById('fecha_emision').value,document.getElementById('fecha_vencimiento').value)" type="submit" class="btn btn-outline btn-primary" value="Guardar" name="guardar"/>
                             </td>
                         <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />
                         </tr>

@@ -46,7 +46,26 @@ class Boleta_controller extends MY_Mantenedor{
         $idTipo = $this->input->post('id_tipo');
         $idEstado = 1;
         
-        $insertok = $this->boleta_model->insert_boleta(
+        $this->form_validation->set_rules('num_boleta', 'numero de boleta','trim|required|min_length[1]|xss_clean');
+        $this->form_validation->set_rules('monto_boleta','monto de boleta','trim|required|xss_clean');
+        $this->form_validation->set_rules('denominacion','denominacion estudio','trim|required|min_length[1]|xss_clean');
+        
+        $this->form_validation->set_message('required','El campo %s es obligatorio');
+        
+        
+        if($this->form_validation->run() == FALSE){
+           $data['entidad'] = $this->TraerEntidad($this->session->userdata('idEntidad'));
+           $data['bancos'] = $this->ObtieneBancos();
+           $data['monedas'] = $this->ObtieneMoneda();
+           $data['garantias'] = $this->ObtieneTipoGarantia();
+           $data['tipos'] = $this->ObtieneTipoBoletas();
+           
+           $this->load->view('plantilla');
+           $this->load->view('cabecera');
+           $this->load->view('ingreso/ingreso_form', $data);
+           $this->load->view('footer');
+        }else{
+            $insertok = $this->boleta_model->insert_boleta(
                     $num_boleta,
                     $monto_boleta,
                     $fecha_recepcion,
@@ -59,14 +78,15 @@ class Boleta_controller extends MY_Mantenedor{
                     $idGarantia,
                     $idTipo,
                     $idEstado);
-        
-        if($insertok){
-            $this->session->set_flashdata('insert','Boleta ingresada correctamente.');
-            redirect(base_url()."?sec=nueva_boleta",'refresh');
-        }else{
-            $this->session->set_flashdata('insert','Error al ingresar boleta.');
-            redirect(base_url()."?sec=nueva_boleta",'refresh');
-       }
+            if($insertok){
+                $this->session->set_flashdata('insert','Boleta ingresada correctamente.');
+                redirect(base_url()."?sec=nueva_boleta",'refresh');
+            }else{
+                $this->session->set_flashdata('insert','Error al ingresar boleta.');
+                redirect(base_url()."?sec=nueva_boleta",'refresh');
+                
+            }
+        }
     }
     
     public function VistaBoleta($id_boleta){//obtiene el detalle de la boleta y lo presenta en una vista
