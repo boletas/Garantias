@@ -29,7 +29,58 @@ class Retiro_Controller extends CI_Controller {
             $query = $this->retiro_model->BuscarRutNum($rut,$num);
            
             if($query){
-                $html = "";
+                
+                $this->vista_retiro($this->llenar_tabla_retiro($query));
+                
+           }else{
+               $this->session->set_flashdata('error', 'No existen boletas con rut, numero especificado o no se encuentra en custodia');
+               redirect(base_url()."?sec=retiro_boleta",'refresh');
+           }
+            
+        }elseif (empty($rut) && !empty($num)) {
+            
+            $this->session->set_userdata("xnum",$num);
+            $query = $this->retiro_model->BuscarXNum($num);
+           
+            if($query){
+                
+                $this->vista_retiro($this->llenar_tabla_retiro($query));
+                
+           }else{
+               $this->session->set_flashdata('error', 'No existen boletas con numero especificado o no se encuentra en custodia');
+               redirect(base_url()."?sec=retiro_boleta",'refresh');
+           }
+            
+            
+            
+        }elseif (!empty($rut) && empty($num)) {
+            
+            $this->session->set_userdata("xrut",$rut);
+            $query = $this->retiro_model->BuscarXRut($rut);
+           
+           if($query){
+               
+                $this->vista_retiro($this->llenar_tabla_retiro($query));
+                
+           }else{
+               $this->session->set_flashdata('error', 'No existen boletas con rut especificado o no se encuentra en custodia');
+               redirect(base_url()."?sec=retiro_boleta",'refresh');
+           }
+        }
+    }
+    
+    public function vista_retiro($data){
+        
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('retiro/retiro_lista', $data);
+        $this->load->view('footer');
+        
+    }
+    
+    
+    public function llenar_tabla_retiro($query){
+        $html = "";
                 $c = 0;
                 $html .= "<tbody>\n";
                 foreach ($query as $row) {
@@ -46,86 +97,8 @@ class Retiro_Controller extends CI_Controller {
                 }
                 $html .= "</tbody>";
                 $data['retiro'] = $html;
-                $this->vista_retiro($data);
                 
-           }else{
-               $this->session->set_flashdata('error', 'No existen boletas con rut, numero especificado o no se encuentra en custodia');
-               redirect(base_url()."?sec=retiro_boleta",'refresh');
-           }
-            
-        }elseif (empty($rut) && !empty($num)) {
-            
-            $this->session->set_userdata("xnum",$num);
-            $query = $this->retiro_model->BuscarXNum($num);
-           
-            if($query){
-                $html = "";
-                $c = 0;
-                $html .= "<tbody>\n";
-                foreach ($query as $row) {
-                    $html .= "<tr>";
-                    $html .= "<td>".$row->numero_boleta."</td>";
-                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
-                    $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_recepcion)."</td>";
-                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
-                    $html .= "<td>".$row->nombre_banco."</td>";
-                    $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td  align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
-                    $html .= "</tr>\n";
-                }
-                $html .= "</tbody>";
-                
-                $data['retiro'] = $html;
-                $this->vista_retiro($data);
-                
-           }else{
-               $this->session->set_flashdata('error', 'No existen boletas con numero especificado o no se encuentra en custodia');
-               redirect(base_url()."?sec=retiro_boleta",'refresh');
-           }
-            
-            
-            
-        }elseif (!empty($rut) && empty($num)) {
-            
-            $this->session->set_userdata("xrut",$rut);
-            $query = $this->retiro_model->BuscarXRut($rut);
-           
-           if($query){
-               $html = "";
-                
-                $html .= "<tbody>\n";
-                foreach ($query as $row) {
-                    $html .= "<tr>";
-                    $html .= "<td>".$row->numero_boleta."</td>";
-                    $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
-                    $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_recepcion))."</td>";
-                    $html .= "<td>".date("d-m-Y", strtotime($row->fecha_vencimiento))."</td>";
-                    $html .= "<td>".$row->nombre_banco."</td>";
-                    $html .= "<td>".$row->descripcion."</td>";
-                    $html .= "<td  align='center'><a class='btn btn-default btn-circle' href='".base_url()."index.php/retiro_controller/vista_detalle/".$row->id_Boleta."'><i class='fa fa-eye'></i></a></td>";
-                    $html .= "</tr>\n";
-                }
-                $html .= "</tbody>";
-                
-                $data['retiro'] = $html;
-                $this->vista_retiro($data);
-                
-           }else{
-               $this->session->set_flashdata('error', 'No existen boletas con rut especificado o no se encuentra en custodia');
-               redirect(base_url()."?sec=retiro_boleta",'refresh');
-           }
-        }
-    }
-    
-    public function vista_retiro($data){
-        
-        $this->load->view('plantilla');
-        $this->load->view('cabecera');
-        $this->load->view('retiro/retiro_lista', $data);
-        $this->load->view('footer');
-        
+                return $data;
     }
     
     public function vista_detalle($id){

@@ -51,8 +51,8 @@
             <form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">
                 <button type="submit" class="btn btn-outline btn-default">Atras</button>
                 <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
-                <input type="hidden" value="<?php echo $rut; ?>" name="rut_buscar">
-                <input type="hidden" value="<?php echo $numero_boleta; ?>" name="num_buscar">
+                <input type="hidden" value="<?php echo $this->session->userdata('xrut'); ?>" name="rut_buscar">
+                <input type="hidden" value="<?php echo $this->session->userdata('xnum'); ?>" name="num_buscar">
             </form>
         </div>
     </div>
