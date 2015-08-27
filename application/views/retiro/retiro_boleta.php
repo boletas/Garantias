@@ -2,18 +2,20 @@
     <div class="col-lg-12">
         <h1 class="page-header">Retiro Boleta</h1>
     </div>
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading"> Tipo de Busqueda</div>
-            <div class="panel-body" align="center">
-                <?php 
+    <div class="col-lg-10">
+        <?php 
                     if($this->session->flashdata('error')){?>
                     <div class="alert alert-warning alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $this->session->flashdata('error')?>
                     </div>
 
-                <?php } ?>
+        <?php } ?>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Tipo de Busqueda</div>
+            <div class="panel-body" align="center">
                 <?php 
 
                 $rut_buscar = array(
