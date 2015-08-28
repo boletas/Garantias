@@ -148,6 +148,12 @@ class Recursos{
     }
     
     function FormatoMoneda($valor){
-        return number_format($valor, 2, ",", ".");
+        return number_format((float)$valor,2,",",".");
+    }
+    
+    function FormatoMonedaMySQL($valor){
+        $valor = str_replace(".","",$valor);
+        $valor = str_replace(",",".",$valor);
+        return $valor;
     }
 }

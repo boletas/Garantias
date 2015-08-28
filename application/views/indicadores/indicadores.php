@@ -24,12 +24,10 @@
     </div>
     <?php
     if($ingreso == 0){
-        foreach($valores as $row){
-            $euro = $row->e_euro;
-            $dolar = $row->e_dolar;
-            $uf = $row->e_uf;
-        }
-        $estado = "disabled";
+        $euro = $valores['e_euro'];
+        $dolar = $valores['e_dolar'];
+        $uf = $valores['e_uf'];
+        $estado = " disabled ";
     }else{
         $estado = "";
         $euro = "";
@@ -46,28 +44,13 @@
                 echo form_open(base_url()."index.php/indicadores_controller/GuardarIndicadores",$form);
                 ?>
                 <div class="form-group">
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum2(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 1234.09">
-                    <span class="text-muted small">
-                        <?php if(!empty($indicadores->indicador->uf)){?>
-                            <em>Valor UF <?php echo $indicadores->indicador->uf;?> al día <?php echo date('d-m-Y'); ?></em>
-                        <?php } ?>
-                    </span>
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum2(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 123.123,09">
                 </div>
                 <div class="form-group">
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 1234.09">
-                    <span class="text-muted small">
-                        <?php if(!empty($indicadores->moneda->dolar)){?>
-                            <em>Valor Dolar <?php echo $indicadores->moneda->dolar;?> al día <?php echo date('d-m-Y'); ?></em>
-                        <?php } ?>
-                    </span>
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" onkeypress="ValidNum2(this)" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 123.123,09">
                 </div>
                 <div class="form-group"> 
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 1234.09">
-                    <span class="text-muted small">
-                        <?php if(!empty($indicadores->moneda->euro)){?>
-                            <em>Valor euro <?php echo $indicadores->moneda->euro;?> al día <?php echo date('d-m-Y'); ?></em>
-                        <?php } ?>    
-                    </span>
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" onkeypress="ValidNum2(this)"  value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 123.123,09">
                 </div>
                 <?php if($ingreso != 0){ ?>
                 <div class="form-group" align="right">

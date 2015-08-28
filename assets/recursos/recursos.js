@@ -8,7 +8,7 @@ function ValidNum() {
 
 function ValidNum2() {
     //alert(event.keyCode);
-    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 46 || event.keyCode > 46)){
+    if ((event.keyCode < 44 || event.keyCode > 57) && (event.keyCode < 46 || event.keyCode > 46)){
         event.returnValue = false;
     }
 }
