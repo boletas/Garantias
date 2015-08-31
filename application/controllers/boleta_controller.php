@@ -330,12 +330,13 @@ class Boleta_controller extends MY_Mantenedor{
                 $tipo_garantia .= "</select>";
                 
                 $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
-                
+                $id_estado_boleta = 0;
                 $estado_boleta = "<select name='estado_boleta' '  id='estado_boleta' class='form-control'>";
                 foreach($this->ObtieneEstadoBoletas() as $row1){
 
                     if($row1->idEstadoBoleta == $row->idEstadoBoleta){
                         $estado_boleta .= "<option value='".$row1->idEstadoBoleta."' selected>".$row1->descripcion."</option>";
+                        $id_estado_boleta = $row1->idEstadoBoleta;
                     }else{
                         $estado_boleta .= "<option value='".$row1->idEstadoBoleta."'>".$row1->descripcion."</option>";
                     }
@@ -357,6 +358,7 @@ class Boleta_controller extends MY_Mantenedor{
             
             $resultado = array(
                     'id_Boleta'                 => $id_boleta,
+                    'idEstadoBoleta'            =>$id_estado_boleta,
                     'numero_boleta'             => $numero_boleta,
                     'monto_boleta'              => $monto_boleta,
                     'codigo'                    => $codigo,

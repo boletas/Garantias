@@ -36,9 +36,9 @@ class Anexo_controller extends CI_Controller
         }
 
         
-        public function SelectBoleta($idBoleta){
+        public function SelectBoleta($idBoleta,$op){
 
-           $data['boleta'] = $this->TraerBoleta($idBoleta);
+           $data['boleta'] = $this->TraerBoleta($idBoleta,$op);
            $data['anexo'] = $this->TraerAnexo($idBoleta);
            $this->vista_anexo($data);   
 
@@ -96,7 +96,7 @@ class Anexo_controller extends CI_Controller
             
         }
 
-    public function TraerBoleta($idBoleta){
+    public function TraerBoleta($idBoleta, $op){
 
              $query = $this->anexo_model->TraerBoleta($idBoleta);
              $query2 = $this->anexo_model->TraerMontoAnexo($idBoleta);
@@ -139,8 +139,11 @@ class Anexo_controller extends CI_Controller
             $html .= "<input type='hidden' name='idBoleta' value='".$query->id_Boleta."'>";
 
             $html .= "<div class='form-group' style='text-align: right'>";
+            if($op == 1){
+                $html .= "<a href='".base_url()."index.php/boleta_controller/VistaModificaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
+            }else{
             $html .= "<a href='".base_url()."index.php/boleta_controller/VistaBoleta/$query->id_Boleta' class='btn btn-default'>Volver</a> ";
-             
+            }
              if($query->idEstadoBoleta == 1){
                  $html .= "<input type='submit' onclick='return confirmar()' value='Guardar' class='btn btn-outline btn-primary'>";
              }
