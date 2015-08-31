@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         
         <?php if($this->session->userdata('mensaje_anexo')){?>
-            <div class="alert alert-warning alert-dismissable">
+        <div class="alert alert-warning alert-dismissable" id="mensaje">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->userdata('mensaje_anexo')?>
 
@@ -42,6 +42,11 @@
     todayBtn: "linked",
     format: "dd-mm-yyyy"
 });
+
+$(document).ready(function(){
+    if ($("div#mensaje")) {
+    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+}});
 
 function confirmar(){
     if(confirm('¿Estas seguro que desea ingresar este anexo?')){

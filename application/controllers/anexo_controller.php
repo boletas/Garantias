@@ -26,10 +26,10 @@ class Anexo_controller extends CI_Controller
             
             if($query){
                 $this->session->set_userdata('mensaje_anexo','Anexo insertado correctamente..');
-                $this->SelectBoleta($idBoleta);
+                $this->SelectBoleta($idBoleta, 2);
             }else{
                 $this->session->set_userdata('mensaje_anexo','Error al insertar..');
-                $this->SelectBoleta($idBoleta);
+                $this->SelectBoleta($idBoleta, 2);
             }
             
             
