@@ -62,6 +62,7 @@ class Pdf_Controller extends MY_Mantenedor {
             $fecha_vencimiento = $row->fecha_vencimiento;
             $tipo_garantia = $row->tipo_garantia;
             $denominacion = $row->denominacion;
+            $codigo = $row->codigo;
         }
         
         $html = '';
@@ -85,7 +86,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td style="width: 100px">Banco</td><td style="width: 502px">:&nbsp;&nbsp;'.$banco.'</td></tr>';
         $html .= '<tr><td style="width: 100px">Número</td><td>:&nbsp;&nbsp;'.$numero_boleta.'</td></tr>';
-        $html .= '<tr><td style="width: 100px">Valor</td><td>:&nbsp;&nbsp;'.$monto_boleta.'</td></tr>';
+        $html .= '<tr><td style="width: 100px">Valor</td><td>:&nbsp;&nbsp;('.$codigo.') '.$monto_boleta.'</td></tr>';
         $html .= '<tr><td style="width: 100px">Fecha Emisión</td><td>:&nbsp;&nbsp;'.$this->recursos->FormatoFecha2($fecha_recepcion).'</td></tr>';
         $html .= '<tr><td style="width: 100px">Fecha Validez</td><td>:&nbsp;&nbsp;'.$this->recursos->FormatoFecha2($fecha_vencimiento).'</td></tr>';
         $html .= '<tr><td style="width: 100px">Concepto</td><td>:&nbsp;&nbsp;'.$tipo_garantia.'</td></tr>';
@@ -99,7 +100,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '<tr><td colspan="2" align="center"><b>Yasna Vega Leiva</b></td></tr>';
         $html .= '<tr><td colspan="2" align="center">Jefa Departamento de Finanzas</td></tr>';
         $html .= '<tr><td colspan="2" align="center">Subsecretaría de Energía</td></tr>';
-        $html .= '<tr><td colspan="2">---------------------------------------------------------------------------------------------------</td></tr>';
+        $html .= '<tr><td colspan="2">------------------------------------------------------------------------------------------------------------------------------------------------</td></tr>';
         $html .= '<tr><td colspan="2"><b>Recepción Conforme</b></td></tr>';
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
