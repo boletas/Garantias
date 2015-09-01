@@ -192,6 +192,7 @@ class Retiro_Controller extends CI_Controller {
         $row = $this->retiro_model->BuscarBoleta($id);
         
         if($query){
+            
             $html = "<table class='table table-borderer'>";
             $html .= "<tr>";
             $html .= "<td class='active'>Razon social</td>";
@@ -201,12 +202,13 @@ class Retiro_Controller extends CI_Controller {
             $html .= "</tr>";        
             
             foreach ($query as $row1) {
-               
+                $fecha_final =  $this->recursos->FormatoFecha($row1->fecha_final);
+                $fecha_registro =  $this->recursos->FormatoFecha($row1->fecha_registro);
                 $html .= "<tr>";
                 $html .= "<td>$row->nombre</td>";
                 $html .= "<td>($row->codigo) $row1->monto_final</td>";
-                $html .= "<td>$row1->fecha_final</td>";
-                $html .= "<td>$row1->fecha_registro</td>";
+                $html .= "<td>$fecha_final</td>";
+                $html .= "<td>$fecha_registro</td>";
                 $html .= "</tr>";
             }
             
