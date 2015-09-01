@@ -109,7 +109,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '<tr><td style="width: 100px">Concepto</td><td>:&nbsp;&nbsp;'.$tipo_garantia.'</td></tr>';
         //$html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td style="width: 100px">Detalle</td><td>:&nbsp;&nbsp;'.$denominacion.'</td></tr>';
-        $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
+        $html .= '<tr><td colspan="2">&nbsp;</td></tr>'; 
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td colspan="2">Sin otro particular le saluda,</td></tr>';
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
