@@ -59,7 +59,7 @@
         </table>
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
-            <?php if($idEstadoBoleta == 2){?>
+            <?php if(!$idEstadoBoleta == 2){?>
             <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="Accion(2,<?php echo $id_Boleta?>)">Modificar <i class="fa fa-pencil"></i></button>
             <?php } ?>
         </div>
