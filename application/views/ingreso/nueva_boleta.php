@@ -5,7 +5,7 @@
     <div class="col-lg-10">
         <?php 
             if($this->session->flashdata('insert')){?>
-                <div class="alert alert-warning alert-dismissable">
+        <div id="mensaje" class="alert alert-warning alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <?php echo $this->session->flashdata('insert')?> <?php if($this->session->flashdata('op')){?>¿Desea crear esta entidad?  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button><?php }?>
                 </div>
@@ -125,6 +125,11 @@
             document.getElementById('rut');
         }
     });
+    
+    $(document).ready(function(){
+    if ($("div#mensaje")) {
+    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+}});
     
     $('#rut_entidad').Rut({
         on_error: function(){ alert('Favor ingrese un rut válido');

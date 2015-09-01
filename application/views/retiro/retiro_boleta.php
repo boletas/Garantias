@@ -5,7 +5,7 @@
     <div class="col-lg-10">
         <?php 
                     if($this->session->flashdata('error')){?>
-                    <div class="alert alert-warning alert-dismissable">
+        <div id="mensaje" class="alert alert-warning alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <?php echo $this->session->flashdata('error')?>
                     </div>
@@ -71,4 +71,9 @@
             document.getElementById('rut');
         }
     });
+    
+    $(document).ready(function(){
+    if ($("div#mensaje")) {
+    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+}});
 </script>
