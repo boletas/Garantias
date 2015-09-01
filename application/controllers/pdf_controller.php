@@ -6,13 +6,14 @@ class Pdf_Controller extends MY_Mantenedor {
         parent::__construct();
         $this->load->model('pdf_model');
         $this->load->model('boleta_model');
+        $this->load->model('anexo_model');
         $this->load->model('reportes_model');
         $this->load->model('retiro_model');
         $this->load->library('Pdf');
         $this->load->library('recursos');
     }
 
-    public function GeneraPdf($html,$nombre){
+    public function GeneraPdf($html,$nombre, $idBoleta=0){
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('');
@@ -44,6 +45,14 @@ class Pdf_Controller extends MY_Mantenedor {
         
         $pdf->writeHTML($html, true, false, true, false, '');
         
+        if($idBoleta){
+            $anexo = $this->AnexoBoleta($idBoleta);
+            if($anexo){
+                $pdf->AddPage();
+                $pdf->writeHTML($anexo, true, false, true, false, '');
+            }
+        }
+        
         $nombre_archivo = utf8_decode($nombre.date('Y-m-d-His').".pdf");
         $pdf->Output($nombre_archivo, 'I');
     }
@@ -58,6 +67,9 @@ class Pdf_Controller extends MY_Mantenedor {
             $banco = $row->nombre_banco;
             $numero_boleta = $row->numero_boleta;
             $monto_boleta = $row->monto_boleta;
+            
+            $anexo = $this->MontoAnexo($id_boleta);
+            $monto_anexo = ($anexo ? $anexo : false);
             $fecha_recepcion = $row->fecha_recepcion;
             $fecha_vencimiento = $row->fecha_vencimiento;
             $tipo_garantia = $row->tipo_garantia;
@@ -87,10 +99,15 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '<tr><td style="width: 100px">Banco</td><td style="width: 502px">:&nbsp;&nbsp;'.$banco.'</td></tr>';
         $html .= '<tr><td style="width: 100px">Número</td><td>:&nbsp;&nbsp;'.$numero_boleta.'</td></tr>';
         $html .= '<tr><td style="width: 100px">Valor</td><td>:&nbsp;&nbsp;('.$codigo.') '.$monto_boleta.'</td></tr>';
+        
+        if($anexo){
+            $html .= '<tr><td style="width: 100px">Valor Anexo</td><td>:&nbsp;&nbsp;('.$codigo.') '.$anexo.'</td></tr>';
+        }
+            
         $html .= '<tr><td style="width: 100px">Fecha Emisión</td><td>:&nbsp;&nbsp;'.$this->recursos->FormatoFecha2($fecha_recepcion).'</td></tr>';
         $html .= '<tr><td style="width: 100px">Fecha Validez</td><td>:&nbsp;&nbsp;'.$this->recursos->FormatoFecha2($fecha_vencimiento).'</td></tr>';
         $html .= '<tr><td style="width: 100px">Concepto</td><td>:&nbsp;&nbsp;'.$tipo_garantia.'</td></tr>';
-        $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
+        //$html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td style="width: 100px">Detalle</td><td>:&nbsp;&nbsp;'.$denominacion.'</td></tr>';
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
@@ -120,8 +137,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '</table>';
         
         $nombre = "Carta_";
-        
-        $this->GeneraPdf($html, $nombre);
+        $this->GeneraPdf($html, $nombre, $id_boleta);
     }
     
     public function GeneraReportes($fecha, $vence, $periodo, $rut, $tipo, $busqueda){
@@ -175,6 +191,45 @@ class Pdf_Controller extends MY_Mantenedor {
         $row = $this->retiro_model->EstadoBoleta($id_boleta,$id_estado_boleta);
         if($row){
             $this->BoletaPdf($id_boleta);
+        }
+    }
+    
+    public function AnexoBoleta($idBoleta){
+        $data = $this->anexo_model->Anexos($idBoleta);
+        if($data){
+            $html = '';
+            $cont = 0;
+            foreach($data as $row){
+                $html .= '<table width="100%" border="1" cellspacing="2" cellpadding="3">';
+                $html .= '<tr>';
+                $html .= '<td colspan="2"><b>Anexo N°'.++$cont.'</b></td>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<td>Fecha Ingreso</td>';
+                $html .= '<td>'.$this->recursos->FormatoFecha2($row->fecha_registro).'</td>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<td>Monto Anexo</td>';
+                $html .= '<td>('.$row->codigo.') '.$row->monto_final.'</td>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<td>Fecha Final</td>';
+                $html .= '<td>'.$this->recursos->FormatoFecha2($row->fecha_final).'</td>';
+                $html .= '</tr>';
+                $html .= '</table><br/><br/>';
+            }
+            return $html;
+        }else{
+            return false;
+        }
+    }
+    
+    public function MontoAnexo($idBoleta){
+        $data = $this->anexo_model->TraerMontoAnexo($idBoleta);
+        if($data){
+            return $data->monto_final;
+        }else{
+            return false;
         }
     }
 }
