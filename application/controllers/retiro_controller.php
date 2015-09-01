@@ -4,6 +4,8 @@ class Retiro_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('retiro_model');
+        $this->load->model('anexo_model');
+        
         $this->load->library('recursos');
     }
     
@@ -152,6 +154,9 @@ class Retiro_Controller extends CI_Controller {
             $descripcion_tipo_boleta = $row->descripcion_tipo_boleta;
             $estado_boleta = $row->estado_boleta;
             $tipo_boleta = $row->descripcion_tipo_boleta;
+            
+            
+            
            
            $data = array(
                 'id_Boleta'                 => $id_boleta,
@@ -169,7 +174,8 @@ class Retiro_Controller extends CI_Controller {
                 'estado_boleta'             => $estado_boleta,
                 'vence'                     => $vence,
                 'tipo_boleta'               => $tipo_boleta,
-                'clase'                     => $clase
+                'clase'                     => $clase,
+                'html'                      => $this->cargar_lista_anexos($id_boleta)
            );
            
             $this->load->view('plantilla');
@@ -179,4 +185,36 @@ class Retiro_Controller extends CI_Controller {
            
        } 
     }
+    
+    public function cargar_lista_anexos($id){
+        
+        $query = $this->anexo_model->TraerAnexo($id);
+        $row = $this->retiro_model->BuscarBoleta($id);
+        
+        if($query){
+            $html = "<table class='table table-borderer'>";
+            $html .= "<tr>";
+            $html .= "<td class='active'>Razon social</td>";
+            $html .= "<td class='active'>Monto anexo</td>";
+            $html .= "<td class='active'>Fecha vencimiento anexo</td>";
+            $html .= "<td class='active'>Fecha registro anexo</td>";
+            $html .= "</tr>";        
+            
+            foreach ($query as $row1) {
+               
+                $html .= "<tr>";
+                $html .= "<td>$row->nombre</td>";
+                $html .= "<td>($row->codigo) $row1->monto_final</td>";
+                $html .= "<td>$row1->fecha_final</td>";
+                $html .= "<td>$row1->fecha_registro</td>";
+                $html .= "</tr>";
+            }
+            
+            $html .= "</table>";
+            
+            return $html;
+        }else{
+            return FALSE;
+        }
+    }     
 }

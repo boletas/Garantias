@@ -1,6 +1,13 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Detalles Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <!--Aca el IF para mostrar el boton-->
+        <?php if($html != FALSE){ ?>
+        <div class="text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ver Anexos</button>
+        </div>
+        <br/>
+        <?php } ?>
     </div>
     <div class="col-lg-12">
         <table class="table table-bordered">
@@ -57,6 +64,26 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Listado de Anexos</h4>
+            </div>
+            <div class="modal-body">
+                <?php if($html != FALSE){ ?>
+                <?php echo $html; ?>
+                <?php } ?>
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+
+
 <script>
     function Pregunta(){
         if(confirm("El estado de la Boleta será modificado a pendiente, ¿Está seguro de continuar?")){
