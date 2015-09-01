@@ -48,6 +48,11 @@ $(document).ready(function(){
     setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
 }});
 
+$(document).ready(function(){
+    $('#monto_boleta').numeric();
+    //$('#decimal').numeric(","); 
+});
+
 function confirmar(){
     if(confirm('¿Estas seguro que desea ingresar este anexo?')){
         return true;
