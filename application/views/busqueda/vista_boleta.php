@@ -27,7 +27,7 @@
                 <td>Fecha Recepción</td>
                 <td>Fecha Emisión</td>
                 <td>Fecha Vecimiento</td>
-                <td colspan="3">Vence</td>
+                <td colspan="3" width="250px">Vence</td>
             </tr>
             <tr>
                 <td><?php echo $numero_boleta; ?></td>
