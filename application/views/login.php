@@ -12,13 +12,15 @@
                 <div class="login-form">
                     <!--** MENSAJE DE ERROR USUARIO INCORRECTO **-->
                     <?php 
-                    if($this->session->flashdata('usuario_incorrecto')){?>
+                    if(!empty($this->session->userdata('login'))){?>
                     <div class="alert alert-error">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h4>Error!</h4>
-                        <?php echo $this->session->flashdata('usuario_incorrecto')?>
+                        <?php echo $this->session->userdata('login');?>
                     </div>
-                    <?php } ?>
+                    
+                    
+                    <?php }$this->session->unset_userdata('login'); ?>
                     <!--** FIN MENSAJES DE ERROR **-->
                     <?php 
                     echo form_open(base_url().'index.php/login_controller/Inicio_Sesion');

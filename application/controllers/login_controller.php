@@ -11,17 +11,28 @@ class Login_Controller extends CI_Controller {
         $usuario = $this->input->post("usuario");
         $pass = $this->input->post("password");
         
-        $data = $this->login_model->login_user($usuario,$pass);
-        if(!empty($data)){
-            if ($data->num_rows() > 0){
-                $this->datos_persona->Persona($data->row('idUsuario'),'login');
+        $this->form_validation->set_rules('usuario', 'Nombre de usuario','trim|required|min_length[5]|xss_clean|valid_base64');
+        $this->form_validation->set_rules('password','contraseña','trim|required|min_length[5]|xss_clean|valid_base64');
+        
+        $this->form_validation->set_message('required','El campo %s es obligatorio');
+        $this->form_validation->set_message('min_length','El campo %s debe tener minimo 5 caracteres');
+        $this->form_validation->set_message('valid_base64','El campo %s contiene caracteres invalidos');
+        
+        if($this->form_validation->run() == FALSE){
+            $mensaje = validation_errors();
+            $this->session->set_userdata('login',$mensaje);
+            redirect('plantilla_controller');
+        }else{
+            $data = $this->login_model->login_user($usuario,$pass);
+            if(!empty($data)){
+                if ($data->num_rows() > 0){
+                    $this->datos_persona->Persona($data->row('idUsuario'),'login');
+                }
             }else{
-                $this->session->set_flashdata('usuario_incorrecto','Usuario o contraseña incorrecto');
+                $mensaje = 'Ususario o contraseña incorrectos';
+                $this->session->set_userdata('login',$mensaje);
                 redirect('plantilla_controller');
             }
-        }else{
-            $this->session->set_flashdata('usuario_incorrecto','Usuario o contraseña incorrecto');
-            redirect('plantilla_controller');
         }
     }
 }
