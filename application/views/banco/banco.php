@@ -14,7 +14,7 @@
             $alerta = $this->session->userdata('banco_error');
         }
     ?>
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
             <div id="mensaje" class="<?php echo $clase; ?>">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $alerta; ?>
@@ -101,7 +101,10 @@
     }});
     
     function UnsetMensaje(){
-        <?php $this->session->unset_userdata('banco_ok','banco_error')?>
+        <?php
+            $session = array('banco_ok' => '', 'banco_error' => '');
+            $this->session->unset_userdata($session);
+        ?>
     }
     setTimeout("UnsetMensaje()",5000)
 </script>

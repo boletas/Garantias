@@ -2,19 +2,20 @@
     <div class="col-lg-12">
         <h1 class="page-header">Configuración de Cuenta</h1>
     </div>
+    <div class="col-lg-8 col-lg-offset-2 text-center">
+    <?php 
+        if($this->session->flashdata('actualiza')){?>
+        <div class="alert alert-info" id="mensaje">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <?php echo $this->session->flashdata('actualiza')?>
+        </div>
+    <?php } ?>
+        <!--** FIN MENSAJES**-->
+    </div>
     <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading"> Datos de Sesión</div>
             <div class="panel-body">
-                <?php 
-                    if($this->session->flashdata('actualiza')){?>
-                    <div class="alert alert-warning alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $this->session->flashdata('actualiza')?>
-                    </div>
-                <?php } ?>
-                    <!--** FIN MENSAJES**-->
-                
                 <?php 
                     $idUsuario = array(
                                     'name'          => 'idPerfil',
@@ -78,4 +79,9 @@
             </div>
         </div>
     </div>
-</div>
+<script>
+    $(document).ready(function(){
+        if ($("div#mensaje")) {
+        setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
+    }});
+</script>

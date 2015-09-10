@@ -65,7 +65,6 @@
         <span id="msj"></span>
         <input type="hidden" name="val_bus" id="val_bus" value="0"/>
     </div>
-</div>
 <script>
     function buscar(){
         var valor = document.getElementById('tipo_busqueda').value;

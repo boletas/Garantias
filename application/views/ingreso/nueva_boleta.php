@@ -2,13 +2,25 @@
     <div class="col-lg-12">
         <h1 class="page-header">Nueva Boleta</h1>
     </div>
-    <div class="col-lg-10">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
         <?php 
-            if($this->session->flashdata('insert')){?>
-        <div id="mensaje" class="alert alert-warning alert-dismissable">
+        if ($this->session->flashdata('insert')) { 
+            $insert = $this->session->flashdata('insert');
+            $id = "mensaje";    
+            if ($this->session->flashdata('op')) { 
+                $insert .= ' ¿Desea crear esta entidad?  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>';
+                $id = "entidad";
+            }
+        ?>
+            <div id="<?php echo $id; ?>" class="alert alert-warning alert-dismissable">
+                <?php 
+                if ($this->session->flashdata('op')) { ?>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('insert')?> <?php if($this->session->flashdata('op')){?>¿Desea crear esta entidad?  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button><?php }?>
-                </div>
+                <?php
+                }
+                echo $insert;   
+                ?>
+            </div>
         <?php } ?>
     </div>
     <div class="col-lg-8 col-lg-offset-2">
@@ -112,8 +124,6 @@
             </div>
         </div>
     </div>
-</div>
-
 <script>
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').focus();

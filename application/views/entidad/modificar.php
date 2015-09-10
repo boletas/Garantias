@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Entidades</h1>
     </div> 
-     <div class="col-lg-8 col-lg-offset-2">
+     <div class="col-lg-8 col-lg-offset-2 text-center">
      <?php if($this->session->userdata('error_entidad')){?>
             <div class="alert alert-warning alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

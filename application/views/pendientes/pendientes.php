@@ -15,7 +15,7 @@
         }
         if($mensaje != ""){
     ?>
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
             <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $mensaje ?>
@@ -24,7 +24,7 @@
     <?php } ?>
     <!--** FIN MENSAJES **-->
         <?php if(isset($html["mensaje"])){ ?>
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
                 <div class="alert alert-info">
                     <?php echo $html["mensaje"]; ?>
                 </div>
@@ -85,7 +85,10 @@ $(document).ready(function() {
 } );
 
 function UnsetMensaje(){
-    <?php $this->session->unset_userdata('ok','error')?>
+    <?php 
+        $this->session->unset_userdata('ok');
+        $this->session->unset_userdata('error');
+    ?>
 }
 setTimeout("UnsetMensaje()",500);
 

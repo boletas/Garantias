@@ -29,7 +29,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
 function Volver(){
     window.history.back();

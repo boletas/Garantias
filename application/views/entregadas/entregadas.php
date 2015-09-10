@@ -3,7 +3,7 @@
         <h1 class="page-header">Boletas Entregadas</h1>
     </div>
         <?php if(isset($html["mensaje"])){ ?>
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
             <div class="alert alert-info">
                 <?php echo $html["mensaje"]; ?>
             </div>

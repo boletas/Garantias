@@ -3,6 +3,11 @@
         <h1 class="page-header">Vista Reporte</h1>
     </div>
     <div class="col-lg-12">
+        <div align="right">
+            <a href="<?php echo base_url();?>index.php/reportes_controller/Buscador" class="btn btn-outline btn-default" name="volver" id="volver">Volver</a>
+            <a href="<?php echo base_url();?>index.php/reportes_controller/ExcelReporte/<?=$datos['fecha']?>/<?=$datos['fecha1']?>/<?=$datos['vence']?>/<?=$datos['periodo']?>/<?=$datos['rut']?>/<?=$datos['tipo']?>/<?=$datos['busqueda']?>/<?=$datos['estado']?>" class="btn btn-outline btn-success" name="volver" id="volver">Excel <i class="fa fa-file-excel-o"></i></a>
+        </div>
+        <br/>
         <?php 
             $form = array('name'    => 'form1');
             echo form_open(base_url()."index.php/reportes_controller/",$form);
@@ -27,6 +32,8 @@
         <div align="right">
             <a href="<?php echo base_url();?>index.php/reportes_controller/Buscador" class="btn btn-outline btn-default" name="volver" id="volver">Volver</a>
             <a href="<?php echo base_url();?>index.php/reportes_controller/ExcelReporte/<?=$datos['fecha']?>/<?=$datos['fecha1']?>/<?=$datos['vence']?>/<?=$datos['periodo']?>/<?=$datos['rut']?>/<?=$datos['tipo']?>/<?=$datos['busqueda']?>/<?=$datos['estado']?>" class="btn btn-outline btn-success" name="volver" id="volver">Excel <i class="fa fa-file-excel-o"></i></a>
+            <br/>
+            &nbsp;
+            <br/>
         </div>
     </div>
-</div>

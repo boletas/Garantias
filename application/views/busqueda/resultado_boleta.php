@@ -14,7 +14,7 @@
         }
         if($mensaje != ""){
     ?>
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
             <div id="mensaje" class="alert <?php echo $clase?> alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $mensaje ?>
@@ -24,7 +24,7 @@
     <?php } ?>
     <!--** FIN MENSAJES **-->
         <?php if(empty($html)){?>
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
                 <div class="alert alert-info">
                     <?php echo "Actualmente no existen boletas en la base de datos"; ?>
                 </div>

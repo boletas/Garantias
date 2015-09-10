@@ -13,7 +13,6 @@
             </div>
         </div>
     <?php } ?>
-</div>
 <script>
     function Indicadores(){
         window.location.assign("<?php echo base_url();?>index.php/indicadores_controller/IngresoIndicadores");

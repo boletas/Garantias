@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Formulario ingreso anexo</h1>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
         
         <?php if($this->session->userdata('mensaje_anexo')){?>
         <div class="alert alert-warning alert-dismissable" id="mensaje">
@@ -50,11 +50,10 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#monto_boleta').numeric();
-    //$('#decimal').numeric(","); 
 });
 
 function confirmar(){
-    if(confirm('¿Estas seguro que desea ingresar este anexo?')){
+    if(confirm('¿Está seguro que desea ingresar este anexo?')){
         return true;
     }else{
         return false;

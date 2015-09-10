@@ -52,7 +52,6 @@
             <?php } ?>  
         </div>
     <?php } ?>
-</div>
 <script>
 $(document).ready(function() {
     $('#result_entidad tfoot th').each( function () {
@@ -77,8 +76,8 @@ $(document).ready(function(){
 }});
 
 function UnsetMensaje(){
-    <?php $this->session->unset_userdata('ok','error')?>
-    <?php $this->session->unset_userdata('error')?>
+    <?php $this->session->unset_userdata('ok');?>
+    <?php $this->session->unset_userdata('error');?>
 }
 setTimeout("UnsetMensaje()",100);
 </script>

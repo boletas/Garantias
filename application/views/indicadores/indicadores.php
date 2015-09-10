@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Ingreso Indicadores Mensuales</h1>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
         <!--** MENSAJE **-->
         <?php 
             $mensaje = "";
@@ -74,7 +74,6 @@
             El ingreso de los indicadores solo estará disponible en los dias finales de cada mes.
         </div>
     </div>
-</div>
 <script>
     
 function pregunta(){

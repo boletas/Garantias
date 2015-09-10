@@ -36,7 +36,6 @@
         </div>
         <?php echo form_close(); ?>
     </div>
-</div>
 <script>
 function Volver(){
     window.history.back();

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Mantenedor Banco</h1>
     </div>
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
         <!--** MENSAJE **-->
         <?php 
         if($this->session->flashdata('guardado') || $this->session->flashdata('error')){
@@ -56,4 +56,3 @@
             </div>
         </div>
     </div>
-</div>

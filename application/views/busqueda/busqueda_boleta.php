@@ -44,7 +44,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
     function buscar(){
         var valor = document.getElementById('tipo_busqueda').value;

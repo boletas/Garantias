@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Retiro Boleta</h1>
     </div>
-    <div class="col-lg-10">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
         <?php 
                     if($this->session->flashdata('error')){?>
         <div id="mensaje" class="alert alert-warning alert-dismissable">
@@ -60,7 +60,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();

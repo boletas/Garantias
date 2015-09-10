@@ -31,7 +31,7 @@
                 <td><?php echo $fecha_recepcion; ?></td>
                 <td><?php echo $fecha_emision; ?></td>
                 <td><?php echo $fecha_vencimiento; ?></td>
-                <td <?=($clase ? $clase : "")?>><?php echo $vence; ?></td>
+                <td <?php echo ($clase ? $clase : ""); ?>><?php echo $vence; ?></td>
             </tr>
             <tr class="active">
                 <td>Tipo Garantía</td>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
-                <td colspan="3"><?php echo $denominacion; ?></td>
+                <td colspan="3" width="300px"><?php echo $denominacion; ?></td>
                 <td><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
@@ -63,24 +63,23 @@
             </form>
         </div>
     </div>
-</div>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Listado de Anexos</h4>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Listado de Anexos</h4>
+                </div>
+                <div class="modal-body">
+                    <?php if($html != FALSE){ ?>
+                    <?php echo $html; ?>
+                    <?php } ?>
+                </div>
             </div>
-            <div class="modal-body">
-                <?php if($html != FALSE){ ?>
-                <?php echo $html; ?>
-                <?php } ?>
-            </div>
-        </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 
 
 
