@@ -7,6 +7,7 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->model('boleta_model');
         $this->load->library('recursos');
         $this->load->library('session');
+        $this->load->model('anexo_model');
     }
 
     public function ResultadoBoletas(){//obtiene los valores del resultado de boletas
@@ -54,16 +55,16 @@ class Boleta_controller extends MY_Mantenedor{
         
         
         if($this->form_validation->run() == FALSE){
-           $data['entidad'] = $this->TraerEntidad($this->session->userdata('idEntidad'));
-           $data['bancos'] = $this->ObtieneBancos();
-           $data['monedas'] = $this->ObtieneMoneda();
-           $data['garantias'] = $this->ObtieneTipoGarantia();
-           $data['tipos'] = $this->ObtieneTipoBoletas();
-           
-           $this->load->view('plantilla');
-           $this->load->view('cabecera');
-           $this->load->view('ingreso/ingreso_form', $data);
-           $this->load->view('footer');
+            $data['entidad'] = $this->TraerEntidad($this->session->userdata('idEntidad'));
+            $data['bancos'] = $this->ObtieneBancos();
+            $data['monedas'] = $this->ObtieneMoneda();
+            $data['garantias'] = $this->ObtieneTipoGarantia();
+            $data['tipos'] = $this->ObtieneTipoBoletas();
+
+            $this->load->view('plantilla');
+            $this->load->view('cabecera');
+            $this->load->view('ingreso/ingreso_form', $data);
+            $this->load->view('footer');
         }else{
             $insertok = $this->boleta_model->insert_boleta(
                     $num_boleta,
@@ -116,6 +117,9 @@ class Boleta_controller extends MY_Mantenedor{
             foreach($data as $row){
                 $clase = "";
                 $vence = "";
+                
+                // $this->TraeAnexo($row->id_Boleta); Obtiene datos anexo para cargar la tabla.!!!!
+                
                 if($row->fecha_vencimiento < $hoy){
                     $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
                     if($calculo > 365){
@@ -130,7 +134,7 @@ class Boleta_controller extends MY_Mantenedor{
                         $calculo = $calculo/365;
                         $vence = "En ".round($calculo)." años";
                     }else{
-                        if($calculo < 10){
+                        if($calculo < 10){ // marca la boleta con color para identificar que pronto vencera
                             $clase = " class = 'danger' ";
                         }else{
                             $clase = "";
@@ -426,6 +430,15 @@ class Boleta_controller extends MY_Mantenedor{
     
     public function TodasEntidades(){
         $data = $this->boleta_model->TodasEntidades();
+        if($data){
+            return $data;
+        }else{
+            return false;
+        }
+    }
+    
+    public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
+        $data = $this->anexo_model->TraerAnexo($idBoleta);
         if($data){
             return $data;
         }else{
