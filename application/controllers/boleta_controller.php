@@ -118,10 +118,13 @@ class Boleta_controller extends MY_Mantenedor{
                 $clase = "";
                 $vence = "";
                 
-                // $this->TraeAnexo($row->id_Boleta); Obtiene datos anexo para cargar la tabla.!!!!
+                $anexo = ($this->TraeAnexo($row->id_Boleta) ? $this->TraeAnexo($row->id_Boleta) : false); //Obtiene datos anexo para cargar la tabla.!!!!
+                $fecha_vencimiento = ($anexo ? $anexo->fecha_final : $row->fecha_vencimiento);
                 
-                if($row->fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                print_r($anexo);
+                
+                if($fecha_vencimiento < $hoy){
+                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
                     if($calculo > 365){
                         $calculo = $calculo/365;
                         $vence = "Hace ".round($calculo)." años";
@@ -129,7 +132,7 @@ class Boleta_controller extends MY_Mantenedor{
                         $vence = "Hace ".$calculo." días";
                     }
                 }else{
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
                     if($calculo > 365){
                         $calculo = $calculo/365;
                         $vence = "En ".round($calculo)." años";
@@ -151,7 +154,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
                 $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
+                $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
@@ -440,7 +443,12 @@ class Boleta_controller extends MY_Mantenedor{
     public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
         $data = $this->anexo_model->TraerAnexo($idBoleta);
         if($data){
-            return $data;
+            $resultado = array();
+            foreach($data as $row){
+                $resultado['monto_final'] = $row->monto_final;
+                $resultado['fecha_final'] = $row->fecha_final;
+            }
+            return $resultado;
         }else{
             return false;
         }
