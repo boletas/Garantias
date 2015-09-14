@@ -125,11 +125,18 @@ class Recursos{
         return ($fecha);
     }
     
+    function PrimerDiaMes() {
+        $month = date('m');
+        $year = date('Y');
+        return date('Y-m-d', mktime(0,0,0, $month, 1, $year));
+    }
+    
     function IngresoIndicadores(){
-        $fecha_ant = $this->sumaFechas('-5 day');
-        $fecha_pos = $this->sumaFechas('5 day');
-        //$fecha = "2015-07-20"; // -> prueba de ingreso
-        $fecha = date("Y-m-d");
+        //$fecha = $this->sumaFechas2('-9 day');
+        $fecha = $this->sumaFechas2('9 day');
+        $fecha_ant = $this->sumaFechas('0 day');
+        $fecha_pos = $this->sumaFechas('10 day');
+        
         if($fecha >= $fecha_ant && $fecha <= $fecha_pos){
             return 1;
         }else{
@@ -143,6 +150,12 @@ class Recursos{
     
     function sumaFechas($suma,$fechaInicial = false){
       $fecha = !empty($fechaInicial) ? $fechaInicial : date('Y-m-d');
+      $nuevaFecha = date('Y-m-d',strtotime ($suma,strtotime($fecha)));
+      return ($nuevaFecha);
+    }
+    
+    function sumaFechas2($suma,$fechaInicial = false){
+      $fecha = $this->PrimerDiaMes();
       $nuevaFecha = date('Y-m-d',strtotime ($suma,strtotime($fecha)));
       return ($nuevaFecha);
     }
