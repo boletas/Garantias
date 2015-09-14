@@ -60,9 +60,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <div id="sandbox-container" style="width: 140px">
-                                    <div class="input-group date">
+                                    <div class="input-group date" style="width: 140px">
                                         <input type="text" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
                                 </div>
@@ -111,17 +111,15 @@
                                 <a class="btn btn-default" href="<?php echo base_url();?>?sec=nueva_boleta">Volver</a>
                                 <input onclick=" return ValidaFechasBoleta(document.getElementById('fecha_recepcion').value,document.getElementById('fecha_emision').value,document.getElementById('fecha_vencimiento').value)" type="submit" class="btn btn-outline btn-primary" value="Guardar" name="guardar"/>
                             </td>
-                        <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />
+                            <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />
                         </tr>
                     </table>
-                    </form>
-                
-                </div>
+                </form>
+            </div>
 <script>
 //valida número
 $(document).ready(function(){
     $('#monto_boleta').numeric();
-    //$('#decimal').numeric(","); 
 });
 //fin valida num
 
@@ -132,7 +130,5 @@ $('#sandbox-container .input-group.date').datepicker({
     todayBtn: "linked",
     format: "dd-mm-yyyy"
 });
-
-
 </script>
 
