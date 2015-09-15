@@ -115,13 +115,15 @@ class Boleta_controller extends MY_Mantenedor{
             $html = "";
             $html .= "<tbody>";
             foreach($data as $row){
+                $monto_boleta = "";
+                $anexo = "";
+                $fecha_vencimiento = "";
                 $clase = "";
                 $vence = "";
                 
-                $anexo = ($this->TraeAnexo($row->id_Boleta) ? $this->TraeAnexo($row->id_Boleta) : false); //Obtiene datos anexo para cargar la tabla.!!!!
-                $fecha_vencimiento = ($anexo ? $anexo->fecha_final : $row->fecha_vencimiento);
-                
-                print_r($anexo);
+                $anexo = $this->TraeAnexo($row->id_Boleta); //Obtiene datos anexo para cargar la tabla.!!!!
+                $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
+                $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
                 
                 if($fecha_vencimiento < $hoy){
                     $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
@@ -153,7 +155,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
+                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";

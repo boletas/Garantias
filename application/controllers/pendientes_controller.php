@@ -5,6 +5,7 @@ class Pendientes_Controller extends CI_Controller {
         parent::__construct();
         $this->load->library('recursos');
         $this->load->model('pendientes_model');
+        $this->load->model('anexo_model');
     }
     
     public function index(){
@@ -34,10 +35,17 @@ class Pendientes_Controller extends CI_Controller {
             $html = "";
             $html .= "<tbody>";
             foreach($data as $row){
+                $monto_boleta = "";
+                $anexo = "";
+                $fecha_vencimiento = "";
                 $clase = "";
                 $vence = "";
-                if($row->fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                $anexo = $this->TraeAnexo($row->id_Boleta); //Obtiene datos anexo para cargar la tabla.!!!!
+                $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
+                $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
+
+                if($fecha_vencimiento < $hoy){
+                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
                     if($calculo > 365){
                         $calculo = $calculo/365;
                         $vence = "Hace ".round($calculo)." años";
@@ -45,17 +53,17 @@ class Pendientes_Controller extends CI_Controller {
                         $vence = "Hace ".$calculo." días";
                     }
                 }else{
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
+                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
                     if($calculo > 365){
                         $calculo = $calculo/365;
                         $vence = "En ".round($calculo)." años";
                     }else{
-                        if($calculo < 10){
+                        if($calculo < 10){ // marca la boleta con color para identificar que pronto vencera
                             $clase = " class = 'danger' ";
                         }else{
                             $clase = "";
                         }
-                        
+
                         if($calculo == 0){
                             $vence = "Hoy";
                         }else{
@@ -66,8 +74,8 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
+                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
+                $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
@@ -95,5 +103,19 @@ class Pendientes_Controller extends CI_Controller {
             $this->session->set_userdata($mensaje);
         }
         $this->ListaPendientes();
+    }
+    
+    public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
+        $data = $this->anexo_model->TraerAnexo($idBoleta);
+        if($data){
+            $resultado = array();
+            foreach($data as $row){
+                $resultado['monto_final'] = $row->monto_final;
+                $resultado['fecha_final'] = $row->fecha_final;
+            }
+            return $resultado;
+        }else{
+            return false;
+        }
     }
 }

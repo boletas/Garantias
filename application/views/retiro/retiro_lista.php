@@ -15,28 +15,55 @@
     <div class="col-lg-12">
         <!--RESULTADO POR NUMERO DE RUT Y BOLETA-->
         <?php if(!empty($retiro)){ ?>
-        <div class="dataTable_wrapper">
-            <table id="example" class="table table-bordered table-responsive table-hover" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Numero boleta</th>
-                        <th>Rut</th>
-                        <th>Monto</th>
-                        <th>Recepción</th>
-                        <th>Vencimiento</th>
-                        <th>Banco</th>
-                        <th>Descripción</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <?php echo $retiro;  ?>
-            </table>
+        <table id="tabla_retiro" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Numero boleta</th>
+                    <th>Rut</th>
+                    <th>Emisión</th>
+                    <th>Monto</th>
+                    <th>Vencimiento</th>
+                    <th>Vence en</th>
+                    <!--<th>Banco</th>-->
+                    <!--<th>Descripción</th>-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Numero boleta</th>
+                    <th>Rut</th>
+                    <th>Emisión</th>
+                    <th>Monto</th>
+                    <th>Vencimiento</th>
+                    <th>Vence en</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <?php echo $retiro;  ?>
+        </table>
         <?php } ?>
-        </div>   
         </div>
 <script>
+//$(document).ready(function() {
+//    $('#example').DataTable();
+//} );
+
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#tabla_retiro tfoot th').each( function () {
+        var title = $('#tabla_retiro thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>' );
+    } );
+    var table = $('#tabla_retiro').DataTable();
+    table.columns().every( function () {
+        var that = this;
+ 
+        $('input', this.footer() ).on('keyup change', function () {
+            that
+                .search( this.value )
+                .draw();
+        } );
+    } );
 } );
 
 $('#rut').Rut({
