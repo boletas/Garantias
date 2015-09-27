@@ -1,11 +1,9 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Detalles Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
-        <?php if($idEstadoBoleta == 1){?>
             <div class="text-right">
                 <a class="btn btn-outline btn-primary " href="<?php echo base_url()?>index.php/anexo_controller/SelectBoleta/<?php echo $id_Boleta?>/2">Ver y/o Agregar anexo</a>
             </div>
-        <?php } ?>
         <br/>
     </div>
     <div class="col-lg-12">
