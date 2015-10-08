@@ -1,12 +1,12 @@
 <div id="wrapper">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-<!--            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>-->
+            </button>
             <img src="<?php echo base_url();?>/assets/img/favicon.jpg" class="navbar-brand"/>
             <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio"> Boletas de Garantia</a>
         </div>
