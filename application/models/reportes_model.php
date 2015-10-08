@@ -15,6 +15,8 @@ class Reportes_Model extends CI_Model {
         //Valor = que puede ser el rut o el tipo de boleta
         
         $query = $this->db->query("CALL pa_reportes('".$fecha."','".$opcion."','".$tipo."','".$valor."','".$periodo."','".$fecha1."','".$estado."')");
+        //echo $fecha.",".$opcion.",".$tipo.",".$valor.",".$periodo.",".$fecha1.",".$estado;
+        //die();
         
         if($query){
             $data = $query->result();

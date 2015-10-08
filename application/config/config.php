@@ -14,8 +14,9 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:8080/Garantias/';
-//$config['base_url']	= 'http://localhost:8080/Boletas/';
+$mi_server = $_SERVER['SERVER_NAME'];
+//$config['base_url']	= 'http://localhost:8080/Garantias/';
+$config['base_url']	= 'http://'.$mi_server.'/Garantias/';
 
 /*
 |--------------------------------------------------------------------------
