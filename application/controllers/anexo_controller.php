@@ -118,9 +118,9 @@ class Anexo_controller extends CI_Controller
             $html .="<div class='form-group input-group'>";
             $html .="<div class='input-group-addon'>".$query->codigo."</div>";
             if ($query2) {
-                $html .="<input type='text' id='monto_boleta' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";             
+                $html .="<input type='text' id='monto_boleta' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";             
             }else{
-                $html .="<input type='text' id='monto_boleta' onkeypress='return ValidNum(this);' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_boleta."'>";             
+                $html .="<input type='text' id='monto_boleta' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_boleta."'>";             
             
             }
             $html .="</div>";

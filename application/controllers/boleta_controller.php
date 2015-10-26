@@ -23,6 +23,9 @@ class Boleta_controller extends MY_Mantenedor{
             if($que == 2){//editar boleta
                 $this->VistaModificaBoleta($id_boleta);
             }
+            if($que == 3){
+                $this->VistaAnexos($id_boleta);
+            }
         }
     }
     
@@ -108,6 +111,79 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->view('footer');
     }
     
+    
+    public function VistaAnexos($id_boleta){
+        $resultado['anexos'] = $this->BuscarAnexos($id_boleta);
+        $data = $this->boleta_model->BuscarBoleta($id_boleta);
+        
+        if($data){
+            foreach($data as $row){
+                $resultado['numero_boleta'] = $row->numero_boleta;
+                $resultado['tipo_moneda'] = $row->codigo;
+                
+            }
+        }
+        
+        
+        $this->load->view('plantilla');
+        $this->load->view('anexo/lista_anexos', $resultado);
+        $this->load->view('footer');
+        
+        
+    }
+
+    public function BuscarAnexos($id_boleta){
+        $query = $this->anexo_model->TraerAnexo($id_boleta);
+        $html = "";
+        $cont = 0; 
+        $tmoneda = "";
+        $data = $this->boleta_model->BuscarBoleta($id_boleta);
+        
+        if($data){
+            foreach($data as $row){
+                $tmoneda = $row->codigo;
+            }
+        }
+        
+        if($query){
+            foreach ($query as $row) {
+            $cont++;
+            $html .="<div class='col-lg-6'>";
+                $html .="<div class='panel'>";
+                    $html .="<div class='panel-heading'>";
+                            $html .="<h4 class='panel-title'>";
+                            $html .="Anexo N° ".$cont."";
+                            $html .="</h4>";
+                    $html .="</div>";
+                        $html .="<div class='panel-body'>";
+                            $html .="<table class='table table-bordered table-hover'>";
+                                $html .= "<tr>";
+                                    $html .= "<td class='active'>Fecha ingreso Anexo</td>";
+                                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_registro)."</td>";
+                                $html .= "</tr>";
+                                $html .= "<tr>";
+                                    $html .= "<td class='active'>Monto anexo</td>";
+                                    if($tmoneda=="USD"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                                    if($tmoneda=="CLP"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,0,',','.')."</td>";}
+                                    if($tmoneda=="U.F."){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                                    if($tmoneda=="EUR"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                                $html .= "</tr>";
+                                $html .= "<tr>";
+                                    $html .= "<td class='active'>Fecha anexo</td>";
+                                    $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_final)."</td>";
+                                $html .= "</tr>";
+                            $html .= "</table>";
+                        $html .= "</div>"; //panel-body
+                $html .="</div>"; //panel
+            $html .="</div>"; //col-lg-6
+            }
+        }else{
+            $html = 'no hay ni una wea';
+        }
+        
+        return $html;
+    }
+
     public function TodasBoletas(){//muestra la lista completa de las boletas en una tabla dinamica
         $data = $this->boleta_model->TodasBoletas();
         if($data){
@@ -161,6 +237,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "<button type='button' ".($row->idEstadoBoleta == 2 ? " disabled " : "")." class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
+                $html .= "<a class='btn btn-default btn-circle' target='_blanc' href='".base_url()."index.php/boleta_controller/VistaAnexos/$row->id_Boleta'><i>A</i></a>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
