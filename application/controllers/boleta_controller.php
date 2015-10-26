@@ -177,8 +177,6 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .="</div>"; //panel
             $html .="</div>"; //col-lg-6
             }
-        }else{
-            $html = 'no hay ni una wea';
         }
         
         return $html;
@@ -237,7 +235,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "<button type='button' ".($row->idEstadoBoleta == 2 ? " disabled " : "")." class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
-                $html .= "<a class='btn btn-default btn-circle' target='_blanc' href='".base_url()."index.php/boleta_controller/VistaAnexos/$row->id_Boleta'><i>A</i></a>&nbsp;";
+                $html .= "<a class='btn btn-default btn-circle' ".(!$anexo ? "disabled" : "")." target='_blanc' href='".base_url()."index.php/boleta_controller/VistaAnexos/$row->id_Boleta'><i>A</i></a>&nbsp;";
                 $html .= "</td></tr>";
             }
             $html .= "</tbody>";
