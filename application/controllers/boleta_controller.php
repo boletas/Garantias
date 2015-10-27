@@ -38,10 +38,7 @@ class Boleta_controller extends MY_Mantenedor{
         $idEntidad = $this->input->post('idEntidad');
         $num_boleta = $this->input->post('num_boleta');
         $idMoneda = $this->input->post('id_moneda');
-        $monto_boleta = $this->recursos->Formato_monedas($this->input->post('monto_boleta'));
-        
-       
-        
+        $monto_boleta = $this->recursos->Formato_monedas($this->input->post('monto_boleta'));        
         $fecha_recepcion = $this->recursos->FormatoFecha1($this->input->post('fecha_recepcion'));
         $fecha_emision = $this->recursos->FormatoFecha1($this->input->post('fecha_emision'));
         $fecha_vencimiento = $this->recursos->FormatoFecha1($this->input->post('fecha_vencimiento'));
@@ -240,10 +237,12 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
+                
                 if($row->codigo=="USD"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
                 if($row->codigo=="CLP"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,0,',','.')."</td>";}
                 if($row->codigo=="U.F."){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
                 if($row->codigo=="EUR"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
+                
                 //$html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";

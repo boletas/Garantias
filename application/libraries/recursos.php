@@ -177,5 +177,41 @@ class Recursos{
         return $valor;
     }
     
+    function VenceEn($fecha){
+        $calculo = 0;
+        $hoy = date("Y-m-d");
+        if($fecha < $hoy){
+            $calculo = $this->dias_transcurridos($fecha,$hoy);
+            if($calculo > 365){
+                $calculo = $calculo/365;
+                $vence = "Hace ".round($calculo)." años";
+            }else{
+                $vence = "Hace ".$calculo." días";
+            }
+        }else{
+            $calculo = $this->dias_transcurridos($fecha,$hoy);
+            if($calculo > 365){
+                $calculo = $calculo/365;
+                $vence = "En ".round($calculo)." años";
+            }else{
+                if($calculo < 10){ // marca la boleta con color para identificar que pronto vencera
+                    $clase = " class = 'danger' ";
+                }else{
+                    $clase = "";
+                }
+
+                if($calculo == 0){
+                    $vence = "Hoy";
+                }else{
+                    $vence = "en ".$calculo." días";
+                }
+            }
+        }
+        
+        $vencimiento['vence'] = $vence;
+        $vencimiento['clase'] = $clase;
+        
+        return $vencimiento;
+    }
     
 }

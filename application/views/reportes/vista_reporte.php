@@ -19,12 +19,13 @@
                 <td class="active"><b>Emisón</b></td>
                 <td class="active"><b>Vencimiento</b></td>
                 <td class="active"><b>Tipo</b></td>
+                <td class="active"><b>Vence en</b></td>
                 <td class="active" colspan="2" align="center"><b>Montos</b></td>
                 <td class="active"><b>Monto (CLP)</b></td>
             </tr>
             <?php echo $html; ?>
             <tr>
-                <td class="active" colspan="7" align="right"><b>Monto Total &nbsp;</b></td>
+                <td class="active" colspan="8" align="right"><b>Monto Total &nbsp;</b></td>
                 <td class="active" align="right"><b>$ <?php echo $total; ?>.-</b></td>
             </tr>
         </table>

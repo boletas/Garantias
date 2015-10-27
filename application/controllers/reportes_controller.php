@@ -57,19 +57,23 @@ class Reportes_Controller extends MY_Mantenedor{
             $monto = $this->ObtieneMonto($row->idMoneda, ($monto_anexo ? $monto_anexo : $row->monto_boleta));
             $total = $total + $monto;
             
-            $html .= "<tr>";
+            $v = $this->recursos->VenceEn($row->fecha_vencimiento);
+            
+            $html .= "<tr ".$v['clase'].">";
             $html .= "<td width='120px'>".$row->numero_boleta."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->DevuelveRut($row->rut)."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>\n";
             $html .= "<td width='120px'>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>\n";
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";
+            $html .= "<td>".$v['vence']."</td>\n";
             $html .= "<td>".$row->codigo."</td>\n";
             $html .= "<td>".($monto_anexo ? $monto_anexo : $row->monto_boleta)."</td>\n";
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
             $html .= "</tr>\n";
         }
         
-        $datos = array( 'fecha'     => $fecha, 
+        
+        $datos = array( 'fecha'     => $fecha,
                         'fecha1'    => $fecha1, 
                         'vence'     => $vence, 
                         'periodo'   => $periodo,
