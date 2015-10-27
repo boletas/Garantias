@@ -144,8 +144,8 @@ class Recursos{
         }
     }
     
-    function FormatoPeso($val){//formatea el monto de las monedas
-        return number_format($val,2,".");
+    function Formato1($val){//formatea el monto de las monedas
+        return number_format($val,0,",",".");
     }
     
     function sumaFechas($suma,$fechaInicial = false){
