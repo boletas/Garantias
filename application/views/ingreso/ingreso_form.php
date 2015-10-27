@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td class="active">Monto boleta</td>
-                            <td><input type="text" class="form-control" name="monto_boleta" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
+                            <td><input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)" name="monto_boleta" onkeyup="format(this)" onchange="format(this)" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
                                     <?php foreach ($monedas as $moneda) { ?>
@@ -117,10 +117,6 @@
                 </form>
             </div>
 <script>
-//valida número
-$(document).ready(function(){
-    $('#monto_boleta').numeric();
-});
 //fin valida num
 
 $('#sandbox-container .input-group.date').datepicker({
@@ -130,5 +126,18 @@ $('#sandbox-container .input-group.date').datepicker({
     todayBtn: "linked",
     format: "dd-mm-yyyy"
 });
+
+
+function format(input)
+{
+var num = input.value.replace(/\./g,'');
+if(!isNaN(num)){
+num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+num = num.split('').reverse().join('').replace(/^[\.]/,'');
+input.value = num;
+}
+}
+
+
 </script>
 

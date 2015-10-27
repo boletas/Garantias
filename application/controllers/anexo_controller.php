@@ -11,6 +11,7 @@ class Anexo_controller extends CI_Controller
 		parent::__construct();
 
 		$this->load->model('anexo_model');
+                $this->load->model('boleta_model');
 		$this->load->library('recursos');
                 
 
@@ -50,7 +51,13 @@ class Anexo_controller extends CI_Controller
             $query = $this->anexo_model->TraerAnexo($idBoleta);
             $html = "";
             $cont = 0;
-            
+            $data = $this->boleta_model->BuscarBoleta($idBoleta);
+        
+            if($data){
+                foreach($data as $row){
+                    $tmoneda = $row->codigo;
+                }
+            }
             
             foreach ($query as $row) {
                 
@@ -76,7 +83,10 @@ class Anexo_controller extends CI_Controller
                 $html .="</tr>";
                 $html .="<tr>";
                 $html .="<td class='active'>Monto anexo</td>";
-                $html .="<td>".$row->monto_final."</td>";
+                if($tmoneda=="USD"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                if($tmoneda=="CLP"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,0,',','.')."</td>";}
+                if($tmoneda=="U.F."){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                if($tmoneda=="EUR"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
                 $html .="</tr>";
                 $html .="<tr>";
                 $html .="<td class='active'>Fecha final</td>";
