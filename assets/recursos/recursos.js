@@ -24,6 +24,7 @@ input.value = num;
 }
 
 
+
 function ComparaFecha(f1, f2){//formato dd-mm-YYYY
     var fecha1 = f1.split("-");
     fecha1 = fecha1[2]+fecha1[1]+fecha1[0];

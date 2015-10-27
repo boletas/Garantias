@@ -23,9 +23,7 @@ class Boleta_controller extends MY_Mantenedor{
             if($que == 2){//editar boleta
                 $this->VistaModificaBoleta($id_boleta);
             }
-            if($que == 3){
-                $this->VistaAnexos($id_boleta);
-            }
+           
         }
     }
     
@@ -40,7 +38,10 @@ class Boleta_controller extends MY_Mantenedor{
         $idEntidad = $this->input->post('idEntidad');
         $num_boleta = $this->input->post('num_boleta');
         $idMoneda = $this->input->post('id_moneda');
-        $monto_boleta = $this->input->post('monto_boleta');
+        $monto_boleta = $this->recursos->Formato_monedas($this->input->post('monto_boleta'));
+        
+       
+        
         $fecha_recepcion = $this->recursos->FormatoFecha1($this->input->post('fecha_recepcion'));
         $fecha_emision = $this->recursos->FormatoFecha1($this->input->post('fecha_emision'));
         $fecha_vencimiento = $this->recursos->FormatoFecha1($this->input->post('fecha_vencimiento'));
@@ -51,10 +52,11 @@ class Boleta_controller extends MY_Mantenedor{
         $idEstado = 1;
         
         $this->form_validation->set_rules('num_boleta', 'numero de boleta','trim|required|min_length[1]|xss_clean');
-        $this->form_validation->set_rules('monto_boleta','monto de boleta','trim|required|xss_clean');
+        $this->form_validation->set_rules('monto_boleta','monto de boleta','trim|required|callback_monto_check|xss_clean');
         $this->form_validation->set_rules('denominacion','denominacion estudio','trim|required|min_length[1]|xss_clean');
         
         $this->form_validation->set_message('required','El campo %s es obligatorio');
+        $this->form_validation->set_message('numeric','El campo %s debe ser numerico');
         
         
         if($this->form_validation->run() == FALSE){
@@ -90,6 +92,15 @@ class Boleta_controller extends MY_Mantenedor{
                 redirect(base_url()."?sec=nueva_boleta",'refresh');
                 
             }
+        }
+    }
+    
+    function monto_check($monto){ //funcion para validacion del campo monto_boleta. FORM VALIDATION
+        if(preg_match("/^[0-9.,]+$/",$monto)){
+            return TRUE;
+        }else{
+            $this->form_validation->set_message('monto_check','El campo %s debe ser numerico');
+            return false;
         }
     }
     
@@ -229,7 +240,11 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
+                if($row->codigo=="USD"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
+                if($row->codigo=="CLP"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,0,',','.')."</td>";}
+                if($row->codigo=="U.F."){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
+                if($row->codigo=="EUR"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
+                //$html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$vence."</td>";
                 $html .= "<td align='center'>";

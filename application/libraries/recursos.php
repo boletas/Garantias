@@ -169,4 +169,13 @@ class Recursos{
         $valor = str_replace(",",".",$valor);
         return $valor;
     }
+    
+    function Formato_monedas($valor){
+        $valor = str_replace(".", "", $valor);
+        $valor = str_replace(",", ".", $valor);
+        
+        return $valor;
+    }
+    
+    
 }
