@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td class="active">Monto boleta</td>
-                            <td><input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)" name="monto_boleta" onkeyup="format(this)" onchange="format(this)" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
+                            <td><input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)" name="monto_boleta" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
                                     <?php foreach ($monedas as $moneda) { ?>

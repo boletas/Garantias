@@ -21,19 +21,34 @@ class Anexo_controller extends CI_Controller
             
             $idBoleta = $this->input->post('idBoleta');
             $fecha_vencimiento = $this->recursos->FormatoFecha1($this->input->post('fecha'));
-            $monto = $this->input->post('monto');
+            $monto = $this->recursos->Formato_monedas($this->input->post('monto'));
             
-            $query = $this->anexo_model->InsertAnexo($idBoleta,$fecha_vencimiento,$monto, 1);
+            $this->form_validation->set_rules('monto','monto de boleta','trim|required|callback_monto_check|xss_clean');
             
-            if($query){
-                $this->session->set_userdata('mensaje_anexo','Anexo insertado correctamente..');
+            if($this->form_validation->run() == FALSE){
+                $this->session->set_userdata('mensaje_anexo','Monto ingresado es invalido');
                 $this->SelectBoleta($idBoleta, 2);
             }else{
-                $this->session->set_userdata('mensaje_anexo','Error al insertar..');
-                $this->SelectBoleta($idBoleta, 2);
+                $query = $this->anexo_model->InsertAnexo($idBoleta,$fecha_vencimiento,$monto, 1);
+                
+                if($query){
+                    $this->session->set_userdata('mensaje_anexo','Anexo insertado correctamente..');
+                    $this->SelectBoleta($idBoleta, 2);
+                }else{
+                    $this->session->set_userdata('mensaje_anexo','Error al insertar..');
+                    $this->SelectBoleta($idBoleta, 2);
+                } 
             }
             
-            
+        }
+        
+        function monto_check($monto){ //funcion para validacion del campo monto_boleta. FORM VALIDATION
+            if(preg_match("/^[0-9.,]+$/",$monto)){
+                return TRUE;
+            }else{
+                $this->form_validation->set_message('monto_check','El campo %s debe ser numerico');
+                return false;
+            }
         }
 
         
@@ -128,9 +143,16 @@ class Anexo_controller extends CI_Controller
             $html .="<div class='form-group input-group'>";
             $html .="<div class='input-group-addon'>".$query->codigo."</div>";
             if ($query2) {
-                $html .="<input type='text' id='monto_boleta' class='form-control' style='width: 200px;' name='monto' value='".$query2->monto_final."'>";             
+                if($query->codigo=="USD"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
+                if($query->codigo=="CLP"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,0,',','.')."'>";}
+                if($query->codigo=="U.F."){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
+                if($query->codigo=="EUR"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
+                
             }else{
-                $html .="<input type='text' id='monto_boleta' class='form-control' style='width: 200px;' name='monto' value='".$query->monto_boleta."'>";             
+                if($query->codigo=="USD"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
+                if($query->codigo=="CLP"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,0,',','.')."'>";}
+                if($query->codigo=="U.F."){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
+                if($query->codigo=="EUR"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
             
             }
             $html .="</div>";
