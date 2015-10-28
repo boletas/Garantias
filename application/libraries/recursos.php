@@ -177,6 +177,19 @@ class Recursos{
         return $valor;
     }
     
+    function formateo_moneda($codigo, $monto){
+        if($codigo == "USD"){
+            return "(".$codigo.") ".number_format($monto,2,',','.');
+        }elseif ($codigo == "CLP") {
+            return "(".$codigo.") ".number_format($monto,0,',','.');
+        }elseif ($codigo == "U.F.") {
+            return "(".$codigo.") ".number_format($monto,2,',','.');
+        }elseif ($codigo == "EUR") {
+            return "(".$codigo.") ".number_format($monto,2,',','.');
+        }
+        
+    }
+    
     function VenceEn($fecha){
         $vence = "";
         $clase = "";

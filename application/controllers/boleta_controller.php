@@ -171,10 +171,7 @@ class Boleta_controller extends MY_Mantenedor{
                                 $html .= "</tr>";
                                 $html .= "<tr>";
                                     $html .= "<td class='active'>Monto anexo</td>";
-                                    if($tmoneda=="USD"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
-                                    if($tmoneda=="CLP"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,0,',','.')."</td>";}
-                                    if($tmoneda=="U.F."){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
-                                    if($tmoneda=="EUR"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
+                                    $html .= "<td>".$this->recursos->formateo_moneda($tmoneda,$row->monto_final)."</td>";
                                 $html .= "</tr>";
                                 $html .= "<tr>";
                                     $html .= "<td class='active'>Fecha anexo</td>";
@@ -212,13 +209,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                
-                if($row->codigo=="USD"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
-                if($row->codigo=="CLP"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,0,',','.')."</td>";}
-                if($row->codigo=="U.F."){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
-                if($row->codigo=="EUR"){$html .= "<td>(".$row->codigo.") ".number_format($monto_boleta,2,',','.')."</td>";}
-                
-                //$html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
+                $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$v['vence']."</td>";
                 $html .= "<td align='center'>";
