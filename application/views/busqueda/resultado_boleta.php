@@ -41,9 +41,10 @@
                                 <th>N° Boleta</th>
                                 <th>Rut</th>
                                 <th>Emisión</th>
-                                <th>Monto</th>
                                 <th>Vencimiento</th>
+                                <th>Tipo</th>
                                 <th>Vence en</th>
+                                <th>Monto</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -52,9 +53,10 @@
                                 <th>N° Boleta</th>
                                 <th>Rut</th>
                                 <th>Emisión</th>
-                                <th>Monto</th>
                                 <th>Vencimiento</th>
+                                <th>Tipo</th>
                                 <th>Vence en</th>
+                                <th>Monto</th>
                                 <td></td>
                             </tr>
                         </tfoot>
@@ -75,7 +77,7 @@ function Accion(accion,id){
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" style="width: 120px;" class="form-control"/>' );
+        $(this).html( '<input type="text" style="width: 108px;" class="form-control"/>' );
     } );
     var table = $('#result_boleta').DataTable();
     table.columns().every( function () {

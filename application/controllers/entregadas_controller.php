@@ -1,15 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Entregadas_Controller extends CI_Controller {
+class Entregadas_Controller extends MY_Mantenedor{
     public function __construct(){
         parent::__construct();
         $this->load->library('recursos');
         $this->load->model('entregadas_model');
+        $this->load->model('anexo_model');
     }
     
-    public function index(){
-        
-    }
     
     public function Entregadas($html = ""){
         $resultado['html'] = $html;
@@ -29,14 +27,19 @@ class Entregadas_Controller extends CI_Controller {
                 $clase = "";
                 $vence = "";
                 
-                $v = $this->recursos->VenceEn($row->fecha_vencimiento);
+                $anexo = $this->TraeAnexo($row->id_Boleta); //Obtiene datos anexo para cargar la tabla.!!!!
+                $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
+                $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
+                
+                $v = $this->recursos->VenceEn($fecha_vencimiento);
                 
                 $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
-                $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
+                $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
+                $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
                 $html .= "<td>".$v['vence']."</td>";
+                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Entregada(".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "</td></tr>";
@@ -66,4 +69,5 @@ class Entregadas_Controller extends CI_Controller {
         $this->load->view('entregadas/detalle_entregada',$html);
         $this->load->view('footer');
     }
+    
 }

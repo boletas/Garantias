@@ -1,15 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pendientes_Controller extends CI_Controller {
+class Pendientes_Controller extends MY_Mantenedor{
     public function __construct(){
         parent::__construct();
         $this->load->library('recursos');
         $this->load->model('pendientes_model');
         $this->load->model('anexo_model');
-    }
-    
-    public function index(){
-        
     }
     
     public function Pendientes($html = ""){
@@ -49,9 +45,10 @@ class Pendientes_Controller extends CI_Controller {
                 $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
+                $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
                 $html .= "<td>".$v['vence']."</td>";
+                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='PDF(".$row->id_Boleta.")'><i class='fa fa-file-pdf-o'></i></button>&nbsp;";
@@ -78,19 +75,5 @@ class Pendientes_Controller extends CI_Controller {
             $this->session->set_userdata($mensaje);
         }
         $this->ListaPendientes();
-    }
-    
-    public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
-        $data = $this->anexo_model->TraerAnexo($idBoleta);
-        if($data){
-            $resultado = array();
-            foreach($data as $row){
-                $resultado['monto_final'] = $row->monto_final;
-                $resultado['fecha_final'] = $row->fecha_final;
-            }
-            return $resultado;
-        }else{
-            return false;
-        }
     }
 }

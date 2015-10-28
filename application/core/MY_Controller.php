@@ -12,6 +12,7 @@ class MY_Mantenedor extends CI_Controller{
         $this->load->model('estadoBoleta_model');
         $this->load->model('ultimo_monto_model');
         $this->load->model('indicadores_model');
+        $this->load->model('anexo_model');
         
         $this->load->library('recursos');
     }
@@ -144,6 +145,20 @@ class MY_Mantenedor extends CI_Controller{
             return 0;
         }else{
             return 1;
+        }
+    }
+    
+    public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
+        $data = $this->anexo_model->TraerAnexo($idBoleta);
+        if($data){
+            $resultado = array();
+            foreach($data as $row){
+                $resultado['monto_final'] = $row->monto_final;
+                $resultado['fecha_final'] = $row->fecha_final;
+            }
+            return $resultado;
+        }else{
+            return false;
         }
     }
 }

@@ -16,9 +16,10 @@
                         <th>N° Boleta</th>
                         <th>Rut</th>
                         <th>Emisión</th>
-                        <th>Monto</th>
                         <th>Vencimiento</th>
+                        <th>Tipo</th>
                         <th>Vence en</th>
+                        <th>Monto</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -27,9 +28,10 @@
                         <th>N° Boleta</th>
                         <th>Rut</th>
                         <th>Emisión</th>
-                        <th>Monto</th>
                         <th>Vencimiento</th>
+                        <th>Tipo</th>
                         <th>Vence en</th>
+                        <th>Monto</th>
                         <td></td>
                     </tr>
                 </tfoot>

@@ -32,7 +32,7 @@ class Retiro_Controller extends CI_Controller {
             if ($query) {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
-                $this->session->set_flashdata('error', 'No existen boletas con rut, numero especificado o no se encuentra en custodia');
+                $this->session->set_flashdata('error', 'No existen boletas con rut, número especificado o no se encuentra en custodia');
                 redirect(base_url() . "?sec=retiro_boleta", 'refresh');
             }
         } elseif (empty($rut) && !empty($num)) {
@@ -43,7 +43,7 @@ class Retiro_Controller extends CI_Controller {
             if ($query) {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
-                $this->session->set_flashdata('error', 'No existen boletas con numero especificado o no se encuentra en custodia');
+                $this->session->set_flashdata('error', 'No existen boletas con número especificado o no se encuentra en custodia');
                 redirect(base_url() . "?sec=retiro_boleta", 'refresh');
             }
         } elseif (!empty($rut) && empty($num)) {
@@ -88,11 +88,10 @@ class Retiro_Controller extends CI_Controller {
             $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
             $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
             $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-            $html .= "<td>(".$row->codigo . ")".$monto_boleta."</td>";
-            $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
+            $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
+            $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
             $html .= "<td>".$v['vence']."</td>";
-            //$html .= "<td>".$row->nombre_banco."</td>";
-            //$html .= "<td>".$row->descripcion."</td>";
+            $html .= "<td>(".$row->codigo . ")".$monto_boleta."</td>";
             $html .= "<td align='center'><a class='btn btn-default btn-circle' href='" . base_url() . "index.php/retiro_controller/vista_detalle/" . $row->id_Boleta . "'><i class='fa fa-eye'></i></a></td>";
             $html .= "</tr>\n";
         }
@@ -109,36 +108,9 @@ class Retiro_Controller extends CI_Controller {
         $clase = "";
         $vence = "";
         if ($row) {
-
-            if ($row->fecha_vencimiento < $hoy) {
-                $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento, $hoy);
-                if ($calculo > 365) {
-                    $calculo = $calculo / 365;
-                    $vence = "Hace " . round($calculo) . " años";
-                } else {
-                    $vence = "Hace " . $calculo . " días";
-                }
-            } else {
-                $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento, $hoy);
-                if ($calculo > 365) {
-                    $calculo = $calculo / 365;
-                    $vence = "En " . round($calculo) . " años";
-                } else {
-                    if ($calculo < 10) {
-                        $clase = " class = 'danger' ";
-                    } else {
-                        $clase = "";
-                    }
-
-                    if ($calculo == 0) {
-                        $vence = "Hoy";
-                    } else {
-                        $vence = "en " . $calculo . " días";
-                    }
-                }
-            }
-
-
+            
+            $v = $this->recursos->VenceEn($row->fecha_vencimiento);
+            
             $id_boleta = $row->id_Boleta;
             $numero_boleta = $row->numero_boleta;
             $monto_boleta = "(" . $row->codigo . ") " . $row->monto_boleta;
@@ -155,23 +127,23 @@ class Retiro_Controller extends CI_Controller {
             $tipo_boleta = $row->descripcion_tipo_boleta;
 
             $data = array(
-                'id_Boleta' => $id_boleta,
-                'numero_boleta' => $numero_boleta,
-                'monto_boleta' => $monto_boleta,
-                'fecha_recepcion' => $fecha_recepcion,
-                'fecha_emision' => $fecha_emision,
-                'fecha_vencimiento' => $fecha_vencimiento,
-                'denominacion' => $denominacion,
-                'rut' => $rut,
-                'nombre' => $nombre,
-                'nombre_banco' => $nombre_banco,
-                'tipo_garantia' => $tipo_garantia,
-                'descripcion_tipo_boleta' => $descripcion_tipo_boleta,
-                'estado_boleta' => $estado_boleta,
-                'vence' => $vence,
-                'tipo_boleta' => $tipo_boleta,
-                'clase' => $clase,
-                'html' => $this->cargar_lista_anexos($id_boleta)
+                            'id_Boleta'                 => $id_boleta,
+                            'numero_boleta'             => $numero_boleta,
+                            'monto_boleta'              => $monto_boleta,
+                            'fecha_recepcion'           => $fecha_recepcion,
+                            'fecha_emision'             => $fecha_emision,
+                            'fecha_vencimiento'         => $fecha_vencimiento,
+                            'denominacion'              => $denominacion,
+                            'rut'                       => $rut,
+                            'nombre'                    => $nombre,
+                            'nombre_banco'              => $nombre_banco,
+                            'tipo_garantia'             => $tipo_garantia,
+                            'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
+                            'estado_boleta'             => $estado_boleta,
+                            'vence'                     => $v['vence'],
+                            'tipo_boleta'               => $tipo_boleta,
+                            'clase'                     => $v['clase'],
+                            'html'                      => $this->cargar_lista_anexos($id_boleta)
             );
 
             $this->load->view('plantilla');

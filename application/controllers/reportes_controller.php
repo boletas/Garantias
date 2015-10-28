@@ -10,10 +10,6 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->model('indicadores_model');
         $this->load->model('anexo_model');
     }
-  
-    public function index(){
-        
-    }
     
     public function Buscador(){
         
@@ -51,10 +47,12 @@ class Reportes_Controller extends MY_Mantenedor{
         $total = 0;
         foreach ($data as $row){
             $monto_anexo = 0;
-            $anexo = $this->MontoAnexo($row->id_Boleta);
-            $monto_anexo = ($anexo ? $anexo : false);
             
-            $monto = $this->ObtieneMonto($row->idMoneda, ($monto_anexo ? $monto_anexo : $row->monto_boleta));
+            $anexo = $this->TraeAnexo($row->id_Boleta); //Obtiene datos anexo para cargar la tabla.!!!!
+            $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
+            $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
+            
+            $monto = $this->ObtieneMonto($row->idMoneda, ($monto_boleta ? $monto_boleta : $row->monto_boleta));
             $total = $total + $monto;
             
             $v = $this->recursos->VenceEn($row->fecha_vencimiento);
@@ -67,7 +65,7 @@ class Reportes_Controller extends MY_Mantenedor{
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";
             $html .= "<td>".$v['vence']."</td>\n";
             $html .= "<td>".$row->codigo."</td>\n";
-            $html .= "<td>".($monto_anexo ? $monto_anexo : $row->monto_boleta)."</td>\n";
+            $html .= "<td>".$monto_boleta."</td>\n";
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
             $html .= "</tr>\n";
         }
@@ -145,15 +143,6 @@ class Reportes_Controller extends MY_Mantenedor{
     public function ExcelReporte($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado){
         $resultado = $this->GeneraReportes($fecha, $fecha1, $vence, $periodo, $rut, $tipo, $busqueda, $estado);
         $this->load->view('reportes/excel_reporte', $resultado);
-    }
-    
-    public function MontoAnexo($idBoleta){
-        $data = $this->anexo_model->TraerMontoAnexo($idBoleta);
-        if($data){
-            return $data->monto_final;
-        }else{
-            return false;
-        }
     }
 }
 

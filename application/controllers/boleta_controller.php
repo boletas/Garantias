@@ -127,11 +127,9 @@ class Boleta_controller extends MY_Mantenedor{
         if($data){
             foreach($data as $row){
                 $resultado['numero_boleta'] = $row->numero_boleta;
-                $resultado['tipo_moneda'] = $row->codigo;
-                
+                $resultado['tipo_moneda'] = $row->codigo;        
             }
         }
-        
         
         $this->load->view('plantilla');
         $this->load->view('anexo/lista_anexos', $resultado);
@@ -209,9 +207,10 @@ class Boleta_controller extends MY_Mantenedor{
                 $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
-                $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
+                $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
                 $html .= "<td>".$v['vence']."</td>";
+                $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Accion(1,".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "<button type='button' ".($row->idEstadoBoleta == 2 ? " disabled " : "")." class='btn btn-default btn-circle' onclick='Accion(2,".$row->id_Boleta.")'><i class='fa fa-pencil'></i></button>&nbsp;";
@@ -236,33 +235,9 @@ class Boleta_controller extends MY_Mantenedor{
             foreach($data as $row){
                 $clase = "";
                 $vence = "";
-                if($row->fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "Hace ".round($calculo)." años";
-                    }else{
-                        $vence = "Hace ".$calculo." días";
-                    }
-                }else{
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "En ".round($calculo)." años";
-                    }else{
-                        if($calculo < 10){
-                            $clase = " class = 'danger' ";
-                        }else{
-                            $clase = "";
-                        }
-                        if($calculo == 0){
-                            $vence = "Hoy";
-                        }else{
-                            $vence = "en ".$calculo." días";
-                        }
-                    }
-                }
-
+                
+                $v = $this->recursos->VenceEn($row->fecha_vencimiento);
+                
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = $this->recursos->formateo_moneda($row->codigo,$row->monto_boleta);
@@ -294,10 +269,10 @@ class Boleta_controller extends MY_Mantenedor{
                 'tipo_garantia'             => $tipo_garantia,
                 'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
                 'estado_boleta'             => $estado_boleta,
-                'vence'                     => $vence,
+                'vence'                     => $v['vence'],
                 'tipo_boleta'               => $tipo_boleta,
-                'clase'                     => $clase,
-                'idEstadoBoleta'            =>  $id_estado_boleta
+                'clase'                     => $v['clase'],
+                'idEstadoBoleta'            => $id_estado_boleta
                 );
             
             return $resultado;  
@@ -313,33 +288,8 @@ class Boleta_controller extends MY_Mantenedor{
             foreach($data as $row){
                 $clase = "";
                 $vence = "";
-                if($row->fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "Hace ".round($calculo)." años";
-                    }else{
-                        $vence = "Hace ".$calculo." días";
-                    }
-                }else{
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "En ".round($calculo)." años";
-                    }else{
-                        if($calculo < 10){
-                            $clase = " class = 'danger' ";
-                        }else{
-                            $clase = "";
-                        }
-                        
-                        if($calculo == 0){
-                            $vence = "Hoy";
-                        }else{
-                            $vence = "en ".$calculo." días";
-                        }
-                    }
-                }
+                
+                $v = $this->recursos->VenceEn($row->fecha_vencimiento);
 
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
@@ -376,7 +326,7 @@ class Boleta_controller extends MY_Mantenedor{
                 $rut .= '</select>';
                 
                 $nombre = $row->nombre;
-                $nombre_banco = "<select name='banco' id='banco'  class='form-control'>";
+                $nombre_banco = "<select name='banco' id='banco' class='form-control'>";
                 foreach($this->ObtieneBancos() as $row1){
                     if($row1->idBanco == $row->idBanco){
                         $nombre_banco .= "<option value='".$row1->idBanco."' selected>".$row1->nombre_banco."</option>";
@@ -425,7 +375,7 @@ class Boleta_controller extends MY_Mantenedor{
             
             $resultado = array(
                     'id_Boleta'                 => $id_boleta,
-                    'idEstadoBoleta'            =>$id_estado_boleta,
+                    'idEstadoBoleta'            => $id_estado_boleta,
                     'numero_boleta'             => $numero_boleta,
                     'monto_boleta'              => $this->recursos->formateo_moneda_dos($tipo_moneda,$monto_boleta),
                     'codigo'                    => $codigo,
@@ -440,8 +390,8 @@ class Boleta_controller extends MY_Mantenedor{
                     'descripcion_tipo_boleta'   => $descripcion_tipo_boleta,
                     'estado_boleta'             => $estado_boleta,
                     'tipo_boleta'               => $tipo_boleta,
-                    'vence'                     => $vence,
-                    'clase'                     => $clase
+                    'vence'                     => $v['vence'],
+                    'clase'                     => $v['clase']
                 );
             return $resultado;  
         }else{
@@ -499,21 +449,7 @@ class Boleta_controller extends MY_Mantenedor{
             return false;
         }
     }
-    
-    public function TraeAnexo($idBoleta){ // obtiene datos de anexo segun id de boleta
-        $data = $this->anexo_model->TraerAnexo($idBoleta);
-        if($data){
-            $resultado = array();
-            foreach($data as $row){
-                $resultado['monto_final'] = $row->monto_final;
-                $resultado['fecha_final'] = $row->fecha_final;
-            }
-            return $resultado;
-        }else{
-            return false;
-        }
-    }
-    
+        
     public function EntidadxId(){
         $idEntidad = $this->input->post('idEntidad');
         $data = $this->boleta_model->EntidadxId($idEntidad);

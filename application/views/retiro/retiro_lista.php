@@ -18,14 +18,13 @@
         <table id="tabla_retiro" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Numero boleta</th>
+                    <th>N° Boleta</th>
                     <th>Rut</th>
                     <th>Emisión</th>
-                    <th>Monto</th>
                     <th>Vencimiento</th>
+                    <th>Tipo</th>
                     <th>Vence en</th>
-                    <!--<th>Banco</th>-->
-                    <!--<th>Descripción</th>-->
+                    <th>Monto</th>
                     <th></th>
                 </tr>
             </thead>
@@ -34,10 +33,11 @@
                     <th>Numero boleta</th>
                     <th>Rut</th>
                     <th>Emisión</th>
-                    <th>Monto</th>
                     <th>Vencimiento</th>
+                    <th>Tipo</th>
                     <th>Vence en</th>
-                    <th></th>
+                    <th>Monto</th>
+                    <td></td>
                 </tr>
             </tfoot>
             <?php echo $retiro;  ?>
