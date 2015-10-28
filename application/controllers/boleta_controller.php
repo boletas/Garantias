@@ -265,7 +265,7 @@ class Boleta_controller extends MY_Mantenedor{
 
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
-                $monto_boleta = "(".$row->codigo.") ".$row->monto_boleta;
+                $monto_boleta = $this->recursos->formateo_moneda($row->codigo,$row->monto_boleta);
                 $fecha_recepcion = $this->recursos->FormatoFecha($row->fecha_recepcion);
                 $fecha_emision = $this->recursos->FormatoFecha($row->fecha_emision);
                 $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
