@@ -344,13 +344,16 @@ class Boleta_controller extends MY_Mantenedor{
                 $id_boleta = $row->id_Boleta;
                 $numero_boleta = $row->numero_boleta;
                 $monto_boleta = $row->monto_boleta;
+                $tipo_moneda = "";
                 
                 $codigo = "<select name='codigo' id='codigo' class='form-control' style='width: 100px'>";
                 foreach($this->ObtieneMoneda() as $row1){
                     if($row1->idMoneda == $row->idMoneda){
                         $codigo .= "<option value='".$row1->idMoneda."' selected>".$row1->codigo."</option>";
+                        $tipo_moneda = $row1->codigo;
                     }else{
                         $codigo .= "<option value='".$row1->idMoneda."'>".$row1->codigo."</option>";
+                        $tipo_moneda = $row1->codigo;
                     }
                 }
                 $codigo .= "</select>";
@@ -424,7 +427,7 @@ class Boleta_controller extends MY_Mantenedor{
                     'id_Boleta'                 => $id_boleta,
                     'idEstadoBoleta'            =>$id_estado_boleta,
                     'numero_boleta'             => $numero_boleta,
-                    'monto_boleta'              => $monto_boleta,
+                    'monto_boleta'              => $this->recursos->formateo_moneda_dos($tipo_moneda,$monto_boleta),
                     'codigo'                    => $codigo,
                     'fecha_recepcion'           => $fecha_recepcion,
                     'fecha_emision'             => $fecha_emision,
@@ -458,7 +461,7 @@ class Boleta_controller extends MY_Mantenedor{
         $denominacion = trim($this->input->post('denominacion'));
         $banco = $this->input->post('banco');
         $codigo = $this->input->post('codigo');
-        $monto = trim($this->input->post('monto'));
+        $monto = $this->recursos->Formato_monedas($this->input->post('monto'));
         $tipo_boleta = $this->input->post('tipo_boleta');
         
         $datos_boleta = array(

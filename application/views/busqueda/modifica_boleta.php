@@ -77,7 +77,7 @@
                 <td colspan="2"><?php echo $estado_boleta ?></td>
                 <td align="center"><?php echo $codigo ?></td>
                 <td colspan="2">
-                    <input type="text" class="form-control"  name="monto" id="monto" value="<?php echo $monto_boleta; ?>"/>
+                    <input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)"  name="monto" value="<?php echo $monto_boleta; ?>"/>
                 </td>
             </tr>
         </table>
@@ -95,13 +95,6 @@
 function Volver(){
     document.form1.action = "<?php echo base_url()."index.php/boleta_controller/Volver"?>";
 }
-
-//valida número
-$(document).ready(function(){
-    $('#monto').numeric();
-    //$('#decimal').numeric(","); 
-});
-//fin valida num
 
 $('#sandbox-container .input-group.date').datepicker({
     clearBtn: true,

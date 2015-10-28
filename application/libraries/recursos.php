@@ -190,6 +190,19 @@ class Recursos{
         
     }
     
+    function formateo_moneda_dos($codigo, $monto){
+        if($codigo == "USD"){
+            return number_format($monto,2,',','.');
+        }elseif ($codigo == "CLP") {
+            return number_format($monto,0,',','.');
+        }elseif ($codigo == "U.F.") {
+            return number_format($monto,2,',','.');
+        }elseif ($codigo == "EUR") {
+            return number_format($monto,2,',','.');
+        }
+        
+    }
+    
     function VenceEn($fecha){
         $vence = "";
         $clase = "";
