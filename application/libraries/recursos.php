@@ -178,6 +178,8 @@ class Recursos{
     }
     
     function VenceEn($fecha){
+        $vence = "";
+        $clase = "";
         $calculo = 0;
         $hoy = date("Y-m-d");
         if($fecha < $hoy){

@@ -44,39 +44,14 @@ class Pendientes_Controller extends CI_Controller {
                 $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
                 $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
 
-                if($fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "Hace ".round($calculo)." años";
-                    }else{
-                        $vence = "Hace ".$calculo." días";
-                    }
-                }else{
-                    $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "En ".round($calculo)." años";
-                    }else{
-                        if($calculo < 10){ // marca la boleta con color para identificar que pronto vencera
-                            $clase = " class = 'danger' ";
-                        }else{
-                            $clase = "";
-                        }
-
-                        if($calculo == 0){
-                            $vence = "Hoy";
-                        }else{
-                            $vence = "en ".$calculo." días";
-                        }
-                    }
-                }
-                $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
+                $v = $this->recursos->VenceEn($fecha_vencimiento);
+                
+                $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
                 $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
-                $html .= "<td>".$vence."</td>";
+                $html .= "<td>".$v['vence']."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='PDF(".$row->id_Boleta.")'><i class='fa fa-file-pdf-o'></i></button>&nbsp;";

@@ -83,40 +83,14 @@ class Retiro_Controller extends CI_Controller {
             $fecha_vencimiento = ($anexo ? $anexo['fecha_final'] : $row->fecha_vencimiento);
             $monto_boleta = ($anexo ? $anexo['monto_final'] : $row->monto_boleta);
 
-            if($fecha_vencimiento < $hoy){
-                $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
-                if($calculo > 365){
-                    $calculo = $calculo/365;
-                    $vence = "Hace ".round($calculo)." años";
-                }else{
-                    $vence = "Hace ".$calculo." días";
-                }
-            }else{
-                $calculo = $this->recursos->dias_transcurridos($fecha_vencimiento,$hoy);
-                if($calculo > 365){
-                    $calculo = $calculo/365;
-                    $vence = "En ".round($calculo)." años";
-                }else{
-                    if($calculo < 10){ // marca la boleta con color para identificar que pronto vencera
-                        $clase = " class = 'danger' ";
-                    }else{
-                        $clase = "";
-                    }
-
-                    if($calculo == 0){
-                        $vence = "Hoy";
-                    }else{
-                        $vence = "en ".$calculo." días";
-                    }
-                }
-            }
+            $v = $this->recursos->VenceEn($fecha_vencimiento);
                 
-            $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
+            $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
             $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
             $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
             $html .= "<td>(".$row->codigo . ")".$monto_boleta."</td>";
             $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
-            $html .= "<td>".$vence."</td>";
+            $html .= "<td>".$v['vence']."</td>";
             //$html .= "<td>".$row->nombre_banco."</td>";
             //$html .= "<td>".$row->descripcion."</td>";
             $html .= "<td align='center'><a class='btn btn-default btn-circle' href='" . base_url() . "index.php/retiro_controller/vista_detalle/" . $row->id_Boleta . "'><i class='fa fa-eye'></i></a></td>";

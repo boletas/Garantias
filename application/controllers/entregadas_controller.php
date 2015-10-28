@@ -28,39 +28,15 @@ class Entregadas_Controller extends CI_Controller {
             foreach($data as $row){
                 $clase = "";
                 $vence = "";
-                if($row->fecha_vencimiento < $hoy){
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "Hace ".round($calculo)." años";
-                    }else{
-                        $vence = "Hace ".$calculo." días";
-                    }
-                }else{
-                    $calculo = $this->recursos->dias_transcurridos($row->fecha_vencimiento,$hoy);
-                    if($calculo > 365){
-                        $calculo = $calculo/365;
-                        $vence = "En ".round($calculo)." años";
-                    }else{
-                        if($calculo < 10){
-                            $clase = " class = 'danger' ";
-                        }else{
-                            $clase = "";
-                        }
-                        
-                        if($calculo == 0){
-                            $vence = "Hoy";
-                        }else{
-                            $vence = "en ".$calculo." días";
-                        }
-                    }
-                }
-                $html .= "<tr".$clase."><td>".$row->numero_boleta."</td>";
+                
+                $v = $this->recursos->VenceEn($row->fecha_vencimiento);
+                
+                $html .= "<tr".$v['clase']."><td>".$row->numero_boleta."</td>";
                 $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_emision)."</td>";
                 $html .= "<td>(".$row->codigo.") ".$row->monto_boleta."</td>";
                 $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_vencimiento)."</td>";
-                $html .= "<td>".$vence."</td>";
+                $html .= "<td>".$v['vence']."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Entregada(".$row->id_Boleta.")'><i class='fa fa-eye'></i></button>&nbsp;";
                 $html .= "</td></tr>";
