@@ -7,7 +7,11 @@ header("Expires: 0");
 <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 <table border="1">
     <tr>
-        <td>Tipo:</td>
+        <td>Vencimiento:</td>
+        <td><?=($datos['vence'] == 1 ? "Vencidas" : ($datos['vence'] == 2 ? "Por vencer" : "Vencidas y Por vencer"))?></td>
+    </tr>
+    <tr>
+        <td>Tipo Busqueda:</td>
         <td><?=($datos['tipo'] == 1 ? "Todas" : ($datos['tipo'] == 2 ? "RUT" : "Tipo de Boleta"))?></td>
     </tr>
     <tr>
