@@ -20,8 +20,8 @@ class Pendientes_Model extends CI_Model {
         }
     }
     
-    public function GuardarRetiro($idBoleta,$rut,$nombre,$apellido){
-        $query = $this->db->query("CALL pa_retiro(".$idBoleta.",".$rut.",'".$nombre."','".$apellido."');");
+    public function GuardarRetiro($idBoleta,$rut,$nombre,$apellido,$fecha_retiro){
+        $query = $this->db->query("CALL pa_retiro(".$idBoleta.",".$rut.",'".$nombre."','".$apellido."','".$fecha_retiro."','1');");
         if($query){
             $query->free_result();
             $this->db->close();
@@ -32,5 +32,19 @@ class Pendientes_Model extends CI_Model {
             $this->db->close();
             return FALSE;
         }    
+    }
+    
+    public function PersonaRetiro($rut){
+        $query = $this->db->query("CALL pa_retiro('',".$rut.",'','','','2');");
+        if ($query) {
+            $data = $query->result();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        } else {
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
     }
 }

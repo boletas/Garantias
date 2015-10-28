@@ -24,3 +24,28 @@ function CambiaRazon(){
         });
     });
 }
+
+function ObtieneRetiro(){
+    $base = $("#base").val();
+    $rut = $("#rut").val();
+    $(document).ready(function(){
+            $.ajax({
+                    dataType:   "json",
+                    data    :   {"rut": $rut},
+                    url     :   ""+$base+"index.php/pendientes_controller/PersonaRetiro",
+                    type    :   'post',
+                    beforeSend: function(){
+                            //Lo que se hace antes de enviar el formulario
+                            $("#razon_social").html("Cargando...");
+                            },
+                    success: function(respuesta){
+                            //lo que se si el destino devuelve algo
+                            $("#nombre").val(respuesta.nombre);
+                            $("#apellido").val(respuesta.apellido);
+                    },
+                    error: function(xhr,err){ 
+                            alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+                    }
+            });
+    });
+}

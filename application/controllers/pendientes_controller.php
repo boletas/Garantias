@@ -66,7 +66,8 @@ class Pendientes_Controller extends MY_Mantenedor{
         $rut = $this->recursos->FormatoRut($this->input->post("rut"));
         $nombre = $this->input->post("nombre");
         $apellido = $this->input->post("apellido");
-        $data = $this->pendientes_model->GuardarRetiro($idBoleta,$rut,$nombre,$apellido);
+        $fecha_retiro = $this->recursos->FormatoFecha1($this->input->post("fecha_retiro"));
+        $data = $this->pendientes_model->GuardarRetiro($idBoleta,$rut,$nombre,$apellido,$fecha_retiro);
         if($data){
             $mensaje = array('ok'   => 'El estado de la boleta fue cambiado correctamente.');
             $this->session->set_userdata($mensaje);
@@ -75,5 +76,24 @@ class Pendientes_Controller extends MY_Mantenedor{
             $this->session->set_userdata($mensaje);
         }
         $this->ListaPendientes();
+    }
+    
+    //llamada desde AJAX
+    public function PersonaRetiro(){
+        $rut = $this->recursos->FormatoRut($this->input->post('rut'));
+        $data = $this->pendientes_model->PersonaRetiro($rut);
+        if($data){
+            foreach($data as $row){
+                $nombre = $row->nombre_retiro;
+                $apellido = $row->ap_retiro;
+            }
+        }else{
+            $nombre = "";
+            $apellido = "";
+        }
+        $respuesta = array( 'nombre'    => $nombre,
+                            'apellido'  => $apellido
+                            );
+        echo json_encode($respuesta);
     }
 }

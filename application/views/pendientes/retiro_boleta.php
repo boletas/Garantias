@@ -15,6 +15,11 @@
                         <input type="text" class="form-control" id="rut" name="rut" required value="" placeholder="Rut">
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" name="fecha_retiro" id="fecha_retiro" onfocus="this.blur();" placeholder="Fecha retiro" required/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
                 <div class="col-lg-12">
                     <div class="form-group">                    
                         <input type="text" class="form-control" id="nombre" name="nombre" required value="" placeholder="Nombre">
@@ -33,6 +38,7 @@
                 </div>
             </div>
             <input type="hidden" name="idBoleta" id="idBoleta" value="<?php echo $html; ?>"/>
+            <input type="hidden" name="base" id="base" value="<?php echo base_url()?>"/>
         </div>
         <?php echo form_close(); ?>
     </div>
@@ -52,12 +58,21 @@ function Guardar(){
 
 $('#rut').Rut({
     on_error: function(){ alert('Favor ingrese un rut válido');
-        document.getElementById('rut');
-        document.getElementById('guardar').disabled = true;
+        document.getElementById('rut').value = "";
+        document.getElementById('rut').focus();
     },
     on_success: function(){
         document.getElementById('rut');
-        document.getElementById('guardar').disabled = false;
+        ObtieneRetiro();
     }
+});
+
+
+$('#fecha_retiro').datepicker({
+    clearBtn: true,
+    language: "es",
+    orientation: "top left",
+    todayBtn: "linked",
+    format: "dd-mm-yyyy"
 });
 </script>

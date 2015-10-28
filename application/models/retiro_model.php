@@ -1,7 +1,5 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+<?php 
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Retiro_model extends CI_Model {
 
@@ -57,7 +55,7 @@ class Retiro_model extends CI_Model {
     }
 
     public function BuscarXRut($rut) {
-        $query = $this->db->query("CALL retiro_xrut('" . $rut . "')");
+        $query = $this->db->query("CALL retiro_xrut('".$rut."')");
 
         if ($query) {
             $data = $query->result();
@@ -80,5 +78,5 @@ class Retiro_model extends CI_Model {
             return false;
         }
     }
-
+    
 }

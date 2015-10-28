@@ -450,6 +450,7 @@ class Boleta_controller extends MY_Mantenedor{
         }
     }
         
+    //llamada desde AJAX
     public function EntidadxId(){
         $idEntidad = $this->input->post('idEntidad');
         $data = $this->boleta_model->EntidadxId($idEntidad);
