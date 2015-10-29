@@ -17,9 +17,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">Ingrese anexo</div>
             <div class="panel-body">
-                <?php   echo form_open(base_url().'index.php/anexo_controller/InsertarAnexo');
-                            echo $boleta;
-                        echo form_close(); 
+                <?php   
+                    echo form_open(base_url().'index.php/anexo_controller/InsertarAnexo');
+                        echo $boleta;
+                    echo form_close(); 
                 ?>
             </div>
         </div>
@@ -31,60 +32,52 @@
                 <?php echo $anexo;?>
             </div>
         </div>
+        <input type="hidden" name="base" id="base" value="<?php echo (base_url())?>"
     </div>
     <?php }?>
     
     <!-- ACAAAAAAAAAAAAA -->
     
     <!-- Bootstrap modal -->
-  <div class="modal fade" id="modal_form" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Editar Anexo</h3>
-      </div>
-      <div class="modal-body form">
-        <form action="#" id="form" class="form-horizontal">
-          <input type="hidden" value="" name="id_anexo"/>
-          <div class="form-body">
-            <div class="form-group">
-              <label class="control-label col-md-3">Monto Anexo</label>
-              <div class="col-md-9">
-                <input name="monto_anexo" placeholder="Ingrese monto anexo" class="form-control" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3">Fecha Anexo</label>
-              <div class="col-md-9">
-                <input type="text" name="fecha_anexo" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3">Fecha registro</label>
-              <div class="col-md-9">
-                <input type="text" name="fecha_registro" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-              </div>
-            </div>
-          </div>
-        </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="btnSave" onclick="edit_anexo()" class="btn btn-primary">Actualizar</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
+    <div class="modal fade" id="EditarModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Editar Anexo</h3>
+                </div>
+                <div class="modal-body form">
+                    <form action="#" id="form" class="form-horizontal">
+                        <input type="hidden" value="" name="m_id_anexo" id="m_id_anexo"/>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Monto Anexo</label>
+                                <div class="col-md-9">
+                                    <input name="m_monto_anexo" id="m_monto_anexo" placeholder="Ingrese monto anexo" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Fecha Anexo</label>
+                                <div class="col-md-9">
+                                    <div class="input-group date">
+                                        <input type="text" name="m_fecha_anexo" id="m_fecha_anexo" class="form-control" onfocus="this.blur();" required placeholder="Fecha vencimiento anexo"/><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btnSave" onclick="edit_anexo()" class="btn btn-primary">Actualizar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-  <!-- End Bootstrap modal -->
-  </body>
-</html>
-    
-    
-    
+  <!-- End Bootstrap modal -->    
 </div>
 <script type="text/javascript">
-    $('#sandbox-container .input-group.date').datepicker({
+    $('.input-group.date').datepicker({
     clearBtn: true,
     language: "es",
     orientation: "top left",
