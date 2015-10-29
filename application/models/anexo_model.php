@@ -24,7 +24,7 @@ class Anexo_model extends CI_Model {
     //ACAAAAAAAAAAAAAAAAAAAAAAAAAA
     
     public function AnexoId($idanexo){
-        $query = $this->db->query("CALL pa_anexo ('".$idanexo."','','','3')");
+        $query = $this->db->query("CALL pa_anexo ('".$idanexo."','','','4')");
         
         if ($query) {
             $data = $query->row();
