@@ -36,8 +36,8 @@ function ObtieneRetiro(){
                     type    :   'post',
                     beforeSend: function(){
                             //Lo que se hace antes de enviar el formulario
-                            $("#razon_social").html("Cargando...");
-                            },
+                            //$("#razon_social").html("Cargando...");
+                    },
                     success: function(respuesta){
                             //lo que se si el destino devuelve algo
                             $("#nombre").val(respuesta.nombre);
