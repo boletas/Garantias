@@ -98,5 +98,17 @@ class Anexo_model extends CI_Model {
             return null;
         }
     }
-
+    
+    public function ActualizaAnexo($id_anexo,$monto,$fecha){
+        $query = $this->db->query("CALL pa_anexo ('".$id_anexo."','".$monto."','".$fecha."','5')");
+        if ($query) {
+            $query->free_result();
+            $this->db->close();
+            return true;
+        } else {
+            $query->free_result();
+            $this->db->close();
+            return false;
+        }
+    }
 }

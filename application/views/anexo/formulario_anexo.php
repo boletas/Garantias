@@ -3,13 +3,11 @@
         <h1 class="page-header">Formulario ingreso anexo</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2 text-center">
-        
         <?php if($this->session->userdata('mensaje_anexo')){?>
         <div class="alert alert-warning alert-dismissable" id="mensaje">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $this->session->userdata('mensaje_anexo')?>
-
-            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <?php echo $this->session->userdata('mensaje_anexo')?>
+        </div>
                 <?php $this->session->unset_userdata('mensaje_anexo')?>    
         <?php } ?>
     </div>
@@ -35,8 +33,6 @@
         <input type="hidden" name="base" id="base" value="<?php echo (base_url())?>"
     </div>
     <?php }?>
-    
-    <!-- ACAAAAAAAAAAAAA -->
     
     <!-- Bootstrap modal -->
     <div class="modal fade" id="EditarModal" role="dialog" aria-labelledby="myModalLabel">
@@ -69,7 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="btnSave" onclick="edit_anexo()" class="btn btn-primary">Actualizar</button>
+                    <button type="button" id="btnSave" onclick="ActualizaAnexo()" class="btn btn-primary">Actualizar</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

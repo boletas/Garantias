@@ -52,12 +52,10 @@ class Anexo_controller extends CI_Controller
 
        $data['boleta'] = $this->TraerBoleta($idBoleta,$op);
        $data['anexo'] = $this->TraerAnexo($idBoleta);
-       $this->vista_anexo($data);   
+       $this->vista_anexo($data);
 
     }
         
-        
-    //METODO NUEVOOOOOOOOOOO
     public function ObtieneDatosAnexo(){
         $id_anexo = $this->input->post('id_anexo');
         
@@ -65,7 +63,7 @@ class Anexo_controller extends CI_Controller
         $arr = array(
                         'id_anexo'      => $query->idAnexoBoleta,
                         'monto_anexo'   => $query->monto_final,
-                        'fecha_anexo'   => $query->fecha_final
+                        'fecha_anexo'   => $this->recursos->FormatoFecha($query->fecha_final)
                     );
 
         echo json_encode($arr);
@@ -120,12 +118,9 @@ class Anexo_controller extends CI_Controller
             $html .="<td>".$this->recursos->FormatoFecha($row->fecha_final)."</td>";
             $html .="</tr>";
             $html .= "<tr>";
-            // ACAAAAAAAAAAAAAAAAAAAA
             $html .= '<td colspan="2"><button type="button" class="btn btn-outline btn-primary" title="editar" data-toggle="modal" data-target="#EditarModal" onclick="ObtieneDatosAnexo('.$row->idAnexoBoleta.')">Editar</button></td>';
-            // ACAAAAAAAAAAAAAAAAAA
             $html .= "</tr>";
             $html .="</table>";
-
             $html .="</div>";//panel-body
             $html .="</div>";//colapse
             $html .="</div>";//panel panel-default
@@ -180,7 +175,7 @@ class Anexo_controller extends CI_Controller
         $html .="</div>";
         $html .="</div>";
 
-        $html .= "<input type='hidden' name='idBoleta' value='".$query->id_Boleta."'>";
+        $html .= "<input type='hidden' name='idBoleta' id='idBoleta' value='".$query->id_Boleta."'>";
 
         $html .= "<div class='form-group' style='text-align: right'>";
         
@@ -197,6 +192,26 @@ class Anexo_controller extends CI_Controller
         $html .= "</div>";
 
         return $html;   
+    }
+    
+    public function ActualizaAnexo(){
+        $id_boleta = $this->input->post('id_boleta');
+        $id_anexo = $this->input->post('id_anexo');
+        $monto = $this->input->post('monto');
+        $fecha = $this->recursos->FormatoFecha1($this->input->post('fecha'));
+        
+        $query = $this->anexo_model->ActualizaAnexo($id_anexo,$monto,$fecha);
+        if($query){
+            /*$this->session->set_userdata('mensaje_anexo','Anexo actualizado correctamente..');
+            $this->SelectBoleta($id_boleta, 2);*/
+            $res =  true;
+        }else{
+            /*$this->session->set_userdata('mensaje_anexo','Error al actualizar..');
+            $this->SelectBoleta($id_boleta, 2);*/
+            $res = false;
+        }
+        
+        echo json_encode($res);
     }
 
 

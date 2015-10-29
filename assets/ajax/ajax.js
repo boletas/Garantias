@@ -74,3 +74,38 @@ function ObtieneDatosAnexo(idAnexo){
             });
     });
 }
+
+function ActualizaAnexo(){
+    $base = $("#base").val();
+    $id_boleta = $("#idBoleta").val();
+    $id_anexo = $("#m_id_anexo").val();
+    $monto = $("#m_monto_anexo").val();
+    $fecha = $("#m_fecha_anexo").val();
+    $(document).ready(function(){
+            $.ajax({
+                    dataType:   "json",
+                    data    :   {   "id_anexo"  : $id_anexo,
+                                    "monto"     : $monto,
+                                    "fecha"     : $fecha,
+                                    "id_boleta" : $id_boleta
+                                },
+                    url     :   ""+$base+"index.php/anexo_controller/ActualizaAnexo",
+                    type    :   'post',
+                    beforeSend: function(){
+                            //Lo que se haceestan  antes de enviar el formulario
+                            //$("#razon_social").html("Cargando...");
+                    },
+                    success: function(respuesta){
+                            //lo que se si el destino devuelve algo
+                            //alert(respuesta);
+                            $('#EditarModal').modal('hide');
+                            
+                            window.location.reload(true);
+                    },
+                    error: function(xhr,err){ 
+                            alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+                    }
+            });
+    });
+}
+
