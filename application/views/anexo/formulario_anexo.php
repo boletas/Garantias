@@ -3,12 +3,13 @@
         <h1 class="page-header">Formulario ingreso anexo</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2 text-center">
+        <span id="mensaje_ajax"></span>
         <?php if($this->session->userdata('mensaje_anexo')){?>
         <div class="alert alert-warning alert-dismissable" id="mensaje">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <?php echo $this->session->userdata('mensaje_anexo')?>
         </div>
-                <?php $this->session->unset_userdata('mensaje_anexo')?>    
+            <?php $this->session->unset_userdata('mensaje_anexo')?>    
         <?php } ?>
     </div>
     <div class="col-lg-6">
@@ -83,8 +84,11 @@
 
 $(document).ready(function(){
     if ($("div#mensaje")) {
-    setTimeout(function(){ $("div#mensaje").hide("slow"); }, 4000);
-}});
+        setTimeout(function(){ 
+            $("div#mensaje").hide("slow");
+        }, 5000);
+    }
+});
 
 
 function confirmar(){
@@ -94,5 +98,6 @@ function confirmar(){
         return false;
     }
 }
+
 </script>
 

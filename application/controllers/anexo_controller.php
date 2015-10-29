@@ -202,16 +202,14 @@ class Anexo_controller extends CI_Controller
         
         $query = $this->anexo_model->ActualizaAnexo($id_anexo,$monto,$fecha);
         if($query){
-            /*$this->session->set_userdata('mensaje_anexo','Anexo actualizado correctamente..');
-            $this->SelectBoleta($id_boleta, 2);*/
             $res =  true;
         }else{
-            /*$this->session->set_userdata('mensaje_anexo','Error al actualizar..');
-            $this->SelectBoleta($id_boleta, 2);*/
             $res = false;
         }
         
-        echo json_encode($res);
+        $respuesta = array('res' => $res);
+        
+        echo json_encode($respuesta);
     }
 
 

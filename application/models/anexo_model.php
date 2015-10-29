@@ -20,9 +20,7 @@ class Anexo_model extends CI_Model {
             return false;
         }
     }
-    
-    //ACAAAAAAAAAAAAAAAAAAAAAAAAAA
-    
+        
     public function AnexoId($idanexo){
         $query = $this->db->query("CALL pa_anexo ('".$idanexo."','','','4')");
         
