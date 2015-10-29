@@ -20,6 +20,24 @@ class Anexo_model extends CI_Model {
             return false;
         }
     }
+    
+    //ACAAAAAAAAAAAAAAAAAAAAAAAAAA
+    
+    public function AnexoId($idanexo){
+        $query = $this->db->query("CALL pa_anexo ('" . $idanexo . "','','','4')");
+        
+        if ($query) {
+            $data = $query->row();
+            $query->free_result();
+            $this->db->close();
+            return $data;
+        } else {
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+        
+    }
 
     public function TraerAnexo($idBoleta) {
 

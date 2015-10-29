@@ -61,6 +61,22 @@ class Anexo_controller extends CI_Controller
 	}
         
         
+        //METODO NUEVOOOOOOOOOOO
+        public function editar_anexo($id){
+            
+            $query = $this->anexo_model->AnexoId($id);
+            
+            $arr = array(
+                'id_anexo'      => $query->idAnexoBoleta,
+                'monto_anexo'   => $query->monto_final,
+                'fecha_anexo'   => $query->fecha_final,
+                'fecha_registro'=> $query->feha_registro
+            );
+            
+            echo json_decode($arr);
+            
+        }
+        
         public function TraerAnexo($idBoleta){
             
             $query = $this->anexo_model->TraerAnexo($idBoleta);
@@ -107,7 +123,11 @@ class Anexo_controller extends CI_Controller
                 $html .="<td class='active'>Fecha final</td>";
                 $html .="<td>".$this->recursos->FormatoFecha($row->fecha_final)."</td>";
                 $html .="</tr>";
-
+                $html .= "<tr>";
+                // ACAAAAAAAAAAAAAAAAAAAA
+                $html .= '<td colspan="2"><a class="btn btn-primary" href="javascript:void()" title="editar" onclick="edit_anexo('."'".$row->idAnexoBoleta."'".')">Editar</a></td>';
+                // ACAAAAAAAAAAAAAAAAAA
+                $html .= "</tr>";
                 $html .="</table>";
                 
                 $html .="</div>";//panel-body

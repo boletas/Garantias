@@ -33,6 +33,55 @@
         </div>
     </div>
     <?php }?>
+    
+    <!-- ACAAAAAAAAAAAAA -->
+    
+    <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_form" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Editar Anexo</h3>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="" name="id_anexo"/>
+          <div class="form-body">
+            <div class="form-group">
+              <label class="control-label col-md-3">Monto Anexo</label>
+              <div class="col-md-9">
+                <input name="monto_anexo" placeholder="Ingrese monto anexo" class="form-control" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Fecha Anexo</label>
+              <div class="col-md-9">
+                <input type="text" name="fecha_anexo" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Fecha registro</label>
+              <div class="col-md-9">
+                <input type="text" name="fecha_registro" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+            </div>
+          </div>
+        </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btnSave" onclick="edit_anexo()" class="btn btn-primary">Actualizar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  <!-- End Bootstrap modal -->
+  </body>
+</html>
+    
+    
+    
 </div>
 <script type="text/javascript">
     $('#sandbox-container .input-group.date').datepicker({
