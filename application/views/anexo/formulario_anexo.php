@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">Monto Anexo</label>
                                 <div class="col-md-9">
-                                    <input name="m_monto_anexo" id="m_monto_anexo" placeholder="Ingrese monto anexo" class="form-control" type="text">
+                                    <input name="m_monto_anexo" onkeyup="format(this)" onchange="format(this)" id="m_monto_anexo" placeholder="Ingrese monto anexo" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -80,6 +80,7 @@ class Anexo_controller extends CI_Controller
         if($data){
             foreach($data as $row){
                 $tmoneda = $row->codigo;
+                $estado = $row->idEstadoBoleta;
             }
         }
 
@@ -106,20 +107,18 @@ class Anexo_controller extends CI_Controller
             $html .="</tr>";
             $html .="<tr>";
             $html .="<td class='active'>Monto anexo</td>";
-            
-            if($tmoneda=="USD"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
-            if($tmoneda=="CLP"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,0,',','.')."</td>";}
-            if($tmoneda=="U.F."){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
-            if($tmoneda=="EUR"){$html .= "<td>".$tmoneda." ".number_format($row->monto_final,2,',','.')."</td>";}
-            
+            $html .= "<td>".$this->recursos->formateo_moneda($tmoneda,$row->monto_final)."</td>";
             $html .="</tr>";
             $html .="<tr>";
             $html .="<td class='active'>Fecha final</td>";
             $html .="<td>".$this->recursos->FormatoFecha($row->fecha_final)."</td>";
             $html .="</tr>";
-            $html .= "<tr>";
-            $html .= '<td colspan="2"><button type="button" class="btn btn-outline btn-primary" title="editar" data-toggle="modal" data-target="#EditarModal" onclick="ObtieneDatosAnexo('.$row->idAnexoBoleta.')">Editar</button></td>';
-            $html .= "</tr>";
+            if($estado == 1){
+                $html .= "<tr>";
+                    $html .= '<td colspan="2"><button type="button" class="btn btn-outline btn-primary" title="editar" data-toggle="modal" data-target="#EditarModal" onclick="ObtieneDatosAnexo('.$row->idAnexoBoleta.')">Editar</button></td>';
+                $html .= "</tr>";
+            }
+            
             $html .="</table>";
             $html .="</div>";//panel-body
             $html .="</div>";//colapse
@@ -150,15 +149,9 @@ class Anexo_controller extends CI_Controller
         $html .="<div class='input-group-addon'>".$query->codigo."</div>";
         
         if ($query2) {
-            if($query->codigo=="USD"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
-            if($query->codigo=="CLP"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,0,',','.')."'>";}
-            if($query->codigo=="U.F."){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
-            if($query->codigo=="EUR"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query2->monto_final,2,',','.')."'>";}
+            $html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query2->monto_final)."'>";
         }else{
-            if($query->codigo=="USD"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
-            if($query->codigo=="CLP"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,0,',','.')."'>";}
-            if($query->codigo=="U.F."){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
-            if($query->codigo=="EUR"){$html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".number_format($query->monto_boleta,2,',','.')."'>";}
+            $html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query->monto_boleta)."'>";
         }
         
         $html .="</div>";
@@ -197,7 +190,7 @@ class Anexo_controller extends CI_Controller
     public function ActualizaAnexo(){
         $id_boleta = $this->input->post('id_boleta');
         $id_anexo = $this->input->post('id_anexo');
-        $monto = $this->input->post('monto');
+        $monto = $this->recursos->Formato_monedas($this->input->post('monto'));
         $fecha = $this->recursos->FormatoFecha1($this->input->post('fecha'));
         
         $query = $this->anexo_model->ActualizaAnexo($id_anexo,$monto,$fecha);
