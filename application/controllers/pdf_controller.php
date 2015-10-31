@@ -98,10 +98,11 @@ class Pdf_Controller extends MY_Mantenedor {
         $html .= '<tr><td colspan="2">&nbsp;</td></tr>';
         $html .= '<tr><td style="width: 100px">Banco</td><td style="width: 502px">:&nbsp;&nbsp;'.$banco.'</td></tr>';
         $html .= '<tr><td style="width: 100px">Número</td><td>:&nbsp;&nbsp;'.$numero_boleta.'</td></tr>';
-        $html .= '<tr><td style="width: 100px">Monto Inicial</td><td>:&nbsp;&nbsp;('.$codigo.') '.$monto_boleta.'</td></tr>';
+        $html .= '<tr><td style="width: 100px">Monto Inicial</td><td>:&nbsp;&nbsp;'.$this->recursos->formateo_moneda($codigo,$monto_boleta).'</td></tr>';
         
         if($anexo){
-            $html .= '<tr><td style="width: 100px">Monto Final</td><td>:&nbsp;&nbsp;('.$codigo.') '.$anexo.'</td></tr>';
+            $html .= '<tr><td style="width: 100px">Monto Final</td><td>:&nbsp;&nbsp;'.$this->recursos->formateo_moneda($codigo,$anexo).'</td></tr>';
+
         }
             
         $html .= '<tr><td style="width: 100px">Fecha Emisión</td><td>:&nbsp;&nbsp;'.$this->recursos->FormatoFecha2($fecha_recepcion).'</td></tr>';
@@ -210,7 +211,7 @@ class Pdf_Controller extends MY_Mantenedor {
                 $html .= '</tr>';
                 $html .= '<tr>';
                 $html .= '<td>Monto Anexo</td>';
-                $html .= '<td>('.$row->codigo.') '.$row->monto_final.'</td>';
+                $html .= '<td>'.$this->recursos->formateo_moneda($row->codigo,$row->monto_final).'</td>';
                 $html .= '</tr>';
                 $html .= '<tr>';
                 $html .= '<td>Fecha Final</td>';
