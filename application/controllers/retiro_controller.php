@@ -113,7 +113,7 @@ class Retiro_Controller extends CI_Controller {
             
             $id_boleta = $row->id_Boleta;
             $numero_boleta = $row->numero_boleta;
-            $monto_boleta = "(" . $row->codigo . ") " . $row->monto_boleta;
+            $monto_boleta = $this->recursos->formateo_moneda($row->codigo,$row->monto_boleta);
             $fecha_recepcion = $this->recursos->FormatoFecha($row->fecha_recepcion);
             $fecha_emision = $this->recursos->FormatoFecha($row->fecha_emision);
             $fecha_vencimiento = $this->recursos->FormatoFecha($row->fecha_vencimiento);
@@ -173,7 +173,7 @@ class Retiro_Controller extends CI_Controller {
                 $fecha_registro = $this->recursos->FormatoFecha($row1->fecha_registro);
                 $html .= "<tr>";
                 $html .= "<td>$row->nombre</td>";
-                $html .= "<td>($row->codigo) $row1->monto_final</td>";
+                $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$row1->monto_final)."</td>";
                 $html .= "<td>$fecha_final</td>";
                 $html .= "<td>$fecha_registro</td>";
                 $html .= "</tr>";
