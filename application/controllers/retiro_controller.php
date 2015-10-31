@@ -91,7 +91,7 @@ class Retiro_Controller extends CI_Controller {
             $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
             $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
             $html .= "<td>".$v['vence']."</td>";
-            $html .= "<td>(".$row->codigo . ")".$monto_boleta."</td>";
+            $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>";
             $html .= "<td align='center'><a class='btn btn-default btn-circle' href='" . base_url() . "index.php/retiro_controller/vista_detalle/" . $row->id_Boleta . "'><i class='fa fa-eye'></i></a></td>";
             $html .= "</tr>\n";
         }

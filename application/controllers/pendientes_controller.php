@@ -48,7 +48,7 @@ class Pendientes_Controller extends MY_Mantenedor{
                 $html .= "<td>".$this->recursos->FormatoFecha($fecha_vencimiento)."</td>";
                 $html .= "<td>".$row->descripcion_tipo_boleta."</td>";
                 $html .= "<td>".$v['vence']."</td>";
-                $html .= "<td>(".$row->codigo.") ".$monto_boleta."</td>";
+                $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>";
                 $html .= "<td align='center'>";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='Retiro(".$row->id_Boleta.")'><i class='fa fa-check-square-o'></i></button>&nbsp;";
                 $html .= "<button type='button' class='btn btn-default btn-circle' onclick='PDF(".$row->id_Boleta.")'><i class='fa fa-file-pdf-o'></i></button>&nbsp;";
