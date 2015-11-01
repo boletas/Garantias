@@ -3,7 +3,6 @@
         <h1 class="page-header">Formulario ingreso anexo</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2 text-center">
-        <span id="mensaje_ajax"></span>
         <?php if($this->session->userdata('mensaje_anexo')){?>
         <div class="alert alert-warning alert-dismissable" id="mensaje">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -66,7 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="btnSave" onclick="ActualizaAnexo()" class="btn btn-primary">Actualizar</button>
+                    <button type="button" id="btnSave" onclick="if(confirmar()) {ActualizaAnexo()}" class="btn btn-primary">Actualizar</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

@@ -97,29 +97,9 @@ function ActualizaAnexo(){
                     },
                     success: function(respuesta){
                             //lo que se si el destino devuelve algo
-                            var res = respuesta.res;
-                            var msj = "";
-                            if(res){
-                                res = "alert alert-success alert-dismissable";
-                                msj = "Se actualizó correctamente el anexo";
-                            }else{
-                                res = "alert alert-warning alert-dismissable";
-                                msj = "Error al tratar de actualizar anexo";
-                            }
-                            var mensaje = " <div class='"+ res +"' id=\"mensaje\">\n\
-                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n\
-                                                    "+msj +"\n\
-                                            </div>";
-                            
-                            
+                            alert("El anexo fue actualizado correctamente");
                             $('#EditarModal').modal('hide');
-                            //if ($('#EditarModal').is(':hidden')){
-                            //setTimeout(window.location.reload(true),10000);
-                            
-                            $('#mensaje_ajax').html(mensaje);
-                            //}
-                            
-                            
+                            window.location.reload(true);
                     },
                     error: function(xhr,err){ 
                             alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
