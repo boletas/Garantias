@@ -99,7 +99,8 @@ function ActualizaAnexo(){
                             //lo que se si el destino devuelve algo
                             alert("El anexo fue actualizado correctamente");
                             $('#EditarModal').modal('hide');
-                            window.location.reload(true);
+                            window.location = ""+$base+"index.php/anexo_controller/SelectBoleta/"+$id_boleta+"/2"
+                            //window.location.reload(true);
                     },
                     error: function(xhr,err){ 
                             alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
