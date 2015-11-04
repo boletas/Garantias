@@ -65,7 +65,7 @@ class Reportes_Controller extends MY_Mantenedor{
             $html .= "<td width='120px'>".$row->descripcion_tipo_boleta."</td>\n";
             $html .= "<td>".$v['vence']."</td>\n";
             $html .= "<td>".$row->codigo."</td>\n";
-            $html .= "<td>".$monto_boleta."</td>\n";
+            $html .= "<td>".$this->recursos->formateo_moneda($row->codigo,$monto_boleta)."</td>\n";
             $html .= "<td align='right'>".$this->recursos->Formato1($monto)."</td>\n";
             $html .= "</tr>\n";
         }
