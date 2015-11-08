@@ -115,7 +115,12 @@ class Anexo_controller extends CI_Controller
             $html .="</tr>";
             if($estado == 1){
                 $html .= "<tr>";
-                    $html .= '<td colspan="2"><button type="button" class="btn btn-outline btn-primary" title="editar" data-toggle="modal" data-target="#EditarModal" onclick="ObtieneDatosAnexo('.$row->idAnexoBoleta.')">Editar</button></td>';
+                    $html .= '<td><button type="button" class="btn btn-outline btn-primary" title="editar" data-toggle="modal" data-target="#EditarModal" onclick="ObtieneDatosAnexo('.$row->idAnexoBoleta.')">Editar</button></td>';
+                    $html .= '<form action="'. base_url().'/index.php/anexo_controller/deleteanexo" method="post">';
+                    $html .= '<input type="hidden" name="id" value="'.$row->idAnexoBoleta.'" />';
+                    $html .= '<input type="hidden" name="idboleta" value="'.$idBoleta.'" />';
+                    $html .= '<td><input type="submit" onclick="return confirmarEliminar()" value="Eliminar" class="btn btn-outline btn-danger"/></td>';
+                    $html .= '</form>';
                 $html .= "</tr>";
             }
             
@@ -126,6 +131,24 @@ class Anexo_controller extends CI_Controller
         }
         
         return $html;
+    }
+    
+    
+    public function deleteanexo(){
+        $id = $this->input->post("id");
+        $id_boleta = $this->input->post("idboleta");
+        
+        $query = $this->anexo_model->eliminar_anexo($id);
+        
+        if($query){
+            $this->session->set_userdata('mensaje_anexo','Anexo eliminado correctamente..');
+            $this->SelectBoleta($id_boleta, 2);
+        }else{
+            $this->session->set_userdata('mensaje_anexo','Error al eliminar anexo..');
+            $this->SelectBoleta($id_boleta, 2);
+        }
+        
+        
     }
 
     public function TraerBoleta($idBoleta, $op){

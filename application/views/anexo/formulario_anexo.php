@@ -98,5 +98,13 @@ function confirmar(){
     }
 }
 
+function confirmarEliminar(){
+    if(confirm('¿Está seguro que desea eliminar este anexo?')){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 </script>
 

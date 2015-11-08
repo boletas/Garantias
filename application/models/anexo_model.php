@@ -20,6 +20,21 @@ class Anexo_model extends CI_Model {
             return false;
         }
     }
+    
+    
+    public function eliminar_anexo($id){
+        $query = $this->db->query("CALL pa_anexo ('".$id."','','','6')");
+        
+        if ($query) {
+            $query->free_result();
+            $this->db->close();
+            return true;
+        } else {
+            $query->free_result();
+            $this->db->close();
+            return FALSE;
+        }
+    }
         
     public function AnexoId($idanexo){
         $query = $this->db->query("CALL pa_anexo ('".$idanexo."','','','4')");
