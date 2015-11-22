@@ -44,13 +44,13 @@
                 echo form_open(base_url()."index.php/indicadores_controller/GuardarIndicadores",$form);
                 ?>
                 <div class="form-group">
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeypress="ValidNum2(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 123.123,09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="uf" name="uf" required onkeyup="format(this)" onchange="format(this)" value="<?php echo $uf; ?>" placeholder="Valor U.F. ej: 123.123,09">
                 </div>
                 <div class="form-group">
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" onkeypress="ValidNum2(this)" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 123.123,09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="dolar" name="dolar" onkeyup="format(this)" onchange="format(this)" value="<?php echo $dolar; ?>" required placeholder="Valor Dolar ej: 123.123,09">
                 </div>
                 <div class="form-group"> 
-                    <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" onkeypress="ValidNum2(this)"  value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 123.123,09">
+                    <input type="text" <?php echo $estado; ?> class="form-control" id="euro" name="euro" onkeyup="format(this)" onchange="format(this)"  value="<?php echo $euro; ?>" required placeholder="Valor Euro ej: 123.123,09">
                 </div>
                 <?php if($ingreso != 0){ ?>
                 <div class="form-group" align="right">
