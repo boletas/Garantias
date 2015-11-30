@@ -3,13 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Retiro_Controller extends CI_Controller {
+class Retiro_Controller extends MY_Mantenedor {
 
     public function __construct() {
         parent::__construct();
         $this->load->model('retiro_model');
         $this->load->model('anexo_model');
         $this->load->library('recursos');
+        $this->check_login();
     }
 
     public function BuscarRetiro() {
@@ -21,7 +22,7 @@ class Retiro_Controller extends CI_Controller {
 
         if (empty($rut) && empty($num)) {
             $this->session->set_flashdata('error', 'No puede enviar datos vacios');
-            redirect(base_url() . "?sec=retiro_boleta", 'refresh');
+            redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
         } elseif (!empty($rut) && !empty($num)) {
 
 
@@ -33,7 +34,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
                 $this->session->set_flashdata('error', 'No existen boletas con rut, número especificado o no se encuentra en custodia');
-                redirect(base_url() . "?sec=retiro_boleta", 'refresh');
+                redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
             }
         } elseif (empty($rut) && !empty($num)) {
 
@@ -44,7 +45,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
                 $this->session->set_flashdata('error', 'No existen boletas con número especificado o no se encuentra en custodia');
-                redirect(base_url() . "?sec=retiro_boleta", 'refresh');
+                redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
             }
         } elseif (!empty($rut) && empty($num)) {
 
@@ -55,7 +56,7 @@ class Retiro_Controller extends CI_Controller {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
                 $this->session->set_flashdata('error', 'No existen boletas con rut especificado o no se encuentra en custodia');
-                redirect(base_url() . "?sec=retiro_boleta", 'refresh');
+                redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
             }
         }
     }

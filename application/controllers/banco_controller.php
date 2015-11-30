@@ -1,13 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Banco_Controller extends CI_Controller {
+class Banco_Controller extends MY_Mantenedor {
     public function __construct(){
         parent::__construct();
         $this->load->model('banco_model');
         $this->load->library('session');
+        $this->check_login();
     }
     
-    public function Index(){
+    public function Index(){        
         $que = $this->input->post("crud");
         if(!$que){
             $data['bancos'] = $this->ObtieneBancos();
@@ -18,7 +19,7 @@ class Banco_Controller extends CI_Controller {
         }else{
             $que = $this->input->post("crud");
             if($que == "nuevo"){
-                redirect(base_url()."?sec=nuevo_banco",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }
 
             if($que == "editar"){
@@ -55,15 +56,15 @@ class Banco_Controller extends CI_Controller {
         $data = $this->banco_model->ExisteBanco($banco);
         if($data){
             $this->session->set_flashdata('error', 'Ya existe un banco con el nombre indicado');
-            redirect(base_url()."?sec=nuevo_banco",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
         }else{
             $data = $this->banco_model->NuevoBanco($banco);
             if($data){
                 $this->session->set_flashdata('guardado', 'El banco fue guardado correctamente');
-                redirect(base_url()."?sec=nuevo_banco",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }else{
                 $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de guardar el banco');
-                redirect(base_url()."?sec=nuevo_banco",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }
         }
     }
@@ -84,10 +85,10 @@ class Banco_Controller extends CI_Controller {
         $data = $this->banco_model->EliminaBanco($idBanco);
         if($data){
             $this->session->set_userdata('banco_ok','El registro fue eliminado correctamente');
-            redirect(base_url()."?sec=banco",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=banco",'refresh');
         }else{
             $this->session->set_userdata('banco_error','Ocurrio un problema al eliminar el registro');
-            redirect(base_url()."?sec=banco",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=banco",'refresh');
         }
     }
     

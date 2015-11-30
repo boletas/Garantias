@@ -11,6 +11,7 @@ class Pdf_Controller extends MY_Mantenedor {
         $this->load->model('retiro_model');
         $this->load->library('Pdf');
         $this->load->library('recursos');
+        $this->check_login();
     }
 
     public function GeneraPdf($html,$nombre, $idBoleta=0){

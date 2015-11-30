@@ -6,6 +6,7 @@ class Pendientes_Controller extends MY_Mantenedor{
         $this->load->library('recursos');
         $this->load->model('pendientes_model');
         $this->load->model('anexo_model');
+        $this->check_login();
     }
     
     public function Pendientes($html = ""){

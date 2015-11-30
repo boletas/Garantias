@@ -6,6 +6,7 @@ class Entidad_controller extends MY_Mantenedor{
         parent::__construct();
         $this->load->model('entidad_model');
         $this->load->library('recursos');
+        $this->check_login();
         
     }
     
@@ -20,7 +21,7 @@ class Entidad_controller extends MY_Mantenedor{
         
         if($rut_entidad){
             $this->session->set_flashdata('insert','¡¡Esta entidad ya existe!!'); 
-            redirect(base_url()."?sec=nueva_boleta",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
         }else{
             
             $insertok = $this->entidad_model->insert_entidad($rut,$nombre_entidad);
@@ -31,10 +32,10 @@ class Entidad_controller extends MY_Mantenedor{
                 foreach ($data as $value) {
                      $this->session->set_userdata('idEntidad',$value->idEntidad);
                 }
-                redirect(base_url()."?sec=ingreso_form",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=ingreso_form",'refresh');
             }else{
                 $this->session->set_flashdata('insert','Error al guardar entidad');
-                redirect(base_url()."?sec=nueva_boleta",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
             }
         }
         
@@ -137,12 +138,12 @@ class Entidad_controller extends MY_Mantenedor{
             foreach ($rut_entidad as $value) {
                 $this->session->set_userdata('idEntidad',$value->idEntidad);    
             }
-            redirect(base_url()."?sec=ingreso_form",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=ingreso_form",'refresh');
         }else{
             
             $this->session->set_flashdata('insert','No existe entidad con el rut ingresado.');
             $this->session->set_flashdata('op','si');
-            redirect(base_url()."?sec=nueva_boleta",'refresh');
+            redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
             
         }
     }

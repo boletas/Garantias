@@ -5,6 +5,7 @@ class Indicadores_Controller extends MY_Mantenedor {
         parent::__construct();
         $this->load->model('indicadores_model');
         $this->load->library('recursos');
+        $this->check_login();
     }
     
     public function index(){

@@ -13,7 +13,6 @@ class MY_Mantenedor extends CI_Controller{
         $this->load->model('ultimo_monto_model');
         $this->load->model('indicadores_model');
         $this->load->model('anexo_model');
-        
         $this->load->library('recursos');
     }
     
@@ -26,6 +25,15 @@ class MY_Mantenedor extends CI_Controller{
         }
     }
     
+    function check_login(){
+        if($this->session->userdata('logueado') != TRUE){
+            redirect(base_url()."index.php/login");
+        }
+    }
+
+
+
+
     /*public function ObtieneStringBancos(){
         $data = $this->banco_model->ObtieneBancos();
         if(!empty($data)){

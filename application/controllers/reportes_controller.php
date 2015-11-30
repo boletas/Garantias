@@ -9,6 +9,7 @@ class Reportes_Controller extends MY_Mantenedor{
         $this->load->model('reportes_model');
         $this->load->model('indicadores_model');
         $this->load->model('anexo_model');
+        $this->check_login();
     }
     
     public function Buscador(){

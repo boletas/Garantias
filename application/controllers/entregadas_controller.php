@@ -6,6 +6,7 @@ class Entregadas_Controller extends MY_Mantenedor{
         $this->load->library('recursos');
         $this->load->model('entregadas_model');
         $this->load->model('anexo_model');
+        $this->check_login();
     }
     
     

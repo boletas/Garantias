@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Anexo_controller extends CI_Controller
+class Anexo_controller extends MY_Mantenedor
 {
 	
     function __construct(){
@@ -11,6 +11,7 @@ class Anexo_controller extends CI_Controller
         $this->load->model('anexo_model');
         $this->load->model('boleta_model');
         $this->load->library('recursos');
+        $this->check_login();
     }
         
     public function InsertarAnexo(){

@@ -8,6 +8,7 @@ class Boleta_controller extends MY_Mantenedor{
         $this->load->library('recursos');
         $this->load->library('session');
         $this->load->model('anexo_model');
+        $this->check_login();
     }
 
     public function ResultadoBoletas(){//obtiene los valores del resultado de boletas
@@ -83,10 +84,10 @@ class Boleta_controller extends MY_Mantenedor{
                     $idEstado);
             if($insertok){
                 $this->session->set_flashdata('insert','Boleta ingresada correctamente.');
-                redirect(base_url()."?sec=nueva_boleta",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
             }else{
                 $this->session->set_flashdata('insert','Error al ingresar boleta.');
-                redirect(base_url()."?sec=nueva_boleta",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
                 
             }
         }

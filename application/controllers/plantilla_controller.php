@@ -6,16 +6,14 @@ class Plantilla_Controller extends MY_Mantenedor {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('recursos');
+        $this->check_login();
     }
     
     public function index() {
         $seccion = filter_input(INPUT_GET, "sec");
         
-        $this->load->view('plantilla');
-        
-        if($this->session->userdata('logueado') != TRUE){
-            $this->load->view('login');
-        }else if($this->session->userdata('logueado') == TRUE) {
+            $this->load->view('plantilla');
+            
             $fin_mes = $this->recursos->IngresoIndicadores();
             $data['fin_mes'] = $fin_mes;
             if($fin_mes == 1 ? $this->session->set_userdata($data) : $this->session->unset_userdata($data));
@@ -79,7 +77,7 @@ class Plantilla_Controller extends MY_Mantenedor {
                     $this->load->view('busqueda/resultado_boleta');
                     break;
             }
-        }
+//        }
         $this->load->view('footer');//carga de footer cierra body y html
     }
 }
