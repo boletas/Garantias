@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <img src="<?php echo base_url();?>/assets/img/favicon.jpg" class="navbar-brand"/>
-            <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio"> Boletas de Garantia</a>
+            <a class="navbar-brand" href="<?php echo base_url();?>?sec=Inicio"> DOCUMENTOS EN GARANTÍA</a>
         </div>
         <!-- comienzo menu horizontal -->
         <ul class="nav navbar-top-links navbar-right">

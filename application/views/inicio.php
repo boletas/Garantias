@@ -2,7 +2,7 @@
     <br/><br/><br/>
     <div class="col-lg-10 col-lg-offset-1">
         <blockquote>
-            <p class="lead text-uppercase text-primary"><img src="<?php echo base_url()?>assets/img/favicon.jpg"/>&nbsp;&nbsp;Sistema de Control de Documentos en Garantia</p>
+            <p class="lead text-uppercase text-primary"><img src="<?php echo base_url()?>assets/img/favicon.jpg"/>&nbsp;&nbsp;Sistema de Control de Documentos en Garantía</p>
         </blockquote>
     </div>
     <div class="col-lg-12"><br/><br/><br/><br/></div>
