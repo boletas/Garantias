@@ -86,7 +86,7 @@
 <script>
     function Pregunta(){
         if(confirm("El estado de la Boleta será modificado a pendiente, ¿Está seguro de continuar?")){
-            location.href = "<?php echo base_url();?>?sec=retiro_boleta";
+            location.href = "<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta";
             return true;
         }else{
             return false;
