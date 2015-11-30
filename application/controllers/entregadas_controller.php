@@ -48,7 +48,7 @@ class Entregadas_Controller extends MY_Mantenedor{
             $html .= "</tbody>";
             $this->Entregadas($html);
         }else{
-            $html["mensaje"] = "Actualmente no existen boletas con el estado \"Entregada\".";
+            $html["mensaje"] = "Actualmente no existen documentos con el estado \"Entregado\".";
             $this->Entregadas($html);
         }
     }

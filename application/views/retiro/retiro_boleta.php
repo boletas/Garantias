@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Retiro Boleta</h1>
+        <h1 class="page-header">Retiro Documento</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2 text-center">
         <?php 
@@ -29,7 +29,7 @@
                 $numero_buscar = array(
                                 'name'          => 'num_buscar',
                                 'class'         => 'form-control',
-                                'placeholder'   => 'Numero de boleta',
+                                'placeholder'   => 'Numero de documento',
                                 'type'          => 'text'
                               );
 

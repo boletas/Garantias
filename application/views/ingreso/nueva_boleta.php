@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Nueva Boleta</h1>
+        <h1 class="page-header">Nuevo documento</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2 text-center">
         <?php 

@@ -83,10 +83,10 @@ class Boleta_controller extends MY_Mantenedor{
                     $idTipo,
                     $idEstado);
             if($insertok){
-                $this->session->set_flashdata('insert','Boleta ingresada correctamente.');
+                $this->session->set_flashdata('insert','Documento ingresado correctamente.');
                 redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
             }else{
-                $this->session->set_flashdata('insert','Error al ingresar boleta.');
+                $this->session->set_flashdata('insert','Error al ingresar documento.');
                 redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
                 
             }
@@ -221,7 +221,7 @@ class Boleta_controller extends MY_Mantenedor{
             $html .= "</tbody>";
             $resultado['html'] = $html;
         }else{
-            $resultado['mensaje'] = "Actualmente no existen boletas en la base de datos";
+            $resultado['mensaje'] = "Actualmente no existen documentos en la base de datos";
         }
         $this->load->view('plantilla');
         $this->load->view('cabecera');
@@ -432,11 +432,11 @@ class Boleta_controller extends MY_Mantenedor{
                 );
         $data = $this->boleta_model->ModificaBoleta($datos_boleta);
         if($data){
-            $mensaje = array('boleta_ok'   => 'La boleta fue modificada exitosamente.');
+            $mensaje = array('boleta_ok'   => 'El documento fue modificado exitosamente.');
             $this->session->set_userdata($mensaje);
             $this->TodasBoletas();
         }else{
-            $mensaje = array('boleta_error'   => 'Ocurrió un error al tratar de modificar la boleta.');
+            $mensaje = array('boleta_error'   => 'Ocurrió un error al tratar de modificar el documento.');
             $this->session->set_userdata($mensaje);
             $this->TodasBoletas();
         }

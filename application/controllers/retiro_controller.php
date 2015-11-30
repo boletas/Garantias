@@ -44,7 +44,7 @@ class Retiro_Controller extends MY_Mantenedor {
             if ($query) {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
-                $this->session->set_flashdata('error', 'No existen boletas con número especificado o no se encuentra en custodia');
+                $this->session->set_flashdata('error', 'No existen documentos con el número especificado o no se encuentra en custodia');
                 redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
             }
         } elseif (!empty($rut) && empty($num)) {
@@ -55,7 +55,7 @@ class Retiro_Controller extends MY_Mantenedor {
             if ($query) {
                 $this->vista_retiro($this->llenar_tabla_retiro($query));
             } else {
-                $this->session->set_flashdata('error', 'No existen boletas con rut especificado o no se encuentra en custodia');
+                $this->session->set_flashdata('error', 'No existen documentos con el rut especificado o no se encuentra en custodia');
                 redirect(base_url() . "index.php/plantilla_controller/?sec=retiro_boleta", 'refresh');
             }
         }

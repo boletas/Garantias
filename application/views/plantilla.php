@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>...::: Boletas :::...</title>
+    <title>...::: Documentos :::...</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Detalle Boleta Entregada</h1>
+        <h1 class="page-header">Detalle Documentos Entregados.</h1>
     </div>
     <div class="col-lg-12">
         <table class="table table-bordered">
             <tr>
-                <td class="active">N° Boleta</td>
+                <td class="active">N° Documento</td>
                 <td colspan="3"><?php echo $numero_boleta; ?></td>
             </tr>
             <tr>

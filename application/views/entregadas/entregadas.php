@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Boletas Entregadas</h1>
+        <h1 class="page-header">Documento Entregados</h1>
     </div>
         <?php if(isset($html["mensaje"])){ ?>
         <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -13,7 +13,7 @@
             <table id="result_boleta" class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>N° Boleta</th>
+                        <th>N° Documento</th>
                         <th>Rut</th>
                         <th>Emisión</th>
                         <th>Vencimiento</th>
@@ -25,7 +25,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>N° Boleta</th>
+                        <th>N° Documento</th>
                         <th>Rut</th>
                         <th>Emisión</th>
                         <th>Vencimiento</th>

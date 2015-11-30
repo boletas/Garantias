@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Modificando Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <h1 class="page-header">Modificando Documento <small>N°<?php echo $numero_boleta; ?></small></h1>
         <?php if($idEstadoBoleta == 1){?>
             <div class="text-right">
                 <a class="btn btn-outline btn-primary " href="<?php echo base_url()?>index.php/anexo_controller/SelectBoleta/<?php echo $id_Boleta?>/1">Ver y/o Agregar anexo</a>
@@ -24,7 +24,7 @@
                 </td>
             </tr>
             <tr class="active">
-                <td>N° Boleta</td>
+                <td>N° Documento</td>
                 <td>Fecha Recepción</td>
                 <td>Fecha Emisión</td>
                 <td>Fecha Vecimiento</td>
@@ -68,8 +68,8 @@
                 <td colspan="2"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
-                <td colspan="2">Tipo Boleta</td>
-                <td colspan="2">Estado Boleta</td>
+                <td colspan="2">Tipo Documento</td>
+                <td colspan="2">Estado Documento</td>
                 <td colspan="3">Costo Total</td>
             </tr>
             <tr>

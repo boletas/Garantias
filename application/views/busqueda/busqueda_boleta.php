@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Busqueda Boleta</h1>
+        <h1 class="page-header">Busqueda Documento</h1>
     </div>
     <div class="col-lg-10 col-lg-offset-1">
         <div class="panel panel-default">
@@ -14,7 +14,7 @@
                         <select class="form-control" id="tipo_busqueda" onchange="cambio()">
                             <option>--- Seleccione ---</option>
                             <option value="1">Todas</option>
-                            <option value="2">N° Boleta</option>
+                            <option value="2">N° Documento</option>
                             <option value="3">Fecha Recepción</option>
                             <option value="4">Fecha Emisión</option>
                             <option value="5">Fecha Vencimiento</option>

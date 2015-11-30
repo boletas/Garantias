@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Boletas Pendientes</h1>
+        <h1 class="page-header">Documento Pendientes</h1>
     </div>
     
     <!--** MENSAJE **-->
@@ -34,7 +34,7 @@
                 <table id="result_boleta" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>N° Boleta</th>
+                            <th>N° Documento</th>
                             <th>Rut</th>
                             <th>Emisión</th>
                             <th>Vencimiento</th>
@@ -46,7 +46,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>N° Boleta</th>
+                            <th>N° Documento</th>
                             <th>Rut</th>
                             <th>Emisión</th>
                             <th>Vencimiento</th>

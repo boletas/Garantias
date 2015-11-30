@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Nueva Boleta</h1>
+        <h1 class="page-header">Nuevo Documento</h1>
     </div>
     <div class="col-lg-12">
                 <?php 
@@ -36,15 +36,15 @@
                             <td colspan="7"><div id="razon_social"><input type="text" class="form-control" disabled="true" value="<?php echo $nombre?>" /></div></td>
                         </tr>
                         <tr class="active">
-                            <td>N° Boleta</td>
+                            <td>N° Documento</td>
                             <td>Fecha Recepción</td>
                             <td>Fecha Emisión</td>
                             <td colspan="2">Fecha Vecimiento</td>
-                            <td colspan="3">Tipo Boleta</td>
+                            <td colspan="3">Tipo Documento</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="num_boleta" value="<?php echo set_value('num_boleta');?>" class="form-control" placeholder="Numero de boleta">
+                                <input type="text" name="num_boleta" value="<?php echo set_value('num_boleta');?>" class="form-control" placeholder="Numero de documento">
                             </td>
                             <td>
                                 <div id="sandbox-container" style="width: 150px">
@@ -98,8 +98,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="active">Monto boleta</td>
-                            <td><input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)" name="monto_boleta" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto boleta" id="monto_boleta" /></td>
+                            <td class="active">Monto Documento</td>
+                            <td><input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)" name="monto_boleta" value="<?php echo set_value('monto_boleta');?>" placeholder="Monto documento" id="monto_boleta" /></td>
                             <td colspan="3">
                                 <select name="id_moneda" class="form-control">
                                     <?php foreach ($monedas as $moneda) { ?>
@@ -108,7 +108,7 @@
                                 </select>
                             </td>
                             <td colspan="3">
-                                <a class="btn btn-default" href="<?php echo base_url();?>?sec=nueva_boleta">Volver</a>
+                                <a class="btn btn-default" href="<?php echo base_url();?>index.php/plantilla_controller/?sec=nueva_boleta">Volver</a>
                                 <input onclick=" return ValidaFechasBoleta(document.getElementById('fecha_recepcion').value,document.getElementById('fecha_emision').value,document.getElementById('fecha_vencimiento').value)" type="submit" class="btn btn-outline btn-primary" value="Guardar" name="guardar"/>
                             </td>
                             <input type="hidden" name="idEntidad" id="idEntitad" value="<?php echo $idEntidad;?>" />

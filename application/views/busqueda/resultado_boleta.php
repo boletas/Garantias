@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Busqueda Boleta</h1>
+        <h1 class="page-header">Busqueda Documento</h1>
     </div>
     <!--** MENSAJE **-->
     <?php 
@@ -26,7 +26,7 @@
         <?php if(empty($html)){?>
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <div class="alert alert-info">
-                    <?php echo "Actualmente no existen boletas en la base de datos"; ?>
+                    <?php echo "Actualmente no existen documentos en la base de datos"; ?>
                 </div>
             </div>
         <?php }else{?>
@@ -38,7 +38,7 @@
                     <table id="result_boleta" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>N° Boleta</th>
+                                <th>N° Documento</th>
                                 <th>Rut</th>
                                 <th>Emisión</th>
                                 <th>Vencimiento</th>
@@ -50,7 +50,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>N° Boleta</th>
+                                <th>N° Documento</th>
                                 <th>Rut</th>
                                 <th>Emisión</th>
                                 <th>Vencimiento</th>

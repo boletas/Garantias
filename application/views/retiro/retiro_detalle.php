@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Detalles Boleta <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <h1 class="page-header">Detalles documentos <small>N°<?php echo $numero_boleta; ?></small></h1>
         <!--Aca el IF para mostrar el boton-->
         <?php if($html != FALSE){ ?>
         <div class="text-right">
@@ -20,7 +20,7 @@
                 <td colspan="4"><?php echo $nombre; ?></td>
             </tr>
             <tr class="active">
-                <td>N° Boleta</td>
+                <td>N° Documento</td>
                 <td>Fecha Recepción</td>
                 <td>Fecha Emisión</td>
                 <td>Fecha Vecimiento</td>
@@ -44,8 +44,8 @@
                 <td><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
-                <td colspan="2">Tipo Boleta</td>
-                <td colspan="2">Estado Boleta</td>
+                <td colspan="2">Tipo Documento</td>
+                <td colspan="2">Estado Documento</td>
                 <td>Costo Total</td>
             </tr>
             <tr>

@@ -163,12 +163,12 @@ class Anexo_controller extends MY_Mantenedor
         $html .="<input type='text' class='form-control' disabled='true' value='".$query->nombre."'>";        
         $html .="</div>";
 
-        $html .="<label>Numero boleta</label>";
+        $html .="<label>Numero documento</label>";
         $html .="<div class='form-group'>";    
         $html .="<input type='text' class='form-control' disabled='true' value='".$query->numero_boleta."'>";        
         $html .="</div>";
 
-        $html .="<label>Monto final boleta</label>";
+        $html .="<label>Monto final documento</label>";
         $html .="<div class='form-group input-group'>";
         $html .="<div class='input-group-addon'>".$query->codigo."</div>";
         

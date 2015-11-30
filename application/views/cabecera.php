@@ -62,22 +62,22 @@
                         <a href="<?php echo base_url() ?>index.php/plantilla_controller/?sec=Inicio"><i class="fa fa-home fa-fw"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-folder-open fa-fw"></i> Boleta<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-folder-open fa-fw"></i> Documentos<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=nueva_boleta"><i class="fa fa-list-alt fa-fw"></i> Nueva Boleta</a>
+                                <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=nueva_boleta"><i class="fa fa-list-alt fa-fw"></i> Nuevo Documento</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Busqueda Boleta</a>
+                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Busqueda Documentos</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro boleta</a>
+                                <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro Documentos</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/pendientes_controller/ListaPendientes"><i class="fa fa-paperclip fa-fw"></i> Boletas Pendientes</a>
+                                <a href="<?php echo base_url();?>index.php/pendientes_controller/ListaPendientes"><i class="fa fa-paperclip fa-fw"></i> Documentos Pendientes</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/entregadas_controller/ListaEntregadas"><i class="fa fa-check fa-fw"></i> Boletas Retiradas</a>
+                                <a href="<?php echo base_url();?>index.php/entregadas_controller/ListaEntregadas"><i class="fa fa-check fa-fw"></i> Documentos Retirados</a>
                             </li>
                         </ul>
                     </li>

@@ -26,7 +26,7 @@
                             <option>--- Seleccione ---</option>
                             <option value="1">Todas</option>
                             <option value="2">Rut</option>
-                            <option value="3">Tipo Boleta</option>
+                            <option value="3">Tipo Documento</option>
                         </select>
                     </div>
                     <div class="form-group">

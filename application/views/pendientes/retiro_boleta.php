@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Retiro Boleta</h1>
+        <h1 class="page-header">Retiro Documento</h1>
     </div>
     <div class="col-lg-8 col-lg-offset-2">
         <?php 
@@ -49,7 +49,7 @@ function Volver(){
 }
 
 function Guardar(){
-    if(confirm("Está seguro de guardar los cambios.? La boleta cambiará su estado a entregada")){
+    if(confirm("Está seguro de guardar los cambios.? El documento cambiará su estado a entregado")){
         return true;
     }else{
         return false;

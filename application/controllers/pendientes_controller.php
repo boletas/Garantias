@@ -57,7 +57,7 @@ class Pendientes_Controller extends MY_Mantenedor{
             }
             $html .= "</tbody>";
         }else{
-            $html['mensaje'] = "Actualmente no existen boletas con el estado \"pendientes\"";
+            $html['mensaje'] = "Actualmente no existen documentos con el estado \"pendientes\"";
         }
         $this->Pendientes($html);
     }
@@ -70,10 +70,10 @@ class Pendientes_Controller extends MY_Mantenedor{
         $fecha_retiro = $this->recursos->FormatoFecha1($this->input->post("fecha_retiro"));
         $data = $this->pendientes_model->GuardarRetiro($idBoleta,$rut,$nombre,$apellido,$fecha_retiro);
         if($data){
-            $mensaje = array('ok'   => 'El estado de la boleta fue cambiado correctamente.');
+            $mensaje = array('ok'   => 'El estado del documento fue cambiado correctamente.');
             $this->session->set_userdata($mensaje);
         }else{
-            $mensaje = array('error'   => 'Ocurrio un problema al tratar de cambiar el estado de la boleta.');
+            $mensaje = array('error'   => 'Ocurrio un problema al tratar de cambiar el estado del documento.');
             $this->session->set_userdata($mensaje);
         }
         $this->ListaPendientes();

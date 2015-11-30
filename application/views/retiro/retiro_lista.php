@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Retiro Boleta</h1>
+        <h1 class="page-header">Retiro Documento</h1>
     </div>
     <div class="col-lg-12">
         <?php 
@@ -18,7 +18,7 @@
         <table id="tabla_retiro" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>N° Boleta</th>
+                    <th>N° Documento</th>
                     <th>Rut</th>
                     <th>Emisión</th>
                     <th>Vencimiento</th>
@@ -30,7 +30,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th>Numero boleta</th>
+                    <th>Numero Documento</th>
                     <th>Rut</th>
                     <th>Emisión</th>
                     <th>Vencimiento</th>
