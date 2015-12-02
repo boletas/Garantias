@@ -1,11 +1,7 @@
 <?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 
-/**
-* 
-*/
-class Anexo_controller extends MY_Mantenedor
-{
-	
+class Anexo_controller extends MY_Mantenedor{
+    
     function __construct(){
         parent::__construct();
         $this->load->model('anexo_model');
@@ -173,9 +169,9 @@ class Anexo_controller extends MY_Mantenedor
         $html .="<div class='input-group-addon'>".$query->codigo."</div>";
         
         if ($query2) {
-            $html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query2->monto_final)."'>";
+            $html .= "<input type='text' required='true' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query2->monto_final)."'>";
         }else{
-            $html .= "<input type='text' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query->monto_boleta)."'>";
+            $html .= "<input type='text' required='true' onkeyup='format(this)' onchange='format(this)'  class='form-control' style='width: 200px;' name='monto' value='".$this->recursos->formateo_moneda_dos($query->codigo,$query->monto_boleta)."'>";
         }
         
         $html .="</div>";

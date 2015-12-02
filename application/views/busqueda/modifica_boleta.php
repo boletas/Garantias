@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" class="form-control" name="numero_boleta" onkeypress="return ValidNum(this)" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/>
+                    <input type="text" required="true" class="form-control" name="numero_boleta" onkeypress="return ValidNum(this)" id="numero_boleta" value="<?php echo $numero_boleta; ?>"/>
                 </td>
                 <td>
                     <div id="sandbox-container" style="width: 150px">
@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td><?php echo $tipo_garantia; ?></td>
-                <td colspan="4"><input type="text" class="form-control"  name="denominacion" id="denominacion" value="<?php echo $denominacion; ?>"/></td>
+                <td colspan="4"><input type="text" class="form-control" required="true"  name="denominacion" id="denominacion" value="<?php echo $denominacion; ?>"/></td>
                 <td colspan="2"><?php echo $nombre_banco; ?></td>
             </tr>
             <tr class="active">
@@ -77,13 +77,13 @@
                 <td colspan="2"><?php echo $estado_boleta ?></td>
                 <td align="center"><?php echo $codigo ?></td>
                 <td colspan="2">
-                    <input type="text" class="form-control" onkeyup="format(this)" onchange="format(this)"  name="monto" value="<?php echo $monto_boleta; ?>"/>
+                    <input type="text" required="true" class="form-control" onkeyup="format(this)" onchange="format(this)"  name="monto" value="<?php echo $monto_boleta; ?>"/>
                 </td>
             </tr>
         </table>
         <div align="right">
             <button class="btn btn-outline btn-default" name="volver" id="volver" onclick="Volver()">Volver</button>
-            <button class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick=" return ValidaFechasBoleta(document.getElementById('recepcion').value,document.getElementById('emision').value,document.getElementById('vencimiento').value)">Aceptar</button>
+            <button type="submit" class="btn btn-outline btn-primary" name="Modificar" id="Modificar" onclick="return ValidaFechasBoleta(document.getElementById('recepcion').value,document.getElementById('emision').value,document.getElementById('vencimiento').value)">Aceptar</button>
         </div>
         <input type="hidden" name="volver" id="volver" />
         <input type="hidden" name="id_boleta" id="id_boleta" value="<?php echo $id_Boleta; ?>"/>

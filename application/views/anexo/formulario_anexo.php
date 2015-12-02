@@ -65,7 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="btnSave" onclick="if(confirmar()) {ActualizaAnexo()}" class="btn btn-primary">Actualizar</button>
+                    <button type="button" id="btnSave" onclick="confirmar()" class="btn btn-primary">Actualizar</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -92,7 +92,13 @@ $(document).ready(function(){
 
 function confirmar(){
     if(confirm('¿Está seguro que desea ingresar este anexo?')){
-        return true;
+        if($('#m_monto_anexo').val() != ""){
+            ActualizaAnexo();
+            return true;
+        }else{
+            alert('Monto de anexo incorrecto');
+            return false;
+        }
     }else{
         return false;
     }

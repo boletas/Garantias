@@ -77,7 +77,7 @@ function Accion(accion,id){
 $(document).ready(function() {
     $('#result_boleta tfoot th').each( function () {
         var title = $('#result_boleta thead th').eq( $(this).index() ).text();
-        $(this).html( '<center><input type="text" style="width: 100px;" class="form-control"/></center>' );
+        $(this).html( '<center><input type="text" style="width: 100px;" class="form-control"/></center>' );        
     } );
     var table = $('#result_boleta').DataTable();
     table.columns().every( function () {

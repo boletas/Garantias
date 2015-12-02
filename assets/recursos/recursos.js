@@ -62,7 +62,8 @@ function ValidaFechasBoleta(recepcion,emision,vencimiento){
     
     if(error == 0){
         if (confirm('¿Está seguro de realizar estos cambios?')){ 
-            document.form1.submit();
+            //document.form1.submit();
+            return true;
         }else{
             return false;
         }
