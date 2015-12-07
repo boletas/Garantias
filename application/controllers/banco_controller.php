@@ -63,7 +63,7 @@ class Banco_Controller extends MY_Mantenedor {
                 $this->session->set_flashdata('guardado', 'El banco fue guardado correctamente');
                 redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }else{
-                $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de guardar el banco');
+                $this->session->set_flashdata('error', 'Ocurrió un problema al tratar de guardar el banco');
                 redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }
         }
@@ -76,7 +76,7 @@ class Banco_Controller extends MY_Mantenedor {
         if($data){
             $this->session->set_userdata('banco_ok', 'El banco fue actualizado correctamente');
         }else{
-            $this->session->set_flashdata('error', 'Ocurrio un problema al tratar de modificar el banco');
+            $this->session->set_flashdata('error', 'Ocurrió un problema al tratar de modificar el banco');
         }
         $this->Index();
     }
@@ -87,7 +87,7 @@ class Banco_Controller extends MY_Mantenedor {
             $this->session->set_userdata('banco_ok','El registro fue eliminado correctamente');
             redirect(base_url()."index.php/plantilla_controller/?sec=banco",'refresh');
         }else{
-            $this->session->set_userdata('banco_error','Ocurrio un problema al eliminar el registro');
+            $this->session->set_userdata('banco_error','Ocurrió un problema al eliminar el registro');
             redirect(base_url()."index.php/plantilla_controller/?sec=banco",'refresh');
         }
     }

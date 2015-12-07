@@ -49,9 +49,9 @@ class Boleta_controller extends MY_Mantenedor{
         $idTipo = $this->input->post('id_tipo');
         $idEstado = 1;
         
-        $this->form_validation->set_rules('num_boleta', 'numero de boleta','trim|required|min_length[1]|xss_clean');
+        $this->form_validation->set_rules('num_boleta', 'número de boleta','trim|required|min_length[1]|xss_clean');
         $this->form_validation->set_rules('monto_boleta','monto de boleta','trim|required|callback_monto_check|xss_clean');
-        $this->form_validation->set_rules('denominacion','denominacion estudio','trim|required|min_length[1]|xss_clean');
+        $this->form_validation->set_rules('denominacion','denominación estudio','trim|required|min_length[1]|xss_clean');
         
         $this->form_validation->set_message('required','El campo %s es obligatorio');
         $this->form_validation->set_message('numeric','El campo %s debe ser numerico');
