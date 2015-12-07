@@ -154,12 +154,12 @@ class Anexo_controller extends MY_Mantenedor{
         $query2 = $this->anexo_model->TraerMontoAnexo($idBoleta);
 
         $html = "";
-        $html .="<label>Razon social</label>";
+        $html .="<label>Razón social</label>";
         $html .="<div class='form-group'>";    
         $html .="<input type='text' class='form-control' disabled='true' value='".$query->nombre."'>";        
         $html .="</div>";
 
-        $html .="<label>Numero documento</label>";
+        $html .="<label>Número documento</label>";
         $html .="<div class='form-group'>";    
         $html .="<input type='text' class='form-control' disabled='true' value='".$query->numero_boleta."'>";        
         $html .="</div>";
