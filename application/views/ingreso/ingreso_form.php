@@ -39,7 +39,7 @@
                             <td>N° Documento</td>
                             <td>Fecha Recepción</td>
                             <td>Fecha Emisión</td>
-                            <td colspan="2">Fecha Vecimiento</td>
+                            <td colspan="2">Fecha Vencimiento</td>
                             <td colspan="3">Tipo Documento</td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <div id="sandbox-container" style="width: 140px">
                                     <div class="input-group date" style="width: 140px">
                                         <input type="text" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" onfocus="this.blur();" required value="<?php echo date("d-m-Y")?>" /><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
