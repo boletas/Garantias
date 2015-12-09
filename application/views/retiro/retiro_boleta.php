@@ -14,7 +14,7 @@
     </div>
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading"> Tipo de Busqueda</div>
+            <div class="panel-heading"> Tipo de Búsqueda</div>
             <div class="panel-body" align="center">
                 <?php 
 

@@ -29,7 +29,7 @@ class Login_Controller extends CI_Controller {
                     $this->datos_persona->Persona($data->row('idUsuario'),'login');
                 }
             }else{
-                $mensaje = 'Ususario o contraseña incorrectos';
+                $mensaje = 'Usuario o contraseña incorrectos';
                 $this->session->set_userdata('login',$mensaje);
                 redirect('plantilla_controller');
             }

@@ -68,7 +68,7 @@
                                 <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=nueva_boleta"><i class="fa fa-list-alt fa-fw"></i> Nuevo Documento</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Busqueda Documentos</a>
+                                <a href="<?php echo base_url();?>index.php/boleta_controller/TodasBoletas"><i class="fa fa-search fa-fw"></i> Búsqueda Documentos</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta"><i class="fa fa-clipboard fa-fw"></i> Retiro Documentos</a>

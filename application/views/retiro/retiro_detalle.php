@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Detalles documentos <small>N°<?php echo $numero_boleta; ?></small></h1>
+        <h1 class="page-header">Detalle documento <small>N°<?php echo $numero_boleta; ?></small></h1>
         <!--Aca el IF para mostrar el boton-->
         <?php if($html != FALSE){ ?>
         <div class="text-right">
@@ -57,7 +57,7 @@
         <div align="right">
             <form action="<?php echo base_url()?>index.php/retiro_controller/BuscarRetiro" method="post">
                 <button type="submit" class="btn btn-outline btn-default">Atras</button>
-                <a class="btn btn-outline btn-danger" href="<?php echo base_url()?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta."/3"; ?>" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
+                <a class="btn btn-outline btn-danger" onclick="return Pregunta();" id="PDF" target="_blank">PDF <i class="fa fa-file-pdf-o"></i></a>
                 <input type="hidden" value="<?php echo $this->session->userdata('xrut'); ?>" name="rut_buscar">
                 <input type="hidden" value="<?php echo $this->session->userdata('xnum'); ?>" name="num_buscar">
             </form>
@@ -86,6 +86,7 @@
 <script>
     function Pregunta(){
         if(confirm("El estado de la Boleta será modificado a pendiente, ¿Está seguro de continuar?")){
+            window.open('<?php echo base_url(); ?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta; ?>/3', '_blank');
             location.href = "<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta";
             return true;
         }else{
