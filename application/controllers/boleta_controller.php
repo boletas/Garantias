@@ -165,7 +165,7 @@ class Boleta_controller extends MY_Mantenedor{
                         $html .="<div class='panel-body'>";
                             $html .="<table class='table table-bordered table-hover'>";
                                 $html .= "<tr>";
-                                    $html .= "<td class='active'>Fecha ingreso Anexo</td>";
+                                    $html .= "<td class='active'>Fecha ingreso anexo</td>";
                                     $html .= "<td>".$this->recursos->FormatoFecha($row->fecha_registro)."</td>";
                                 $html .= "</tr>";
                                 $html .= "<tr>";

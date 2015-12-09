@@ -59,7 +59,7 @@ class Anexo_controller extends MY_Mantenedor{
         $query = $this->anexo_model->AnexoId($id_anexo);
         $arr = array(
                         'id_anexo'      => $query->idAnexoBoleta,
-                        'monto_anexo'   => $query->monto_final,
+                        'monto_anexo'   => number_format($query->monto_final,2,',','.'),
                         'fecha_anexo'   => $this->recursos->FormatoFecha($query->fecha_final)
                     );
 

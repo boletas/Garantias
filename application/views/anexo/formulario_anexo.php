@@ -64,7 +64,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="button" id="btnSave" onclick="confirmar_2()" class="btn btn-primary">Actualizar</button>
                 </div>
             </div><!-- /.modal-content -->

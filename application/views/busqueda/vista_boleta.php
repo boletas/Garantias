@@ -24,7 +24,7 @@
                 <td>N° Documento</td>
                 <td>Fecha Recepción</td>
                 <td>Fecha Emisión</td>
-                <td>Fecha Vecimiento</td>
+                <td>Fecha Vencimiento</td>
                 <td colspan="3" width="250px">Vence</td>
             </tr>
             <tr>
