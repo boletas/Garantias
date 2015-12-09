@@ -85,7 +85,7 @@
 
 <script>
     function Pregunta(){
-        if(confirm("El estado de la Boleta será modificado a pendiente, ¿Está seguro de continuar?")){
+        if(confirm("El estado del documento será modificado a pendiente, ¿Está seguro de continuar?")){
             window.open('<?php echo base_url(); ?>index.php/pdf_controller/EstadoBoleta/<?php echo $id_Boleta; ?>/3', '_blank');
             location.href = "<?php echo base_url();?>index.php/plantilla_controller/?sec=retiro_boleta";
             return true;
