@@ -70,10 +70,10 @@ class Pendientes_Controller extends MY_Mantenedor{
         $fecha_retiro = $this->recursos->FormatoFecha1($this->input->post("fecha_retiro"));
         $data = $this->pendientes_model->GuardarRetiro($idBoleta,$rut,$nombre,$apellido,$fecha_retiro);
         if($data){
-            $mensaje = array('ok'   => 'El estado del documento fue cambiado correctamente.');
+            $mensaje = array('ok'   => 'El documento fue retirado correctamente.');
             $this->session->set_userdata($mensaje);
         }else{
-            $mensaje = array('error'   => 'Ocurrio un problema al tratar de cambiar el estado del documento.');
+            $mensaje = array('error'   => 'Ocurrio un problema al tratar de retirar el documento.');
             $this->session->set_userdata($mensaje);
         }
         $this->ListaPendientes();
