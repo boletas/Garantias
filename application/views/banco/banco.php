@@ -46,7 +46,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre Banco</th>
-                            <th style="text-align: center;"></th>
+                            <td></td>
                         </tr>
                     </tfoot>
                     <?php echo $bancos;?>
