@@ -107,13 +107,6 @@ function confirmar_2(){
 function confirmar(){
     if(confirm('¿Está seguro que desea ingresar este anexo?')){
         return true;
-        /*if($('#m_monto_anexo').val() != ""){
-            ActualizaAnexo();
-            return true;
-        }else{
-            alert('Monto de anexo incorrecto');
-            return false;
-        }*/
     }else{
         return false;
     }

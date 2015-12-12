@@ -36,7 +36,8 @@
                     'name'          => 'Aceptar',
                     'content'       => 'Aceptar',
                     'type'          => 'Submit',
-                    'class'         => 'btn btn-outline btn-primary'
+                    'class'         => 'btn btn-outline btn-primary',
+                    'onClick'       => 'return confirmar()'
                 );
                 echo form_open(base_url()."index.php/banco_controller/ModificaBanco");?>
                 <div class="form-group">
@@ -51,3 +52,12 @@
             </div>
         </div>
     </div>
+<script>
+    function confirmar(){
+    if(confirm('¿Está seguro de guardar los cambios?')){
+        return true;
+    }else{
+        return false;
+    }
+}
+</script>

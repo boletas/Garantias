@@ -42,7 +42,8 @@
                     'name'          => 'Aceptar',
                     'content'       => 'Aceptar',
                     'type'          => 'Submit',
-                    'class'         => 'btn btn-outline btn-primary'
+                    'class'         => 'btn btn-outline btn-primary',
+                    'onClick'       => 'return confirmar()'
                 );
                 echo form_open(base_url()."index.php/banco_controller/NuevoBanco"); ?>
                 <div class="form-group">
@@ -56,3 +57,12 @@
             </div>
         </div>
     </div>
+<script>
+    function confirmar(){
+    if(confirm('¿Está seguro que desea ingresar este banco?')){
+        return true;
+    }else{
+        return false;
+    }
+}
+</script>
