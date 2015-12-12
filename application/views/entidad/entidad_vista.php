@@ -14,7 +14,7 @@
                 $alerta = $this->session->userdata('error_entidad');
             }
         ?>
-            <div class="col-lg-12">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
                 <div id="mensaje" class="<?php echo $clase; ?>">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <?php echo $alerta; ?>

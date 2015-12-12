@@ -60,12 +60,11 @@ class Banco_Controller extends MY_Mantenedor {
         }else{
             $data = $this->banco_model->NuevoBanco($banco);
             if($data){
-                $this->session->set_flashdata('guardado', 'El banco fue guardado correctamente');
-                redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
+                $this->session->set_userdata('banco_ok', 'El banco fue guardado correctamente');
             }else{
                 $this->session->set_flashdata('error', 'Ocurrió un problema al tratar de guardar el banco');
-                redirect(base_url()."index.php/plantilla_controller/?sec=nuevo_banco",'refresh');
             }
+            $this->Index();
         }
     }
     
