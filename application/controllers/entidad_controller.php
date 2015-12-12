@@ -20,7 +20,7 @@ class Entidad_controller extends MY_Mantenedor{
         
         
         if($rut_entidad){
-            $this->session->set_flashdata('insert','¡¡Esta entidad ya existe!!'); 
+            $this->session->set_flashdata('insert','La entidad que intenta ingresar ya existe'); 
             redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
         }else{
             
@@ -50,7 +50,10 @@ class Entidad_controller extends MY_Mantenedor{
                     $html .= "<tr>";
                     $html .= "<td>".$this->recursos->DevuelveRut($row->rut)."</td>";
                     $html .= "<td>".$row->nombre."</td>";
-                    $html .= "<td><a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-pencil'></i></a></td>";
+                    $html .= "<td>";
+                    $html .= "<a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/modificar_entidad/".$row->idEntidad."'><i class='fa fa-pencil'></i></a> ";
+                    $html .= "<a class='btn btn-default btn-circle' href='".base_url()."index.php/entidad_controller/FormEntidad'><i class='fa fa-plus'></i></a>";
+                    $html .= "</td>";
                     $html .= "</tr>";
                 }
                 $html .= "</tbody>";
@@ -73,7 +76,7 @@ class Entidad_controller extends MY_Mantenedor{
             $html .= "<div class='form-group'>";
             $html .= "<input class='form-control' type='text' name='nombre_entidad' value='".$entidad->nombre."'>";
             $html .= "</div>";
-            $html .= "<div class='form-group' style  ='text-align: right'>";
+            $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<input type='hidden' name='idEntidad' value='".$entidad->idEntidad."'>";
             $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a>&nbsp;<button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button>";       
             $html .= "</div>";
@@ -98,7 +101,7 @@ class Entidad_controller extends MY_Mantenedor{
             $query = $this->entidad_model->EntidadExiste($rut);
 
             if($query){
-               $this->session->set_userdata('error',"¡¡Rut ya existe!!");
+               $this->session->set_userdata('error',"La entidad que intenta ingresar ya existe");
                $this->entidades();
                 
             }else{
@@ -145,6 +148,32 @@ class Entidad_controller extends MY_Mantenedor{
             $this->session->set_flashdata('op','si');
             redirect(base_url()."index.php/plantilla_controller/?sec=nueva_boleta",'refresh');
             
+        }
+    }
+    
+    public function FormEntidad(){
+        $this->load->view('plantilla');
+        $this->load->view('cabecera');
+        $this->load->view('entidad/nueva_entidad');
+        $this->load->view('footer');
+    }
+    
+    public function NuevaEntidad(){
+        $rut = $this->recursos->FormatoRut($this->input->post('rut_entidad'));
+        $nombre_entidad = $this->input->post('nombre_entidad');
+        $rut_entidad = $this->entidad_model->EntidadExiste($rut);
+        
+        if($rut_entidad){
+            $this->session->set_userdata('error','La entidad que intenta ingresar ya existe'); 
+            $this->FormEntidad();
+        }else{
+            $insertok = $this->entidad_model->insert_entidad($rut,$nombre_entidad);
+            if ($insertok) {
+                $this->session->set_userdata('ok','La entidad fue ingresada correctamente');
+            }else{
+                $this->session->set_userdata('error','Ocurrió un problema al tratar de guardar la entidad'); 
+            }
+            $this->entidades();
         }
     }
 }

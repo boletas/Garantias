@@ -11,7 +11,7 @@
             }
             if($this->session->userdata('error')){
                 $clase = "alert alert-danger alert-dismissable";
-                $alerta = $this->session->userdata('error');
+                $alerta = $this->session->userdata('error_entidad');
             }
         ?>
             <div class="col-lg-12">
@@ -37,14 +37,14 @@
                         <tr>
                             <th>Rut</th>
                             <th>Nombre</th>
-                            <th>Modificar</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Rut Entidad</th>
                             <th>Nombre entidad</th>
-                            <th>Modificar</th>
+                            <td></td>
                         </tr>
                     </tfoot>
                     <?php echo $entidad;  ?>
