@@ -78,7 +78,7 @@ class Entidad_controller extends MY_Mantenedor{
             $html .= "</div>";
             $html .= "<div class='form-group' style='text-align: right'>";
             $html .= "<input type='hidden' name='idEntidad' value='".$entidad->idEntidad."'>";
-            $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a>&nbsp;<button class='btn btn-primary btn-outline ' type='submit'>Actualizar</button>";       
+            $html .= "<a class='btn btn-default btn-outline' href='".base_url()."index.php/entidad_controller/entidades'>Volver</a>&nbsp;<button class='btn btn-primary btn-outline ' type='submit' onclick='return confirmar()'>Actualizar</button>";       
             $html .= "</div>";
         }
         $data['modificar'] = $html;

@@ -68,10 +68,10 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="alert alert-warning alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            El ingreso de los indicadores solo estará disponible en los dias finales de cada mes.
+            El ingreso de los indicadores solo estará disponible los primeros 9 días de cada mes.
         </div>
     </div>
 <script>

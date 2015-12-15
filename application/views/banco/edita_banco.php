@@ -53,7 +53,7 @@
         </div>
     </div>
 <script>
-    function confirmar(){
+function confirmar(){
     if(confirm('¿Está seguro de guardar los cambios?')){
         return true;
     }else{

@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group" style="text-align: right">
                         <a class="btn btn-default btn-outline" href="<?php echo base_url() ?>index.php/entidad_controller/entidades">Volver</a>
-                        <button class="btn btn-primary btn-outline" type="submit">Guardar</button>
+                        <button class="btn btn-primary btn-outline" type="submit" onclick="return confirmar()">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -32,6 +32,13 @@
     </div>
     
 <script>
+function confirmar(){
+    if(confirm('¿Está seguro de guardar los cambios?')){
+        return true;
+    }else{
+        return false;
+    }
+}
 $('#rut').Rut({
     on_error: function(){ alert('Favor ingrese un rut válido');
         $('#rut').val(''); 

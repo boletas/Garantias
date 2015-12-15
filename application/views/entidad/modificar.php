@@ -25,6 +25,13 @@
     </div>
     
 <script>
+function confirmar(){
+    if(confirm('¿Está seguro de guardar los cambios?')){
+        return true;
+    }else{
+        return false;
+    }
+}
 $('#rut').Rut({
     on_error: function(){ alert('Favor ingrese un rut válido');
         $('#rut').val(''); 
