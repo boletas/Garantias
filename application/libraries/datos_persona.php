@@ -30,14 +30,14 @@ class Datos_Persona{
                 $CI->session->unset_userdata($unset_usuario);
                 $CI->session->set_userdata($data);
                 $CI->session->set_flashdata('actualiza','Los datos fueron actualizados correctamente');
-                redirect(base_url()."?sec=perfil_usuario",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=perfil_usuario",'refresh');
             }
             if($que == "actualiza_login"){
                 $unset_login = array('nombre_usuario' => '', 'pass_usuario' => '');
                 $CI->session->unset_userdata($unset_login);
                 $CI->session->set_userdata($data);
                 $CI->session->set_flashdata('actualiza','Los datos fueron actualizados correctamente');
-                redirect(base_url()."?sec=configuracion_usuario",'refresh');
+                redirect(base_url()."index.php/plantilla_controller/?sec=configuracion_usuario",'refresh');
             }
         }else{
             redirect('plantilla_controller');

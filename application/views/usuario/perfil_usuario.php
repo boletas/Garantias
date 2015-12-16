@@ -95,11 +95,11 @@
                 <div class="form-group">
                     <?php echo form_input($tipo_usuario); ?>
                 </div>
-                <div align="right">
-                    <a href=<?php echo base_url()?>?sec=configuracion_usuario>
+                <!--div align="right">
+                    <a href=<?php echo base_url()?>index.php/plantilla_controller/?sec=configuracion_usuario>
                         <button type="button" class="btn btn-outline btn-default btn-xs">Modificar Datos de Sesión</button>
                     </a>
-                </div>
+                </div-->
             </div>
         </div>
     </div>
